@@ -1,4 +1,2 @@
-This repository contains a project template.
-I intend this repo as the common starting point for research projects.
-It can also be used to onboard new co-authors and research assistants.
-Download the repository and compile `logbook/logbook.tex` to get started.
+This repository is used for my thesis project analyzing how political circumstances influence the behavior of Chicago Aldermen.
+This repository was initially based on the project template provided by Jonathan Dingel. 
