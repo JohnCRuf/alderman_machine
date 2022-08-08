@@ -9,6 +9,7 @@ library(XML)
 library("rstudioapi") 
 setwd(dirname(getActiveDocumentContext()$path)) 
 menu_df<-read_csv("../input/menu_panel_df.csv")
+beauty_df<-read_csv("../input/menu_panel_df_beauty.csv")
 inc_df<-read_csv("../input/incumbent_voteshare_df.csv")
 
 inc_df<-inc_df %>%
@@ -25,5 +26,7 @@ menu_df<-menu_df %>%
          year=NULL)
 
 RDD_df<-left_join(inc_df, menu_df)
+RDD_df_beauty<-left_join(inc_df, beauty_df)
 
 write_csv(RDD_df, file="../input/RDD_df.csv")
+write_csv(RDD_df_beauty, file="../input/RDD_df_beauty.csv")

@@ -10,7 +10,7 @@ library("rstudioapi")
 
 
 setwd(dirname(getActiveDocumentContext()$path)) 
-menu_df<-read_csv("../input/menu_panel_df.csv")
+menu_df<-read_csv("../input/menu_panel_df_beauty.csv")
 treated_wards=c(2,7,11,15,17,18,24,29,31,35,36,41)
 electorally_treated=c(7,10,18,29,31,35,36,41)
 retirement_treated=c(2,11,17,24,38)
@@ -41,17 +41,16 @@ DiD_retired_df<-menu_df %>%
          treated_4=ifelse(ward %in% retirement_treated & year>2019,1,0),)%>%
   filter(ward %in% electorally_treated==F)
 
-DiD_all<-lm(off_menu~treated+treated_1+treated_2+treated_3+treated_4+factor(year)+factor(ward),data = DiD_all_df)
+DiD_all<-lm(beauty~treated+treated_1+treated_2+treated_3+treated_4+factor(year)+factor(ward),data = DiD_all_df)
 summary(DiD_all)
-DiD_elected<-lm(off_menu~treated+treated_1+treated_2+treated_3+treated_4+factor(year)+(ward),data = DiD_elected_df)
+DiD_elected<-lm(beauty~treated+treated_1+treated_2+treated_3+treated_4+factor(year)+(ward),data = DiD_elected_df)
 summary(DiD_elected)
-DiD_retired<-lm(off_menu~treated+treated_1+treated_2+treated_3+treated_4+factor(year)+factor(ward),data = DiD_retired_df)
+DiD_retired<-lm(beauty~treated+treated_1+treated_2+treated_3+treated_4+factor(year)+factor(ward),data = DiD_retired_df)
 summary(DiD_retired)
 
 stargazer(DiD_all,DiD_elected,DiD_retired, omit = c("ward","year"))
 
-did_attgt<-att_gt(yname="off_menu",tname="year",idname="ward", gname="first_treat", data=DiD_all_df,panel=F)
+did_attgt<-att_gt(yname="beauty",tname="year",idname="ward", gname="first_treat", data=DiD_all_df,panel=F)
 ggdid(did_all)
 
-stargazer(did_all)
-
+stargazer(DiD_all)

@@ -8,10 +8,12 @@ library("rstudioapi")
 setwd(dirname(getActiveDocumentContext()$path)) 
 menu_df<-read_csv("../input/menu.csv")
 menu=c('Streets/CDOT','Lighting','Cameras')
+beauty=c('Arts', 'Trees, Gardens', 'Parks', 'Misc', 'Other')
 menu_df<-menu_df %>%
   mutate(
     est_cost=gsub("(5700 W)","",est_cost, fixed=TRUE),
     on_menu=ifelse(category %in% menu,"on_menu","off_menu"),
+    beauty=ifelse(category %in% beauty, "beauty","non-Beauty"),
     est_cost=ifelse(desc %in% "Shabbona Park","$275,000.00",est_cost)
   )
 
@@ -32,12 +34,19 @@ menu_df<-rbind(menu_df, menu_w49_y2018) %>%
          est_cost=as.numeric(est_cost),
          est_cost=ifelse(is.na(est_cost),0,est_cost))
 
-menu_panel_df=menu_df %>%
+menu_panel_df_offmenu=menu_df %>%
   group_by(ward,year,on_menu) %>%
   summarise(expenditures=sum(est_cost)) %>%
   pivot_wider(names_from = on_menu,values_from = expenditures) %>%
   mutate(off_menu=ifelse(is.na(off_menu),0,off_menu))
 
-write_csv(menu_panel_df, file="../output/menu_panel_df.csv")
+menu_panel_df_beauty=menu_df %>%
+  group_by(ward,year,beauty) %>%
+  summarise(expenditures=sum(est_cost)) %>%
+  pivot_wider(names_from = beauty,values_from = expenditures) %>%
+  mutate(beauty=ifelse(is.na(beauty),0,beauty))
+
+write_csv(menu_panel_df_offmenu, file="../output/menu_panel_df.csv")
+write_csv(menu_panel_df_beauty, file="../output/menu_panel_df_beauty.csv")
 
 
