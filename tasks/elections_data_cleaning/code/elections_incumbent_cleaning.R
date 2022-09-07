@@ -8,7 +8,7 @@ library(stringr)
 library(readr)
 library("rstudioapi") 
 setwd(dirname(getActiveDocumentContext()$path)) 
-elections <- read_csv("../../elections_data_webscraping/output/elections.csv")%>%
+elections <- read_csv("../input/elections.csv")%>%
   mutate(Candidate=gsub("  ", " ",Candidate),
          Candidate=gsub("Patricia ''Pat'' Dowell", "Pat Dowell",Candidate),
          Candidate=gsub("Thomas M. Tunney", "Tom Tunney",Candidate),

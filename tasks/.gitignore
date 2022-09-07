@@ -1,0 +1,7 @@
+*/code/*.log
+*/code/*.dta
+*/output/
+*/input/
+*/temp/
+.DS_Store
+slurmlogs/
