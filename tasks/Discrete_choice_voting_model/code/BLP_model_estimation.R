@@ -10,7 +10,7 @@ library("rstudioapi")
 
 
 setwd(dirname(getActiveDocumentContext()$path)) 
-BLP_df<-read_csv("../input/BLP_df.csv") %>%
+BLP_df<-read_csv("../temp/BLP_df.csv") %>%
   mutate(off_menu=off_menu/100000,
          votepct=votepct*100,
          exp2=exp^2)
@@ -21,5 +21,7 @@ OLS<-lm(votepct~off_menu+factor(Ward)+factor(year),data=BLP_df)
 summary(OLS)
 EXP_OLS<-lm(votepct~exp+factor(Ward)+factor(year), data=BLP_df)
 summary(EXP_OLS)
-stargazer(BLP_model,OLS, EXP_OLS, omit = c("Ward","year"))
-stargazer(OLS, EXP_OLS, omit = c("Ward","year"))
+stargazer(BLP_model,OLS, EXP_OLS, omit = c("Ward","year"),
+ out = ../output/voteshare_off_menu_BLP.tex)
+stargazer(OLS, EXP_OLS, omit = c("Ward","year"),
+ out = ../output/voteshare_off_menu_ols.tex)

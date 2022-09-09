@@ -9,7 +9,7 @@ library("rstudioapi")
 
 
 setwd(dirname(getActiveDocumentContext()$path)) 
-BLP_df<-read_csv("../input/BLP_df_beauty.csv") %>%
+BLP_df<-read_csv("../temp/BLP_df_beauty.csv") %>%
   mutate(beauty=beauty/100000,
          votepct=votepct*100) %>%
   filter(votepct!=100)

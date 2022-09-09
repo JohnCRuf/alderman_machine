@@ -46,5 +46,5 @@ BLP_df_beauty<-left_join(BLP_df_beauty,exp_df) %>%
   mutate(exp = cycle-start_year)
 
 
-write_csv(BLP_df, file="../input/BLP_df.csv")
-write_csv(BLP_df_beauty, file="../input/BLP_df_beauty.csv")
+write_csv(BLP_df, file="../temp/BLP_df.csv")
+write_csv(BLP_df_beauty, file="../temp/BLP_df_beauty.csv")
