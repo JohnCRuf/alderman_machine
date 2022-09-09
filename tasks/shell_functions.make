@@ -9,4 +9,6 @@ ifneq (,$(findstring n,$(MAKEFLAGS)))
 STATA := STATA
 JULIA := JULIA
 R := R
+WIPECLEAN := WIPECLEAN
 endif
+

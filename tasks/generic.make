@@ -1,3 +1,6 @@
+wipeclean: #This deletes all output, input, and logs content
+	$(WIPECLEAN) $(CURDIR)
+
 run.sbatch: ../../setup_environment/code/run.sbatch | slurmlogs
 	ln -s $< $@
 ../input/Project.toml: ../../setup_environment/output/Project.toml | ../input/Manifest.toml ../input
