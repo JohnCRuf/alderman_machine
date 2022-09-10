@@ -68,4 +68,3 @@ hist<-DiD_all_df %>%
   xlab("Off-Menu Expenditures")+
   ylab("Number of Unit-Year Observations")+
   scale_x_continuous(labels = human_usd)
-
