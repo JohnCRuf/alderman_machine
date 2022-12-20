@@ -21,3 +21,6 @@ paper.pdf: paper.tex $(PAPER_INPUTS_TEX) $(PAPER_INPUTS_IMG)
 	pdflatex paper.tex
 	rm paper.log paper.aux paper.out
 	rm paper.bbl paper.blg
+## INPUTS
+../input/fig1.pdf: ../input/fig1.tex
+	cd ../input && pdflatex fig1.tex
