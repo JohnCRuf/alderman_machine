@@ -2,6 +2,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage[onehalfspacing]{setspace}
 \usepackage[unicode=true,
  bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
@@ -12,11 +13,61 @@
 \usepackage{mathtools}
 \usepackage{url}
 \usepackage[authoryear]{natbib}
+\usepackage{soul}
 \usepackage{tikz}
-\usepackage{booktabs} %Package with \toprule, \midrule, \bottomrule
-\usepackage{placeins} %Package with \FloatBarrier command
-\usepackage{physics}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{ulem}
+\usepackage{setspace}
 \usepackage[en-US]{datetime2}
+
+\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}} 
+% for vectors of Greek letters
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\dd}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} 
+% for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} 
+% for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+ \right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+ \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+ #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot \v{#1}} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times \v{#1}} % for curl
+\newcommand{\stkout}[1]{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}
+\newcommand{\msout}[1]{\text{\sout{\ensuremath{#1}}}}
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+\providecommand{\wave}[1]{\v{\tilde{#1}}}
+\providecommand{\fr}{\frac}
+\providecommand{\RR}{\mathbb{R}}
+\providecommand{\NN}{\mathbb{N}}
+\providecommand{\seq}{\subseteq}
+\providecommand{\e}{\epsilon}
+\newtheorem{prop}{Proposition}
+\newtheorem*{lem}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{dfn}{Definition}
+\newenvironment{s}{%\small%
+        \begin{trivlist} \item \textbf{Solution}. }{%
+            \hspace*{\fill} $\blacksquare$\end{trivlist}}%
+\newenvironment{p}{}{}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 
 \hypersetup{
 	pdftex,
@@ -29,24 +80,25 @@
 
 % CUSTOM DEFINITIONS
 \urldef{\dingelhomepage}\url{http://faculty.chicagobooth.edu/jonathan.dingel/}
-\urldef{\dingelemail}\url{jdingel@chicagobooth.edu}
+\urldef{\rufemail}\url{jcruf@uchicago.edu}
 \newtheorem{proposition}{Proposition}
 
 % IDENTIFYING INFORMATION
-\title{A paper}
-\author{Jonathan I. Dingel\thanks{\dingelemail} \\ Chicago Booth and NBER}
-\date{\monthname[\the\month] \the\year}
+\title{The Political Economy of Municipal Spending:
+Evidence from Chicago’s Menu Program}
+\author{John C. Ruf \thanks{\rufemail}}
+\date{\today}
 
 
 \begin{document}
 \bibliographystyle{../bib/aeanobold}
-
+\maketitle
 % -----------------------------------------------
 % 	ABSTRACT
 % -----------------------------------------------
 
 \begin{abstract}
-%\noindent  \input{./sections/abstract.tex}
+\input{./sections/abstract.tex}
 \end{abstract}
 \vspace{1cm}
 {\small
@@ -65,6 +117,13 @@
 %\input{./sections/theory.tex}
 %\input{./sections/estimation.tex}
 %\input{./sections/discussion.tex}
+\input{sections/s1desc.tex}
+\input{sections/s2lit.tex}
+\input{sections/s3theory.tex}
+\input{sections/s4data.tex}
+\input{sections/s5empframe.tex}
+\input{sections/s6results.tex}
+\input{sections/s7conc.tex}
 
 % -----------------------------------------------
 % 	REFERENCES
@@ -81,7 +140,7 @@
 \numberwithin{figure}{section}
 \numberwithin{table}{section}
 
-%\input{./sections/appendix_theory}
+\input{./sections/s9Append.tex}
 %\input{./sections/appendix_data.tex}
 %\input{./sections/appendix_empirics.tex}
 
