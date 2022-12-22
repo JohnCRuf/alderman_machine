@@ -7,10 +7,7 @@ library(tidyverse)
 library(rvest)
 library(stringr)
 library(XML)
-library("rstudioapi") 
-setwd(dirname(getActiveDocumentContext()$path)) 
-source("chicago_elections_webscraper.R")
-
+source("chicago_elections_webscraping_fn.R")
 #step 1: Construct links to scrape
 
 list<-c('220','210','9','10','24','25','60','65','3')
@@ -21,12 +18,19 @@ for (val in list)
 {links[i]=paste('https://chicagoelections.gov/en/election-results.asp?election=',val, sep="")
 i=i+1}
 elections_data<- data.frame(matrix(ncol = 5, nrow = 0))
-
+system("docker stop $(docker ps -q)")
+system("sudo docker pull selenium/standalone-chrome",wait=T)
+Sys.sleep(2)
+system("sudo docker run -d -p 4445:4444 selenium/standalone-chrome",wait=T)
+Sys.sleep(2)
 #step 2: Execute webscraper for every link
-remDr <- remoteDriver(port = 4445L) #remember to activate docker and clear port before executing code
+remDr <- remoteDriver(port = 4445L,
+                                 browserName = "chrome")
+Sys.sleep(2)
 remDr$open()
 for (link in links){
   remDr$navigate(link)
+  print(link)
   df_temp=chicago_elections_webscraper(link)
   elections_data<-rbind(elections_data,df_temp)
 }

@@ -9,5 +9,5 @@ all: ../output/elections.csv
 
 ../output/elections.csv: elections_webscraping.R chicago_elections_webscraping_fn.R | ../output run.sbatch slurmlogs
 	$(R) --no-job-name $<
-
+#INPUT RECIPES
 include ../../generic.make
