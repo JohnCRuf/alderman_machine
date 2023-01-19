@@ -7,9 +7,7 @@ library(rdrobust)
 library(stargazer)
 library(rdd)
 library(XML)
-library("rstudioapi")
-setwd(dirname(getActiveDocumentContext()$path)) 
-RDD_df<-read_csv("../input/RDD_df_beauty.csv") %>%
+RDD_df<-read_csv("../temp/RDD_df_beauty.csv") %>%
   mutate(IW=ifelse(votepct>0.5,1,0),
          IVS=votepct-0.5,
          beauty=beauty)
@@ -49,4 +47,9 @@ col_labs=c("Full", "IK", "MSE", "CER")
 RDD_models_table<-stargazer(full_model,IK_model,
                             MSE_model,CER_model, digits=0,font.size = "small",
                             column.labels = col_labs)
-
+writeLines(capture.output(stargazer(full_model,IK_model,
+  MSE_model,CER_model,
+  digits=0,
+  font.size = "small",
+  column.labels = col_labs)),
+  "../output/Full_IK_MSE_CER_Bandwidth_comparison_table_beauty.tex")
