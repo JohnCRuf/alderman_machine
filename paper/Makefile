@@ -22,5 +22,6 @@ paper.pdf: paper.tex $(PAPER_INPUTS_TEX) $(PAPER_INPUTS_IMG)
 	rm paper.log paper.aux paper.out
 	rm paper.bbl paper.blg
 ## INPUTS
-../input/fig1.pdf: ../input/fig1.tex
-	cd ../input && pdflatex fig1.tex
+DiD_Results = $(foreach did_hist did_plot did_treatmenteffect_plot votershare_histogram, ../input/$(did_hist).png)
+../input/did_hist.png : ../input/%: ../tasks/DiD_offmenuspending_results/output/%
+	cp $< $@
