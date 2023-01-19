@@ -19,9 +19,9 @@ for (val in list)
 i=i+1}
 elections_data<- data.frame(matrix(ncol = 5, nrow = 0))
 system("docker stop $(docker ps -q)")
-system("sudo docker pull selenium/standalone-chrome",wait=T)
+system("docker pull selenium/standalone-chrome",wait=T)
 Sys.sleep(2)
-system("sudo docker run -d -p 4445:4444 selenium/standalone-chrome",wait=T)
+system("docker run -d -p 4445:4444 selenium/standalone-chrome",wait=T)
 Sys.sleep(2)
 #step 2: Execute webscraper for every link
 remDr <- remoteDriver(port = 4445L,
