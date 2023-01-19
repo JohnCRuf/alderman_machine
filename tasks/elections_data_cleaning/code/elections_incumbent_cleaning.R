@@ -6,8 +6,6 @@
 library(tidyverse)
 library(stringr)
 library(readr)
-library("rstudioapi") 
-setwd(dirname(getActiveDocumentContext()$path)) 
 elections <- read_csv("../input/elections.csv")%>%
   mutate(Candidate=gsub("  ", " ",Candidate),
          Candidate=gsub("Patricia ''Pat'' Dowell", "Pat Dowell",Candidate),
