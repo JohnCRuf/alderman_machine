@@ -53,7 +53,9 @@ ggsave("../output/RDD_plot.png", RDD_visualization)
 rdd_stats<-RDD_df %>%
   transmute(off_menu,
             votepct = votepct * 100)
-writeLines(capture.output(stargazer(as.data.frame(rdd_stats))),
+writeLines(capture.output(stargazer(as.data.frame(rdd_stats),
+label = "rddstats",
+title = "Summary Statistics for the Regression Discontinuity Analysis")),
   "../output/RDD_statistics.tex")
 
 hist_menu <- rdd_stats %>%

@@ -42,7 +42,7 @@ F Statistic & 3.107$^{***}$ (df = 47; 23) & 2.689$^{***}$ (df = 47; 23) & 2.664$
 \end{table} 
 
 The results of the regression discontinuity analysis are given below. 
-For this we used 4 bandwidth specifications, a "full" bandwidth that uses the entire data-set, an Imbens-Kalyanaraman bandwidth \cite{IK_bandwidth}, a mean-square-error(MSE) optimal bandwidth derived by Calonico et al.
+For this we used 4 bandwidth specifications, a ``full'' bandwidth that uses the entire data-set, an Imbens-Kalyanaraman bandwidth \cite{IK_bandwidth}, a mean-square-error(MSE) optimal bandwidth derived by Calonico et al.
  \cite{CCF_MSE}, and a coverage-error-probability (CER) optimal bandwidth derived by Calonico et al \cite{CCF_CER}. 
  The results show a large and barely significant effect of an incumbent just winning the election, regardless of the bandwidth size. 
  This result indicates that when the incumbent barely wins an election, this causes off-menu expenditures to decrease by more than \$100,000 relative to wards where challengers just barely beat out incumbents if the assumptions of continuity and random assignment close to the cutoff hold. 
@@ -51,42 +51,7 @@ For this we used 4 bandwidth specifications, a "full" bandwidth that uses the en
  This is because if the voters split evenly between the two candidates, then it must be the case that they have practically equivalent competence. 
  However, as we will see, these results are not as steady as the p-value may indicate. 
 
-\begin{table}[H] \centering 
-  \caption{Regression Discontinuity Results for a Variety of Bandwidths} 
-  \label{} 
-\small 
-\begin{tabular}{lcccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{4}{c}{\textit{Bandwidth Criterion:}} \\ 
-\cline{2-5} 
-\\
- & Full & IK & MSE & CER \\ 
-\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
-\hline \\[-1.8ex] 
- IW & $-$111,845$^{**}$ & $-$129,425$^{***}$ & $-$173,271$^{***}$ & $-$152,452$^{***}$ \\ 
-  & (47,501) & (38,302) & (46,566) & (49,220) \\ 
-  & & & & \\ 
- IVS & 919,463$^{*}$ & 1,551,752$^{**}$ & 1,679,313$^{*}$ & 1,863,734 \\ 
-  & (545,557) & (624,376) & (849,169) & (1,181,661) \\ 
-  & & & & \\ 
- IW:IVS & $-$839,454 & $-$1,564,804$^{**}$ & 38,509 & $-$1,378,414 \\ 
-  & (549,719) & (671,145) & (1,129,667) & (1,484,783) \\ 
-  & & & & \\ 
- Constant & 140,967$^{***}$ & 159,083$^{***}$ & 161,626$^{***}$ & 164,978$^{***}$ \\ 
-  & (44,467) & (33,981) & (38,497) & (40,705) \\ 
-  & & & & \\ 
-\hline \\[-1.8ex] 
-Observations & 123 & 69 & 49 & 45 \\ 
-R$^{2}$ & 0 & 0 & 0 & 0 \\ 
-Adjusted R$^{2}$ & 0 & 0 & 0 & 0 \\ 
-Residual Std. Error & 117,476 (df = 119) & 81,839 (df = 65) & 89,492 (df = 45) & 87,740 (df = 41) \\ 
-F Statistic & 2 (df = 3; 119) & 4$^{***}$ (df = 3; 65) & 5$^{***}$ (df = 3; 45) & 4$^{**}$ (df = 3; 41) \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table} 
+ \input{ input/Full_IK_MSE_CER_Bandwidth_comparison_table.tex}
 
 The visual results of the regression discontinuity analysis are given below. 
 Note how neither of the two assumptions required for the validity of the regression discontinuity design seems to hold. 
@@ -110,7 +75,7 @@ However, regardless of the reason for the gap, this is a significant indication 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.7]{input/rdd_densityplot.png}
+    \includegraphics[scale=0.7]{input/rdd_density.png}
     \caption{Mccrary Density Test Plot}
 \end{figure}
 
@@ -120,8 +85,8 @@ However, out of 20 placebo tests, 5 achieve statistically significant levels, wh
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{input/RD_placebo_estimate.png}
-    \includegraphics[scale=0.8]{input/RD_placebo_pvalue.png}
+    \includegraphics[scale=0.8]{input/placebo_test_effects.png}
+    \includegraphics[scale=0.8]{input/placebo_test_pvalue.png}
     \caption{Placebo Test Results}
 \end{figure}
 

@@ -58,5 +58,11 @@ writeLines(capture.output(stargazer(full_model,
   CER_model,
   digits=0,
   font.size = "small",
-  column.labels = col_labs)),
+  column.labels = col_labs,
+  dep.var.caption = "Bandwidth Criterion:",
+  title = "Regression Discontinuity Results for a Variety of Bandwidths",
+  column.sep.width = "0pt",
+  table.placement = "H",
+  label = "rdd_cutoff_table"
+  )),
   "../output/Full_IK_MSE_CER_Bandwidth_comparison_table.tex")
