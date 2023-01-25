@@ -40,7 +40,6 @@ human_numbers <- function(x = NULL, smbl ="", signif = 1) {
 
 human_usd   <- function(x){human_numbers(x, smbl = "$")}
 
-
 RDD_visualization <- RDD_df %>%
 ggplot(aes(x = (votepct-0.5) * 100, y = off_menu, color = factor(inc_win))) +
   geom_point() +
@@ -49,7 +48,7 @@ ggplot(aes(x = (votepct-0.5) * 100, y = off_menu, color = factor(inc_win))) +
   xlab("Incumbent Vote Lead (%)") +
   ylab("Ward Off-Menu Spending After Election ($)") +
   labs(color="Incumbent Win")
-ggsave(../output/RDD_plot.png, RDD_visualization)
+ggsave("../output/RDD_plot.png", RDD_visualization)
 
 rdd_stats<-RDD_df %>%
   transmute(off_menu,
@@ -63,10 +62,10 @@ hist_menu <- rdd_stats %>%
   xlab("Off-Menu Expenditures") +
   ylab("Number of Observations") +
   scale_x_continuous(labels = human_usd)
-ggsave(../output/off_menu_expenditures_histogram.png, hist_menu)
+ggsave("../output/off_menu_expenditures_histogram.png", hist_menu)
 hist_vote<-rdd_stats %>%
   ggplot(aes(x=votepct)) +
   geom_histogram() +
   xlab("Incumbent Vote Share (%)") +
   ylab("Number of Observations")
-ggsave(../output/voteshare_histogram.png, hist_vote)
+ggsave("../output/voteshare_histogram.png", hist_vote)

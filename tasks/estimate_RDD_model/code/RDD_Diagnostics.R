@@ -44,15 +44,15 @@ human_numbers <- function(x = NULL, smbl ="", signif = 1){
 
 human_usd   <- function(x){human_numbers( x, smbl = "$")}
 #Density Test
-myDCdensity <- function(runvar, cutpoint, 
+myDCdensity <- function(runvar, cutpoint,
 my_abline = 0, my_x_axis = "Incumbent Vote Percent (%)",
                         my_y_axis = "Density"){
   # get the default plot
+  png("../output/rdd_density.png")
   myplot <- DCdensity(runvar, cutpoint)
   # 'additional graphical options to modify the plot'
   abline(v = my_abline)
   title(xlab=my_x_axis,ylab=my_y_axis)
-  return(myplot)
 }
 
 myDCdensity(RDD_df$IVP, 0)
@@ -90,11 +90,11 @@ placebo_plot_effectsize <- placebo_df %>%
   xlab("Positive Cutpoint (%)") +
   ylab("Estimated Effect ($)") +
   scale_y_continuous(labels = human_usd)
-ggsave(../output/placebo_test_effects.png, placebo_plot_effectsize)
+ggsave("../output/placebo_test_effects.png", placebo_plot_effectsize)
 
 placebo_plot_pvalue <- placebo_df %>%
   ggplot(aes(x = cutpoints, y = placebo_pvalue)) +
   geom_point() +
   xlab("Positive Cutpoint (%)") +
   ylab("P-Value of Estimated Effect")
-ggsave(../output/placebo_test_pvalue.png, placebo_plot_pvalue)
+ggsave("../output/placebo_test_pvalue.png", placebo_plot_pvalue)
