@@ -8,7 +8,7 @@ library(stringr)
 library(readr)
 elections <- read_csv("../input/elections.csv")%>%
   mutate(Candidate=gsub("  ", " ",Candidate),
-         Candidate=gsub("Patricia ''Pat'' Dowell", "Pat Dowell",Candidate),
+         Candidate=gsub("Patricia ''Pat'' Dowell", "Pat Dowell",Candidate), #remove misnamed candidates
          Candidate=gsub("Thomas M. Tunney", "Tom Tunney",Candidate),
          Candidate=gsub("Rey Colãƒâ³N", "Rey Colon",Candidate))
 
@@ -65,8 +65,12 @@ incumbents_list[[1]]<-incumbents_2019
 incumbents_list[[2]]<-incumbents_2015
 incumbents_list[[3]]<-incumbents_2011
 
-
-#Step 5: Develop Incumbent VS Dataset
+#Step 5: Get list of all incumbents
+incumbents_all=intersect(election_winner_list,election_candidate_list)
+incumbents_all=append(incumbents_all, appointments_2019)
+incumbents_all=append(incumbents_all, appointments_2015)
+incumbents_all=append(incumbents_all, appointments_2011)
+#Step 6: Develop Incumbent VS Dataset
 incumbent_vs<-election_winners %>%
   mutate(winner=NULL,
          inc_2019=ifelse(Candidate %in% incumbents_list[[1]],1,0),
@@ -82,5 +86,6 @@ incumbent_df_2011<-incumbent_vs%>%
 incumbent_vs_df<-rbind(incumbent_df_2019,incumbent_df_2015,incumbent_df_2011)
 
 saveRDS(incumbents_list, file="../output/incumbents_list.RDS")
+saveRDS(incumbents_all, file="../output/incumbents_all.RDS")
 
 write_csv(incumbent_vs_df, file="../output/incumbent_voteshare_df.csv")
