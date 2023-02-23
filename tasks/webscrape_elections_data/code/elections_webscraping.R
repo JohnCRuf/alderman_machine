@@ -10,7 +10,7 @@ library(XML)
 source("chicago_elections_webscraping_fn.R")
 #step 1: Construct links to scrape
 
-list<-c('220','210','9','10','24','25','60','65','3')
+list<-c('105','110','220','9','10','24','25','60','65','3','210')
 
 i=1
 links=matrix(0,1,8)
@@ -29,6 +29,7 @@ remDr <- remoteDriver(port = 4445L,
 Sys.sleep(2)
 remDr$open()
 for (link in links){
+  Sys.sleep(2)
   remDr$navigate(link)
   print(link)
   df_temp=chicago_elections_webscraper(link)

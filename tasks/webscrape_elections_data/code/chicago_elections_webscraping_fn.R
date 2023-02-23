@@ -1,4 +1,5 @@
 table_scraper<-function(remDr,election,ward){
+  Sys.sleep(2)
   doc <- htmlParse(remDr$getPageSource()[[1]])
   table<-readHTMLTable(doc)[[2]]
   col_odd<-seq_len(ncol(table))%%2
@@ -19,10 +20,12 @@ chicago_elections_webscraper<-function(link) {
   dropdown <- remDr$findElement(using = 'xpath','//*[@id="race"]') #identify dropdown menu
   dropdown_text<-dropdown$getElementText()[[1]] #get dropdown options
   dropdown_text_vector<-str_split(dropdown_text,'\n')[[1]]
-  alderman_options=which(str_detect(dropdown_text_vector,"Alderman")==T)
+  dropdown_text_vector <- str_replace(dropdown_text_vector, "-", "")
+  alderman_options=which(str_detect(dropdown_text_vector,"Alderman|ALDERMAN")==T)
   ward_list<-parse_number(dropdown_text_vector[alderman_options])
   data=data.frame(Precinct=integer(),Candidate=character(),Votecount=integer(),Election=character(),Ward=integer())
   for(i in 1:length(ward_list)){
+    Sys.sleep(3)
     xpath=paste0('//*[@id="race"]/option[',alderman_options[i],']')
     option<-remDr$findElement(using = 'xpath',xpath)
     option$clickElement()
