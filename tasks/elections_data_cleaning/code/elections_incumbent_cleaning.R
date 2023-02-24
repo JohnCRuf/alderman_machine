@@ -57,35 +57,54 @@ incumbents_2015=append(incumbents_2015, appointments_2015)
 #Step 4: Get list of 2011 Incumbents
 
 incumbents_2011=intersect(election_winner_list[[4]],election_candidate_list[[3]])
-appointments_2011=c("Proco ''Joe'' Moreno", "Roberto Maldonado", "Deborah L. Graham", "Jason C. Ervin", "John A. Rice","Timoth y M. Cullerton")
+appointments_2011=c("Proco ''Joe'' Moreno", "Roberto Maldonado", "Deborah L. Graham", "Jason C. Ervin", "John A. Rice","Timothy M. Cullerton")
 incumbents_2011=append(incumbents_2011, appointments_2011)
 
-incumbents_list<-vector(mode="list",length=3)
+incumbents_2007=intersect(election_winner_list[[5]],election_candidate_list[[4]])
+appointments_2007=c("Darcel A. Beavers","Lona Lane", "Thomas W. Murphy", "Thomas M. Tunney")
+incumbents_2007=append(incumbents_2007, appointments_2007)
+
+appointments_2003=c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts")
+incumbents_2003=c("Rafael ''Ray'' Frias", "Dorothy J. Tillman", "Toni Preckwinkle", "Leslie A. Hairston", "Freddrenna M. Lyle", "William M. Beavers", "Anthony A. Beale", "John A. Pope", "James A. Balcer", "Frank J. Olivo",  "Theodore ''Ted'' Thomas", "Shirley A. Coleman", "Virginia A. Rugai", "Arenda Troutman", "Leonard Deville", "Ricardo Munoz", "Michael R. Zalewski", "Michael D. Chandler","Daniel ''Danny'' Solis", "Billy Ocasio", "Walter Burnett, Jr.", "Ed H. Smith", "Isaac ''Ike'' Sims Carothers", "Regner ''Ray'' Suarez", "Ted Matlak", "Richard F. Mell", "Carrie M. Austin", "Vilma Colom", "William J.p. Banks", "Thomas R. Allen", "Margaret Laurino", "Patrick J. O'connor", "Brian G. Doherty", "Burton F. Natarus", "Vi Daley", "Helen Shiller", "Gene Schulter", "Joe Moore", "Bernard L. Stone")
+incumbents_2003=append(incumbents_2003, appointments_2003)
+
+incumbents_list<-vector(mode="list",length=5)
 incumbents_list[[1]]<-incumbents_2019
 incumbents_list[[2]]<-incumbents_2015
 incumbents_list[[3]]<-incumbents_2011
+incumbents_list[[4]]<-incumbents_2007
+incumbents_list[[5]]<-incumbents_2003
+
 
 #Step 5: Get list of all incumbents
 incumbents_all=intersect(election_winner_list,election_candidate_list)
 incumbents_all=append(incumbents_all, appointments_2019)
 incumbents_all=append(incumbents_all, appointments_2015)
 incumbents_all=append(incumbents_all, appointments_2011)
+incumbents_all=append(incumbents_all, appointments_2007)
+incumbents_all=append(incumbents_all, appointments_2003)
 #Step 6: Develop Incumbent VS Dataset
 incumbent_vs<-election_winners %>%
   mutate(winner=NULL,
          inc_2019=ifelse(Candidate %in% incumbents_list[[1]],1,0),
          inc_2015=ifelse(Candidate %in% incumbents_list[[2]],1,0),
-         inc_2011=ifelse(Candidate %in% incumbents_list[[3]],1,0))
+         inc_2011=ifelse(Candidate %in% incumbents_list[[3]],1,0),
+         inc_2007=ifelse(Candidate %in% incumbents_list[[4]],1,0),
+         inc_2003=ifelse(Candidate %in% incumbents_list[[5]],1,0))
 incumbent_df_2019<-incumbent_vs%>%
   filter(year==2019,inc_2019==1)
 incumbent_df_2015<-incumbent_vs%>%
   filter(year==2015,inc_2015==1)
 incumbent_df_2011<-incumbent_vs%>%
   filter(year==2011,inc_2011==1)
+incumbent_df_2007<-incumbent_vs%>%
+  filter(year==2007,inc_2007==1)
+incumbent_df_2003<-incumbent_vs%>%
+  filter(year==2003,inc_2003==1)
 
-incumbent_vs_df<-rbind(incumbent_df_2019,incumbent_df_2015,incumbent_df_2011)
+incumbent_vs_df<-rbind(incumbent_df_2019,incumbent_df_2015,incumbent_df_2011, incumbent_df_2007, incumbent_df_2003)
 
 saveRDS(incumbents_list, file="../output/incumbents_list.RDS")
-saveRDS(incumbents_all, file="../output/incumbents_all.RDS")
+saveRDS(incumbents_all, file="../output/incumbents_all.RDS") #TODO: Add more appointments
 
 write_csv(incumbent_vs_df, file="../output/incumbent_voteshare_df.csv")
