@@ -7,20 +7,11 @@ library(rdrobust)
 library(stargazer)
 library(rdd)
 library(XML)
+source("RDD_functions.R")
 RDD_df<-read_csv("../temp/RDD_df_beauty.csv") %>%
   mutate(IW=ifelse(votepct>0.5,1,0),
          IVS=votepct-0.5,
          beauty=beauty)
-
-#Defining functions useful for implementing lots of models
-
-IVS_RDD<-function(df){
-  output<-lm(beauty~IW+IVS+IW*IVS,data=df)
-}
-bandwidth_implement<-function(df,band_l,band_u){
-  df %>%
-    filter(IVS>band_l, IVS<band_u)
-}
 
 #Model 1: Full Model
 full_model<-IVS_RDD(RDD_df)
