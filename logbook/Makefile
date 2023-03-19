@@ -6,3 +6,7 @@ logbook.pdf: logbook.tex $(logbookentries)
 	pdflatex -draftmode logbook.tex
 	pdflatex logbook.tex
 	rm logbook.log logbook.out logbook.toc logbook.aux
+
+minutes_log_%.pdf: entries/minutes_log_%.tex
+	pdflatex -draftmode $<
+	pdflatex $<

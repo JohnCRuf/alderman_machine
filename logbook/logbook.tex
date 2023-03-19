@@ -30,6 +30,7 @@ coauthors
 \usepackage{etoc}     %Package with \localtableofcontents
 \usepackage{multicol}
 \usepackage{bm}
+\usepackage{subfiles} %package to manage subfile management system
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -93,9 +94,11 @@ coauthors
 \section{Notes on Julia} \input{./entries/juliaintro.tex}
 \section{Notes on Stata} \input{./entries/statanotes.tex}
 \section{Running Windows} \input{./entries/windows.tex}
+\section{Meeting Minutes Template} \subfile{./entries/minutes_template.tex}
 
 %%LOGBOOK ENTRIES: Call notes
-\chapter{Call notes}
+\chapter{Meeting Minutes}
+\section{Meeting with Anthony Fowler on 3/13/2023} \subfile{./entries/minutes_ruf03132023.tex}
 
 %%LOGBOOK ENTRIES: Research design
 \chapter{Research design}

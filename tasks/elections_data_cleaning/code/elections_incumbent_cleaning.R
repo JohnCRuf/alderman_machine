@@ -30,37 +30,36 @@ winners=as.data.frame(unique(election_winners_df$Candidate))
 #Extract winning candidates and all candidates
 election_winner_list<-vector(mode="list",length=5)
 election_candidate_list<-vector(mode="list",length=5)
-for(i in 1:length(unique(elections$year))){
+year_vector <-sort(unique(elections$year), decreasing = TRUE)
+j = 1
+for(i in year_vector){
   elections_year_winners<-election_winners %>%
-    filter(winner==1, year==unique(elections$year)[i])
+    filter(winner==1, year==i)
   election_candidate_year<-election_winners %>%
-    filter(year==unique(elections$year)[i])
-  election_winner_list[[i]]=unique(elections_year_winners$Candidate)
-  election_candidate_list[[i]]=unique(election_candidate_year$Candidate)
+    filter(year==i)
+  election_winner_list[[j]]=unique(elections_year_winners$Candidate)
+  election_candidate_list[[j]]=unique(election_candidate_year$Candidate)
+  j=j+1
 }
-election_winner_list[[6]]<-unique(elections$year)
-
-
-#Step 2: Get list of 2019 Incumbents
-
-incumbents_2019=intersect(election_winner_list[[2]],election_candidate_list[[1]])
+incumbents_2019_a=intersect(election_winner_list[[which(year_vector==2017)]],election_candidate_list[[which(year_vector==2019)]])
+incumbents_2019_b=intersect(election_winner_list[[which(year_vector==2015)]],election_candidate_list[[which(year_vector==2019)]])
 appointments_2019=c('Silvana Tabares')
-incumbents_2019=append(incumbents_2019, appointments_2019)
-incumbents_2019=append(incumbents_2019, election_winner_list[[5]])
+incumbents_2019=union(incumbents_2019_a, union(appointments_2019, incumbents_2019_b))
 
 #Step 3: Get list of 2015 Incumbents
 
-incumbents_2015=intersect(election_winner_list[[3]],election_candidate_list[[2]])
+incumbents_2015=intersect(election_winner_list[[which(year_vector==2011)]],election_candidate_list[[which(year_vector==2015)]])
 appointments_2015=c('Deborah L. Mell', 'Natashia L. Holmes')
 incumbents_2015=append(incumbents_2015, appointments_2015)
+print(incumbents_2015)
 
 #Step 4: Get list of 2011 Incumbents
 
-incumbents_2011=intersect(election_winner_list[[4]],election_candidate_list[[3]])
+incumbents_2011=intersect(election_winner_list[[which(year_vector==2007)]],election_candidate_list[[which(year_vector==2011)]])
 appointments_2011=c("Proco ''Joe'' Moreno", "Roberto Maldonado", "Deborah L. Graham", "Jason C. Ervin", "John A. Rice","Timothy M. Cullerton")
 incumbents_2011=append(incumbents_2011, appointments_2011)
 
-incumbents_2007=intersect(election_winner_list[[5]],election_candidate_list[[4]])
+incumbents_2007=intersect(election_winner_list[[which(year_vector==2003)]],election_candidate_list[[which(year_vector==2007)]])
 appointments_2007=c("Darcel A. Beavers","Lona Lane", "Thomas W. Murphy", "Thomas M. Tunney")
 incumbents_2007=append(incumbents_2007, appointments_2007)
 
@@ -68,16 +67,10 @@ appointments_2003=c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts")
 incumbents_2003=c("Rafael ''Ray'' Frias", "Dorothy J. Tillman", "Toni Preckwinkle", "Leslie A. Hairston", "Freddrenna M. Lyle", "William M. Beavers", "Anthony A. Beale", "John A. Pope", "James A. Balcer", "Frank J. Olivo",  "Theodore ''Ted'' Thomas", "Shirley A. Coleman", "Virginia A. Rugai", "Arenda Troutman", "Leonard Deville", "Ricardo Munoz", "Michael R. Zalewski", "Michael D. Chandler","Daniel ''Danny'' Solis", "Billy Ocasio", "Walter Burnett, Jr.", "Ed H. Smith", "Isaac ''Ike'' Sims Carothers", "Regner ''Ray'' Suarez", "Ted Matlak", "Richard F. Mell", "Carrie M. Austin", "Vilma Colom", "William J.p. Banks", "Thomas R. Allen", "Margaret Laurino", "Patrick J. O'connor", "Brian G. Doherty", "Burton F. Natarus", "Vi Daley", "Helen Shiller", "Gene Schulter", "Joe Moore", "Bernard L. Stone")
 incumbents_2003=append(incumbents_2003, appointments_2003)
 
-incumbents_list<-vector(mode="list",length=5)
-incumbents_list[[1]]<-incumbents_2019
-incumbents_list[[2]]<-incumbents_2015
-incumbents_list[[3]]<-incumbents_2011
-incumbents_list[[4]]<-incumbents_2007
-incumbents_list[[5]]<-incumbents_2003
 
 
 #Step 5: Get list of all incumbents
-incumbents_all=intersect(election_winner_list,election_candidate_list)
+incumbents_all=intersect(unique(elections$year),election_candidate_list)
 incumbents_all=append(incumbents_all, appointments_2019)
 incumbents_all=append(incumbents_all, appointments_2015)
 incumbents_all=append(incumbents_all, appointments_2011)
@@ -86,11 +79,11 @@ incumbents_all=append(incumbents_all, appointments_2003)
 #Step 6: Develop Incumbent VS Dataset
 incumbent_vs<-election_winners %>%
   mutate(winner=NULL,
-         inc_2019=ifelse(Candidate %in% incumbents_list[[1]],1,0),
-         inc_2015=ifelse(Candidate %in% incumbents_list[[2]],1,0),
-         inc_2011=ifelse(Candidate %in% incumbents_list[[3]],1,0),
-         inc_2007=ifelse(Candidate %in% incumbents_list[[4]],1,0),
-         inc_2003=ifelse(Candidate %in% incumbents_list[[5]],1,0))
+         inc_2019=ifelse(Candidate %in% incumbents_2019,1,0),
+         inc_2015=ifelse(Candidate %in% incumbents_2015,1,0),
+         inc_2011=ifelse(Candidate %in% incumbents_2011,1,0),
+         inc_2007=ifelse(Candidate %in% incumbents_2007,1,0),
+         inc_2003=ifelse(Candidate %in% incumbents_2003,1,0))
 incumbent_df_2019<-incumbent_vs%>%
   filter(year==2019,inc_2019==1)
 incumbent_df_2015<-incumbent_vs%>%
@@ -104,6 +97,12 @@ incumbent_df_2003<-incumbent_vs%>%
 
 incumbent_vs_df<-rbind(incumbent_df_2019,incumbent_df_2015,incumbent_df_2011, incumbent_df_2007, incumbent_df_2003)
 
+incumbents_list<-vector(mode="list",length=5)
+incumbents_list[[1]]<-incumbents_2019
+incumbents_list[[2]]<-incumbents_2015
+incumbents_list[[3]]<-incumbents_2011
+incumbents_list[[4]]<-incumbents_2007
+incumbents_list[[5]]<-incumbents_2003
 saveRDS(incumbents_list, file="../output/incumbents_list.RDS")
 saveRDS(incumbents_all, file="../output/incumbents_all.RDS") #TODO: Add more appointments
 

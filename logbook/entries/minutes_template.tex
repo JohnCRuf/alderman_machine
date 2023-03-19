@@ -1,0 +1,43 @@
+\documentclass[10pt,a4paper,twoside]{mins}
+
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+
+
+\setcommittee{Some Committee Title}
+\setshortcommittee{Committee Short}
+\setmembers{
+	\role{Person}{Job},
+    \role{Another Person}{Another Job},
+    Someone NoJob
+}
+
+\setdate{[Date], [Scheduled Time]}
+
+\apologies{Someone Good} %If no-one gives apologies, leave blank and will be dropped
+\absent{Someone Bad} %If no-one is absent, leave blank, and it will be dropped
+\alsopresent{Someone Visitor} %If no-one is a visitor, leave blank and it will be dropped
+
+\setisAgenda{}%leave as blank for regular minutes. Set to True if agenda.
+
+\begin{document}
+\begin{minutes}
+\begin{center}\emph{Meeting Opened at [Time]}\end{center}
+\begin{business}
+\item Business Item 1
+
+Some details about BI1
+
+\item Business Item 2
+
+Some details about BI1
+
+\item Et Cetera
+
+\end{business}
+\begin{center}\emph{Meeting Closed at [Time]}\end{center}
+\end{minutes}
+\nextmeeting{[Some Date], [Some Time], [Some Place]}
+\end{document}
+

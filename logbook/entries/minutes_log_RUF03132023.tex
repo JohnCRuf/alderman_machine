@@ -1,0 +1,63 @@
+\documentclass[10pt,a4paper,twoside]{mins}
+
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+
+
+\setcommittee{Aldermanic Election Research Project}
+\setshortcommittee{Aldermanic Elections Research}
+\setmembers{
+	\role{John Ruf}{PI},
+    \role{Anthony Fowler}{Advisor},
+}
+
+\setdate{[3/13/2023], [1:00 PM]}
+
+\apologies{} %If no-one gives apologies, leave blank and will be dropped
+\absent{} %If no-one is absent, leave blank, and it will be dropped
+\alsopresent{} %If no-one is a visitor, leave blank and it will be dropped
+
+\setisAgenda{}%leave as blank for regular minutes. Set to True if agenda.
+
+\begin{document}
+\begin{minutes}
+\begin{center}\emph{Meeting Opened at [Time]}\end{center}
+\begin{business}
+\item Discussion of the Density Discontinuity finding
+
+After expanding my dataset back to 2003, I found that a density discontinuity appeared using only runoff data. 
+This is surprising, the initial discontinuity I found in the 2015 and 2019 elections was a fluke of improperly aggregating the municipal and general runoff elections for my analysis. 
+This may indicate that aldermen used to have a significant advantage and ability to ``fine-tune'' their districts, but that this advantage has been eroded over time.
+Or, it may simply be that quadrupling the number of observations observed has made the discontinuity more apparent.
+There are a few hypotheses that could produce this discontinuity:
+\begin{enumerate}
+    \item Incumbent Aldermen draw the lines of their districts every 10 years, they may be using this power to gerrymander their districts to their advantage. Is there a way to credibly test this hypothesis using census data and district maps?
+    \item Incumbent Aldermen have significant power over city services, leading to a ``pot-hole politics'' effect where aldermen selectively provide better services to their constituents to gain votes during a runoff. 
+    \item Incumbent Aldermen have a disproportionate amount of influence that can be used to get endorsements, and that pushes them over the threshold to win a runoff election. Unfortunately, no data exists that can be used to test this hypothesis.
+    Possible next steps:
+\end{enumerate}
+\begin{enumerate}
+    \item Expand the dataset as far back as possible using less-granular data scraped from the Chicago Tribune and see if the discontinuity persists. 
+    \item Investigate the ``pot-hole politics'' hypothesis by conducting analyses using 311 service calls data. 
+    The problem with this is that there is too many potential variables to test with, which causes way too many researcher degrees of freedom. Also general equilibrium concern: If aldermen are providing better services temporarily, then the residents of those districts will time their requests to be serviced to coincide with the election.
+
+\end{enumerate}
+
+
+\item News of additional menu data from 2006--2011, plus the acquisition of 2019--2022 data.
+
+I have acquired enough additional menu money data to expand the original DiD analysis to use the 2003, 2007, and 2019 elections in addition to the 2011 and 2015 elections originally used.  
+The menu data is in PDF format that is difficult to scrape, so processing the data will take some time.
+
+\item Meeting outcomes:
+\begin{enumerate}
+    \item It looks like the discontinuity is (at least) partly a result of some bug that is incorporating non-incumbent aldermen who just barely won their election into the analysis. This is likely a bug somewhere in my incumbent assignment code. Examples include the 2015 elections with candidates John Pope, and Susan Garza. Excellent catch by Anthony. Possible weird dynamics with redistricted candidates as well.
+    \item Current task is to fix the bug and re-run the analysis and then reevaluate the results.
+\end{enumerate}
+\end{business}
+\begin{center}\emph{Meeting Closed at [Time]}\end{center}
+\end{minutes}
+\nextmeeting{TBD}
+\end{document}
+
