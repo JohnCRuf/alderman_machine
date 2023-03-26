@@ -1,4 +1,8 @@
-YEARS = 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022
+YEARS = 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022
+YEARS_URL = 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022
+YEARS_FOIA = 2005 2006 2007 2008 2009 2010 2011
+inputs_URL = $(foreach y, $(YEARS_URL),  ../input/$(y).pdf)
+inputs_FOIA = $(foreach y, $(YEARS_FOIA),  ../input/$(y).pdf)
 
 URL_2012 = https://www.chicago.gov/content/dam/city/depts/obm/supp_info/CIP_Archive/Aldermanic%20Menu/March2017Update/2012Menu.pdf
 URL_2013 = https://www.chicago.gov/content/dam/city/depts/obm/supp_info/CIP_Archive/Aldermanic%20Menu/March2017Update/2013Menu.pdf
@@ -24,6 +28,7 @@ PARAMS_2020 = -a 56,35,552,720 -c 247,606
 PARAMS_2021 = -a 70,10,552,1900 -c 247,606
 PARAMS_2022 = -a 56,30,552,720 -c 247,606
 
+#Notes on parameters, -a indicate portion of page to analyze, -c indicate columns to extract
 .PHONY: all clean
 
 .PRECIOUS: ../output/%.csv ../input/%.csv ../input/%.pdf tabula.jar
@@ -42,8 +47,10 @@ clean:
 ../input/%.csv: ../input/%.pdf tabula.jar | ../input
 	java -jar tabula.jar -p all -t $(PARAMS_$*) $< > $@
 
-../input/%.pdf: | ../input
+$(inputs_URL): ../input/%.pdf: | ../input
 	wget -O $@ $(URL_$*)
+$(inputs_FOIA): ../input/%.pdf: | ../input
+	cp ../../initialdata/output/$*.pdf $@
 
 tabula.jar:
 	wget -O $@ https://github.com/tabulapdf/tabula-java/releases/download/v1.0.2/tabula-1.0.2-jar-with-dependencies.jar
