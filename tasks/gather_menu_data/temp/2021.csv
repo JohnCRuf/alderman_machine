@@ -23,7 +23,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,1,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,1,,"In-Road ""State Law Stop For Pedestrians"" Sign Menu (2021)",Streets/CDOT,N DAMEN AVE & W HURON ST,,,,"$1,200.00"
 2021,1,,"In-Road ""State Law Stop For Pedestrians"" Sign Menu (2021)",Streets/CDOT,N DAMEN AVE & W LE MOYNE ST,,,,$600.00
-2021,1,,Installation of LED and pedestrian countdown traffic signal at N. California Ave. & W. Armitage Ave.,Lighting,s N CALIFORNIA AVE & W ARMITAGE AVE,,,,"$53,344.00"
+2021,1,,Installation of LED and pedestrian countdown traffic signals at N. California Ave. & W. Armitage Ave.,Lighting,N CALIFORNIA AVE & W ARMITAGE AVE,,,,"$53,344.00"
 2021,1,,LED Traffic Signal Upgrades & Pedestrian Countdown Signal (2021),Lighting,N HUMBOLDT BLVD & W PALMER BLVD,,,,"$50,000.00"
 2021,1,,LED Traffic Signal Upgrades & Pedestrian Countdown Signal (2021),Lighting,W ARMITAGE AVE & N KEDZIE AVE,,,,"$50,000.00"
 2021,1,,Maplewood Park Field House,Parks,1640 N MAPLEWOOD AVE,,,,"$324,440.49"
@@ -122,7 +122,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,3,,Street Light Pole Painting Menu (2021),Lighting,ON E 18TH ST FROM S PRAIRIE AVE (300 E) TO S CALUMET AVE (334 E),,,,"$2,600.00"
 2021,3,,Street Light Pole Painting Menu (2021),Lighting,ON S CALUMET AVE FROM 1834 S TO E 18TH ST (1800 S),,,,"$3,000.00"
 2021,3,,Street Light Pole Painting Menu (2021),Lighting,ON S PRAIRIE AVE FROM E 17TH ST (1700 S) TO E 18TH ST (1799 S),,,,"$2,100.00"
-2021,3,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON S FEDERAL ST FROM 1208 S TO W 14TH ST (1400 S); ON S PLYMOUTHTO W 14TH ST (1400 S),,,,"CT FROM 1211 S$123,330.76"
+2021,3,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON S FEDERAL ST FROM 1208 S TO W 14TH ST (1400 S); ON S PLYMOUTHTO W 14TH ST (1400 S),,,,"CT FROM 1211 S$123,330.76"
 2021,3,,Street Light Upgrade Menu (2021),Lighting,3423 S MICHIGAN AVE,,,,$500.00
 2021,3,,Street Light Upgrade Menu (2021),Lighting,3664 S INDIANA AVE,,,,$500.00
 2021,3,,Street Light Upgrade Menu (2021),Lighting,3804 S INDIANA AVE,,,,$500.00
@@ -210,8 +210,8 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,5,,Sidewalk Menu (2021),Streets/CDOT,ON E 53RD ST FROM S ELLIS AVE (999 E) TO S BERKELEY AVE (1020 E); 1,,,,"001 E 53RD ST $5,800.31"
 2021,5,,Sidewalk Menu (2021),Streets/CDOT,ON E 53RD ST FROM S INGLESIDE AVE (928 E) TO S ELLIS AVE (999 E),,,,"$19,489.26"
 2021,5,,Street Bump Outs Menu (2021),Streets/CDOT,4926 S CORNELL AVE; 4930 S CORNELL AVE,,,,"$11,756.85"
-2021,5,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON S CORNELL AVE FROM E 67TH ST (6700 S) TO E 69TH ST (6900 S),,,,"$230,000.00"
-2021,5,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON S RIDGELAND AVE FROM E 67TH ST (6700 S) TO E 69TH ST (6900 S),,,,"$235,000.00"
+2021,5,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON S CORNELL AVE FROM E 67TH ST (6700 S) TO E 69TH ST (6900 S),,,,"$230,000.00"
+2021,5,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON S RIDGELAND AVE FROM E 67TH ST (6700 S) TO E 69TH ST (6900 S),,,,"$235,000.00"
 2021,5,,Street Resurfacing Menu (2021),Streets/CDOT,ON S BENNETT AVE FROM E 67TH ST (6700 S) TO E 68TH ST (6800 S),,,,"$45,886.96"
 2021,5,,Street Resurfacing Menu (2021),Streets/CDOT,ON S BLACKSTONE AVE FROM E 53RD ST (5300 S) TO E 54TH ST (5400 S,,,,") $4,869.99"
 2021,5,,Street Resurfacing Menu (2021),Streets/CDOT,ON S CONSTANCE AVE FROM E 70TH ST (7000 S) TO E 71ST ST (7100 S),,,,"$35,209.38"
@@ -239,9 +239,9 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,6,,Sidewalk Menu (2021),Streets/CDOT,8621-8633 S PRAIRIE AVE,,,,"$31,520.75"
 2021,6,,Sidewalk Menu (2021),Streets/CDOT,ON E 85TH ST FROM S WABASH AVE (50 E) TO S MICHIGAN AVE (100 E),,,,"$5,236.55"
 2021,6,,Sidewalk Menu (2021),Streets/CDOT,ON W 66TH ST FROM S PARNELL AVE (550 W) TO S LOWE AVE (632 W),,,,"$56,695.86"
-2021,6,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON S UNION AVE FROM W 74TH ST (7400 S) TO W 76TH ST (7600 S),,,,"$100,000.00"
+2021,6,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON S UNION AVE FROM W 74TH ST (7400 S) TO W 76TH ST (7600 S),,,,"$100,000.00"
 2021,6,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
-2021,6,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W 73RD ST FROM S UNION AVE (710 W) TO S LOWE AVE (610 W); ON FROM W 73RD ST (7300 S) TO W 74TH ST (7400 S),,,,"S UNION AVE$175,000.00"
+2021,6,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W 73RD ST FROM S UNION AVE (710 W) TO S LOWE AVE (610 W); ON FROM W 73RD ST (7300 S) TO W 74TH ST (7400 S),,,,"S UNION AVE$175,000.00"
 2021,6,,Street Light Upgrade Menu (2021),Lighting,438 E 75TH ST,,,,$500.00
 2021,6,,Street Light Upgrade Menu (2021),Lighting,445 E 75TH ST,,,,$500.00
 2021,6,,Street Resurfacing Menu (2021),Streets/CDOT,ON E 88TH PL FROM S ST LAWRENCE AVE (600 E) TO S LANGLEY AVE (7,,,,"00 E) $42,373.71"
@@ -293,7 +293,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,7,,Sidewalk Menu (2021),Streets/CDOT,9112 S CRANDON AVE,,,,"$2,095.88"
 2021,7,,Sidewalk Menu (2021),Streets/CDOT,9319 S CHAPPEL AVE,,,,"$9,438.53"
 2021,7,,Sidewalk Menu (2021),Streets/CDOT,ON S CHAPPEL AVE FROM E 92ND ST (9200 S) TO E 93RD ST (9300 S),,,,"$4,674.78"
-2021,7,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON S PAXTON AVE FROM E 91ST ST (9100 S) TO E 94TH ST (9400 S),,,,"$350,000.00"
+2021,7,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON S PAXTON AVE FROM E 91ST ST (9100 S) TO E 94TH ST (9400 S),,,,"$350,000.00"
 2021,7,,Street Light Upgrade Menu (2021),Lighting,1938 E 74TH ST,,,,$500.00
 2021,7,,Street Light Upgrade Menu (2021),Lighting,2400 E 103RD ST; 2424 E 103RD ST,,,,"$1,000.00"
 2021,7,,Street Light Upgrade Menu (2021),Lighting,2601 E 76TH ST,,,,$500.00
@@ -348,8 +348,8 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,8,,Sidewalk Menu (2021),Streets/CDOT,8734 S CREGIER AVE,,,,"$7,011.62"
 2021,8,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,8,,Street Light Pole Painting Menu (2021),Lighting,1738-1810 E 73RD ST,,,,"$1,000.00"
-2021,8,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON E 81ST ST FROM S CHAPPEL AVE (2030 E) TO S JEFFERY BLVD (2000AVE FROM E 79TH ST (7900 S) TO E 81ST ST (8100 S),,,,"E); ON S CHAPPEL$255,000.00"
-2021,8,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON S CREGIER AVE FROM E 87TH ST (8700 S) TO E 89TH ST (8900 S),,,,"$71,204.83"
+2021,8,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON E 81ST ST FROM S CHAPPEL AVE (2030 E) TO S JEFFERY BLVD (2000AVE FROM E 79TH ST (7900 S) TO E 81ST ST (8100 S),,,,"E); ON S CHAPPEL$255,000.00"
+2021,8,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON S CREGIER AVE FROM E 87TH ST (8700 S) TO E 89TH ST (8900 S),,,,"$71,204.83"
 2021,8,,Street Light Upgrade Menu (2021),Lighting,7638 S EUCLID AVE,,,,"$2,000.00"
 2021,8,,Street Light Upgrade Menu (2021),Lighting,8426 S CONSTANCE AVE,,,,$500.00
 2021,8,,Street Light Upgrade Menu (2021),Lighting,8529 S CRANDON AVE,,,,$500.00
@@ -570,7 +570,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,12,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,12,,1 POD Camera: 2059 W 35th St,Cameras,2059 W 35TH ST,,,,"$24,776.00"
 2021,12,,1 POD Camera: 2326 S Washtenaw,Cameras,S WASHTENAW AVE & W 23RD PL,,,,"$24,776.00"
-2021,12,,"2 LPR on Existing Cameras: 1586 W 33rd St, 3109 S Arch Ave",Cameras,er W 33RD ST & S ASHLAND AVE; 3109 S ARCHER AVE,,,,"$21,942.00"
+2021,12,,"2 LPR on Existing Cameras: 1586 W 33rd St, 3109 S Archer Ave",Cameras,W 33RD ST & S ASHLAND AVE; 3109 S ARCHER AVE,,,,"$21,942.00"
 2021,12,,Alley Apron Menu (2021),Streets/CDOT,2732 W 36TH ST,,,,"$10,482.29"
 2021,12,,Alley Apron Menu (2021),Streets/CDOT,2814 W 40TH ST,,,,"$11,379.45"
 2021,12,,Alley Apron Menu (2021),Streets/CDOT,2815 W 40TH ST; 2817 W 40TH ST,,,,"$16,222.64"
@@ -953,7 +953,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,16,,Alley Speed Hump Replacement (2021),Streets/CDOT,W 58TH ST & S RICHMOND ST & S SACRAMENTO AVE & W 59TH ST,,,,$0.00
 2021,16,,Alley Speed Hump Replacement (2021),Streets/CDOT,W 64TH ST & S PEORIA ST & S SANGAMON ST & W 65TH ST,,,,$0.00
 2021,16,,Miscellaneous CDOT Projects (2021),Streets/CDOT,718-722 W 60TH PL,,,,$300.00
-2021,16,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W 52ND ST FROM 2100 W TO S DAMEN AVE (2000 W),,,,"$190,000.00"
+2021,16,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W 52ND ST FROM 2100 W TO S DAMEN AVE (2000 W),,,,"$190,000.00"
 2021,16,,Street Resurfacing Menu (2021),Streets/CDOT,ON S ELIZABETH ST FROM W 59TH ST (5900 S) TO W 61ST ST (6100 S),,,,"$84,229.75"
 2021,16,,Street Resurfacing Menu (2021),Streets/CDOT,ON S ELIZABETH ST FROM W GARFIELD BLVD (5500 S) TO W 58TH ST (58,,,,"00 S) $78,538.16"
 2021,16,,Street Resurfacing Menu (2021),Streets/CDOT,ON S HERMITAGE AVE FROM W 53RD ST (5300 S) TO W GARFIELD BLVD,,,,"(5500 S) $107,991.97"
@@ -1003,7 +1003,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,17,,Sidewalk Menu (2021),Streets/CDOT,7920 S WINCHESTER AVE,,,,"$16,243.83"
 2021,17,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,17,,Sidewalk Menu (2021),Streets/CDOT,ON S WENTWORTH AVE FROM W 79TH ST (7900 S) TO W 80TH ST (8000 S,,,,") $94,293.49"
-2021,17,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON S WOOD ST FROM W 76TH ST (7600 S) TO W 78TH ST (7800 S),,,,"$280,000.00"
+2021,17,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON S WOOD ST FROM W 76TH ST (7600 S) TO W 78TH ST (7800 S),,,,"$280,000.00"
 2021,17,,Street Light Upgrade Menu (2021),Lighting,7934 S CARPENTER ST,,,,$500.00
 2021,17,,Street Resurfacing Menu (2021),Streets/CDOT,ON S BISHOP ST FROM W 76TH ST (7600 S) TO W 79TH ST (7900 S),,,,"$48,859.37"
 2021,17,,Street Resurfacing Menu (2021),Streets/CDOT,ON S ELIZABETH ST FROM W MARQUETTE RD (6700 S) TO W 69TH ST (69,,,,"00 S) $98,536.54"
@@ -1194,7 +1194,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,21,,Street Light Pole Painting Menu (2021),Lighting,8517 S WINCHESTER AVE,,,,"$1,200.00"
 2021,21,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,21,,Street Light Pole Painting Menu (2021),Lighting,ON S EMERALD AVE FROM W 87TH ST (8660 S) TO W 89TH ST (8900 S),,,,"$2,800.00"
-2021,21,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON S BEVERLY AVE FROM 9700 S TO W 99TH ST (9900 S),,,,"$250,000.00"
+2021,21,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON S BEVERLY AVE FROM 9700 S TO W 99TH ST (9900 S),,,,"$250,000.00"
 2021,21,,Street Light Upgrade Menu (2021),Lighting,8222 S CARPENTER ST,,,,$500.00
 2021,21,,Street Light Upgrade Menu (2021),Lighting,8524 S ABERDEEN ST,,,,$500.00
 2021,21,,Street Light Upgrade Menu (2021),Lighting,W 80TH ST & S ABERDEEN ST & S CARPENTER ST & W 81ST ST; W 80TH SAVE & S MAY ST & W 81ST ST; W 80TH ST & S MAY ST & S ABERDEEN ST &,,,,"T &  S RACINE W 81ST ST $3,500.00"
@@ -1345,8 +1345,8 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,23,,Viaduct Improvement Menu (2021),Streets/CDOT,5900 S CENTRAL PARK AVE,,,,"$21,839.00"
 2021,24,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,24,,1 POD Camera: 1400 S Sacramento,Cameras,1400 S SACRAMENTO DR,,,,"$24,776.00"
-2021,24,,4 POD Cameras + LPR Existing Cameras: 1200 S Pulaski,Cameras,", 1200 S PULASKI RD; 1359 S CENTRAL PARK AVE; 1159 S HOMAN AVE; S IN",,,,DEPENDENCE
-2021,24,,"1359 S Central Park, 1159 S Independence, 1559 S Homa",Parks,n BLVD & W ROOSEVELT RD,,,,"$142,988.00"
+2021,24,,"4 POD Cameras + LPR Existing Cameras: 1200 S Pulaski,",Cameras,1200 S PULASKI RD; 1359 S CENTRAL PARK AVE; 1159 S HOMAN AVE; S IN,,,,DEPENDENCE
+2021,24,,"1359 S Central Park, 1159 S Independence, 1559 S Homan",Parks,BLVD & W ROOSEVELT RD,,,,"$142,988.00"
 2021,24,,5 POD Camera + 5 LPR Existing Cameras: Various,Cameras,W ROOSEVELT RD & S KOSTNER AVE; W FIFTH AVE & S KEELER AVE; S,,,,KOSTNER AVE &  W
 2021,24,,Locations,Other,FIFTH AVE; S KARLOV AVE & W POLK ST; 4100 W ARTHINGTON ST,,,,"$167,764.00"
 2021,24,,Alley Resurfacing Menu (2021),Streets/CDOT,2600 W 23RD PL; S ROCKWELL ST & W 24TH ST & W 23RD PL & S WASHTE,,,,"NAW AVE $39,095.30"
@@ -1442,8 +1442,8 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,25,,Sidewalk Menu (2021),Streets/CDOT,3257 S OAKLEY AVE,,,,"$4,571.70"
 2021,25,,Sidewalk Menu (2021),Streets/CDOT,919 S CARPENTER ST,,,,"$5,086.74"
 2021,25,,Street Light Piggy Back Only Menu (2021),Lighting,S RACINE AVE & W MONROE ST,,,,"$4,200.00"
-2021,25,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W 19TH ST FROM S ASHLAND AVE (1600 W) TO S WOOD ST (1800 W),,,,"$380,000.00"
-2021,25,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W 19TH ST FROM S THROOP ST (1300 W) TO S BLUE ISLAND AVE (14,,,,"40 W) $255,000.00"
+2021,25,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W 19TH ST FROM S ASHLAND AVE (1600 W) TO S WOOD ST (1800 W),,,,"$380,000.00"
+2021,25,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W 19TH ST FROM S THROOP ST (1300 W) TO S BLUE ISLAND AVE (14,,,,"40 W) $255,000.00"
 2021,25,,Street Resurfacing Menu (2021),Streets/CDOT,ON S CLAREMONT AVE FROM W 33RD ST (3300 S) TO W 34TH ST (3400 S,,,,") $44,208.19"
 2021,25,,Street Resurfacing Menu (2021),Streets/CDOT,ON W CULLERTON ST FROM S HOYNE AVE (2100 W) TO S DAMEN AVE (2,,,,"000 W) $60,324.06"
 2021,25,,Street Resurfacing Menu (2021),Streets/CDOT,ON W CULLERTON ST FROM S OAKLEY AVE (2300 W) TO S LEAVITT ST (2,,,,"200 W) $53,198.31"
@@ -1591,12 +1591,12 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,28,,,Other,ON N KEYSTONE AVE FROM 241 N TO W WEST END AVE (200 N); ON N KE,,,,YSTONE AVE
 2021,28,,,Other,FROM 100 N TO W WEST END AVE (200 N); ON W WEST END AVE FROM N,,,,PULASKI RD  (4000
 2021,28,,,Other,W) TO N KOSTNER AVE (4399 W); ON N KILDARE AVE FROM W WASHINGT,,,,ON BLVD  (100 N)
-2021,28,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) TO W WEST END AVE (200 N); ON N KEELER AVE FROM W WASHINGTON WEST END AVE (200 N); ON N KARLOV AVE FROM W WEST END AVE (200,,,,"BLVD  (100 N) TO W N) TO W MAYPOLE $771,445.81"
+2021,28,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,TO W WEST END AVE (200 N); ON N KEELER AVE FROM W WASHINGTON WEST END AVE (200 N); ON N KARLOV AVE FROM W WEST END AVE (200,,,,"BLVD  (100 N) TO W N) TO W MAYPOLE $771,445.81"
 2021,28,,,Other,AVE (250 N); ON N KARLOV AVE FROM W WASHINGTON BLVD (100 N) TO,,,,W WEST END AVE
 2021,28,,,Other,(200 N); ON N KOLIN AVE FROM W WEST END AVE (200 N) TO W MAYPOLE,,,,AVE  (240 N); ON N
 2021,28,,,Other,KEELER AVE FROM W WEST END AVE (200 N) TO W MAYPOLE AVE (250 N,,,,)
 2021,28,,,Other,ON W MAYPOLE AVE FROM N PULASKI RD (4000 W) TO N KOSTNER AVE,,,,(4400 W); ON N
-2021,28,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) KARLOV AVE FROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N); ON NFROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N); ON N KILDARE AV,,,,"KEELER AVEE FROM W $290,995.25"
+2021,28,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,KARLOV AVE FROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N); ON NFROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N); ON N KILDARE AV,,,,"KEELER AVEE FROM W $290,995.25"
 2021,28,,Menu Package,Other,MAYPOLE AVE (250 N) TO W LAKE ST (300 N) Locations,,,,Estimated 2021 Cost
 2021,28,,Street Light Upgrade Menu (2021),Lighting,137 S WHIPPLE ST; 147 S WHIPPLE ST; 201 S WHIPPLE ST; ON S WHIPPLEAVE (100 S) TO W JACKSON BLVD (300 S),,,,"ST FROM W FIFTH$2,500.00"
 2021,28,,Street Light Upgrade Menu (2021),Lighting,3003 W FIFTH AVE; 3023 W FIFTH AVE,,,,"$1,000.00"
@@ -1721,8 +1721,8 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,30,,Sidewalk Menu (2021),Streets/CDOT,6130 W MELROSE ST,,,,"$6,386.04"
 2021,30,,Sidewalk Menu (2021),Streets/CDOT,6155 W FLETCHER ST,,,,"$5,127.10"
 2021,30,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
-2021,30,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON N KOLMAR AVE FROM W SCHOOL ST (3300 N) TO W ADDISON ST (360,,,,"0 N) $116,000.00"
-2021,30,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W ALTGELD ST FROM N LOCKWOOD AVE (5300 W) TO N LONG AVE (5,,,,"400 W) $140,000.00"
+2021,30,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON N KOLMAR AVE FROM W SCHOOL ST (3300 N) TO W ADDISON ST (360,,,,"0 N) $116,000.00"
+2021,30,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W ALTGELD ST FROM N LOCKWOOD AVE (5300 W) TO N LONG AVE (5,,,,"400 W) $140,000.00"
 2021,30,,Street Light Upgrade Menu (2021),Lighting,3112 N HAUSSEN CT,,,,$500.00
 2021,30,,Street Light Upgrade Menu (2021),Lighting,3214 N PULASKI RD,,,,$500.00
 2021,30,,Street Light Upgrade Menu (2021),Lighting,3218 N KARLOV AVE,,,,$500.00
@@ -1791,8 +1791,8 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,31,,Floodlight Menu (2021),Lighting,5148 W FLETCHER ST,,,,$950.00
 2021,31,,Sidewalk Menu (2021),Streets/CDOT,4942 W ALTGELD ST,,,,"$3,933.29"
 2021,31,,Sidewalk Menu (2021),Streets/CDOT,5318 W DIVERSEY AVE,,,,"$5,821.65"
-2021,31,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W ALTGELD ST FROM N LARAMIE AVE (5200 W) TO N LOCKWOOD AVE,,,,"(5300 W) $135,000.00"
-2021,31,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W DEMING PL FROM N LAVERGNE AVE (5000 W) TO N LARAMIE AVE (,,,,"5200 W) $260,000.00"
+2021,31,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W ALTGELD ST FROM N LARAMIE AVE (5200 W) TO N LOCKWOOD AVE,,,,"(5300 W) $135,000.00"
+2021,31,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W DEMING PL FROM N LAVERGNE AVE (5000 W) TO N LARAMIE AVE (,,,,"5200 W) $260,000.00"
 2021,31,,Street Light Upgrade Menu (2021),Lighting,3022 N KOSTNER AVE; 3122 N CENTRAL AVE,,,,"$1,000.00"
 2021,31,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,31,,,Other,5438 W BARRY AVE; 3116 N LOTUS AVE; 3010 N LAVERGNE AVE; 3038 N C,,,,ENTRAL AVE; 2556
@@ -1926,7 +1926,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,33,,Sidewalk Menu (2021),Streets/CDOT,4206 N MOZART ST,,,,"$5,734.33"
 2021,33,,Sidewalk Menu (2021),Streets/CDOT,ON N AVONDALE AVE FROM N WHIPPLE ST (3030 N) TO N ALBANY AVE (3,,,,"100 N) $9,065.97"
 2021,33,,Street Bump Outs Menu (2021),Streets/CDOT,N CALIFORNIA AVE & W HENDERSON ST,,,,"$9,257.45"
-2021,33,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON N CALIFORNIA AVE FROM W IRVING PARK RD (4000 N) TO W GRACE S,,,,"T  (3800 N) $36,000.00"
+2021,33,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON N CALIFORNIA AVE FROM W IRVING PARK RD (4000 N) TO W GRACE S,,,,"T  (3800 N) $36,000.00"
 2021,33,,Street Light Upgrade Menu (2021),Lighting,2909 W MONTROSE AVE,,,,$500.00
 2021,33,,Street Light Upgrade Menu (2021),Lighting,2911 W MONTROSE AVE,,,,$500.00
 2021,33,,Street Light Upgrade Menu (2021),Lighting,3301 N ALBANY AVE,,,,$500.00
@@ -2203,7 +2203,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,37,,Sidewalk Menu (2021),Streets/CDOT,N LAMON AVE & W CRYSTAL ST; 1234 N LAMON AVE,,,,"$21,076.69"
 2021,37,,Sidewalk Menu (2021),Streets/CDOT,N LAMON AVE & W POTOMAC AVE; 4900 W POTOMAC AVE,,,,"$9,873.53"
 2021,37,,Street Bump Outs Menu (2021),Streets/CDOT,N KILDARE AVE & W AUGUSTA BLVD,,,,"$29,256.60"
-2021,37,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON N LOREL AVE FROM W AUGUSTA BLVD (1000 N) TO W DIVISION ST (1,,,,"200 N) $220,000.00"
+2021,37,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON N LOREL AVE FROM W AUGUSTA BLVD (1000 N) TO W DIVISION ST (1,,,,"200 N) $220,000.00"
 2021,37,,Street Light Upgrade Menu (2021),Lighting,1233 N PULASKI RD,,,,$500.00
 2021,37,,Street Resurfacing Menu (2021),Streets/CDOT,ON N KEELER AVE FROM W POTOMAC AVE (1300 N) TO W KAMERLING AV,,,,"E  (1330 N) $24,783.82"
 2021,37,,Street Resurfacing Menu (2021),Streets/CDOT,ON N KILDARE AVE FROM W POTOMAC AVE (1300 N) TO W KAMERLING A,,,,"VE  (1330 N) $23,881.71"
@@ -2247,7 +2247,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,38,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,38,,Alley Apron Menu (2021),Streets/CDOT,3215 N PITTSBURGH AVE,,,,"$15,282.42"
 2021,38,,Alley Apron Menu (2021),Streets/CDOT,3954 N OLCOTT AVE,,,,"$12,145.03"
-2021,38,,Bridge Elementary School Pre-K Playground Improvement,Schools,s 3800 N NEW ENGLAND AVE,,,,"$10,000.00"
+2021,38,,Bridge Elementary School Pre-K Playground Improvements,Schools,3800 N NEW ENGLAND AVE,,,,"$10,000.00"
 2021,38,,Miscellaneous CDOT Projects (2021),Streets/CDOT,3700 N PARIS AVE,,,,$660.00
 2021,38,,Miscellaneous CDOT Projects (2021),Streets/CDOT,8500 W BRODMAN AVE,,,,$660.00
 2021,38,,Street Light Upgrade Menu (2021),Lighting,3318 N PIONEER AVE,,,,$500.00
@@ -2431,7 +2431,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,42,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,42,,1 LPR W/ Existing Camera: NW Corner KINGSBURY AND KINZIE,Cameras,W KINZIE ST & N KINGSBURY ST,,,,"$10,971.00"
 2021,42,,1 LPR W/ Existing Camera: SE Corner Chicago and Larrabee,Cameras,N LARRABEE ST & W CHICAGO AVE,,,,"$10,971.00"
-2021,42,,1 LPR W/ Existing Camera: SE Corner Grand and Kingsbu,Cameras,ry N KINGSBURY ST & W GRAND AVE,,,,"$10,971.00"
+2021,42,,1 LPR W/ Existing Camera: SE Corner Grand and Kingsbury,Cameras,N KINGSBURY ST & W GRAND AVE,,,,"$10,971.00"
 2021,42,,1 LPR W/ Existing Camera: SE Corner Lasalle and Ohio,Cameras,N LA SALLE DR & W OHIO ST,,,,"$10,971.00"
 2021,42,,1 LPR W/ Existing Camera: SE Corner Ohio and Lasalle,Cameras,N LA SALLE DR & W OHIO ST,,,,"$10,971.00"
 2021,42,,1 LPR W/ Existing Camera: SW Corner Chicago and Sedgwick,Cameras,W CHICAGO AVE & N SEDGWICK ST,,,,"$10,971.00"
@@ -2445,14 +2445,14 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,42,,1 POD Camera: Streeter & Illinois,Cameras,E ILLINOIS ST & N STREETER DR,,,,"$24,776.00"
 2021,42,,1 POD Camera SW Corner of Erie and Kingsbury,Cameras,N KINGSBURY ST & W ERIE ST,,,,"$24,776.00"
 2021,42,,1 POD Camera SW Corner of Kingsbury and Erie,Cameras,N KINGSBURY ST & W ERIE ST,,,,"$24,776.00"
-2021,42,,2 LPR on Existing Cameras: Lake Shore Drive & Grand Av,Cameras,e E GRAND AVE & N LAKE SHORE DR,,,,"$21,942.00"
+2021,42,,2 LPR on Existing Cameras: Lake Shore Drive & Grand Ave,Cameras,E GRAND AVE & N LAKE SHORE DR,,,,"$21,942.00"
 2021,42,,"2 LPR W Existing POD, 1 LPR W/O Existing POD - 401 N Michigan",Other,401 N MICHIGAN AVE,,,,"$49,352.00"
 2021,42,,"3 LPR on Existing Cameras, 1 Camera Upgrade: Fulton Market @ Des Plaines",Cameras,W FULTON MARKET & N DESPLAINES ST,,,,"$64,809.00"
 2021,42,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
 2021,42,,"3 LPR on Existing Cameras, 1 LPR No Existing Camera - Michigan & Oak",Cameras,N MICHIGAN AVE & E OAK ST,,,,"$60,323.00"
 2021,42,,3 LPR on Existing Cameras: Michigan & Wacker,Cameras,N MICHIGAN AVE & E WACKER DR,,,,"$32,913.00"
 2021,42,,3 LPR on Existing Cameras: State & Wacker,Cameras,N STATE ST & E WACKER DR,,,,"$32,913.00"
-2021,42,,"4 LPR on Existing Cameras, 1 Camera Upgrade: Hubbard State",Cameras,& N STATE ST & W HUBBARD ST,,,,"$64,809.00"
+2021,42,,"4 LPR on Existing Cameras, 1 Camera Upgrade: Hubbard & State",Cameras,N STATE ST & W HUBBARD ST,,,,"$64,809.00"
 2021,42,,Conners Park Wrought Iron Fencing,Parks,861 N WABASH AVE,,,,"$45,000.00"
 2021,42,,LPR w/ Existing Camera NE Corner 815 North Cambridge,Cameras,815 N CAMBRIDGE AVE,,,,"$10,971.00"
 2021,42,,Miscellaneous CDOT Projects (2021),Streets/CDOT,455 N CITYFRONT PLAZA DR,,,,$660.00
@@ -2460,7 +2460,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,42,,Street Light Arterial Menu (2021),Lighting,ON E RANDOLPH ST FROM N MICHIGAN AVE (100 E) TO N COLUMBUS DR,,,,"(300 E) $250,000.00"
 2021,42,,Street Light Arterial Menu (2021),Lighting,ON N LA SALLE ST FROM W HUBBARD ST (430 N) TO W KINZIE ST (400 N),,,,"$30,000.00"
 2021,42,,Street Light Pole Painting Menu (2021),Lighting,ON N MICHIGAN AVE FROM E SUPERIOR ST (730 N) TO E OAK ST (1000 N,,,,") $12,925.00"
-2021,42,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON E GRAND AVE FROM N LSD GRAND AV ER (500 E) TO N STREETER DR,,,,"(700 E) $200,000.00"
+2021,42,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON E GRAND AVE FROM N LSD GRAND AV ER (500 E) TO N STREETER DR,,,,"(700 E) $200,000.00"
 2021,42,,Street Resurfacing Menu (2021),Streets/CDOT,N WABASH AVE & E HUBBARD ST; ON N WABASH AVE FROM E HUBBARDWACKER DR (310 N),,,,"ST  (430 N) TO E$65,489.11"
 2021,42,,Street Resurfacing Menu (2021),Streets/CDOT,ON E BENTON PL FROM N FIELD BLVD (400 E) TO N WESTSHORE DR (500,,,,"E) $11,803.72"
 2021,42,,Street Resurfacing Menu (2021),Streets/CDOT,ON E ONTARIO ST FROM N MICHIGAN AVE (140 E) TO N WABASH AVE (40,,,,"E) $24,299.25"
@@ -2550,7 +2550,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,44,,Sidewalk Menu (2021),Streets/CDOT,N CLARK ST & W CORNELIA AVE; 3478 N CLARK ST,,,,"$49,425.24"
 2021,44,,Sidewalk Menu (2021),Streets/CDOT,ON N SHEFFIELD AVE FROM W SCHOOL ST (3300 N) TO W ROSCOE ST (3,,,,"399 N) $61,233.86"
 2021,44,,Menu Package,Other,Locations,,,,Estimated 2021 Cost
-2021,44,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON N LAKE SHORE DR FROM W DIVERSEY DR (2810 N) TO W BRIAR PL (3,,,,"140 N) $14,490.00"
+2021,44,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON N LAKE SHORE DR FROM W DIVERSEY DR (2810 N) TO W BRIAR PL (3,,,,"140 N) $14,490.00"
 2021,44,,Street Resurfacing Menu (2021),Streets/CDOT,ON N RETA AVE FROM W ADDISON ST (3600 N) TO W CORNELIA AVE (350,,,,"0 N) $50,532.96"
 2021,44,,Street Resurfacing Menu (2021),Streets/CDOT,ON N SEMINARY AVE FROM W DIVERSEY PKWY (2800 N) TO W WELLINGT,,,,"ON AVE  (3000 N) $133,420.87"
 2021,44,,Street Resurfacing Menu (2021),Streets/CDOT,ON N SHERIDAN RD FROM W WELLINGTON AVE (3000 N) TO W OAKDALE,,,,"AVE  (2950 N) $12,278.90"
@@ -2633,7 +2633,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,46,,Street Bump Outs Menu (2021),Streets/CDOT,W DAKIN ST & N SHERIDAN RD,,,,"$38,442.47"
 2021,46,,Street Light Pole Painting Menu (2021),Lighting,ON N SHERIDAN RD FROM W IRVING PARK RD (4000 N) TO W LAWRENCE,,,,"AVE  (4800 N) $33,600.00"
 2021,46,,Street Light Pole Painting Menu (2021),Lighting,ON W LAWRENCE AVE FROM N LSD LAWRENCE AV XR (730 W) TO N CLA,,,,"RK ST  (1500 W) $24,357.09"
-2021,46,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON N SHEFFIELD AVE FROM W GRACE ST (3800 N) TO N SHERIDAN RD (3,,,,"900 N) $165,000.00"
+2021,46,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON N SHEFFIELD AVE FROM W GRACE ST (3800 N) TO N SHERIDAN RD (3,,,,"900 N) $165,000.00"
 2021,46,,Street Light Upgrade Menu (2021),Lighting,4441 N BEACON ST,,,,$500.00
 2021,46,,Street Resurfacing Menu (2021),Streets/CDOT,ON N FREMONT ST FROM W GRACE ST (3800 N) TO W SHERIDAN RD (39,,,,"00 N) $47,677.22"
 2021,46,,Street Resurfacing Menu (2021),Streets/CDOT,ON N KENMORE AVE FROM W IRVING PARK RD (4000 N) TO W BUENA AV,,,,"E  (4200 N) $119,658.67"
@@ -2761,8 +2761,8 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,48,,Street Bump Outs Menu (2021),Streets/CDOT,W BERWYN AVE & N MAGNOLIA AVE,,,,"$5,887.02"
 2021,48,,Street Light Piggy Back Only Menu (2021),Lighting,ON W ARGYLE ST FROM N SHERIDAN RD (1000 W) TO N BROADWAY (120,,,,"0 W) $18,900.00"
 2021,48,,Street Light Pole for High Definition Camera Menu (2021),Lighting,W BALMORAL AVE & N KENMORE AVE,,,,"$6,000.00"
-2021,48,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W HOLLYWOOD AVE FROM N GLENWOOD AVE (1400 W) TO N CLARK,,,,"ST  (1550 W) $180,000.00"
-2021,48,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W OLIVE AVE FROM N GLENWOOD AVE (1400 W) TO N CLARK ST (154,,,,"0 W) $170,000.00"
+2021,48,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W HOLLYWOOD AVE FROM N GLENWOOD AVE (1400 W) TO N CLARK,,,,"ST  (1550 W) $180,000.00"
+2021,48,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W OLIVE AVE FROM N GLENWOOD AVE (1400 W) TO N CLARK ST (154,,,,"0 W) $170,000.00"
 2021,48,,Street Resurfacing Menu (2021),Streets/CDOT,ON N GREENVIEW AVE FROM W ROSEMONT AVE (6300 N) TO W HIGHLAN,,,,"D AVE  (6330 N) $1,132.20"
 2021,48,,Street Resurfacing Menu (2021),Streets/CDOT,ON N WAYNE AVE FROM W CATALPA AVE (5500 N) TO W BRYN MAWR AV,,,,"E  (5600 N) $49,087.36"
 2021,48,,Street Resurfacing Menu (2021),Streets/CDOT,ON W ARDMORE AVE FROM N GLENWOOD AVE (1400 W) TO N RIDGE AVE,,,,"(1500 W) $47,780.84"
@@ -2831,7 +2831,7 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,49,,Sidewalk Menu (2021),Streets/CDOT,7430 N SHERIDAN RD,,,,"$6,570.24"
 2021,49,,Sidewalk Menu (2021),Streets/CDOT,N GLENWOOD AVE & W PRATT BLVD,,,,"$2,208.96"
 2021,49,,Sidewalk Menu (2021),Streets/CDOT,N ROGERS AVE & N HONORE ST,,,,"$13,720.43"
-2021,49,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON N GLENWOOD AVE FROM W ALBION AVE (6600 N) TO W DEVON AVE,,,,"(6400 N) $300,000.00"
+2021,49,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON N GLENWOOD AVE FROM W ALBION AVE (6600 N) TO W DEVON AVE,,,,"(6400 N) $300,000.00"
 2021,49,,Street Resurfacing Menu (2021),Streets/CDOT,ON N NEWGARD AVE FROM W ALBION AVE (6600 N) TO W NORTH SHORE,,,,"AVE  (6700 N) $58,410.05"
 2021,49,,Street Resurfacing Menu (2021),Streets/CDOT,ON N NEWGARD AVE FROM W NORTH SHORE AVE (6700 N) TO W PRATT,,,,"BLVD  (6800 N) $55,631.65"
 2021,49,,Street Resurfacing Menu (2021),Streets/CDOT,ON W LUNT AVE FROM N CLARK ST (1750 W) TO N WOLCOTT AVE (1900 W,,,,") $113,852.76"
@@ -2850,10 +2850,10 @@ year,ward,dept,program,category,location,desc,blocks,unit_count,est_cost
 2021,50,,Curb & Gutter Menu (2021),Streets/CDOT,ON N RICHMOND ST FROM W NORTH SHORE AVE (6700 N) TO W PRATT BN RICHMOND ST,,,,"LVD  (6800 N); 6757$1,463.20"
 2021,50,,Sidewalk Menu (2021),Streets/CDOT,W PRATT BLVD & N MOZART ST,,,,"$12,662.58"
 2021,50,,Street Bump Outs Menu (2021),Streets/CDOT,N SACRAMENTO AVE & W JEROME ST,,,,"$7,500.00"
-2021,50,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON N TALMAN AVE FROM W ALBION AVE (6600 N) TO W PRATT BLVD (680,,,,"0 N) $240,000.00"
-2021,50,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON N TALMAN AVE FROM W DEVON AVE (6400 N) TO W ALBION AVE (660,,,,"0 N) $230,000.00"
-2021,50,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W GREENLEAF AVE FROM N CALIFORNIA AVE (2800 W) TO N SACRAMW),,,,"ENTO AVE  (3000$22,200.00"
-2021,50,,Street Light Residential Staggered Piggy Back Menu (2021,Lighting,) ON W MORSE AVE FROM N CALIFORNIA AVE (2800 W) TO N FRANCISCO A,,,,"VE  (2900 W) $135,000.00"
+2021,50,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON N TALMAN AVE FROM W ALBION AVE (6600 N) TO W PRATT BLVD (680,,,,"0 N) $240,000.00"
+2021,50,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON N TALMAN AVE FROM W DEVON AVE (6400 N) TO W ALBION AVE (660,,,,"0 N) $230,000.00"
+2021,50,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W GREENLEAF AVE FROM N CALIFORNIA AVE (2800 W) TO N SACRAMW),,,,"ENTO AVE  (3000$22,200.00"
+2021,50,,Street Light Residential Staggered Piggy Back Menu (2021),Lighting,ON W MORSE AVE FROM N CALIFORNIA AVE (2800 W) TO N FRANCISCO A,,,,"VE  (2900 W) $135,000.00"
 2021,50,,Street Light Upgrade Menu (2021),Lighting,2439 W FARGO AVE,,,,$500.00
 2021,50,,Street Light Upgrade Menu (2021),Lighting,2804 W FARGO AVE,,,,$500.00
 2021,50,,Street Light Upgrade Menu (2021),Lighting,2919 W TOUHY AVE; 6090 N ALBANY AVE,,,,"$1,000.00"
