@@ -1,8 +1,11 @@
-YEARS = 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022
-YEARS_URL = 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022
-YEARS_FOIA = 2005 2006 2007 2008 2009 2010 2011
+YEARS = $(shell seq 2005 2022)
+YEARS_URL = $(shell seq 2012 2022)
+YEARS_FOIA = $(shell seq 2005 2011)
 inputs_URL = $(foreach y, $(YEARS_URL),  ../input/$(y).pdf)
 inputs_FOIA = $(foreach y, $(YEARS_FOIA),  ../input/$(y).pdf)
+TEMP_2005_2010 = $(foreach y, $(shell seq 2005 2010), ../temp/$(y).csv)
+TEMP_2011_2022 = $(foreach y, $(shell seq 2011 2022), ../temp/$(y).csv)
+
 
 URL_2012 = https://www.chicago.gov/content/dam/city/depts/obm/supp_info/CIP_Archive/Aldermanic%20Menu/March2017Update/2012Menu.pdf
 URL_2013 = https://www.chicago.gov/content/dam/city/depts/obm/supp_info/CIP_Archive/Aldermanic%20Menu/March2017Update/2013Menu.pdf
@@ -16,6 +19,7 @@ URL_2020 = https://www.chicago.gov/content/dam/city/depts/obm/supp_info/CIP_Arch
 URL_2021 = https://www.chicago.gov/content/dam/city/depts/obm/general/CIP/CIPDocs/AldermanicMenuPostings/2021%20Menu%20Posting%20-%2022-10-02.pdf
 URL_2022 = https://www.chicago.gov/content/dam/city/depts/obm/supp_info/CIP_Archive/Aldermanic%20Menu/2020%20Menu%20Ward%20Report%20as%20of%2027July2020.pdf
 
+PARAMS_2011 = -a 112,14,540,771 -c 290,523,623,711
 PARAMS_2012 = -a 112,14,540,771 -c 290,523,623,711
 PARAMS_2013 = -a 112,14,540,771 -c 290,523,623,711
 PARAMS_2014 = -a 112,14,540,771 -c 290,523,623,711
@@ -33,19 +37,24 @@ PARAMS_2022 = -a 56,30,552,720 -c 247,606
 
 .PRECIOUS: ../output/%.csv ../input/%.csv ../input/%.pdf tabula.jar
 
-all: ../output/menu.csv
+all: ../output/menu_2011_2022.csv ../output/menu_2005_2010.csv
+budget_2005_2010: $(TEMP_2005_2010)
 
 clean:
-	rm -f ../input/*.pdf ../input/*.csv ../output/*.csv
+	rm -f ../input/*.pdf ../input/*.csv ../output/*.csv ../temp/*.csv 
 
-../output/menu.csv: $(foreach y, $(YEARS), ../output/$(y).csv) | ../output
+../output/menu_2011_2022.csv: $(foreach y, $(shell seq 2011 2022), ../temp/$(y).csv) | ../output
+	csvstack $^ > $@
+../output/menu_2005_2010.csv: $(TEMP_2005_2010) | ../output
 	csvstack $^ > $@
 
-../output/%.csv: ../input/%.csv | ../output
+$(TEMP_2011_2022): ../temp/%.csv: ../input/%.csv | ../temp
 	cat $< | python process_budget.py $* > $@
 
 ../input/%.csv: ../input/%.pdf tabula.jar | ../input
 	java -jar tabula.jar -p all -t $(PARAMS_$*) $< > $@
+$(TEMP_2005_2010): ../temp/%.csv: ../input/%.pdf process_budget_2005_2010.py | ../temp
+	python process_budget_2005_2010.py $< $@
 
 $(inputs_URL): ../input/%.pdf: | ../input
 	wget -O $@ $(URL_$*)

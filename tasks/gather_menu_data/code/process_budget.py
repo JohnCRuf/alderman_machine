@@ -71,7 +71,6 @@ def get_category(program, dept=""):
         return "Misc"
     return "Other"
 
-def process_old(stdin, year):
     rows = []
     ward = ""
     dept = ""
@@ -124,7 +123,7 @@ def process_old(stdin, year):
         row["category"] = get_category(row["program"], dept=row["dept"])
     return rows
 
-def process_2011(stdin, year):
+
     rows = []
     ward = ""
     dept = ""
@@ -223,7 +222,6 @@ def process_early(stdin, year):
         row["category"] = get_category(row["program"], dept=row["dept"])
     return rows
 
-
 def process_recent(stdin, year):
     rows = []
     ward = ""
@@ -264,11 +262,7 @@ def process_recent(stdin, year):
 
 
 if __name__ == "__main__":
-    if sys.argv[1] < "2011":
-        rows = process_old(sys.stdin, sys.argv[1])
-    elif sys.argv[1] == "2011":
-        rows = process_2011(sys.stdin, sys.argv[1])
-    elif sys.argv[1] < "2016" and sys.argv[1] > "2011":
+    if sys.argv[1] < "2016" and sys.argv[1] > "2011":
         rows = process_early(sys.stdin, sys.argv[1])
     else:
         rows = process_recent(sys.stdin, sys.argv[1])
