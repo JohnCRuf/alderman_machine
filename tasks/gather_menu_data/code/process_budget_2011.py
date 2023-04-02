@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore")
 exec(open('reading_functions.py').read())
 input_file = sys.argv[1]
 output_file = sys.argv[2]
-
+year = sys.argv[3]
 #load the 2011 text file as text
 with open(input_file, "r") as f:
     text = f.read()
@@ -65,5 +65,7 @@ def menu_df_from_text(text):
     return df
 
 df = menu_df_from_text(text)
+#add year column always equal to year
+df["year"] = year
 #write the dataframe to a csv
 df.to_csv(output_file, index=False)

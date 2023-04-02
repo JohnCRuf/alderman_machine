@@ -37,7 +37,7 @@ PARAMS_2021 = -a 80,10,590,1000 -c 268,696
 
 .PRECIOUS: ../output/%.csv ../input/%.csv ../input/%.pdf tabula.jar
 
-all: ../output/menu_2011_2015.csv ../output/menu_2005_2010.csv ../output/menu_2016_2022.csv
+all: ../output/menu_2005_2010.csv ../output/menu_2011_2015.csv  ../output/menu_2016_2022.csv
 
 clean:
 	rm -f ../input/*.pdf ../input/*.text ../output/*.csv ../temp/*.csv 
@@ -51,16 +51,16 @@ clean:
 	csvstack $^ > $@
 #TEMP
 $(TEMP_2016_2022): ../temp/%.csv: ../input/%.text process_budget_2016_2022.py reading_functions.py | ../temp
-	python process_budget_2016_2022.py $< $@
+	python process_budget_2016_2022.py $< $@ $*
 
 $(TEMP_2012_2015): ../temp/%.csv: ../input/%.text process_budget_2012_2015.py reading_functions.py | ../temp
-	python process_budget_2012_2015.py $< $@
+	python process_budget_2012_2015.py $< $@ $*
 
 ../temp/2011.csv: ../input/2011.text process_budget_2011.py reading_functions.py | ../temp
-	python process_budget_2011.py $< $@
+	python process_budget_2011.py $< $@ 2011
 
 $(TEMP_2005_2010): ../temp/%.csv: ../input/%.pdf process_budget_2005_2010.py | ../temp
-	python process_budget_2005_2010.py $< $@
+	python process_budget_2005_2010.py $< $@ $*
 
 #INPUTS
 ../input/%.text: ../input/%.pdf tabula.jar | ../input

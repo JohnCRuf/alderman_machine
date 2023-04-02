@@ -6,6 +6,7 @@ import warnings
 warnings.filterwarnings("ignore") #ignore concatenation warnings
 input_file = sys.argv[1]
 output_file = sys.argv[2]
+year = sys.argv[3]
 # Get the PDF
 with pdfplumber.open(input_file) as pdf:
     page_list = pdf.pages
@@ -131,4 +132,5 @@ for page in page_list:
     df = extract_menu_data(text)
     df_list.append(df)
 df = pd.concat(df_list)
+df["year"] = year
 df.to_csv(output_file, index=False)
