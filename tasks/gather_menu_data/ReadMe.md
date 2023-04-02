@@ -11,7 +11,7 @@
 * `process_budget_2011.py`: Processes year.text for the year 2011 using tabula-py and pandas
 * `process_budget_2012_2015.py`: Processes year.text for the years 2011-2015 using tabula-py and pandas
 * `process_budget_2016_2022.py`: Processes year.text for the years 2016-2018 using tabula-py pandas
-* `process_budget.py`: Legacy script from the city buraeu
+* `process_budget.py`: Legacy script from the city bureau
 * `reading_functions.py`: A set of filtering functions for processing the text files
 * `tabular.jar`: A Java file for processing PDF tables. 
 
