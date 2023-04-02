@@ -2,7 +2,9 @@
     This task scrapes the expenditure data from the Aldermanic Menu Program's website and FOIA'd PDFs and processes them into a set of CSVs.
 
 ## Output
-* `
+* `menu_2005_2010.csv`: A CSV of menu expenditures by alderman for the years 2005-2010
+* `menu_2011_2015.csv`: A CSV of menu expenditures by alderman for the years 2012-2015
+* `menu_2016_2022.csv`: A CSV of menu expenditures by alderman for the years 2016-2022
 ## Input
 * `year.pdf`: PDFs of the Aldermanic Menu Program's expenditure data for a given year
 * `year.text`: Tabula-read text file of year.pdf 
