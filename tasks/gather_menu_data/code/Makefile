@@ -30,7 +30,7 @@ PARAMS_2018 = -a 56,35,552,720 -c 258,616
 PARAMS_2019 = -a 56,35,552,720 -c 258,616
 PARAMS_2020 = -a 56,35,552,720 -c 258,616
 PARAMS_2021 = -a 80,10,590,1000 -c 268,696
-PARAMS_2021 = -a 80,10,590,1000 -c 268,696
+PARAMS_2022 = -a 56,35,552,720 -c 258,616
 
 #Notes on parameters, -a indicate portion of page to analyze, -c indicate columns to extract
 .PHONY: all clean

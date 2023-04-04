@@ -21,16 +21,16 @@ def extract_menu_data(text):
     gatherflag = False
     typeflag = False
     [ward, location, type, CG_blks, SW_blks, blocks, humps, unitcount, estcost] = [""]*9
+    #remove all quotation marks
+    text = text.replace('"', '')
     for line in text.splitlines():
         if "Ward" in line:
             ward = line.split()[-1]
         if "EstCost" in line:
             gatherflag = True
             typeflag = True
-        if "Printed" in line:
+        if "Printed" in line or "Total" in line:
             gatherflag = False
-        elif not any(char.isdigit() for char in line):
-            gather = False   
         if typeflag:
             type = line
             table_heading = line
@@ -111,6 +111,8 @@ def extract_menu_data(text):
                 humps = 'NA'
                 blocks = 'NA'
             location = line
+            #estcost but remove "
+            estcost = estcost.replace('"', '')
             variable_list = [CG_blks, SW_blks, humps, blocks, unitcount, estcost]
             for var in variable_list:
                 location = location.replace(' '+var, '')
