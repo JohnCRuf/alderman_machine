@@ -1,9 +1,10 @@
 SHELL=bash
 include ../../shell_functions.make
 
+INPUTS_menu = $(foreach range, 2005_2010 2011_2015 2016_2022, ../input/menu_$(range).csv)
 ## DEFINITIONS
 
-all: ../output/menu_panel_df_beauty.csv ../output/menu_panel_df.csv
+all: ../output/menu_panel_df.csv
 
 #OUTPUT RECIPES
 
@@ -13,7 +14,7 @@ all: ../output/menu_panel_df_beauty.csv ../output/menu_panel_df.csv
 #INPUT RECIPES
 ../input/elections.csv: ../input/%: ../../webscrape_elections_data/output/% | ../input
 	ln -s $< $@
-../input/menu.csv: ../input/%: ../../initialdata/output/% | ../input
+$(INPUTS_menu): ../input/%: ../../gather_menu_data/output/% | ../input
 	ln -s $< $@
 
 
