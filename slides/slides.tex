@@ -1,5 +1,4 @@
 \documentclass[11pt,notes=hide,aspectratio=169,mathserif]{beamer}
-
 % PACKAGES
 \usepackage{graphics}  % Support for images/figures
 \usepackage{graphicx}  % Includes the \resizebox command
@@ -11,7 +10,13 @@
 \usepackage{etoolbox}  %Supports toggle commands
 \usepackage{datetime}
 \usepackage{bm}	%Supports bold math \bm
-
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage[export]{adjustbox}
 % PACKAGES (that should already be included by your LyX document settings)
 \usepackage{amsfonts}  % Lots of stuff, including \mathbb 
 \usepackage{amsmath}   % Standard math package
@@ -22,14 +27,17 @@
 \linespread{1.2}
 
 % IDENTIFYING INFORMATION
-\title[project]{project}
-\author[Dingel \& friends ]{Jonathan I. Dingel (Chicago Booth) \\ coauthors}
+\title[The Road Less Graveled: How well do local Aldermen choose which streets to fix?]{The Road Less Graveled:\\ How well do local Aldermen choose which streets to fix?}
+\author[John Ruf]{John Ruf}
 \date{\monthname[\the\month] \the\year}
 
 % THEMATIC OPTIONS
 \setbeamercovered{transparent}
-\usetheme{metropolis}
+\usetheme{Frigatebird}
+\pgfplotsset{compat=1.10}
 \usecolortheme{default}
+\usetikzlibrary{arrows,shapes}
+\usefonttheme{professionalfonts}
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{footline}[frame number]{}
 
@@ -50,9 +58,10 @@
 	\end{itemize}
 }
 \end{frame}
-%---------------------------------------------------------------------
-%\input{sections/intro.tex}
-%---------------------------------------------------------------------
+
+\input{sections/intro.tex}
+\input{sections/methods.tex}
+\input{sections/old_stuff.tex}
 
 %---------------------------------------------------------------------
 \begin{frame}[plain]
@@ -62,7 +71,7 @@
 
 
 %\beginbackup
-\appendix
+%\appendix
 %\input{sections/appendix.tex}
 
 %\bibliographystyle{../bib/aeanobold}

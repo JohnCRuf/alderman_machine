@@ -1,0 +1,84 @@
+\documentclass[10pt,a4paper,twoside]{mins}
+
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\setcommittee{Aldermanic Research Projects Coordination}
+\setshortcommittee{Aldermanic Perogative Research}
+\setmembers{
+	\role{John Ruf}{PI},
+    \role{Silvia}{PI},
+    \role{Milena}{PI},
+}
+
+\setdate{[4/05/2023], [9:30 AM]}
+
+\apologies{} %If no-one gives apologies, leave blank and will be dropped
+\absent{} %If no-one is absent, leave blank, and it will be dropped
+\alsopresent{} %If no-one is a visitor, leave blank and it will be dropped
+
+\setisAgenda{}%leave as blank for regular minutes. Set to True if agenda.
+
+\begin{document}
+\begin{minutes}
+\begin{center}\emph{Meeting Opened at [9:30]}\end{center}
+\begin{business}
+\item Discussion of Research Agendas to date
+Brief summaries of basic agendas to date from each PI: 
+(Feel free to correct)
+\begin{itemize}
+    \item John Ruf: To date research focuses on the political economy of aggregate spending categories by matching menu money data to elections results. John's research exploits variation in Aldermanic competence driven by time in office and discontinuities when aldermen are replaced. 
+    \item Silvia: To date research focuses on aldermanic perogative and housing construction, and is trying to find a plausible source of exogenous variation to determine how perogative influences permits
+    \item Milena: Focuses on the intersection of low-income housing and aldermanic perogative.
+\end{itemize}
+
+\item Discussion of expected research
+
+\begin{itemize}
+    \item John Ruf: Trying to expand analysis to include spatial variation as well. Wants to look at distribution of menu money spending across wards. Future directions include looking at an HHI-like index of spending across voting precincts and looking at that as an outcome variable for a similar DiD, and looking at the pure cross-section to see overall association between voting precinct's vote count for incumbent and menu money expenditures in that precinct. To find causal impact of spending on votes, also need a similar source of exogeneity that Silvia and Milena are trying to find. 
+    \item Silvia: Wants to focus more on procurement data and how that relates to aldermanic perogative. Do more connected firms get more jobs $\rightarrow$ do jobs worse $\rightarrow$ winds up spending more money.
+    \item Milena: Focuses on the intersection of low-income housing and aldermanic perogative. Didn't have a ton of time to discuss unfortunately. Follow-up on future meeting. 
+\end{itemize}
+Research Notes for all
+\begin{itemize}
+    \item Silvia and Milena: Snow-plow \href{https://plow-tracker-chicago.hub.arcgis.com/search?collection=Dataset}{trackers}, Scrape-able campaign finance \href{https://www.elections.il.gov/campaigndisclosure/candidatesearch.aspx}{data}, contains geographic information on where the money is coming from.
+    \item John: Look at speed camera data for speed (Was it different dataset in Chicago Data Portal?), Look into tire company blowout data for indicators of potholes instead of going to John List for acceleration data. 
+\end{itemize}
+
+
+\item Notes on proposal 
+\begin{itemize}
+    \item Ed Glaeser is basically doing the same thing, but using Causal inference tools instead of structural tools.
+    \begin{itemize}
+        \item Note to self: Read his WP and reference it in Harvard PhD application next year. 
+    \end{itemize}
+
+\item TODOs for John
+\begin{itemize}
+    \item Talk to local alderman, Rossana Rodriguez, about procurement data. https://33rdward.org/our-staff/. Does it exist? If so, how do we get it? Rodriguez is classic Chicago Socialist Party-member, so if we spin this as sticking to construction companies, may be amenable. 
+    \item Continue processing geographic data
+    \item Think about exogenous variation, talk to Dingel more about spatial metrics tools available (Shift-share, Instruments used in trade literature, etc.)
+\end{itemize}
+Last notes: Some funny relevant Chicago Genius Herald (Chicago's own onion) articles:
+
+\begin{itemize}
+    \item Optimal \href{https://thechicagogenius.com/chicago/mayor-lightfoot-donates-all-her-blocks-snowfall-nearby-neighborhood}{Snow allocations}
+    \item Getting off the exit at \href{https://thechicagogenius.com/chicago/potholes-begin-fattening-winter}{57th}
+    \item If only \href{https://thechicagogenius.com/chicago-wards/chicago-city-council-agrees-redraw-ward-map-tavern-style}{this were true}
+\end{itemize}
+\end{itemize}
+\end{business}
+\begin{center}\emph{Meeting Closed at [10:00]}\end{center}
+\end{minutes}
+\nextmeeting{TBD}
+\end{document}
+

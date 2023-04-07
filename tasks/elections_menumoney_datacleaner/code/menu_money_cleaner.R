@@ -63,8 +63,13 @@ row_2 <- data.frame(ward = 1,type = "POD Camera Relocation", location = "2536 W 
 row_3 <- data.frame(ward = 45,type = "Sidewalk Menu", location = "ON W BRYN MAWR AVE FROM N PARKSIDE AVE (5630 W) TO N MAJOR AVE (5700 W)", est_cost = 15256.82, year = 2019)
 menu_df_2016_2022 <- bind_rows(menu_df_2016_2022, row_1, row_2, row_3)
 menu_df <- bind_rows(menu_df_2005_2010, menu_df_2011_2015, menu_df_2016_2022)
-#assert no est_cost is NA
 menu_df <- menu_df %>%
+  drop_na(ward)
+resurfacing_number <- nrow(menu_df[str_detect(menu_df$type, "Street Resurfac") & menu_df$year>2015,])
+write(resurfacing_number, "../output/resurfacing_count_since_2015.tex")
+
+#assert no est_cost is NA
+#menu_df <- menu_df %>%
   verify(nrow(menu_df[is.na(menu_df$est_cost),])==0)
 
 write_csv(menu_df, "../output/menu_df.csv")
