@@ -66,6 +66,15 @@ def menu_df_from_text(text):
                 }, ignore_index=True)
     return df
 df = menu_df_from_text(text)
+if year == "2018":
+    with open("../input/2018_2.text", "r") as f:
+        text2 = f.read()
+    df2 = menu_df_from_text(text2)
+    with open("../input/2018_3.text", "r") as f:
+        text3 = f.read()
+    df3 = menu_df_from_text(text3)
+    df = pd.concat([df, df2, df3], ignore_index=True)
+
 #add year column always equal to year
 df["year"] = year
 #write the dataframe to a csv

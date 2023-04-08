@@ -24,7 +24,7 @@ def extract_menu_data(text):
     #remove all quotation marks
     text = text.replace('"', '')
     for line in text.splitlines():
-        if "Ward" in line:
+        if "Ward:" in line:
             ward = line.split()[-1]
         if "EstCost" in line:
             gatherflag = True
