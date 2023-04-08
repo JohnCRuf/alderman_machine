@@ -1,5 +1,6 @@
 wipeclean: #This deletes all output, input, and logs content
-	$(WIPECLEAN) $(CURDIR)
+clean:
+	rm -R ../input/ ../output/ ../temp/ ../report/
 
 run.sbatch: ../../setup_environment/code/run.sbatch | slurmlogs
 	ln -s $< $@

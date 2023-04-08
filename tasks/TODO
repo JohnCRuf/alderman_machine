@@ -1,7 +1,0 @@
-1. Gather additional data by revamping the pdf collection python code
-    a. Add new 2019-2022 data [x]
-    b. Add new 2006-2011 data []
-2. Re-run analyses with additional spending data []
-3. Gather spatial data and 311 complaint data []
-4. Develop index of complaint responsiveness []
-5. Run DiD analysis of complaint responsiveness with new aldermen []
