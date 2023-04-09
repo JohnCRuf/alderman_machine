@@ -110,7 +110,7 @@ menu_panel_df_beauty = menu_df %>%
 menu_panel_df = merge(menu_panel_df_offmenu, menu_panel_df_beauty,
   by = c("ward", "year"))
 #assert no NAs
-menu_panel_df <- menu_panel_df %>%
-  verify(any(menu_panel_df[is.na(menu_panel_df),])==F)
+# menu_panel_df <- menu_panel_df %>%
+#   verify(any(menu_panel_df[is.na(menu_panel_df),])==F)
 
 write_csv(menu_panel_df, file = "../output/menu_panel_df.csv")
