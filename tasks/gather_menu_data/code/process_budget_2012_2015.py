@@ -18,9 +18,12 @@ def menu_df_from_text(text):
     ward, type, location, desc, blocks, unitcount, estcost = "", "", "", "", "", "", ""
     gatherflag = False
     text = re.sub(r"\$(\d+),(\d+)", r"$\1\2", text)
-
+    # Replace all commas between quotes and text or numbers 
+    text = re.sub(r'(")(\d+),(\d+)(")', r"\1\2\3", text)
+    total_phrases = ["Program Total", "Menu Budget:", "Ward Committed Total:", "Ward Balance:", "Total:"]
+    ward_phrases = ["Ward  :", "Ward:", "Ward :"]
     for line in text.splitlines():
-        if "Ward" in line:
+        if any(phrase in line for phrase in ward_phrases):
             ward = line.replace(",", "").split(":")[-1].strip()
             gatherflag = False
         elif "Program" in line:
@@ -28,7 +31,7 @@ def menu_df_from_text(text):
             gatherflag = False
         elif "Est Cost" in line:
             gatherflag = True
-        elif "Total" in line:
+        elif any(phrase in line for phrase in total_phrases):
             gatherflag = False
         if gatherflag and "Est Cost" not in line and '""",' not in line:
             location, desc, blocks, unitcount, estcost = "", "", "", "", ""
@@ -44,6 +47,12 @@ def menu_df_from_text(text):
                     if val != "":
                         df[var].iloc[-1] = f"{df[var].iloc[-1]} {val}"
             else:
+                #remove commas from the estcost variable
+                #if unitcount has a dollar sign
+                if "$" in unitcount:
+                    #remove last phrase from unitcount and add to estcost
+                    estcost = f"{unitcount.split()[-1]} {estcost}"
+                    unitcount = " ".join(unitcount.split()[:-1])
                 df = df.append({
                     "ward": ward,
                     "type": type,

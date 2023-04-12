@@ -66,6 +66,7 @@ def menu_df_from_text(text):
                 }, ignore_index=True)
     return df
 df = menu_df_from_text(text)
+#year 18 needs to be split up into separate files because of inconsistent formatting
 if year == "2018":
     with open("../input/2018_2.text", "r") as f:
         text2 = f.read()

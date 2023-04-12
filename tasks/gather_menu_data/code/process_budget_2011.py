@@ -19,7 +19,9 @@ def menu_df_from_text(text):
     gatherflag = False
     # Replace all commas between a $ and a number with nothing
     text = re.sub(r"\$(\d+),(\d+)", r"$\1\2", text)
-
+    # Replace all commas between quotes and text or numbers 
+    text = re.sub(r'(")(\d+),(\d+)(")', r"\1\2\3", text)
+    total_phrases = ["Program Total", "Menu Budget:", "Ward Committed Total:", "Ward Balance:"]
     # for every line in the text
     for line in text.splitlines():
         # if the line contains the word "Ward"
@@ -32,7 +34,7 @@ def menu_df_from_text(text):
             # set the gather flag to True
             gatherflag = True
             type = re.search(r"Program: (.+?),", line).group(1)
-        elif "Total" in line:
+        elif any(phrase in line for phrase in total_phrases):
             gatherflag = False
         if gatherflag and not "Program" in line:
             location, desc, blocks, unitcount, estcost = [""] * 5
@@ -40,9 +42,9 @@ def menu_df_from_text(text):
             location = location_street_filter(line_parts[0])
             location = location_parenthesis_filter(location)
             desc = line_parts[1]
-            blocks = line_parts[2]
-            unitcount = line_parts[3]
-            estcost = line_parts[4].replace('"', "").replace("$", "")
+            blocks = line_parts[-3]
+            unitcount = line_parts[-2]
+            estcost = line_parts[-1].replace('"', "").replace("$", "")
             # filter out all "$" and """ from the estcost variable
             if estcost == "":
                 for var in ["location", "desc", "blocks", "unitcount"]:

@@ -6,6 +6,8 @@ inputs_FOIA = $(foreach y, $(YEARS_FOIA),  ../input/$(y).pdf)
 TEMP_2005_2010 = $(foreach y, $(shell seq 2005 2010), ../temp/$(y).csv)
 TEMP_2012_2015 = $(foreach y, $(shell seq 2012 2015), ../temp/$(y).csv)
 TEMP_2016_2022 = $(foreach y, $(shell seq 2016 2017) $(shell seq 2019 2022), ../temp/$(y).csv)
+TEMP_totals_2005_2010 = $(foreach y, $(shell seq 2005 2010), ../temp/$(y)_totals.csv)
+TEMP_totals_2011_2022 = $(foreach y, $(shell seq 2011 2022), ../temp/$(y)_totals.csv)
 
 URL_2012 = https://www.chicago.gov/content/dam/city/depts/obm/supp_info/CIP_Archive/Aldermanic%20Menu/March2017Update/2012Menu.pdf
 URL_2013 = https://www.chicago.gov/content/dam/city/depts/obm/supp_info/CIP_Archive/Aldermanic%20Menu/March2017Update/2013Menu.pdf
@@ -32,14 +34,14 @@ PARAMS_2018_3 = -a 56,35,552,720 -c 258,616
 PARAMS_2019 = -a 56,35,552,720 -c 258,616
 PARAMS_2020 = -a 56,35,552,720 -c 258,616
 PARAMS_2021 = -a 80,10,590,1000 -c 268,696
-PARAMS_2022 = -a 56,35,552,720 -c 258,616
+PARAMS_2022 = -a 80,10,590,1000 -c 268,696
 
 #Notes on parameters, -a indicate portion of page to analyze, -c indicate columns to extract
 .PHONY: all clean
 
 .PRECIOUS: ../output/%.csv ../input/%.csv ../input/%.pdf tabula.jar
 
-all: ../output/menu_2005_2010.csv ../output/menu_2011_2015.csv  ../output/menu_2016_2022.csv
+all: ../output/menu_2005_2010.csv ../output/menu_2011_2015.csv  ../output/menu_2016_2022.csv ../output/menu_totals.csv
 
 
 #OUTPUTS
@@ -49,7 +51,13 @@ all: ../output/menu_2005_2010.csv ../output/menu_2011_2015.csv  ../output/menu_2
 	csvstack $^ > $@
 ../output/menu_2005_2010.csv: $(TEMP_2005_2010) | ../output
 	csvstack $^ > $@
+../output/menu_totals.csv: $(TEMP_totals_2005_2010) $(TEMP_totals_2011_2022) | ../output
+	csvstack $^ > $@
 #TEMP
+$(TEMP_totals_2005_2010): ../temp/%_totals.csv: ../input/%.pdf | ../temp
+	python scrape_totals_2005_2010.py $< $@ $*
+$(TEMP_totals_2011_2022): ../temp/%_totals.csv: ../input/%.text | ../temp
+	python scrape_totals_2011_2022.py $< $@ $*
 $(TEMP_2016_2022): ../temp/%.csv: ../input/%.text process_budget_2016_2022.py reading_functions.py | ../temp
 	python process_budget_2016_2022.py $< $@ $*
 

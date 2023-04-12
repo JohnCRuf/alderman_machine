@@ -8,7 +8,9 @@ library(assertr)
 menu_df_2005_2010<-read_csv("../input/menu_2005_2010.csv")
 menu_df_2011_2015<-read_csv("../input/menu_2011_2015.csv")
 menu_df_2016_2022<-read_csv("../input/menu_2016_2022.csv")
-#removing irrelevant quantity columns
+
+## Section 1: Cleaning the raw data####
+  #removing irrelevant quantity columns
 menu_df_2005_2010<-menu_df_2005_2010%>%
   select(-c(cg_blks,sw_blks,humps,blocks,unitcount))
 menu_df_2011_2015<-menu_df_2011_2015%>%
@@ -16,7 +18,7 @@ menu_df_2011_2015<-menu_df_2011_2015%>%
 menu_df_list <- list(menu_df_2005_2010, menu_df_2011_2015, menu_df_2016_2022)
 
 
-#manually fixing glitched data frames
+  #manually fixing glitched data frames
 menu_df_2011_2015 <- menu_df_2011_2015 %>%
   mutate(estcost = ifelse(location == "Fireman's Park Restoration" & year == 2011, 1824, estcost),
         estcost = ifelse(location == "5216 W Lawrence" & year == 2011, 392, estcost),
@@ -28,11 +30,11 @@ menu_df_2016_2022 <- menu_df_2016_2022 %>%
         estcost = ifelse(location == "2701 W FRANCIS PL" & year == 2019, 1800.00, estcost),
         estcost = ifelse(location == "5690 W GOODMAN ST:W GOODMAN ST & N PARKSIDE AVE:W GOODMAN ST" & year == 2019, 16237.57, estcost)
         )
-#deleting rows with un-correctable data
+  #deleting rows with un-correctable data
 menu_df_2016_2022 <- menu_df_2016_2022[menu_df_2016_2022$location != "1264 N WOOD ST N WOOD ST & W OHIO ST",]
 menu_df_2016_2022 <- menu_df_2016_2022[menu_df_2016_2022$location != "ON W BRYN MAWR AVE FROM N PARKSIDE AVE (5630 W) TO N MAJOR AVE (",]
 
-#creating a new rows to replace un-correctable data
+  #creating a new rows to replace un-correctable data
 row_1 <- data.frame(ward = 1,type = "Sidewalk Menu",
                     location = "1264 N WOOD ST",
                     estcost = 2097.82, year = 2019)
@@ -61,6 +63,9 @@ menu_df <- menu_df %>%
 resurfacing_number <- nrow(menu_df[str_detect(menu_df$type, "Street Resurfac") & menu_df$year>2015,])
 write(resurfacing_number, "../output/resurfacing_count_since_2015.tex")
 
+#sort menu by ward and year
+menu_df <- menu_df %>%
+  arrange(ward, year)
 
 write_csv(menu_df, "../output/menu_df.csv")
 
@@ -80,14 +85,6 @@ menu_df <- menu_df %>%
       "on_menu", "off_menu"),
     beauty = ifelse(str_detect(type, paste(beauty, collapse = "|")),
       "beauty", "not_beauty"))
-#create dataframe of total spending by ward and year
-menu_total_spending_panel <- menu_df %>%
-  group_by(ward, year) %>%
-  summarise(expenditures = sum(est_cost)) %>%
-  mutate(
-    expenditures = as.numeric(str_remove_all(expenditures, '"'))
-  )
-
 menu_panel_df_offmenu = menu_df %>%
   group_by(ward, year, on_menu) %>%
   summarise(expenditures = sum(est_cost)) %>% #next turn all expenditures to decimal numeric
@@ -104,13 +101,14 @@ menu_panel_df_offmenu = menu_df %>%
 menu_panel_df_beauty = menu_df %>%
   group_by(ward,year, beauty) %>%
   summarise(expenditures = sum(est_cost)) %>%
-  pivot_wider(names_from = beauty,values_from = expenditures) 
+  pivot_wider(names_from = beauty,values_from = expenditures) %>%
+  mutate(
+    beauty = ifelse(is.na(beauty), 0, beauty),
+    not_beauty = ifelse(is.na(not_beauty), 0, not_beauty)
+  )
 
 #merge the two dataframes
 menu_panel_df = merge(menu_panel_df_offmenu, menu_panel_df_beauty,
   by = c("ward", "year"))
-#assert no NAs
-# menu_panel_df <- menu_panel_df %>%
-#   verify(any(menu_panel_df[is.na(menu_panel_df),])==F)
 
 write_csv(menu_panel_df, file = "../output/menu_panel_df.csv")
