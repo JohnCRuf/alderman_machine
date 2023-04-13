@@ -1,4 +1,4 @@
-# elections_menumoney_datacleaner
+# menumoney_datacleaner
     This task collects menu expenditures data and merges it with election data to create a dataset of menu expenditures by Alderman. 
 
 ## Output
