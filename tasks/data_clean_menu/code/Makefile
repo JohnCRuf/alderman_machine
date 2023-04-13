@@ -12,9 +12,9 @@ all: ../output/menu_panel_df.csv
 	$(R) --no-job-name $<
 
 #INPUT RECIPES
-../input/elections.csv: ../input/%: ../../webscrape_elections_data/output/% | ../input
+../input/elections.csv: ../input/%: ../../data_scrape_elections/output/% | ../input
 	ln -s $< $@
-$(INPUTS_menu): ../input/%: ../../gather_menu_data/output/% | ../input
+$(INPUTS_menu): ../input/%: ../../data_scrape_menu/output/% | ../input
 	ln -s $< $@
 
 

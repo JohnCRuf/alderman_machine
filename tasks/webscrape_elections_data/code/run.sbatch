@@ -1,1 +1,0 @@
-../../setup_environment/code/run.sbatch

@@ -10,7 +10,7 @@ all: ../output/incumbent_voteshare_df.csv ../output/incumbents_list.RDS ../outpu
 ../output/incumbent_voteshare_df.csv ../output/incumbents_list.RDS ../output/incumbents_all.RDS:   elections_incumbent_cleaning.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' elections_incumbent_cleaning.R) | ../output run.sbatch slurmlogs
 	$(R) --no-job-name $<
 #INPUT RECIPES
-../input/elections.csv: ../input/%: ../../webscrape_elections_data/output/% | ../input
+../input/elections.csv: ../input/%: ../../data_scrape_elections/output/% | ../input
 	ln -s $< $@
 
 
