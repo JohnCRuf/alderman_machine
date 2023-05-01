@@ -1,116 +1,104 @@
 library(tidyverse)
 library(stringr)
 library(readr)
+library(assertthat)
+# Read and clean data
+elections <- read_csv("../input/elections.csv") %>%
+  mutate(Candidate = gsub("  ", " ", Candidate),
+         Candidate = gsub("Patricia ''Pat'' Dowell", "Pat Dowell", Candidate),
+         Candidate = gsub("Thomas M. Tunney", "Tom Tunney", Candidate),
+         Candidate = gsub("Rey Col????????N", "Rey Colon", Candidate))
+#drop observations with JoAnn Thompson and year 2015 from elections
+elections <- elections %>% filter(!(Candidate == "Joann Thompson" & year == 2015))
 
-elections <- read_csv("../input/elections.csv")%>%
-  mutate(Candidate=gsub("  ", " ",Candidate),
-         Candidate=gsub("Patricia ''Pat'' Dowell", "Pat Dowell",Candidate), #remove misnamed candidates
-         Candidate=gsub("Thomas M. Tunney", "Tom Tunney",Candidate),
-         Candidate=gsub("Rey Col????????N", "Rey Colon",Candidate))
+# Calculate total votes per candidate and winning candidates
+election_group <- elections %>%
+  group_by(year, Ward, type, Candidate) %>%
+  summarize(total_votes_percandidate = sum(Votecount), .groups = "drop")
 
-# Get the set of winners for each race
-election_group<-elections %>%
-  group_by(year, Ward, type,Candidate) %>%
-  summarize(total_votes_percandidate=sum(Votecount))
+election_winners <- election_group %>%
+  group_by(year, Ward, type) %>%
+  mutate(votepct = total_votes_percandidate / sum(total_votes_percandidate),
+         winner = ifelse(votepct > 0.5, 1, 0))
 
-election_winners_df<-election_group %>%
-  group_by(year,Ward,type) %>%
-  summarize(Candidate,
-            votepct=total_votes_percandidate/sum(total_votes_percandidate)) %>%
-  mutate(winner=ifelse(votepct>0.5,1,0))
-election_winners_df_filtered<-election_winners_df%>%
-  filter(winner==1)
+# Get lists of incumbents for each election year
+year_vector_all <- sort(unique(elections$year), decreasing = TRUE)
+#drop 2017 because that was a special election and 2003 because that is first year in data
+year_vector <- year_vector_all[year_vector_all != 2017]
+year_vector <- year_vector[year_vector != 2003]
 
-winners=as.data.frame(unique(election_winners_df_filtered$Candidate))
+appointments <- list(
+  '2019' = c('Silvana Tabares'),
+  '2015' = c('Deborah L. Mell', 'Natashia L. Holmes'),
+  '2011' = c("Proco ''Joe'' Moreno", "Roberto Maldonado", "Deborah L. Graham", "Jason C. Ervin", "John A. Rice", "Timothy M. Cullerton"),
+  '2007' = c("Darcel A. Beavers", "Lona Lane", "Thomas W. Murphy", "Thomas M. Tunney"),
+  '2003' = c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts"))
 
-#Extract winning candidates and all candidates
-election_winner_list<-vector(mode="list",length=5)
-election_candidate_list<-vector(mode="list",length=5)
-year_vector <-sort(unique(elections$year), decreasing = TRUE)
-j = 1
-for(i in year_vector){
-  elections_year_winners<-election_winners %>%
-    filter(winner==1, year==i)
-  election_candidate_year<-election_winners %>%
-    filter(year==i)
-  election_winner_list[[j]]=unique(elections_year_winners$Candidate)
-  election_candidate_list[[j]]=unique(election_candidate_year$Candidate)
-  j=j+1
-}
+incumbents_list <- lapply(year_vector, function(year) {
+  prev_year <- which(year_vector == year) + 1
+  prev_winners <- election_winners %>% filter(year == year_vector[prev_year], winner == 1) %>% pull(Candidate)
+  curr_candidates <- election_winners %>% filter(year == year) %>% pull(Candidate)
+  c(intersect(prev_winners, curr_candidates), appointments[[as.character(year)]])
+})
 
-incumbents_2019_a=intersect(election_winner_list[[which(year_vector==2017)]],election_candidate_list[[which(year_vector==2019)]])
-incumbents_2019_b=intersect(election_winner_list[[which(year_vector==2015)]],election_candidate_list[[which(year_vector==2019)]])
-appointments_2019=c('Silvana Tabares')
-incumbents_2019=union(incumbents_2019_a, union(appointments_2019, incumbents_2019_b))
+names(incumbents_list) <- year_vector
+#manually inserting incumbent lists for 2003 and 2017 due to first year in data and special election
+incumbents_list <- append(incumbents_list, list('2017' = c("Sophia King")), after = 1)
+incumbents_list <- append(incumbents_list, list('2003' = c(
+c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts", "Rafael ''Ray'' Frias", 
+"Dorothy J. Tillman", "Toni Preckwinkle", "Leslie A. Hairston", "Freddrenna M. Lyle",
+ "William M. Beavers", "Anthony A. Beale", "John A. Pope", "James A. Balcer", 
+ "Frank J. Olivo",  "Theodore ''Ted'' Thomas", "Shirley A. Coleman", "Virginia A. Rugai", 
+ "Arenda Troutman", "Leonard Deville", "Ricardo Munoz", "Michael R. Zalewski", "Michael D. Chandler", 
+ "Daniel ''Danny'' Solis", "Billy Ocasio", "Walter Burnett, Jr.", "Ed H. Smith", 
+ "Isaac ''Ike'' Sims Carothers", "Regner ''Ray'' Suarez", "Ted Matlak", "Richard F. Mell", 
+ "Carrie M. Austin", "Vilma Colom", "William J.p. Banks", "Thomas R. Allen", 
+ "Margaret Laurino", "Patrick J. O'connor", "Brian G. Doherty", "Burton F. Natarus", 
+ "Vi Daley", "Helen Shiller", "Gene Schulter", "Joe Moore", "Bernard L. Stone", "Jesse D. Granato",
+"Edward M. Burke"))))
+incumbents_all <- unique(unlist(incumbents_list))
 
-#Get list of 2015 Incumbents
+# Initialize incumbent columns
+incumbent_cols <- paste0("inc_", year_vector_all)
+incumbent_vs <- election_winners %>%
+  select(-winner) %>%
+  bind_cols(as_tibble(matrix(0, nrow=nrow(election_winners), ncol=length(year_vector_all), dimnames = list(NULL, incumbent_cols))))
 
-incumbents_2015=intersect(election_winner_list[[which(year_vector==2011)]],election_candidate_list[[which(year_vector==2015)]])
-appointments_2015=c('Deborah L. Mell', 'Natashia L. Holmes')
-incumbents_2015=append(incumbents_2015, appointments_2015)
-print(incumbents_2015)
+# Add incumbent information to dataset
+incumbent_vs <- incumbent_vs %>%
+  mutate(across(all_of(incumbent_cols), ~ifelse(Candidate %in% incumbents_list[[match(cur_column(), incumbent_cols)]], 1, 0)))
 
-#Get list of 2011 Incumbents
+incumbent_vs_df <- incumbent_vs%>%
+  mutate(inc = case_when(
+    inc_2019 == 1 & year == 2019 ~ 1,
+    inc_2017 == 1 & year == 2017 ~ 1,
+    inc_2015 == 1 & year == 2015 ~ 1,
+    inc_2011 == 1 & year == 2011 ~ 1,
+    inc_2007 == 1 & year == 2007 ~ 1,
+    inc_2003 == 1 & year == 2003 ~ 1,
+    TRUE ~ 0
+  )) %>%
+  select(-starts_with("inc_")) %>%
+  distinct()
 
-incumbents_2011=intersect(election_winner_list[[which(year_vector==2007)]],election_candidate_list[[which(year_vector==2011)]])
-appointments_2011=c("Proco ''Joe'' Moreno", "Roberto Maldonado", "Deborah L. Graham", "Jason C. Ervin", "John A. Rice","Timothy M. Cullerton")
-incumbents_2011=append(incumbents_2011, appointments_2011)
+#assert that all ward-year combinations have only one incumbent
+assert_that(all(incumbent_vs_df %>%
+  filter(inc==1 & type=="General") %>%
+  group_by(year, Ward) %>%
+  summarize(n = n()) %>%
+  pull(n) < 2), msg = "ERROR: SOME ELECTIONS HAVE 2 INCUMBENTS")
 
-incumbents_2007=intersect(election_winner_list[[which(year_vector==2003)]],election_candidate_list[[which(year_vector==2007)]])
-appointments_2007=c("Darcel A. Beavers","Lona Lane", "Thomas W. Murphy", "Thomas M. Tunney")
-incumbents_2007=append(incumbents_2007, appointments_2007)
+#replace variable Ward with "ward"
+incumbent_vs_df <- incumbent_vs_df %>%
+  rename(ward = Ward)  %>%
+  rename(candidate = Candidate)
 
-appointments_2003=c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts")
-incumbents_2003=c("Rafael ''Ray'' Frias", "Dorothy J. Tillman", "Toni Preckwinkle", "Leslie A. Hairston", "Freddrenna M. Lyle", "William M. Beavers", "Anthony A. Beale", "John A. Pope", "James A. Balcer", "Frank J. Olivo",  "Theodore ''Ted'' Thomas", "Shirley A. Coleman", "Virginia A. Rugai", "Arenda Troutman", "Leonard Deville", "Ricardo Munoz", "Michael R. Zalewski", "Michael D. Chandler","Daniel ''Danny'' Solis", "Billy Ocasio", "Walter Burnett, Jr.", "Ed H. Smith", "Isaac ''Ike'' Sims Carothers", "Regner ''Ray'' Suarez", "Ted Matlak", "Richard F. Mell", "Carrie M. Austin", "Vilma Colom", "William J.p. Banks", "Thomas R. Allen", "Margaret Laurino", "Patrick J. O'connor", "Brian G. Doherty", "Burton F. Natarus", "Vi Daley", "Helen Shiller", "Gene Schulter", "Joe Moore", "Bernard L. Stone", "Jesse D. Granato")
-incumbents_2003=append(incumbents_2003, appointments_2003)
-
-#Get list of all incumbents
-incumbents_all=intersect(unique(elections$year),election_candidate_list)
-incumbents_all=append(incumbents_all, appointments_2019)
-incumbents_all=append(incumbents_all, appointments_2015)
-incumbents_all=append(incumbents_all, appointments_2011)
-incumbents_all=append(incumbents_all, appointments_2007)
-incumbents_all=append(incumbents_all, appointments_2003)
-#Develop Incumbent VS Dataset
-incumbent_vs<-election_winners %>%
-  mutate(winner=NULL,
-         inc_2019=ifelse(Candidate %in% incumbents_2019,1,0),
-         inc_2015=ifelse(Candidate %in% incumbents_2015,1,0),
-         inc_2011=ifelse(Candidate %in% incumbents_2011,1,0),
-         inc_2007=ifelse(Candidate %in% incumbents_2007,1,0),
-         inc_2003=ifelse(Candidate %in% incumbents_2003,1,0))
-incumbent_df_2019<-incumbent_vs%>%
-  filter(year==2019,inc_2019==1)
-incumbent_df_2015<-incumbent_vs%>%
-  filter(year==2015,inc_2015==1)
-incumbent_df_2011<-incumbent_vs%>%
-  filter(year==2011,inc_2011==1)
-incumbent_df_2007<-incumbent_vs%>%
-  filter(year==2007,inc_2007==1)
-incumbent_df_2003<-incumbent_vs%>%
-  filter(year==2003,inc_2003==1)
+write_csv(incumbent_vs_df, file = "../output/incumbent_voteshare_df.csv")
 
 
-incumbent_vs_df<-rbind(incumbent_df_2019,incumbent_df_2015,incumbent_df_2011, incumbent_df_2007, incumbent_df_2003)
+#aggregate_candidate_df <- election_winners %>%
+ # left_join(incumbent_vs, by = c("Candidate", "year", "Ward", "type", "votepct")) %>%
+#  mutate(across(starts_with("inc_"), ~ifelse(is.na(.x), 0, .x)))
 
-#Create List of incumbents
-incumbents_list<-vector(mode="list",length=5)
-incumbents_list[[1]]<-incumbents_2019
-incumbents_list[[2]]<-incumbents_2015
-incumbents_list[[3]]<-incumbents_2011
-incumbents_list[[4]]<-incumbents_2007
-incumbents_list[[5]]<-incumbents_2003
-saveRDS(incumbents_list, file="../output/incumbents_list.RDS")
-saveRDS(incumbents_all, file="../output/incumbents_all.RDS") #TODO: Add more appointments
-
-write_csv(incumbent_vs_df, file="../output/incumbent_voteshare_df.csv")
-
-#Write aggregate candidate dataframe
-aggregate_candidate_df <- election_winners_df %>%
-  left_join(incumbent_vs_df, by=c("Candidate", "year", "Ward", "type","votepct")) %>%
-  mutate(inc_2019=ifelse(is.na(inc_2019),0,inc_2019),
-         inc_2015=ifelse(is.na(inc_2015),0,inc_2015),
-         inc_2011=ifelse(is.na(inc_2011),0,inc_2011),
-         inc_2007=ifelse(is.na(inc_2007),0,inc_2007),
-         inc_2003=ifelse(is.na(inc_2003),0,inc_2003))
-write_csv(aggregate_candidate_df, file="../output/aggregate_candidate_df.csv")
+#write_csv(aggregate_candidate_df, file = "../output/aggregate_candidate_df.csv")
+#saveRDS(incumbents_list, file = "../output/incumbents_list.RDS")
