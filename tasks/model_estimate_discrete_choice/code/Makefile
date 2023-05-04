@@ -17,7 +17,7 @@ all: ../output/voteshare_off_menu_ols.tex ../output/voteshare_off_menu_BLP.tex .
 ../temp/BLP_df.csv ../temp/BLP_df_beauty.csv:   BLP_data_preprocessing.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' BLP_data_preprocessing.R) | ../output ../temp run.sbatch slurmlogs
 	$(R) --no-job-name $<
 #INPUT RECIPES
-../input/menu_panel_df.csv: ../input/%: ../../data_clean_menu/output/% | ../input
+../input/menu_category_panel_df.csv: ../input/%: ../../data_clean_menu/output/% | ../input
 	ln -s $< $@
 ../input/incumbent_voteshare_df.csv: ../input/%: ../../data_clean_elections/output/% | ../input
 	ln -s $< $@

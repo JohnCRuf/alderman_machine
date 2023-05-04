@@ -6,8 +6,8 @@ library(tidyverse)
 library(rvest)
 library(stringr)
 library(XML)
-menu_df<-read_csv("../input/menu_panel_df.csv")
-beauty_df<-read_csv("../input/menu_panel_df_beauty.csv")
+menu_df<-read_csv("../input/menu_category_panel_df.csv")
+beauty_df<-read_csv("../input/menu_category_panel_df_beauty.csv")
 inc_df<-read_csv("../input/incumbent_voteshare_df.csv")
 
 inc_df<-inc_df %>%

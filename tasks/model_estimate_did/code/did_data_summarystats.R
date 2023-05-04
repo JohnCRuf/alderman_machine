@@ -6,7 +6,7 @@ library("rstudioapi")
 
 
 setwd(dirname(getActiveDocumentContext()$path)) 
-menu_df<-read_csv("../input/menu_panel_df.csv")
+menu_df<-read_csv("../input/menu_category_panel_df.csv")
 treated_wards=c(2,7,11,15,17,18,24,29,31,35,36,41)
 electorally_treated=c(7,10,15,18,29,31,35,36,41)
 retirement_treated=c(2,11,17,24,38)

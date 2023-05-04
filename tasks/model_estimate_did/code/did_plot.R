@@ -9,7 +9,7 @@ library("rstudioapi")
 
 
 setwd(dirname(getActiveDocumentContext()$path)) 
-menu_df<-read_csv("../input/menu_panel_df.csv")
+menu_df<-read_csv("../input/menu_category_panel_df.csv")
 treated_wards=c(2,7,11,15,17,18,24,29,31,35,36,41)
 retire_2015=c(2,11,17,24,38)
 retire_2019=c(20,22,25,39,47)

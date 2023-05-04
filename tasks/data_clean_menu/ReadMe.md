@@ -2,7 +2,7 @@
     This task collects menu expenditures data and merges it with election data to create a dataset of menu expenditures by Alderman. 
 
 ## Output
-* `menu_panel_df.csv`: A panel dataset of menu expenditures by alderman, with election data merged in.
+* `menu_category_panel_df.csv`: A panel dataset of menu expenditures by alderman, with election data merged in.
 ## Input
 * `menu_2005_2010.csv`: A CSV of menu expenditures by alderman for the years 2005-2010
 * `menu_2011_2015.csv`: A CSV of menu expenditures by alderman for the years 2012-2015

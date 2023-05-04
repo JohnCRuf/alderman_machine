@@ -8,7 +8,7 @@ library(did)
 library(XML)
 library(staggered)
 source("did_fns.R")
-menu_df<-read_csv("../input/menu_panel_df.csv")
+menu_df<-read_csv("../input/menu_category_panel_df.csv")
 close_runoff_df <- read_csv("../temp/close_runoff_wards.csv")
 all_runoff_df <- read_csv("../temp/all_runoff_wards.csv")
 

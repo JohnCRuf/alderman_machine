@@ -20,7 +20,7 @@ all: $(OUTPUTS)
 	$(R) --no-job-name $<
 
 #INPUT RECIPES
-../input/menu_panel_df.csv ../input/menu_panel_df_beauty.csv: ../input/%: ../../elections_menumoney_datacleaner/output/% | ../input
+../input/menu_category_panel_df.csv ../input/menu_category_panel_df_beauty.csv: ../input/%: ../../elections_menumoney_datacleaner/output/% | ../input
 	ln -s $< $@
 ../input/incumbent_voteshare_df.csv ../input/incumbents_list.RDS: ../input/%: ../../elections_data_cleaning/output/% | ../input
 	ln -s $< $@

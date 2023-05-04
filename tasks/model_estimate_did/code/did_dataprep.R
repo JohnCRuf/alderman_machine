@@ -3,7 +3,7 @@ library(stringr)
 library(did)
 library(XML)
 source("did_fns.R")
-menu_df <- read_csv("../input/menu_panel_df.csv")
+menu_df <- read_csv("../input/menu_category_panel_df.csv")
 inc_voteshare_df <- read.csv("../input/incumbent_voteshare_df.csv")
 
 #extract wards whose type is runoff and whose votepct were in the range 45 to 55

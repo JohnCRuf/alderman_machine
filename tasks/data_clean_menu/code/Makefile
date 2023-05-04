@@ -4,11 +4,11 @@ include ../../shell_functions.make
 INPUTS_menu = $(foreach range, 2005_2010 2011_2015 2016_2022, ../input/menu_$(range).csv)
 ## DEFINITIONS
 
-all: ../output/menu_panel_df.csv
+all: ../output/menu_category_panel_df.csv
 
 #OUTPUT RECIPES
 
-../output/menu_panel_df_beauty.csv ../output/menu_panel_df.csv:   menu_money_cleaner.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' menu_money_cleaner.R) | ../output run.sbatch slurmlogs
+../output/menu_category_panel_df_beauty.csv ../output/menu_category_panel_df.csv:   menu_money_cleaner.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' menu_money_cleaner.R) | ../output run.sbatch slurmlogs
 	$(R) --no-job-name $<
 
 #INPUT RECIPES

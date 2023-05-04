@@ -85,7 +85,7 @@ menu_df <- menu_df %>%
       "on_menu", "off_menu"),
     beauty = ifelse(str_detect(type, paste(beauty, collapse = "|")),
       "beauty", "not_beauty"))
-menu_panel_df_offmenu = menu_df %>%
+menu_category_panel_df_offmenu = menu_df %>%
   group_by(ward, year, on_menu) %>%
   summarise(expenditures = sum(est_cost)) %>% #next turn all expenditures to decimal numeric
   mutate(
@@ -98,7 +98,7 @@ menu_panel_df_offmenu = menu_df %>%
   )
 
 
-menu_panel_df_beauty = menu_df %>%
+menu_category_panel_df_beauty = menu_df %>%
   group_by(ward,year, beauty) %>%
   summarise(expenditures = sum(est_cost)) %>%
   pivot_wider(names_from = beauty,values_from = expenditures) %>%
@@ -108,7 +108,7 @@ menu_panel_df_beauty = menu_df %>%
   )
 
 #merge the two dataframes
-menu_panel_df = merge(menu_panel_df_offmenu, menu_panel_df_beauty,
+menu_category_panel_df = merge(menu_category_panel_df_offmenu, menu_category_panel_df_beauty,
   by = c("ward", "year"))
 
-write_csv(menu_panel_df, file = "../output/menu_panel_df.csv")
+write_csv(menu_category_panel_df, file = "../output/menu_category_panel_df.csv")
