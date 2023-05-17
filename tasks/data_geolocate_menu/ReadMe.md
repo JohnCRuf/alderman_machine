@@ -9,4 +9,4 @@
 * `geolocate_menu_expenditures.R`: This script geolocates the menu money data using the census and google maps APIs.
 
 ## Inputs
-* `menu_panel_df.csv`: A panel dataset of menu expenditures by alderman, with election data merged in.
+* `menu_category_panel_df.csv`: A panel dataset of menu expenditures by alderman, with election data merged in.
