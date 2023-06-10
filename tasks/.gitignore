@@ -6,3 +6,4 @@
 .DS_Store
 slurmlogs/
 run.sbatch
+.Rprofile
