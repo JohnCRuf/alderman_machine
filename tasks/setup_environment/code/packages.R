@@ -22,28 +22,3 @@ for (package in packages) {
 output <- paste(output, collapse = "\n")
 output <- paste("Packages installed: ", output, sep = "\n")
 write.table(output, "../output/R_packages.txt", col.names = FALSE, row.names = FALSE)
-
-census_api_key <- readLines("../input/census_api_key.txt")
-google_api_key <- readLines("../input/google_api_key.txt")
-library("assertthat")
-assert_that(census_api_key != "")
-assert_that(google_api_key != "")
-
-
-set_string_google <- paste0("GOOGLEGEOCODE_API_KEY = \"", google_api_key, "\"")
-set_string_census <- paste0("CENSUS_API_KEY = \"", census_api_key, "\"")
-
-#Create R profile file in ../../.Rprofile if it doesn't exist
-if (!file.exists("../../.Rprofile")) {
-  file.create("../../.Rprofile")
-} 
-
-if (!any(grepl(set_string_google, readLines("../../.Rprofile")))) {
-  write(set_string_google, file = "../../.Rprofile", sep = "\n", append = TRUE)
-}
-
-if (!any(grepl(set_string_census, readLines("../../.Rprofile")))) {
-  write(set_string_census, file = "../../.Rprofile", sep = "\n", append = TRUE)
-}
-
-write("R keys were successfully set", "../output/R_keys_set.txt")
