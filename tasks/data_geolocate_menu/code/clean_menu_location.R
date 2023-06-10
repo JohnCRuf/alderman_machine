@@ -36,7 +36,8 @@ location_replacements <- c(
 "Cicero/Lamon/George/Oakdale" = "N CICERO AVE & W OAKDALE AVE & N LAMON AVE & W GEORGE ST",
 "Altgeld/Deming/Lavergne/Leclaire" = "W ALTGELD ST & N LAVERGNE AVE & W DEMING PL & N LECLAIRE AVE",
 "Milwaukee/Barry/Springfield/Davlin" =  "N MILWAUKEE AVE & N DAVLIN CT & N SPRINGFIELD AVE & W BARRY AVE",
-"S WELLS ST & W 29 TH ST & S WENTWORTH AVE & S DAN RYAN WENTWORTH AV XR" = "S WELLS ST & W 29TH ST & S WENTWORTH AVE & 28TH ST" #nearest intersection
+"S WELLS ST & W 29 TH ST & S WENTWORTH AVE & S DAN RYAN WENTWORTH AV XR" = "S WELLS ST & W 29TH ST & S WENTWORTH AVE & 28TH ST", #nearest intersection
+"ON FROM N BROADWAY (800 W) TO W DEVON AV (1216 W)" = "ON W SHERIDAN RD FROM N BROADWAY (800 W) TO W DEVON AV (1216 W)" #obvious typo based on coordinates
 )
 
 type_replacements <- c(
@@ -62,7 +63,7 @@ type_replacements <- c(
 menu_df <- menu_df %>%
   mutate(
     # Use the lookup table for replacements in 'location'
-    location = str_replace_all(location, fixed(location_replacements)),
+    location = ifelse(location %in% names(location_replacements), location_replacements[location], location),
     # Use the lookup table for replacements based on 'type'
     location = ifelse(type %in% names(type_replacements), type_replacements[type], location),
     # remove "corner of" from location
@@ -314,14 +315,12 @@ write.csv(normal_address_df, "../temp/normal_address_df.csv", row.names = F)
 # Location Data of format "ON _ AV from _ ST to _ ST"
 #--------------------
 from_to_df <- leftover_df %>%
-  filter(str_detect(location, regex("FROM", ignore_case = T))) %>%
-  filter(str_detect(location, regex("TO", ignore_case = T))) %>%
-  filter(str_detect(location, regex("ON", ignore_case = T))) 
-
-#remove any rows where from appears in two different places in the string
-from_to_df <- from_to_df %>%
+  filter(str_detect(location, regex(" FROM ", ignore_case = T))) %>%
+  filter(str_detect(location, regex(" TO ", ignore_case = T))) %>%
+  filter(str_detect(location, regex("^ON ", ignore_case = T))) %>%
   filter(!str_detect(location, regex(" from .* from ", ignore_case = T))) %>%
-  filter(!str_detect(location, regex(" to .* to ", ignore_case = T)))
+  filter(!str_detect(location, regex(" to .* to ", ignore_case = T))) %>%
+  filter(!str_detect(location, "Relocate"))
 
 leftover_df <- leftover_df %>%
   anti_join(from_to_df)
@@ -332,20 +331,38 @@ from_to_df <- from_to_df %>%
     from_street = str_extract(location, "(?i)(?<=from).*(?= to)"), # extract text between "from" and "to", which is from street
     to_street = str_extract(location, "(?i)(?<=to ).*$"), # extract text after "to", which is to street
   ) %>% # if from_street contains "Dead End" replace with just the numbers in the string
-  mutate(
-    from_street = ifelse(str_detect(from_street, "Dead End"), str_extract(from_street, "[0-9]+"), from_street),
-    to_street = ifelse(str_detect(to_street, "Dead End"), str_extract(to_street, "[0-9]+"), to_street)
-  ) %>%
+  mutate(from_street = ifelse(str_detect(from_street, "Dead End"),
+                              str_extract(from_street, "(?<=\\()[^()]+(?=\\))"),
+                              from_street),
+         to_street = ifelse(str_detect(to_street, "Dead End"),
+                            str_extract(to_street, "(?<=\\()[^()]+(?=\\))"),
+                            to_street)) %>%
   mutate( # remove all characters between ( and )
     from_street = str_replace_all(from_street, "\\(.*?\\)", ""),
     to_street = str_replace_all(to_street, "\\(.*?\\)", "")
   ) %>%
-  mutate(from_intersection = ifelse(str_detect(from_street, "[0-9]+ [NSEW]"),
-                                     paste(from_street, main_street),
+  mutate(main_street = case_when( # add ST and similar to end of main_street if it doesn't already exist
+    str_detect(main_street, "[0-9]+$") ~ paste0("E ", main_street,
+      case_when(
+        str_detect(main_street, "1$") & !str_detect(main_street, "11$") ~ "ST ST",
+        str_detect(main_street, "2$") & !str_detect(main_street, "12$") ~ "ND ST",
+        str_detect(main_street, "3$") & !str_detect(main_street, "13$") ~ "RD ST",
+        TRUE ~ "th ST"
+      )
+    ),
+    TRUE ~ main_street
+  )) %>% #remove any spaces in front of main_street, from_street, and to_street
+  mutate(main_street = str_replace_all(main_street, "^\\s+", ""),
+         from_street = str_replace_all(from_street, "^\\s+", ""),
+         to_street = str_replace_all(to_street, "^\\s+", "")) %>%
+  mutate(from_intersection = ifelse(str_detect(from_street, "^[0-9]+ [NSEW]"),
+                                     paste(str_extract(from_street, "[0-9]+"), main_street),
                                      paste(main_street, "and", from_street))) %>%
-  mutate(to_intersection = ifelse(str_detect(to_street, "^[0-9]+ [N|S|E|W]"),
-                                     paste(to_street, main_street),
+  mutate(to_intersection = ifelse(str_detect(to_street, "^[0-9]+ [NSEW]"),
+                                     paste(str_extract(to_street, "[0-9]+"), main_street),
                                      paste(main_street, "and", to_street)))
+#print from_street of row 1 in from_to_df
+print(from_to_df$from_street[1])
 
 write.csv(from_to_df, "../temp/from_to_df.csv", row.names = F)
 
