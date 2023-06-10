@@ -7,3 +7,4 @@
 slurmlogs/
 run.sbatch
 .Rprofile
+*.Rhistory
