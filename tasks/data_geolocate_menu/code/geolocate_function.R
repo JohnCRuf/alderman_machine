@@ -1,6 +1,8 @@
 menu_geolocate <- function(df, var_name, batch_size) {
     df <- df %>%
         mutate(singlelineaddress = paste0(str_replace_all(!!sym(var_name), ",", " "), ", Chicago, IL"))
+    #sort by singlelineaddress to maximize number of identical addresses per batch
+    df <- df[order(df$singlelineaddress),]
 
         # Split the data frame into chunks
     chunks <- split(df, ceiling(seq_along(df[[var_name]])/batch_size))
