@@ -1,6 +1,8 @@
 menu_geolocate <- function(df, var_name, batch_size) {
     df <- df %>%
-        mutate(singlelineaddress = paste0(str_replace_all(!!sym(var_name), ",", " "), ", Chicago, IL"))
+        mutate(singlelineaddress = paste0(str_replace_all(!!sym(var_name), ",", " "), ", Chicago, IL"),
+        singlelineaddress = ifelse(is.na(singlelineaddress), NA, singlelineaddress))
+    #if var_name is NA, then singlelineaddress will be NA
     #sort by singlelineaddress to maximize number of identical addresses per batch
     df <- df[order(df$singlelineaddress),]
 

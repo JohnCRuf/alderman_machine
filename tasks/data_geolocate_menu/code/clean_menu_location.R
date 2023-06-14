@@ -18,7 +18,7 @@ location_replacements <- c(
   "Fence at City-owned lot at 1421 N. Artesian" = "1421 N Artesian Ave",
   "Francis Pl & Stave" = "N Stave St & W Francis Pl",
   "W. Hoyne/ between Chicago Av. & first alley to the south" = "W Hoyne Ave & W Chicago Ave",
-  "$123880.00" = "MONTROSE & CLARENDON; SE BROADWAY & W WILSON AVE; N HAZEL ST & W MONTROSE AVE; N BROADWAY & W SUNNYSIDE AVE",
+  "$123880.00" = "MONTROSE & CLARENDON; SE BROADWAY & W WILSON AVE; N HAZEL ST & W MONTROSE AVE; N BROADWAY & W SUNNYSIDE AVE", # from bug in data processing
   "1-290 overpass/ Loomis" = "S Loomis St & W Van Buren St",
   "1-290 overpass/Ashland" = "S Ashland Ave & W Van Buren St",
   "& E 84TH ST:S BUFFALO AVE & E 92ND ST:8437 S COMMERCIAL AVE:8404 S BAKER AVE:2938 E 89TH ST" = "S COMMERCIAL AVE & E 83RD ST:8850 S EXCHANGE AVE:8390 S BOND AVE:S BUFFALO AVE & E 84TH ST:11741 S TORRENCE AVE:S BURLEY AVE & E 84TH ST:S BUFFALO AVE & E 92ND ST:8437 S COMMERCIAL AVE:8404 S BAKER AVE:2938 E 89TH ST",
@@ -37,7 +37,25 @@ location_replacements <- c(
 "Altgeld/Deming/Lavergne/Leclaire" = "W ALTGELD ST & N LAVERGNE AVE & W DEMING PL & N LECLAIRE AVE",
 "Milwaukee/Barry/Springfield/Davlin" =  "N MILWAUKEE AVE & N DAVLIN CT & N SPRINGFIELD AVE & W BARRY AVE",
 "S WELLS ST & W 29 TH ST & S WENTWORTH AVE & S DAN RYAN WENTWORTH AV XR" = "S WELLS ST & W 29TH ST & S WENTWORTH AVE & 28TH ST", #nearest intersection
-"ON FROM N BROADWAY (800 W) TO W DEVON AV (1216 W)" = "ON W SHERIDAN RD FROM N BROADWAY (800 W) TO W DEVON AV (1216 W)" #obvious typo based on coordinates
+"ON FROM N BROADWAY (800 W) TO W DEVON AV (1216 W)" = "ON W SHERIDAN RD FROM N BROADWAY (800 W) TO W DEVON AV (1216 W)", #obvious typo based on coordinates
+"1501 W. Adams & about 1541-1600" = "1501-1600 W Adams ST", # appropriate format
+"AVE:6527 S MARSHFIELD AVE:6531 S MARSHFIELD AVE:6542 S MARSHFIELD AVE" = "6510-6542 S MARSHFIELD AVE", # appropriate format
+"Rhodes & 67 th & 67 th & S. Chicago" = "S RHODES AVE & E 67TH ST & E 67TH ST & S SOUTH CHICAGO AVE", 
+"19th & Allport; 17th & Loomis" = "S Loomis St & W 17th St, S Allport St & W 19th St", 
+"18th St / Blue Island & Loomis" = "18th ST & S LOOMIS ST", #triple intersection
+"18th ST/ 18th PL/Hoyne/Leavitt" = "W 18th ST & S HOYNE AVE & S LEAVITT ST & W 18th PL", # box of 4 intersections
+"18th Pl/18th St/Hoyne/Leavitt" = "W 18th ST & S HOYNE AVE & S LEAVITT ST & W 18th PL", # box of 4 intersections
+"Lockwood & Palmer; LaVergine & Chicago" = "N Lockwood Ave & W Palmer St, N Lavergne Ave & W Chicago Ave", # 2 intersections
+"Irving Park Rd/Keeler & I 90/94" = "IRVING PARK RD & N KEELER AVE", #nearest intersection
+"Albion / Clark / Ashland - Alley Return" = "ON W ALBION AVE FROM N CLARK ST (1000 W) TO N ASHLAND AVE (1600 W)", # appropriate format
+"Hobart/Hurlbut/New Hampshire/Newcastle" = "W HOBART AVE & N HURLBUT ST & W NEW HAMPSHIRE ST & N NEWCASTLE AVE", # box of 4 intersections
+"Dearborn/Chesnut and Mies Der Rohde & Pearson" = "N DEARBORN ST & W CHESTNUT ST, N MIES VAN DER ROHE WAY & E PEARSON ST", # 2 intersections
+"Maplewood / Diversey/ Chicago & Northern Railroad" = "ON W DIVERSEY AVE FROM N MAPLEWOOD AVE TO N WOLCOTT AVE", # Northern Railroad refers to north freight railroad on diversey.
+"Clinton / Kinzie / Washington / Dearborn" = "NORTH CLINTON STREET & WEST KINZIE STREET & WEST WASHINGTON STREET & NORTH DEARBORN STREET", # box of 4 intersections
+"Grand & Illinois between Orleans & LSD" = "ON W GRAND AVE FROM N ORLEANS ST TO N LAKE SHORE DR", # appropriate format
+"N Greenview/N Ashland/N Byron St" = "ON W BYRON ST FROM N GREENVIEW AVE TO N ASHLAND AVE", # appropriate format
+"IBeach access ramp & boardwalk-Jarvis & Lake &" = "MARION MAHONY GRIFFIN BEACH PARK" # nearest park, beach access map visible on google maps
+
 )
 
 type_replacements <- c(
@@ -53,7 +71,7 @@ type_replacements <- c(
   "Blackhawk and Hermosa Parks Tree Planting 2016 Menu" = "W Belden Ave & Cicero Ave", # approximate midpoint of Blackhawk and Hermosa Parks
   "Lincoln Park Conservatory Park - Benches" = "Lincoln Park Conservatory",
   "Printers Row Park - Lighting Improvements" = "Printers Row Park",
-  "Mural - Cicero Avenue viaduct adjacent to the North Branch Trail" = "N Forest Glen Ave & Cicero Ave" # closest intersection to the mural
+  "Mural - Cicero Avenue viaduct adjacent to the North Branch Trail" = "N Forest Glen Ave & Cicero Ave", # closest intersection to the mural
 )
 # For the anti-gun violence mural, see:
 # https://www.artworkarchive.com/profile/andy-bellomo/artwork/tunnel-of-blessings-neftali-reyes-jr-memorial-mural
@@ -175,9 +193,11 @@ write.csv(double_dash_to_df, "../temp/double_dash_to_df.csv", row.names = F)
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3 & N/S/E/W road_4"
 # --------------------
 addition_df <- leftover_df %>%
-  filter(str_detect(location, regex("(&|;|:|--|-and-|/|and)", ignore_case = T)))
+  filter(str_detect(location, regex("(&|;|:|--|-and-|/| and )", ignore_case = T))) %>%
+  filter(!str_detect(location, regex(" from ", ignore_case = T)))
+
 addition_modified_df <- addition_df %>%
-  mutate(location = str_replace_all(location, "(&|;|:|--|-and-|/|and)", " & "))
+  mutate(location = str_replace_all(location, "(&|;|:|--|-and-|/| and )", " & "))
 while (any(str_detect(addition_modified_df$location, regex("  ", ignore_case = T)))) {
   addition_modified_df$location <- str_replace_all(addition_modified_df$location, "  ", " ")
 } # while a double space is in location, replace with single space
@@ -200,7 +220,7 @@ leftover_addition_df <- addition_modified_df  %>%
   anti_join(df_with_3_ands)
   
 generate_intersections <- function(streets) {
-  diag_streets <- c("N MILWAUKEE AV", "N MILWAUKEE AVE","S ARCHER AVE", "S BLUE ISLAND AV", "N CLYBOURN AVE")
+  diag_streets <- c("N MILWAUKEE AV", "N MILWAUKEE AVE","S ARCHER AVE", "S BLUE ISLAND AV", "N CLYBOURN AVE", "S HILLCOCK AV", "S GROVE ST", "S ELEANOR ST")
   ns <- streets[substr(streets, 1, 1) %in% c("N", "S")]
   ew <- streets[substr(streets, 1, 1) %in% c("E", "W")]
   if (any(streets %in% diag_streets)) {
@@ -222,9 +242,15 @@ generate_intersections <- function(streets) {
 df_with_3_ands <- df_with_3_ands %>%
   mutate(location = str_replace_all(location, "ST3,611", "ST"),
          location = str_replace_all(location, "ST5,906", "ST"),
-         location = str_replace_all(location, "\\b(\\d+) (ST|TH|RD|ND)\\b", "\\1\\2"), # remove spaces between numbers and ST, TH, RD, ND
-         location = ifelse(location == "Damen & Division & Logan Blvd & Milwaukee-multiple locations", "N DAMEN AVE & W DIVISION ST & W LOGAN BLVD & N MILWAUKEE", location)) 
+         location = str_replace_all(location, "87 th & Chappel & 87 th & Merrill", "E 87TH ST & S CHAPPEL AVE & E 87TH ST & S MERRILL AVE"),
+         location = ifelse(location == "Damen & Division & Logan Blvd & Milwaukee-multiple locations", "N DAMEN AVE & W DIVISION ST & W LOGAN BLVD & N MILWAUKEE", location), #formatting
+         location = ifelse(location == "E03 ST & E03 PL & S STATE ST & S WABASH AV", "E 103RD ST & S STATE ST & E 103RD ST & S WABASH AVE", location), # typo
+         location = ifelse(location == "SRRAGANSETT AV & SGLE AV & W 51 & W 52", "S NARRAGANSETT AVE & S NAGLE AVE & W 51ST ST & W 52ND ST", location), # typo
+         location = ifelse(location == "79 th & Marquette & 75 th & Colfax", "E 79TH ST & S MARQUETTE AVE & E 75TH ST & S COLFAX AVE", location), # formatting
+         location = ifelse(location == "Maplewood & Diversey & Chicago & Northern Railroad", NA, location), #can't determine this
+         location = ifelse(location == "79 th & Marquette & 75 th & Colfax", "E 79TH ST & S MARQUETTE AVE & E 75TH ST & S COLFAX AVE", location), # formatting
 
+  )
 
 df_results <- df_with_3_ands %>%
   mutate(
