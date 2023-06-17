@@ -28,6 +28,7 @@ location_replacements <- c(
   "Ashland & 18th, 19th, 21st, Cullerton & Cermak" = "ON S ASHLAND AVENUE FROM W 18TH ST (1800 S) TO W CERMAK RD (2200 S)",
   "Ashland & 17th, 18th, 19th, 21st, 21st Pl, Cullerton St" = "ON S ASHLAND AVENUE FROM W 17TH ST (1700 S) TO W CERMAK RD (2200 S)", # standardizing format,
   "Jackson/Oakley/Leavitt,Hoyne/Seeley" = "ON W JACKSON BLVD FROM S OAKLEY BLVD (2300 W) TO S SEELEY AV (2100 W)",
+  "Jackson/Adams/Laflin/Ashland" = "W JACKSON BLVD & S ASHLAND AVE & W ADAMS ST & S LAFLIN ST",
   "W) TO N KOSTNER AVE (4399 W); ON N KILDARE AVE FROM W WASHINGTON BLVD (100 N) TO W WEST END AVE (200 N); ON N KEELER AVE FROM W WASHINGTON BLVD (100 N) TO WWEST END AVE (200 N); ON N KARLOV AVE FROM W WEST END AVE (200 N) TO W MAYPOLE" = "ON N KEYSTONE AVE FROM 241 N TO W WEST END AVE (200 N); ON N KEYSTONE AVE FROM 100 N TO W WEST END AVE (200 N); ON W WEST END AVE FROM N PULASKI RD (4000 W) TO N KOSTNER AVE (4399 W); ON N KILDARE AVE FROM W WASHINGTON BLVD (100 N) TO W WEST END AVE (200 N); ON N KEELER AVE FROM W WASHINGTON BLVD (100 N) TO W WEST END AVE (200 N); ON N KARLOV AVE FROM W WEST END AVE (200 N) TO W MAYPOLE AVE (250 N); ON N KARLOV AVE FROM W WASHINGTON BLVD (100 N) TO W WEST END AVE (200 N); ON N KOLIN AVE FROM W WEST END AVE (200 N) TO W MAYPOLE AVE (240 N); ON N KEELER AVE FROM W WEST END AVE (200 N) TO W MAYPOLE AVE (250 N)", #completing incomplete statements
 "ON W MAYPOLE AVE FROM N PULASKI RD (4000 W) TO N KOSTNER AVE (4400 W); ON N KARLOV AVE FROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N); ON N KEELER AVEFROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N); ON N KILDARE AVE FROM W" = "ON W MAYPOLE AVE FROM N PULASKI RD (4000 W) TO N KOSTNER AVE (4400 W); ON N KARLOV AVE FROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N); ON N KEELER AVE FROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N); ON N KILDARE AVE FROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N)", # completing incomplete statements
 "MAYPOLE AVE (250 N) TO W LAKE ST (300 N) 137 S WHIPPLE ST; 147 S WHIPPLE ST; 201 S WHIPPLE ST; ON S WHIPPLE ST FROM W FIFTHAVE (100 S) TO W JACKSON BLVD (300 S)" = "137 S WHIPPLE ST; 147 S WHIPPLE ST; 201 S WHIPPLE ST; ON S WHIPPLE ST FROM W FIFTH AVE (100 S) TO W JACKSON BLVD (300 S)",
@@ -54,8 +55,10 @@ location_replacements <- c(
 "Clinton / Kinzie / Washington / Dearborn" = "NORTH CLINTON STREET & WEST KINZIE STREET & WEST WASHINGTON STREET & NORTH DEARBORN STREET", # box of 4 intersections
 "Grand & Illinois between Orleans & LSD" = "ON W GRAND AVE FROM N ORLEANS ST TO N LAKE SHORE DR", # appropriate format
 "N Greenview/N Ashland/N Byron St" = "ON W BYRON ST FROM N GREENVIEW AVE TO N ASHLAND AVE", # appropriate format
-"IBeach access ramp & boardwalk-Jarvis & Lake &" = "MARION MAHONY GRIFFIN BEACH PARK" # nearest park, beach access map visible on google maps
-
+"IBeach access ramp & boardwalk-Jarvis & Lake &" = "MARION MAHONY GRIFFIN BEACH PARK", # nearest park, beach access map visible on google maps
+"78 th/79 th/Ridgeland/Creiger" = "E 78th ST & S RIDGELAND AVE & E 79th ST & S CREIGER AVE", # box of 4 intersections
+"Rogers/Kercheval to Caldwell/Kercheval/Kerbs to Rogers" = "ON N ROGERS AVE FROM N KERSCHEVAL AVE TO N CALDWELL AV ; ON N KERCHEVAL FROM N KERBS TO N ROGERS", # appropriate format
+"Wabash-Ohio & Onatrio;Dearborn Randolph & Lake" = "ON N WABASH AVE FROM E OHIO ST TO E ONTARIO ST; ON N DEARBORN ST FROM W RANDOLPH ST TO W LAKE ST" # 2 stretches of road
 )
 
 type_replacements <- c(
@@ -71,13 +74,13 @@ type_replacements <- c(
   "Blackhawk and Hermosa Parks Tree Planting 2016 Menu" = "W Belden Ave & Cicero Ave", # approximate midpoint of Blackhawk and Hermosa Parks
   "Lincoln Park Conservatory Park - Benches" = "Lincoln Park Conservatory",
   "Printers Row Park - Lighting Improvements" = "Printers Row Park",
-  "Mural - Cicero Avenue viaduct adjacent to the North Branch Trail" = "N Forest Glen Ave & Cicero Ave", # closest intersection to the mural
+  "Mural - Cicero Avenue viaduct adjacent to the North Branch Trail" = "N Forest Glen Ave & Cicero Ave" # closest intersection to the mural
 )
 # For the anti-gun violence mural, see:
 # https://www.artworkarchive.com/profile/andy-bellomo/artwork/tunnel-of-blessings-neftali-reyes-jr-memorial-mural
 # https://chicago.suntimes.com/news/2021/7/14/22577773/neftali-reyes-dead-humboldt-park-mural-clemente-high-baseball-gun-violence-606-trial-bloomingdale'
 
-
+menu_df$location <- str_replace_all(menu_df$location, "\n", "")
 menu_df <- menu_df %>%
   mutate(
     # Use the lookup table for replacements in 'location'
@@ -220,7 +223,11 @@ leftover_addition_df <- addition_modified_df  %>%
   anti_join(df_with_3_ands)
   
 generate_intersections <- function(streets) {
-  diag_streets <- c("N MILWAUKEE AV", "N MILWAUKEE AVE","S ARCHER AVE", "S BLUE ISLAND AV", "N CLYBOURN AVE", "S HILLCOCK AV", "S GROVE ST", "S ELEANOR ST")
+  diag_streets <- c("N MILWAUKEE AV", "N MILWAUKEE AVE","S ARCHER AVE", "S BLUE ISLAND AV", "N CLYBOURN AVE",
+   "S HILLCOCK AV", "S GROVE ST", "S ELEANOR ST", "N CALDWELL AVE", "N CALDWELL AVE","N LEOTI AVE",
+   "N MAUD AV", "N CLYBORN AV", "N LISTER AV", "N WOLCOTT AV", "N FOREST GLEN AV", "N IONIA AV",
+   "N CALDWELL AV", "N KINGSDALE AV", "N NORTHWEST HW", "N OLMSTED AV", "N HIAWATHA AV", "N TAHOMA AV",
+   "N OWEN AV", "N OLMSTED AV", "N ALGONQUIN AV", "N SHERIDAN RD")
   ns <- streets[substr(streets, 1, 1) %in% c("N", "S")]
   ew <- streets[substr(streets, 1, 1) %in% c("E", "W")]
   if (any(streets %in% diag_streets)) {
@@ -236,6 +243,11 @@ generate_intersections <- function(streets) {
   #remove any pairs where the same street comes before and after the &
   intersect_pairs_split <- str_split_fixed(intersect_pairs, " & ", 2)
   intersect_pairs <- intersect_pairs[intersect_pairs_split[, 1] != intersect_pairs_split[, 2]]
+  #if any of streets have 3-5 numbers in them, add the street to intersect_pairs
+  streets_with_3_5_numbers <- streets[str_count(streets, "[0-9]") %in% 3:5]
+  if (length(streets_with_3_5_numbers) > 0) {
+    intersect_pairs <- c(intersect_pairs, streets_with_3_5_numbers)
+  }
   return(intersect_pairs)
 }
 
@@ -249,8 +261,19 @@ df_with_3_ands <- df_with_3_ands %>%
          location = ifelse(location == "79 th & Marquette & 75 th & Colfax", "E 79TH ST & S MARQUETTE AVE & E 75TH ST & S COLFAX AVE", location), # formatting
          location = ifelse(location == "Maplewood & Diversey & Chicago & Northern Railroad", NA, location), #can't determine this
          location = ifelse(location == "79 th & Marquette & 75 th & Colfax", "E 79TH ST & S MARQUETTE AVE & E 75TH ST & S COLFAX AVE", location), # formatting
-
-  )
+         location = ifelse(location == "Jackson & Adams & Laflin & Ashland", "W JACKSON BLVD & S ASHLAND AVE & W ADAMS ST & S LAFLIN ST", location), # formatting
+         location = ifelse(location == "78 th & 79 th & Ridgeland & Creiger", "E 78TH ST & S RIDGELAND AVE & E 79TH ST & S CREIGER AVE", location), # formatting
+         location = ifelse(location == "Rhodes & 67 th & 67 th & S. Chicago", "S RHODES AVE & E 67TH ST & E 67TH ST & S SOUTH CHICAGO AVE", location), # formatting
+         location = ifelse(location == "18 th St & 18 th Pl & Hoyne & Leavitt", "W 18TH ST & S HOYNE AVE & S LEAVITT ST & W 18TH PL", location), # formatting
+         location = ifelse(location == "Keystone & Lemonye to Grand & Lemonyne & Karlov to Pulaski", "N KEYSTONE AVENUE & W LEMOYNE ST & W GRAND AVE & N PULASKI RD", location ),
+         location = ifelse(location == "Ashland & Clybourn & Webster & Dominick", "N CLYBOURN AVE & N ASHLAND AVE & W WEBSTER AVE & N DOMINICK ST", location), # formatting
+         location = ifelse(location == "Estes & Lunt & Oleander & Oriole", "W ESTES AVE & W LUNT AVE & N OLEANDER AVE & N ORIOLE AVE", location), # formatting
+         location = ifelse(location == "N CALDWELL AV & N CALDWELL AV & NVAJO AV & N LEMAI AV", "N CALDWELL AVENUE & N NAVAJO AVENUE & N LE MAI AVENUE & N LEOTI AVE", location),
+         location = ifelse(location == "N HOYNE AV & N WILMOT AV & RAILROAD TRACKS & DEAD END", "2101 W WABANASIA AVE & 1701 N MILWAUKEE AVE & 1759 N WILMOT AVE & 1721 N HOYNE AVE", location),
+         location = ifelse(location == "Ashland & Clybourn & Webster & Dominick", "N CLYBOURN AVE & N ASHLAND AVE & W WEBSTER AVE & N DOMINICK ST", location), # formatting
+         location = ifelse(location == "W SHERIDAN RD & DEAD END & W PRATT AV & W FARWELL AV", "N SHERIDAN RD & DEAD END & W PRATT BLVD & W FARWELL AVE", location), #north sheridan typo
+         location = ifelse(location == "W LUNT AV & W GREENLEAF AV & W SHERIDAN RD & DEAD END", "W LUNT AVE & W GREENLEAF AVE & N SHERIDAN RD & DEAD END", location) #north sheridan typo
+         )
 
 df_results <- df_with_3_ands %>%
   mutate(
@@ -285,6 +308,10 @@ df_with_3_ands <- df_with_3_ands %>%
   mutate(intersection_2 = ifelse(intersection_2 == "", NA_character_, intersection_2)) %>%
   mutate(intersection_3 = ifelse(intersection_3 == "", NA_character_, intersection_3)) %>%
   mutate(intersection_4 = ifelse(intersection_4 == "", NA_character_, intersection_4))
+
+# commented code to see which rows have 0 intersections matched
+# df_with_3_ands <- df_with_3_ands %>%
+#   filter(is.na(intersection_1) & is.na(intersection_2) & is.na(intersection_3) & is.na(intersection_4))
 
 write.csv(df_with_3_ands, "../temp/df_with_3_ands.csv", row.names = F)
 
