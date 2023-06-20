@@ -58,7 +58,10 @@ location_replacements <- c(
 "IBeach access ramp & boardwalk-Jarvis & Lake &" = "MARION MAHONY GRIFFIN BEACH PARK", # nearest park, beach access map visible on google maps
 "78 th/79 th/Ridgeland/Creiger" = "E 78th ST & S RIDGELAND AVE & E 79th ST & S CREIGER AVE", # box of 4 intersections
 "Rogers/Kercheval to Caldwell/Kercheval/Kerbs to Rogers" = "ON N ROGERS AVE FROM N KERSCHEVAL AVE TO N CALDWELL AV ; ON N KERCHEVAL FROM N KERBS TO N ROGERS", # appropriate format
-"Wabash-Ohio & Onatrio;Dearborn Randolph & Lake" = "ON N WABASH AVE FROM E OHIO ST TO E ONTARIO ST; ON N DEARBORN ST FROM W RANDOLPH ST TO W LAKE ST" # 2 stretches of road
+"Wabash-Ohio & Onatrio;Dearborn Randolph & Lake" = "ON N WABASH AVE FROM E OHIO ST TO E ONTARIO ST; ON N DEARBORN ST FROM W RANDOLPH ST TO W LAKE ST", # 2 stretches of road
+"8001 Francisco" = "8001 S Francisco Ave",
+"Valley Forge" = "Valley Forge Park",
+"Armitage,Clark,Cortland.Fullerton,Halsted" = "W ARMITAGE AVE & N CLARK ST & W CORTLAND ST & N HALSTED ST & W FULLERTON AVE",
 )
 
 type_replacements <- c(
@@ -74,7 +77,15 @@ type_replacements <- c(
   "Blackhawk and Hermosa Parks Tree Planting 2016 Menu" = "W Belden Ave & Cicero Ave", # approximate midpoint of Blackhawk and Hermosa Parks
   "Lincoln Park Conservatory Park - Benches" = "Lincoln Park Conservatory",
   "Printers Row Park - Lighting Improvements" = "Printers Row Park",
-  "Mural - Cicero Avenue viaduct adjacent to the North Branch Trail" = "N Forest Glen Ave & Cicero Ave" # closest intersection to the mural
+  "Mural - Cicero Avenue viaduct adjacent to the North Branch Trail" = "N Forest Glen Ave & Cicero Ave" # closest intersection to the mural\
+  "2728", "2728-2890 S State", # from bug in data processing
+  "S SHORE DR 79 TH TO 80 TH" = "ON S SHORE DR FROM E 79TH ST TO E 80TH ST",
+  "Luella E. 82 nd to E. 83 rd" = "ON S LUELLA AVE FROM E 82ND ST TO E 83RD ST",
+  "E107 Ewing to 1 st alley east" = "ON E 107TH ST FROM S EWING AVE TO S AVE J",
+  "100 th St / from Ewing / Indianapolis" = "ON E 100TH ST FROM S EWING AVE TO S INDIANAPOLIS AVE",
+  "Baltimore / from Brainard (13460 Baltimore)" = "13460 S Baltimore Ave",
+
+
 )
 # For the anti-gun violence mural, see:
 # https://www.artworkarchive.com/profile/andy-bellomo/artwork/tunnel-of-blessings-neftali-reyes-jr-memorial-mural
@@ -90,6 +101,7 @@ menu_df <- menu_df %>%
     # remove "corner of" from location
     location = str_replace(location, ".*corner of", "")
   )
+
 # remove any spacing issues
 menu_df$location <- str_replace_all(menu_df$location, "([0-9])([A-Za-z])", "\\1 \\2")
 # while a double space is in location, replace with single space
@@ -103,14 +115,18 @@ menu_df <- menu_df %>%
   filter(est_cost != 0) %>%
   filter(!str_detect(location, regex("not available", ignore_case = T)))
 
+#remove any badly formatted lists with ones seperated by &
+menu_df <- menu_df %>%
+mutate(location =  str_replace_all(location, "([)A-Z]) ([NSEW] )", "\\1 & \\2"))
+
 # Step 2: Split location data into different standard formats and save to temp folder
 
 # --------------------
 # Location Data of Parks or Schools
 # --------------------
 school_park_df <- menu_df %>%
-  filter(str_detect(location, regex("( school| park| field|Park;)", ignore_case = T))) %>% # filter out any "st" or "av
-  filter(!str_detect(location, regex("( St| Dr.| rd| blvd| BV | av| AVE|Lake Park|Central Park|lincoln park w)", ignore_case = T))) %>% # filter out ON FROM TO
+  filter(str_detect(location, regex("( garden| school| playground|play lot| playlot| park| field|Park;|Beach)", ignore_case = T))) %>% # filter out any "st" or "av
+  filter(!str_detect(location, regex("( St| Dr.| rd| blvd| BV | av| AVE|Lake Park Av|Central Park|lincoln park w)", ignore_case = T))) %>% # filter out ON FROM TO
   filter(!str_detect(location, regex("( on | from | to |/)", ignore_case = T))) %>%
   filter(!str_detect(location, regex("(parkway|parkside|parking)", ignore_case = T)))
 
@@ -141,6 +157,8 @@ school_park_df <- school_park_df %>%
   mutate(location = ifelse(location == "Armitage-Larrabee Park (2009, 2008 Menu)", "Oz Park", location)) %>%
   mutate(location = ifelse(location == "Wiggly Field - (Park #425) - Schubert and Sheffield", "Wiggly Field", location)) %>%
   mutate(location = str_replace_all(location, " and ", " & ")) %>%
+  mutate(location = ifelse(str_detect(location, "Edna White Garden"), "Edna White Community Garden", location)) %>%
+  mutate(location = ifelse(str_detect(location, "Kathy Osterman Beach House"), "Kathy Osterman Beach House", location)) %>%
   rowwise() %>%
   mutate(location_temp = strsplit(location, ",\\s*|\\s*&\\s*|;\\s*")) %>%
   mutate(num_elements = length(location_temp)) %>%
@@ -414,8 +432,6 @@ from_to_df <- from_to_df %>%
   mutate(to_intersection = ifelse(str_detect(to_street, "^[0-9]+ [NSEW]"),
                                      paste(str_extract(to_street, "[0-9]+"), main_street),
                                      paste(main_street, "and", to_street)))
-#print from_street of row 1 in from_to_df
-print(from_to_df$from_street[1])
 
 write.csv(from_to_df, "../temp/from_to_df.csv", row.names = F)
 
