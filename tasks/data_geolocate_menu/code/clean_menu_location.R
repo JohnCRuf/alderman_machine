@@ -7,8 +7,6 @@ menu_df <- read_csv("../input/menu_df.csv")
 # Step 1: Apply manually edit locations with weird acronyms and typos
 # Define lookup tables for replacements
 location_replacements <- c(
-  "Southwest corner of" = "",
-  "DMLKD" = "S Dr. Martin Luther King Drive",
   "N--N--N--N" = "N Oakley -- N Oakley -- N Oakley -- N Oakley", # from bug in data processing
   "Diversey Ave Bridge" = "W Diversey Ave & W Logan Blvd", # nearest intersection
   "Wabansia & Leavitt New Park Construction" = "W Wabansia Ave & N Leavitt St", # nearest intersection.
@@ -84,7 +82,7 @@ type_replacements <- c(
   "E107 Ewing to 1 st alley east" = "ON E 107TH ST FROM S EWING AVE TO S AVE J",
   "100 th St / from Ewing / Indianapolis" = "ON E 100TH ST FROM S EWING AVE TO S INDIANAPOLIS AVE",
   "Baltimore / from Brainard (13460 Baltimore)" = "13460 S Baltimore Ave",
-
+  "13245 S GREEN BAY AVE:ON & S GREEN BAY AVE FROM & E 132 ND ST" = "13245 S GREEN BAY AVE"
 
 )
 # For the anti-gun violence mural, see:
@@ -118,6 +116,7 @@ menu_df <- menu_df %>%
 #remove any badly formatted lists with ones seperated by &
 menu_df <- menu_df %>%
 mutate(location =  str_replace_all(location, "([)A-Z]) ([NSEW] )", "\\1 & \\2"))
+#if 
 
 # Step 2: Split location data into different standard formats and save to temp folder
 
