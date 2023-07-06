@@ -18,8 +18,7 @@ filter_list <- c("16 TH WARD", "15 locations", "Various Locations", "8 locations
 "Hamlin Blvd Landscape Enhancement", "CICERO AVE", "Roscoe Ave pavers", "Access Living Public Improvements", "Tree installation",
 "W LAWRENCE AVEDEAD END", "W ADDISON STDEAD END", "W MONTROSE AVEDEAD END", "W WILSON AVEDEAD END","Gravel Pave Alley surface",
 "N. Clark St. (Benazir Bhutto Way Honorarily Sign)", "Honorary Sign Wayne Peters Ave", "Solar Powered Garbage Containers - 8 locations. TPC =",
-"Solar Powered Garbage Containers- 8 locations (201", "Parks", 
-
+"Solar Powered Garbage Containers- 8 locations (201", "Parks" 
  )
 df <- df %>% filter(!location %in% filter_list)
 replacement_list <- c("Saughnash" = "4321 W Peterson Ave",

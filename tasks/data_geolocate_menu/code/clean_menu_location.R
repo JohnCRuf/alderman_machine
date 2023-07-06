@@ -60,6 +60,21 @@ location_replacements <- c(
 "8001 Francisco" = "8001 S Francisco Ave",
 "Valley Forge" = "Valley Forge Park",
 "Armitage,Clark,Cortland.Fullerton,Halsted" = "W ARMITAGE AVE & N CLARK ST & W CORTLAND ST & N HALSTED ST & W FULLERTON AVE",
+"Mural - Cicero Avenue viaduct adjacent to the North Branch Trail" = "N Forest Glen Ave & Cicero Ave", # closest intersection to the mural\
+"2728", "2728-2890 S State", # from bug in data processing
+"S SHORE DR 79 TH TO 80 TH" = "ON S SHORE DR FROM E 79TH ST TO E 80TH ST",
+"Luella E. 82 nd to E. 83 rd" = "ON S LUELLA AVE FROM E 82ND ST TO E 83RD ST",
+"E107 Ewing to 1 st alley east" = "ON E 107TH ST FROM S EWING AVE TO S AVE J",
+"100 th St / from Ewing / Indianapolis" = "ON E 100TH ST FROM S EWING AVE TO S INDIANAPOLIS AVE",
+"Baltimore / from Brainard (13460 Baltimore)" = "13460 S Baltimore Ave",
+"13245 S GREEN BAY AVE:ON & S GREEN BAY AVE FROM & E 132 ND ST" = "13245 S GREEN BAY AVE",
+"Jackson Blvd to Kilpatrick Av" = "Jackson Blvd & Kilpatrick Ave",
+"Mural at Sauganash Tr on Peterson Av" = "Saughnash Park", # nearest park
+"13245 S GREEN BAY AVE:ON & S GREEN BAY AVE FROM & E 132 ND ST" = "13245 S GREEN BAY AVE",
+"47th Street Viaduct- mural" = "47th and S Lake Park Ave", # nearest intersection
+"Viaduct Art Panel (Hyde Park) at 51st St." = "E Hyde Park Blvd & S Lake Park Ave", # nearest intersection
+"Dog Park across from Clarendon Park" = "Clarendon Dog Friendly Area",
+"Division, 2400 - 3200 Festival Lights" = "ON W DIVISION ST FROM N WESTERN AVE TO N KEDZIE AVE" #appropriate intersections for 2400 and 3200 addresses
 )
 
 type_replacements <- c(
@@ -74,15 +89,7 @@ type_replacements <- c(
   "Anti-Gun Violence Mural w/ DCASE" = "1800 N. Humboldt Blvd",
   "Blackhawk and Hermosa Parks Tree Planting 2016 Menu" = "W Belden Ave & Cicero Ave", # approximate midpoint of Blackhawk and Hermosa Parks
   "Lincoln Park Conservatory Park - Benches" = "Lincoln Park Conservatory",
-  "Printers Row Park - Lighting Improvements" = "Printers Row Park",
-  "Mural - Cicero Avenue viaduct adjacent to the North Branch Trail" = "N Forest Glen Ave & Cicero Ave" # closest intersection to the mural\
-  "2728", "2728-2890 S State", # from bug in data processing
-  "S SHORE DR 79 TH TO 80 TH" = "ON S SHORE DR FROM E 79TH ST TO E 80TH ST",
-  "Luella E. 82 nd to E. 83 rd" = "ON S LUELLA AVE FROM E 82ND ST TO E 83RD ST",
-  "E107 Ewing to 1 st alley east" = "ON E 107TH ST FROM S EWING AVE TO S AVE J",
-  "100 th St / from Ewing / Indianapolis" = "ON E 100TH ST FROM S EWING AVE TO S INDIANAPOLIS AVE",
-  "Baltimore / from Brainard (13460 Baltimore)" = "13460 S Baltimore Ave",
-  "13245 S GREEN BAY AVE:ON & S GREEN BAY AVE FROM & E 132 ND ST" = "13245 S GREEN BAY AVE"
+  "Printers Row Park - Lighting Improvements" = "Printers Row Park"
 
 )
 # For the anti-gun violence mural, see:
@@ -112,11 +119,6 @@ menu_df$location <- str_replace_all(menu_df$location, "\\(TPC.*\\)", "")
 menu_df <- menu_df %>%
   filter(est_cost != 0) %>%
   filter(!str_detect(location, regex("not available", ignore_case = T)))
-
-#remove any badly formatted lists with ones seperated by &
-menu_df <- menu_df %>%
-mutate(location =  str_replace_all(location, "([)A-Z]) ([NSEW] )", "\\1 & \\2"))
-#if 
 
 # Step 2: Split location data into different standard formats and save to temp folder
 
@@ -210,8 +212,149 @@ double_dash_to_df <- double_dash_to_df %>%
 write.csv(double_dash_to_df, "../temp/double_dash_to_df.csv", row.names = F)
 
 # --------------------
+# Location Data of format "# N/S/E/W _ ST"
+# --------------------
+normal_address_df <- leftover_df %>%
+  filter(!str_detect(location, "&|;|:|--|-and-|/")) %>%
+  filter(str_detect(location, "^[0-9]{2,5} [N|S|E|W]"))
+
+leftover_df <- leftover_df %>%
+  anti_join(normal_address_df)
+
+normal_address_df <- normal_address_df %>%
+  mutate(address = str_replace_all(location, "\\(.*?\\)", ""))
+write.csv(normal_address_df, "../temp/normal_address_df.csv", row.names = F)
+
+#--------------------
+# Location Data of format "ON _ AV from _ ST to _ ST"
+#--------------------
+on_from_to_replacements <- c("24 TH PL FROM & S ROCKWELL ST (2600 W) TO & S WASHTENAW AVE (2700 W)
+" = "ON W 24th PL FROM S ROCKWELL ST (2600 W) TO S WASHTENAW AVE (2700 W)",
+"GREENVIEW-JARVIS TO HOWARD" = "ON N GREENVIEW AVE FROM W JARVIS AVE TO W HOWARD ST",
+"
+N MCCLURG CT FROM & E NORTH WATER ST (430 N) TO & E RIVER DR (404 N)" = "ON N MCCLURG CT FROM E NORTH WATER ST (430 N) TO E RIVER DR (404 N)",
+"N & W PRATT BLVD FROM 1051 W TO & N SHERIDAN RD (1200 )
+" = "ON W PRATT BLVD FROM 1051 W TO N SHERIDAN RD (1200 W)",
+"N & W SHERWIN AVE FROM 1200 W TO & N SHERIDAN RD (1300 )" = "ON N SHERWIN AVE FROM 1200 W TO N SHERIDAN RD (1300 W)",
+"N & W JARVIS AVE FROM & N BELL AVE (2200 W) TO & N OAKLEY VE (2300 W)" = "ON N JARVIS AVE FROM N BELL AVE (2200 W) TO N OAKLEY AVE (2300 W)",
+"Sherdian-Belmont to Diversey" = "ON N SHERIDAN RD FROM W BELMONT AVE TO W DIVERSEY PKWY",
+"S SHORE DR 79 TH TO 80 TH" = "ON S SHORE DR FROM E 79TH ST TO E 80TH ST",
+"N & N WOLCOTT AVE FROM & W CHASE AVE (7300 N) TO & N OGERS AVE (7340 N)" = "ON N WOLCOTT AVE FROM W CHASE AVE (7300 N) TO N ROGERS AVE (7340 N)",
+"9500 to 9800 S. Emerald" = "ON S EMERALD AVE FROM W 95TH ST TO W 98TH ST",
+"9300 to 9500 S. Loomis" = "ON S LOOMIS ST FROM W 93RD ST TO W 95TH ST",
+"47 th Place - Western to Oakley" = "ON W 47TH PL FROM S WESTERN AVE TO S OAKLEY AVE",
+"Blue Island from 15 th St. / 16 th St. Bike Lane" = "ON W 15TH ST FROM S BLUE ISLAND AVE TO S 16TH ST",
+"Austin - Gunnison to Lawrence" = "ON N AUSTIN AVE FROM W GUNNISON ST TO W LAWRENCE AVE",
+"MILWAUKEE-DAMEN TO WESTERN" = "ON N MILWAUKEE AVE FROM N DAMEN AVE TO N WESTERN AVE",
+"INNER LAKESHORE-DIVISION(1200 N) to NORTH AVE (1600 N)" = "ON N LAKE SHORE DR FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)",
+"8600 to 8700 S. Justin" = "ON S JUSTINE ST FROM W 86TH ST TO W 87TH ST",
+"Randolph St. from Michigan Ave. to Field Blvd." = "ON E RANDOLPH ST FROM N MICHIGAN AVE TO N FIELD BLVD",
+"N. SPRINGFIELD-W. BLOOMINGDALE TO W. ARMITAGE" = "ON N SPRINGFIELD AVE FROM W BLOOMINGDALE AVE TO W ARMITAGE AVE",
+"N. HARDING-BLOOMINGDALE TO ARMITAGE" = "ON N HARDING AVE FROM W BLOOMINGDALE AVE TO W ARMITAGE AVE",
+"Luella E. 82 nd to E. 83 rd" = "ON S LUELLA AVE FROM E 82ND ST TO E 83RD ST",
+"Paulina - Moorman to Division" = "ON N PAULINA ST FROM W MOORMAN ST TO W DIVISION ST",
+"N & W SHERWIN AVE FROM 1200 W TO & N SHERIDAN RD (1300 )" = "ON N SHERWIN AVE FROM 1200 W TO N SHERIDAN RD (1300 W)",
+"Belden - Normandy to Private Drive" = "ON W BELDEN AVE FROM N NORMANDY AVE TO 6440 W Belden Ave", #closest to private drive
+"W PATTERSON AVEDead End (4652 W)Dead End (4521 W)" = "ON W PATTERSON AVE FROM DEAD END (4652 W) TO DEAD END (4521 W)",
+"137 - 141 E 114 th Place (parkway)" = "ON E 114TH PL FROM S MICHIGAN AVE TO S INDIANA AVE",
+"Kostner - 47 th to 51 st" = "ON S KOSTNER AVE FROM W 47TH ST TO W 51ST ST",
+"W CARMEN AVE FROM & N RAVENSWOOD AVE (1800 W) TO & N ASHLAND AVE (1600 W)" = "ON W CARMEN AVE FROM N RAVENSWOOD AVE (1800 W) TO N ASHLAND AVE (1600 W)",
+"Taylor Street-Western to Ogden" = "ON W TAYLOR ST FROM S WESTERN AVE TO S OGDEN AVE",
+"Taylor-Western to Ogden" = "ON W TAYLOR ST FROM S WESTERN AVE TO S OGDEN AVE",
+"Cottage Grove, 39 th to 51 st" = "ON S COTTAGE GROVE AVE FROM E 39TH ST TO E 51ST ST",
+"GREENVIEW-HOWARD TO JONQUIL TERRACE" = "ON N GREENVIEW AVE FROM W HOWARD ST TO W JONQUIL TER",
+"100 th St / from Ewing / Indianapolis" = "ON E 100TH ST FROM S EWING AVE TO S INDIANAPOLIS AVE",
+"Baltimore / from Brainard (13460 Baltimore)
+" = "ON S BALTIMORE AVE FROM W BRAINARD AVE TO 13460 S BALTIMORE AVE")
+
+#replace leftover_df with new df
+leftover_df <- leftover_df %>%
+mutate(
+location = ifelse(location %in% names(on_from_to_replacements), on_from_to_replacements[location], location)
+)
+
+from_to_df <- leftover_df %>%
+  filter(str_detect(location, regex(" FROM ", ignore_case = T))) %>%
+  filter(str_detect(location, regex(" TO ", ignore_case = T))) %>%
+  filter(str_detect(location, regex("^ON ", ignore_case = T))) %>%
+  filter(!str_detect(location, regex(" from .* from ", ignore_case = T))) %>%
+  filter(!str_detect(location, regex(" to .* to ", ignore_case = T))) %>%
+  filter(!str_detect(location, "Relocate"))
+
+leftover_df <- leftover_df %>%
+  anti_join(from_to_df)
+
+from_to_df <- from_to_df %>%
+  mutate(
+    main_street = str_extract(location, "(?i)(?<=on).*(?= from)"),
+    from_street = str_extract(location, "(?i)(?<=from).*(?= to)"), # extract text between "from" and "to", which is from street
+    to_street = str_extract(location, "(?i)(?<=to ).*$"), # extract text after "to", which is to street
+  ) %>% # if from_street contains "Dead End" replace with just the numbers in the string
+  mutate(from_street = ifelse(str_detect(from_street, "Dead End"),
+                              str_extract(from_street, "(?<=\\()[^()]+(?=\\))"),
+                              from_street),
+         to_street = ifelse(str_detect(to_street, "Dead End"),
+                            str_extract(to_street, "(?<=\\()[^()]+(?=\\))"),
+                            to_street)) %>%
+  mutate( # remove all characters between ( and )
+    from_street = str_replace_all(from_street, "\\(.*?\\)", ""),
+    to_street = str_replace_all(to_street, "\\(.*?\\)", "")
+  ) %>%
+  mutate(main_street = case_when( # add ST and similar to end of main_street if it doesn't already exist
+    str_detect(main_street, "[0-9]+$") ~ paste0("E ", main_street,
+      case_when(
+        str_detect(main_street, "1$") & !str_detect(main_street, "11$") ~ "ST ST",
+        str_detect(main_street, "2$") & !str_detect(main_street, "12$") ~ "ND ST",
+        str_detect(main_street, "3$") & !str_detect(main_street, "13$") ~ "RD ST",
+        TRUE ~ "th ST"
+      )
+    ),
+    TRUE ~ main_street
+  )) %>% #remove any spaces in front of main_street, from_street, and to_street
+  mutate(main_street = str_replace_all(main_street, "^\\s+", ""),
+         from_street = str_replace_all(from_street, "^\\s+", ""),
+         to_street = str_replace_all(to_street, "^\\s+", "")) %>%
+  mutate(from_intersection = ifelse(str_detect(from_street, "^[0-9]+ [NSEW]"),
+                                     paste(str_extract(from_street, "[0-9]+"), main_street),
+                                     paste(main_street, "and", from_street))) %>%
+  mutate(to_intersection = ifelse(str_detect(to_street, "^[0-9]+ [NSEW]"),
+                                     paste(str_extract(to_street, "[0-9]+"), main_street),
+                                     paste(main_street, "and", to_street)))
+
+write.csv(from_to_df, "../temp/from_to_df.csv", row.names = F)
+
+#--------------------
+# Location Data of format "##-### street
+#--------------------
+through_address_df <- leftover_df %>%
+  filter(str_detect(location, regex("^[0-9]{2,5}-[0-9]{1,5}", ignore_case = T)))
+
+leftover_df <- leftover_df %>%
+  anti_join(through_address_df)
+
+write.csv(through_address_df, "../temp/through_address_df.csv", row.names = F)
+
+#--------------------
+# Location data of format ON _ FROM _ TO _ ; ON _ FROM _ TO _, ...
+#--------------------
+on_from_to_multiple_df <- leftover_df %>%
+  filter(str_detect(location, regex("ON", ignore_case = T))) %>%
+  filter(str_detect(location, regex("FROM", ignore_case = T))) %>%
+  filter(str_detect(location, regex("TO", ignore_case = T))) 
+
+leftover_df <- leftover_df %>%
+  anti_join(on_from_to_multiple_df)
+
+write.csv(on_from_to_multiple_df, "../temp/on_from_to_multiple_df.csv", row.names = F)
+
+# --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3 & N/S/E/W road_4"
 # --------------------
+#remove any badly formatted lists with ones seperated by &
+leftover_df <- leftover_df %>%
+mutate(location =  str_replace_all(location, "([)A-Z]) ([NSEW] )", "\\1 & \\2")) 
+
+
 addition_df <- leftover_df %>%
   filter(str_detect(location, regex("(&|;|:|--|-and-|/| and )", ignore_case = T))) %>%
   filter(!str_detect(location, regex(" from ", ignore_case = T)))
@@ -270,7 +413,7 @@ generate_intersections <- function(streets) {
 
 df_with_3_ands <- df_with_3_ands %>%
   mutate(location = str_replace_all(location, "ST3,611", "ST"),
-         location = str_replace_all(location, "ST5,906", "ST"),
+         location = str_replace_all(location, "ST5,906", "ST"), #these still have correct est cost somehow
          location = str_replace_all(location, "87 th & Chappel & 87 th & Merrill", "E 87TH ST & S CHAPPEL AVE & E 87TH ST & S MERRILL AVE"),
          location = ifelse(location == "Damen & Division & Logan Blvd & Milwaukee-multiple locations", "N DAMEN AVE & W DIVISION ST & W LOGAN BLVD & N MILWAUKEE", location), #formatting
          location = ifelse(location == "E03 ST & E03 PL & S STATE ST & S WABASH AV", "E 103RD ST & S STATE ST & E 103RD ST & S WABASH AVE", location), # typo
@@ -366,97 +509,5 @@ leftover_addition_df <- leftover_addition_df %>%
 leftover_df <- leftover_df %>%
   anti_join(addition_df)
 rm(leftover_addition_df, addition_df, addition_modified_df)
-
-# --------------------
-# Location Data of format "# N/S/E/W _ ST"
-# --------------------
-normal_address_df <- leftover_df %>%
-  filter(!str_detect(location, "&|;|:|--|-and-|/")) %>%
-  filter(str_detect(location, "^[0-9]{2,5} [N|S|E|W]"))
-
-leftover_df <- leftover_df %>%
-  anti_join(normal_address_df)
-
-normal_address_df <- normal_address_df %>%
-  mutate(address = str_replace_all(location, "\\(.*?\\)", ""))
-write.csv(normal_address_df, "../temp/normal_address_df.csv", row.names = F)
-
-#--------------------
-# Location Data of format "ON _ AV from _ ST to _ ST"
-#--------------------
-from_to_df <- leftover_df %>%
-  filter(str_detect(location, regex(" FROM ", ignore_case = T))) %>%
-  filter(str_detect(location, regex(" TO ", ignore_case = T))) %>%
-  filter(str_detect(location, regex("^ON ", ignore_case = T))) %>%
-  filter(!str_detect(location, regex(" from .* from ", ignore_case = T))) %>%
-  filter(!str_detect(location, regex(" to .* to ", ignore_case = T))) %>%
-  filter(!str_detect(location, "Relocate"))
-
-leftover_df <- leftover_df %>%
-  anti_join(from_to_df)
-
-from_to_df <- from_to_df %>%
-  mutate(
-    main_street = str_extract(location, "(?i)(?<=on).*(?= from)"),
-    from_street = str_extract(location, "(?i)(?<=from).*(?= to)"), # extract text between "from" and "to", which is from street
-    to_street = str_extract(location, "(?i)(?<=to ).*$"), # extract text after "to", which is to street
-  ) %>% # if from_street contains "Dead End" replace with just the numbers in the string
-  mutate(from_street = ifelse(str_detect(from_street, "Dead End"),
-                              str_extract(from_street, "(?<=\\()[^()]+(?=\\))"),
-                              from_street),
-         to_street = ifelse(str_detect(to_street, "Dead End"),
-                            str_extract(to_street, "(?<=\\()[^()]+(?=\\))"),
-                            to_street)) %>%
-  mutate( # remove all characters between ( and )
-    from_street = str_replace_all(from_street, "\\(.*?\\)", ""),
-    to_street = str_replace_all(to_street, "\\(.*?\\)", "")
-  ) %>%
-  mutate(main_street = case_when( # add ST and similar to end of main_street if it doesn't already exist
-    str_detect(main_street, "[0-9]+$") ~ paste0("E ", main_street,
-      case_when(
-        str_detect(main_street, "1$") & !str_detect(main_street, "11$") ~ "ST ST",
-        str_detect(main_street, "2$") & !str_detect(main_street, "12$") ~ "ND ST",
-        str_detect(main_street, "3$") & !str_detect(main_street, "13$") ~ "RD ST",
-        TRUE ~ "th ST"
-      )
-    ),
-    TRUE ~ main_street
-  )) %>% #remove any spaces in front of main_street, from_street, and to_street
-  mutate(main_street = str_replace_all(main_street, "^\\s+", ""),
-         from_street = str_replace_all(from_street, "^\\s+", ""),
-         to_street = str_replace_all(to_street, "^\\s+", "")) %>%
-  mutate(from_intersection = ifelse(str_detect(from_street, "^[0-9]+ [NSEW]"),
-                                     paste(str_extract(from_street, "[0-9]+"), main_street),
-                                     paste(main_street, "and", from_street))) %>%
-  mutate(to_intersection = ifelse(str_detect(to_street, "^[0-9]+ [NSEW]"),
-                                     paste(str_extract(to_street, "[0-9]+"), main_street),
-                                     paste(main_street, "and", to_street)))
-
-write.csv(from_to_df, "../temp/from_to_df.csv", row.names = F)
-
-#--------------------
-# Location Data of format "##-### street
-#--------------------
-through_address_df <- leftover_df %>%
-  filter(str_detect(location, regex("^[0-9]{2,5}-[0-9]{1,5}", ignore_case = T)))
-
-leftover_df <- leftover_df %>%
-  anti_join(through_address_df)
-
-write.csv(through_address_df, "../temp/through_address_df.csv", row.names = F)
-
-#--------------------
-# Location data of format ON _ FROM _ TO _ ; ON _ FROM _ TO _, ...
-#--------------------
-on_from_to_multiple_df <- leftover_df %>%
-  filter(str_detect(location, regex("ON", ignore_case = T))) %>%
-  filter(str_detect(location, regex("FROM", ignore_case = T))) %>%
-  filter(str_detect(location, regex("TO", ignore_case = T))) 
-
-leftover_df <- leftover_df %>%
-  anti_join(on_from_to_multiple_df)
-
-write.csv(on_from_to_multiple_df, "../temp/on_from_to_multiple_df.csv", row.names = F)
-
 # write leftover_df to csv
 write.csv(leftover_df, "../temp/leftover_df.csv", row.names = F)
