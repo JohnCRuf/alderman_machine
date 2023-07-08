@@ -67,7 +67,7 @@ location_replacements <- c(
 "E107 Ewing to 1 st alley east" = "ON E 107TH ST FROM S EWING AVE TO S AVE J",
 "100th St / from Ewing / Indianapolis" = "ON E 100TH ST FROM S EWING AVE TO S INDIANAPOLIS AVE",
 "Baltimore / from Brainard (13460 Baltimore)" = "13460 S Baltimore Ave",
-"13245 S GREEN BAY AVE:ON & S GREEN BAY AVE FROM & E 132ND ST" = "13245 S GREEN BAY AVE",
+"13245 S GREEN BAY AVE:ON S GREEN BAY AVE FROM E 132ND ST" = "13245 S GREEN BAY AVE",
 "Jackson Blvd to Kilpatrick Av" = "Jackson Blvd & Kilpatrick Ave",
 "Mural at Sauganash Tr on Peterson Av" = "Saughnash Park", # nearest park
 "47th Street Viaduct- mural" = "47th and S Lake Park Ave", # nearest intersection
@@ -101,7 +101,10 @@ location_replacements <- c(
 "Chicago Ave. at Hoyne Ave. (Crosswalk)" = "Chicago Ave & Hoyne Ave",
 "Clark St at Germania Pl" = "N Clark St & W Germania Pl",
 "E107 Ewing to 1 st alley east" = "ON E 107TH ST FROM S EWING AVE TO S AVE J", #closest intersection
-"63rd St (Wentworth - State)" = "ON W 63RD ST FROM S WENTWORTH AVE TO S STATE ST"
+"63rd St (Wentworth - State)" = "ON W 63RD ST FROM S WENTWORTH AVE TO S STATE ST",
+"Division St., 2400 - 3200 Festival Lights" = "ON W DIVISION ST FROM N WESTERN AVE TO N KEDZIE AVE",
+"Altgeld-Fullerton-Springfield-Harding" = "W ALTGELD ST & N SPRINGFIELD AVE & W FULLERTON AVE & N HARDING AVE"
+
 )
 
 type_replacements <- c(
@@ -116,8 +119,8 @@ type_replacements <- c(
   "Anti-Gun Violence Mural w/ DCASE" = "1800 N. Humboldt Blvd",
   "Blackhawk and Hermosa Parks Tree Planting 2016 Menu" = "W Belden Ave & Cicero Ave", # approximate midpoint of Blackhawk and Hermosa Parks
   "Lincoln Park Conservatory Park - Benches" = "Lincoln Park Conservatory",
-  "Printers Row Park - Lighting Improvements" = "Printers Row Park"
-
+  "Printers Row Park - Lighting Improvements" = "Printers Row Park",
+  "3 POD Cameras: Belmont & Central; Laramie & Addison Cicero & Addison" = "W Belmont Ave & N Central Ave; N Laramie Ave & W Addison St; N Cicero Ave & W Addison St"
 )
 # For the anti-gun violence mural, see:
 # https://www.artworkarchive.com/profile/andy-bellomo/artwork/tunnel-of-blessings-neftali-reyes-jr-memorial-mural
