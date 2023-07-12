@@ -16,7 +16,7 @@ with open(input_file, "r") as f:
 
 def menu_df_from_text(text):
     df = pd.DataFrame(columns=["ward", "type", "location", "estcost"])
-    ward, type, location, estcost = "", "", "", ""
+    ward, type, location, estcost, saved_location = "", "", "", "", ""
     saver_flag = False
     text = re.sub(r"\$(\d+),(\d+)", r"$\1\2", text)
     text = text.replace(", ", "; ") #changing ", " to "; " to avoid splitting on commas in addresses
@@ -35,7 +35,10 @@ def menu_df_from_text(text):
             if estcost == "" or type == "":
                 #if estcost or type is blank, then next line is continuation of this line
                 saver_flag = True
-                saved_location = location
+                if saved_location != "": #if saved_location is not blank, then add a space before appending
+                    saved_location = f"{saved_location} {location}"
+                else:
+                    saved_location = location
                 saved_type = type
                 saved_estcost = estcost
                 #remove all alphabetical characters from estcost
@@ -43,6 +46,7 @@ def menu_df_from_text(text):
             elif saver_flag == True:
                 #continuations only happen on the next line, so if saver_flag is true, then this is the next line
                 location = f"{saved_location} {location}"
+                saved_location = ""
                 type = f"{saved_type} {type}"
                 estcost = f"{saved_estcost} {estcost}"
                 location = location_parenthesis_filter(location_street_filter(location_ampersand_filter(location)))

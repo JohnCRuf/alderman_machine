@@ -1,7 +1,7 @@
 library(tidyverse)
 library(stringr)
 library(readr)
-library(assertr)
+library(assertthat)
 menu_df <- read_csv("../input/menu_df.csv")
 
 # Step 1: Apply manually edit locations with weird acronyms and typos
@@ -104,7 +104,6 @@ location_replacements <- c(
 "63rd St (Wentworth - State)" = "ON W 63RD ST FROM S WENTWORTH AVE TO S STATE ST",
 "Division St., 2400 - 3200 Festival Lights" = "ON W DIVISION ST FROM N WESTERN AVE TO N KEDZIE AVE",
 "Altgeld-Fullerton-Springfield-Harding" = "W ALTGELD ST & N SPRINGFIELD AVE & W FULLERTON AVE & N HARDING AVE"
-
 )
 
 type_replacements <- c(
@@ -141,12 +140,10 @@ menu_df <- menu_df %>%
     location = ifelse(location %in% names(location_replacements), location_replacements[location], location),
     # Use the lookup table for replacements based on 'type'
     location = ifelse(type %in% names(type_replacements), type_replacements[type], location),
-    # remove "corner of" from location
-    location = str_replace(location, ".*corner of", ""),
     # reformat POD camera relocations
     location = str_replace(location, "Relocate (.*) to (.*)", "\\2"),
     #get rid of POD camera at . or POD Camera - ignore case
-    location = str_replace(location, regex("POD Camera.*", ignore_case = T), ""),
+    location = str_replace(location, regex("POD Camera.*", ignore_case = T), "")
   )
 
 # remove any spacing issues
@@ -159,7 +156,30 @@ menu_df <- menu_df %>%
   filter(est_cost != 0) %>%
   filter(!str_detect(location, regex("not available", ignore_case = T)))
 
+#colons typically indicate multiple locations, so we will split these into separate rows
+colon_df <- menu_df %>% #filter so it has & and 
+  filter(str_detect(location, regex(":|;", ignore_case = T))) 
+#remove colon df from menu_df
+menu_df <- menu_df %>%
+  anti_join(colon_df)
+# split location into multiple rows by : or ; and divide est_cost equally among non-empty rows
+colon_df <- colon_df %>%
+  mutate(
+    location_temp = strsplit(location, ":|;"),
+    num_elements = map_int(location_temp, length),
+    num_elements = num_elements - map_int(location_temp, ~ sum(.x == "")),
+    est_cost = est_cost / num_elements
+  ) %>%
+  unnest(location_temp) %>%
+  filter(location_temp != "") %>%
+  mutate(location = location_temp) %>%
+  select(-location_temp, -num_elements)
+#add "fixed" colon_df back to menu_df
+menu_df <- menu_df %>%
+  bind_rows(colon_df)
+
 # Step 2: Split location data into different standard formats and save to temp folder
+
 
 # --------------------
 # Location Data of Parks or Schools
@@ -169,6 +189,7 @@ school_park_df <- menu_df %>%
   filter(!str_detect(location, regex("( St| Dr.| rd| blvd| BV | av| AVE|Lake Park Av|Central Park|lincoln park w)", ignore_case = T))) %>% # filter out ON FROM TO
   filter(!str_detect(location, regex("( on | from | to |/)", ignore_case = T))) %>%
   filter(!str_detect(location, regex("(parkway|parkside|parking)", ignore_case = T)))
+school_park_df_sum <- sum(school_park_df$est_cost) #saving for later assertion
 
 leftover_df <- menu_df %>%
   anti_join(school_park_df)
@@ -201,7 +222,8 @@ school_park_df <- school_park_df %>%
   mutate(location = ifelse(str_detect(location, "Kathy Osterman Beach House"), "Kathy Osterman Beach House", location)) %>%
   rowwise() %>%
   mutate(location_temp = strsplit(location, ",\\s*|\\s*&\\s*|;\\s*")) %>%
-  mutate(num_elements = length(location_temp)) %>%
+  mutate(num_elements = length(location_temp), 
+  num_elements = num_elements - map_int(location_temp, ~ sum(.x == ""))) %>%
   unnest(location_temp) %>%
   group_by(location_temp) %>%
   mutate(est_cost = est_cost / num_elements) %>%
@@ -226,6 +248,9 @@ school_park_df <- school_park_df %>%
   # now we split the rows that contain multiple schools
   select(-location_2, -last_keyword_pos, -location_temp)
 
+school_park_df_sum2 <- sum(school_park_df$est_cost)
+assert_that(school_park_df_sum == school_park_df_sum2) 
+
 write.csv(school_park_df, "../temp/school_park_df.csv", row.names = F)
 # --------------------
 # Location Data of format "_ ST -- _ AV -to- _ ST"
@@ -233,6 +258,8 @@ write.csv(school_park_df, "../temp/school_park_df.csv", row.names = F)
 double_dash_to_df <- leftover_df %>%
   filter(str_detect(location, "--")) %>%
   filter(str_detect(location, "-to-"))
+
+double_dash_to_df_sum <- sum(double_dash_to_df$est_cost)
 
 leftover_df <- leftover_df %>%
   anti_join(double_dash_to_df)
@@ -248,8 +275,102 @@ double_dash_to_df <- double_dash_to_df %>%
   ) %>%
   select(-location_2, -main_street, -from_street, -to_street)
 
-write.csv(double_dash_to_df, "../temp/double_dash_to_df.csv", row.names = F)
+double_dash_to_df_sum2 <- sum(double_dash_to_df$est_cost)
 
+write.csv(double_dash_to_df, "../temp/double_dash_to_df.csv", row.names = F)
+#--------------------
+# Location data of format ON _ FROM _ TO _ ; ON _ FROM _ TO _, ...
+#--------------------
+on_from_to_multiple_df <- leftover_df %>%
+  filter(str_detect(location, regex("ON ", ignore_case = T))) %>%
+  filter(str_detect(location, regex("FROM ", ignore_case = T))) %>%
+  filter(str_detect(location, regex("TO ", ignore_case = T))) %>%
+  filter(!str_detect(location, regex("relocate", ignore_case = T))) %>%
+  filter(str_detect(location, regex(";", ignore_case = T)))
+
+on_from_to_multiple_df_sum <- sum(on_from_to_multiple_df$est_cost)
+
+leftover_df <- leftover_df %>%
+   anti_join(on_from_to_multiple_df)
+
+#split rows into multiple rows by ;
+on_from_to_multiple_df <- on_from_to_multiple_df %>%
+  rowwise() %>%
+  mutate(
+    location_temp = strsplit(location, ";\\s*|:\\s*")
+  ) %>% # split location into multiple rows
+  mutate(num_elements = length(location_temp),
+         num_elements = num_elements - map_int(location_temp, ~ sum(.x == "")),) %>% 
+  unnest(location_temp) %>%
+  group_by(location) %>%
+  mutate(est_cost = est_cost / num_elements,
+         location = location_temp) %>%
+  ungroup() %>%
+  select(-num_elements, -location_temp)
+
+on_from_to_multiple_df_sum2 <- sum(on_from_to_multiple_df$est_cost)
+assert_that(on_from_to_multiple_df_sum == on_from_to_multiple_df_sum2)
+
+#add re-append to leftover_df
+leftover_df <- leftover_df %>%
+  bind_rows(on_from_to_multiple_df)
+
+#--------------------
+# Location Data of format "##-### street
+#--------------------
+through_address_df <- leftover_df %>%
+  filter(str_detect(location, regex("^[0-9]{2,5}-[0-9]{1,5}", ignore_case = T)))
+#count total sum of est_cost for df
+through_address_sum1 <- sum(through_address_df$est_cost)
+ leftover_df <- leftover_df %>%
+   anti_join(through_address_df)
+#if there is only 1 ; or : in location, then delete everything after ;|: otherwise keep everything after ;|:
+through_address_df <- through_address_df %>%
+  mutate(location = ifelse(str_count(location, ";|:") == 1, str_replace(location, ";|:.*", ""),location))
+#if there is a ; or : in location, then split the row into multiple rows with the est_cost divided by the number of rows and each location is one of the split locations
+through_address_df <- through_address_df %>%
+  rowwise() %>%
+  mutate(
+    location_temp = strsplit(location, ";\\s*|:\\s*")
+  ) %>% # split location into multiple rows
+    mutate(num_elements = length(location_temp),
+           num_elements = num_elements - map_int(location_temp, ~ sum(.x == "")),) %>% 
+  unnest(location_temp) %>%
+  group_by(location) %>%
+  mutate(est_cost = est_cost / num_elements,
+         location = location_temp) %>%
+  ungroup() %>%
+  select(-num_elements, -location_temp)
+#create new df where location does not contain -
+through_address_leftover <- through_address_df %>%
+  filter(!str_detect(location, "-"))
+through_address_df <- through_address_df %>%
+  anti_join(through_address_leftover)
+through_address_sum2 <- sum(through_address_leftover$est_cost)
+#append to leftover_df
+leftover_df <- leftover_df %>%
+  bind_rows(through_address_leftover)
+
+# now to create start and end addresses for the through addresses
+through_address_df <- through_address_df %>%
+  mutate(
+    N1 = str_extract(location, "^[0-9]{2,5}"), 
+    N2 = str_extract(location, "(?<=-)[0-9]{1,5}"),
+    street = str_extract(location, "[A-Z].*")
+  )
+
+through_address_df <- through_address_df %>%
+  mutate(
+    N2 = ifelse(str_length(N1) > str_length(N2), paste0(substr(N1, 1, str_length(N1)-str_length(N2)), N2), N2),
+    start_address = ifelse(str_length(N1) == str_length(N2), paste0(N1, " ", street), NA_character_),
+    end_address = ifelse(str_length(N1) == str_length(N2), paste0(N2, " ", street), NA_character_)
+  ) %>%
+  select(-N1, -N2, -street)
+
+#assert that the sum of est_cost is within 0.0001 beginning
+through_address_sum3 <- sum(through_address_df$est_cost)
+assert_that(through_address_sum1 - through_address_sum2 - through_address_sum3 < 0.0001) #not exact due to computational error
+write.csv(through_address_df, "../temp/through_address_df.csv", row.names = F)
 # --------------------
 # Location Data of format "# N/S/E/W _ ST"
 # --------------------
@@ -264,13 +385,7 @@ normal_address_df <- normal_address_df %>%
   mutate(address = str_replace_all(location, "\\(.*?\\)", ""))
 write.csv(normal_address_df, "../temp/normal_address_df.csv", row.names = F)
 
-leftover_df_2 <- leftover_df %>%
-  filter(str_detect(location, regex(" FROM ", ignore_case = T))) %>%
-  filter(str_detect(location, regex(" TO ", ignore_case = T))) 
 
-#create df with only location == "N MCCLURG CT FROM E NORTH WATER ST (430 N) TO E RIVER DR (404 N)"
-leftover_df_3 <- leftover_df %>%
-  filter(str_detect(location, regex("MCCLURG", ignore_case = T)))
 #--------------------
 # Location Data of format "ON _ AV from _ ST to _ ST"
 #--------------------
@@ -368,30 +483,6 @@ from_to_df <- from_to_df %>%
 
 write.csv(from_to_df, "../temp/from_to_df.csv", row.names = F)
 
-#--------------------
-# Location Data of format "##-### street
-#--------------------
-through_address_df <- leftover_df %>%
-  filter(str_detect(location, regex("^[0-9]{2,5}-[0-9]{1,5}", ignore_case = T)))
-
-leftover_df <- leftover_df %>%
-  anti_join(through_address_df)
-
-write.csv(through_address_df, "../temp/through_address_df.csv", row.names = F)
-
-#--------------------
-# Location data of format ON _ FROM _ TO _ ; ON _ FROM _ TO _, ...
-#--------------------
-on_from_to_multiple_df <- leftover_df %>%
-  filter(str_detect(location, regex("ON", ignore_case = T))) %>%
-  filter(str_detect(location, regex("FROM", ignore_case = T))) %>%
-  filter(str_detect(location, regex("TO", ignore_case = T))) 
-
-leftover_df <- leftover_df %>%
-  anti_join(on_from_to_multiple_df)
-
-write.csv(on_from_to_multiple_df, "../temp/on_from_to_multiple_df.csv", row.names = F)
-
 # --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3 & N/S/E/W road_4"
 # --------------------
@@ -419,6 +510,9 @@ addition_modified_df <- addition_modified_df %>%
 # Remove any rows that have # N/S/E/W road_1 in location
 addition_modified_df <- addition_modified_df %>%
   filter(!str_detect(location, regex("^[0-9]{2,5} [N|S|E|W]", ignore_case = T)))
+#replace any instances of " & [NSEW] & " with " & "
+addition_modified_df <- addition_modified_df %>%
+  mutate(location = str_replace_all(location, regex(" & [N|S|E|W] & "), " & "))
 
 
 df_with_3_ands <- addition_modified_df %>%
@@ -524,10 +618,38 @@ write.csv(df_with_3_ands, "../temp/df_with_3_ands.csv", row.names = F)
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3"
 # --------------------
 df_with_2_ands <- leftover_addition_df %>%
-  filter(str_count(location, fixed("&")) == 2)
+  filter(str_count(location, fixed(" & ")) == 2) %>%
+  mutate(location = str_replace_all(location, "\\(.*?\\)", ""))
 
 leftover_addition_df <- leftover_addition_df %>%
   anti_join(df_with_2_ands)
+
+df_with_2_ands_replacements <- c(
+  "108 th & Buffalo & 104 th Ave 'M'" = "E 108TH ST & S BUFFALO AVE & E 104TH ST",
+  "Kedzie & 105 th St. & 107 th St." = "S KEDZIE AVE & W 105TH ST & W 107TH ST",
+  "Victoria & Spaulding & 6123 Ravenswood" = "N VICTORIA ST & N SPAULDING AVE & 6123 N RAVENSWOOD AVE",
+)
+#create two new columns for the two intersections and apply generate_intersections to each row
+df_2_results <- df_with_2_ands %>%
+  mutate(
+    id = row_number(),
+    location = str_split(location, " & ")
+  ) %>%
+  rowwise() %>%
+  mutate(location = list(generate_intersections(unlist(location)))) %>%
+  unnest(location) %>%
+  mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% 3) + 1)) %>%
+  pivot_wider(names_from = intersection_number, values_from = location) 
+
+df_with_2_ands <- df_with_2_ands %>%
+  mutate(id = row_number()) %>%
+  left_join(df_2_results) %>%
+  select(-id)
+#convert intersection_1 2 and 3 to character
+df_with_2_ands <- df_with_2_ands %>%
+  mutate(intersection_1 = map_chr(intersection_1, ~ paste(.x, collapse = "; "))) %>%
+  mutate(intersection_2 = map_chr(intersection_2, ~ paste(.x, collapse = "; "))) %>%
+  mutate(intersection_3 = map_chr(intersection_3, ~ paste(.x, collapse = "; ")))
 
 write.csv(df_with_2_ands, "../temp/df_with_2_ands.csv", row.names = F)
 
@@ -547,12 +669,43 @@ write.csv(intersection_df, "../temp/intersection_df.csv", row.names = F)
 # --------------------
 df_with_mult_ands <- addition_modified_df %>%
   filter(str_count(location, fixed("&")) > 3)
+#find the maximum number of & in a row
+max_ands <- max(str_count(df_with_mult_ands$location, fixed("&")))
 
-leftover_addition_df <- leftover_addition_df %>%
-  anti_join(df_with_mult_ands)
+# leftover_addition_df <- leftover_addition_df %>%
+#   anti_join(df_with_mult_ands)
+#replace all instances of "E/W/N/S ## &" with "E/W/N/S ## TH ST &"
+df_with_mult_ands <- df_with_mult_ands %>%
+  mutate(location = str_replace_all(location, regex("([N|S|E|W]) ([0-9]+) &"), "\\1 \\2 TH ST &"))
 
+df_mult_results <- df_with_mult_ands %>%
+  mutate(
+    id = row_number(),
+    location = str_split(location, " & ")
+  ) %>%
+  rowwise() %>%
+  mutate(location = list(generate_intersections(unlist(location)))) %>%
+  unnest(location) %>%
+  mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% max_ands) + 1)) %>%
+  pivot_wider(names_from = intersection_number, values_from = location)
+
+df_with_mult_ands <- df_with_mult_ands %>%
+  mutate(id = row_number()) %>%
+  left_join(df_mult_results) %>%
+  select(-id)
+#Convert all intersection_# from 1 to max_ands to character
+for (i in 1:max_ands) {
+  df_with_mult_ands <- df_with_mult_ands %>%
+    mutate(!!paste0("intersection_", i) := map_chr(!!sym(paste0("intersection_", i)), ~ paste(.x, collapse = "; ")))
+}
+
+write.csv(df_with_mult_ands, "../temp/df_with_mult_ands.csv", row.names = F)
+# --------------------
+# Leftover Data
+# --------------------
 leftover_df <- leftover_df %>%
   anti_join(addition_df)
+
 rm(leftover_addition_df, addition_df, addition_modified_df)
 # write leftover_df to csv
 write.csv(leftover_df, "../temp/leftover_df.csv", row.names = F)
