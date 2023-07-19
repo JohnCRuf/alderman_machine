@@ -252,7 +252,7 @@ school_park_df <- school_park_df %>%
 school_park_df_sum2 <- sum(school_park_df$est_cost)
 assert_that(school_park_df_sum == school_park_df_sum2) 
 
-write.csv(school_park_df, "../temp/school_park_df.csv", row.names = F)
+write.csv(school_park_df, "../output/school_park_df.csv", row.names = F)
 # --------------------
 # Location Data of format "_ ST -- _ AV -to- _ ST"
 # --------------------
@@ -278,7 +278,7 @@ double_dash_to_df <- double_dash_to_df %>%
 
 double_dash_to_df_sum2 <- sum(double_dash_to_df$est_cost)
 
-write.csv(double_dash_to_df, "../temp/double_dash_to_df.csv", row.names = F)
+write.csv(double_dash_to_df, "../output/double_dash_to_df.csv", row.names = F)
 
 
 #--------------------
@@ -336,7 +336,7 @@ through_address_df <- through_address_df %>%
 #assert that the sum of est_cost is within 0.0001 beginning
 through_address_sum3 <- sum(through_address_df$est_cost)
 assert_that(through_address_sum1 - through_address_sum2 - through_address_sum3 < 0.0001) #not exact due to computational error
-write.csv(through_address_df, "../temp/through_address_df.csv", row.names = F)
+write.csv(through_address_df, "../output/through_address_df.csv", row.names = F)
 # --------------------
 # Location Data of format "# N/S/E/W _ ST"
 # --------------------
@@ -349,7 +349,7 @@ leftover_df <- leftover_df %>%
 
 normal_address_df <- normal_address_df %>%
   mutate(address = str_replace_all(location, "\\(.*?\\)", ""))
-write.csv(normal_address_df, "../temp/normal_address_df.csv", row.names = F)
+write.csv(normal_address_df, "../output/normal_address_df.csv", row.names = F)
 
 
 #--------------------
@@ -468,7 +468,7 @@ from_to_df <- from_to_df %>%
                                      paste(str_extract(to_street, "[0-9]+"), main_street),
                                      paste(main_street, "and", to_street)))
 
-write.csv(from_to_df, "../temp/from_to_df.csv", row.names = F)
+write.csv(from_to_df, "../output/from_to_df.csv", row.names = F)
 
 # --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3 & N/S/E/W road_4"
@@ -599,7 +599,7 @@ df_with_3_ands <- df_with_3_ands %>%
 # df_with_3_ands <- df_with_3_ands %>%
 #   filter(is.na(intersection_1) & is.na(intersection_2) & is.na(intersection_3) & is.na(intersection_4))
 
-write.csv(df_with_3_ands, "../temp/df_with_3_ands.csv", row.names = F)
+write.csv(df_with_3_ands, "../output/df_with_3_ands.csv", row.names = F)
 
 # --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3"
@@ -637,7 +637,7 @@ df_with_2_ands <- df_with_2_ands %>%
   mutate(intersection_1 = map_chr(intersection_1, ~ paste(.x, collapse = "; "))) %>%
   mutate(intersection_2 = map_chr(intersection_2, ~ paste(.x, collapse = "; "))) 
 
-write.csv(df_with_2_ands, "../temp/df_with_2_ands.csv", row.names = F)
+write.csv(df_with_2_ands, "../output/df_with_2_ands.csv", row.names = F)
 
 # --------------------
 # Location Data of format "# N/S/E/W road_1 (& or ; or :) N/S/E/W road_2
@@ -648,7 +648,7 @@ intersection_df <- leftover_addition_df %>%
 leftover_addition_df <- leftover_addition_df %>%
   anti_join(intersection_df)
 
-write.csv(intersection_df, "../temp/intersection_df.csv", row.names = F)
+write.csv(intersection_df, "../output/intersection_df.csv", row.names = F)
 
 # --------------------
 # Location Data of format with multiple "&'s
@@ -685,7 +685,7 @@ for (i in 1:max_ands) {
     mutate(!!paste0("intersection_", i) := map_chr(!!sym(paste0("intersection_", i)), ~ paste(.x, collapse = "; ")))
 }
 
-write.csv(df_with_mult_ands, "../temp/df_with_mult_ands.csv", row.names = F)
+write.csv(df_with_mult_ands, "../output/df_with_mult_ands.csv", row.names = F)
 # --------------------
 # Leftover Data
 # --------------------
@@ -694,4 +694,4 @@ leftover_df <- leftover_df %>%
 
 rm(leftover_addition_df, addition_df, addition_modified_df)
 # write leftover_df to csv
-write.csv(leftover_df, "../temp/leftover_df.csv", row.names = F)
+write.csv(leftover_df, "../output/leftover_df.csv", row.names = F)
