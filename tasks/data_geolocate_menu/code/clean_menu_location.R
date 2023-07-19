@@ -1,5 +1,7 @@
 library(tidyverse)
 library(stringr)
+library(stringi)
+library(gsubfn)
 library(readr)
 library(assertthat)
 menu_df <- read_csv("../input/menu_df.csv")
@@ -157,7 +159,7 @@ menu_df <- menu_df %>%
   filter(!str_detect(location, regex("not available", ignore_case = T)))
 
 #colons typically indicate multiple locations, so we will split these into separate rows
-colon_df <- menu_df %>% #filter so it has & and 
+colon_df <- menu_df %>% 
   filter(str_detect(location, regex(":|;", ignore_case = T))) 
 #remove colon df from menu_df
 menu_df <- menu_df %>%
@@ -222,8 +224,7 @@ school_park_df <- school_park_df %>%
   mutate(location = ifelse(str_detect(location, "Kathy Osterman Beach House"), "Kathy Osterman Beach House", location)) %>%
   rowwise() %>%
   mutate(location_temp = strsplit(location, ",\\s*|\\s*&\\s*|;\\s*")) %>%
-  mutate(num_elements = length(location_temp), 
-  num_elements = num_elements - map_int(location_temp, ~ sum(.x == ""))) %>%
+  mutate(num_elements = length(location_temp)) %>%
   unnest(location_temp) %>%
   group_by(location_temp) %>%
   mutate(est_cost = est_cost / num_elements) %>%
@@ -278,42 +279,7 @@ double_dash_to_df <- double_dash_to_df %>%
 double_dash_to_df_sum2 <- sum(double_dash_to_df$est_cost)
 
 write.csv(double_dash_to_df, "../temp/double_dash_to_df.csv", row.names = F)
-#--------------------
-# Location data of format ON _ FROM _ TO _ ; ON _ FROM _ TO _, ...
-#--------------------
-on_from_to_multiple_df <- leftover_df %>%
-  filter(str_detect(location, regex("ON ", ignore_case = T))) %>%
-  filter(str_detect(location, regex("FROM ", ignore_case = T))) %>%
-  filter(str_detect(location, regex("TO ", ignore_case = T))) %>%
-  filter(!str_detect(location, regex("relocate", ignore_case = T))) %>%
-  filter(str_detect(location, regex(";", ignore_case = T)))
 
-on_from_to_multiple_df_sum <- sum(on_from_to_multiple_df$est_cost)
-
-leftover_df <- leftover_df %>%
-   anti_join(on_from_to_multiple_df)
-
-#split rows into multiple rows by ;
-on_from_to_multiple_df <- on_from_to_multiple_df %>%
-  rowwise() %>%
-  mutate(
-    location_temp = strsplit(location, ";\\s*|:\\s*")
-  ) %>% # split location into multiple rows
-  mutate(num_elements = length(location_temp),
-         num_elements = num_elements - map_int(location_temp, ~ sum(.x == "")),) %>% 
-  unnest(location_temp) %>%
-  group_by(location) %>%
-  mutate(est_cost = est_cost / num_elements,
-         location = location_temp) %>%
-  ungroup() %>%
-  select(-num_elements, -location_temp)
-
-on_from_to_multiple_df_sum2 <- sum(on_from_to_multiple_df$est_cost)
-assert_that(on_from_to_multiple_df_sum == on_from_to_multiple_df_sum2)
-
-#add re-append to leftover_df
-leftover_df <- leftover_df %>%
-  bind_rows(on_from_to_multiple_df)
 
 #--------------------
 # Location Data of format "##-### street
@@ -424,7 +390,11 @@ on_from_to_replacements <- c("24 TH PL FROM S ROCKWELL ST (2600 W) TO S WASHTENA
 "Cottage Grove, 39 th to 51 st" = "ON S COTTAGE GROVE AVE FROM E 39TH ST TO E 51ST ST",
 "GREENVIEW-HOWARD TO JONQUIL TERRACE" = "ON N GREENVIEW AVE FROM W HOWARD ST TO W JONQUIL TER",
 "100 th St / from Ewing / Indianapolis" = "ON E 100TH ST FROM S EWING AVE TO S INDIANAPOLIS AVE",
-"Baltimore / from Brainard (13460 Baltimore)" = "ON S BALTIMORE AVE FROM W BRAINARD AVE TO 13460 S BALTIMORE AVE")
+"Baltimore / from Brainard (13460 Baltimore)" = "ON S BALTIMORE AVE FROM W BRAINARD AVE TO 13460 S BALTIMORE AVE",
+"N N GREENVIEW AVE FROM W ALBION AVE (6600 N) TO W RATT BLVD (6800 N)" = "ON N GREENVIEW AVE FROM W ALBION AVE (6600 N) TO W PRATT BLVD (6800 N)",
+"ON E 69TH ST FROM SDORCHESTER AVE (1400 E) TO S DANTE AVE (1440 E)" = "ON E 69TH ST FROM S DORCHESTER AVE (1400 E) TO S DANTE AVE (1440 E)",
+"N N WOLCOTT AVE FROM W CHASE AVE (7300 N) TO N OGERS AVE (7340 N)" = "ON N WOLCOTT AVE FROM W CHASE AVE (7300 N) TO N ROGERS AVE (7340 N)",
+"ON N KILDARE AVE FROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N)")
 
 #repeatedly remove \n from location until none remain
 # while (any(str_detect(leftover_df$location, "\n"))) {
@@ -433,11 +403,28 @@ on_from_to_replacements <- c("24 TH PL FROM S ROCKWELL ST (2600 W) TO S WASHTENA
 leftover_df <- leftover_df %>%
   mutate(location = ifelse(location %in% names(on_from_to_replacements), on_from_to_replacements[location], location))
 
+#Correct a whole bunch of typos
+replacements <- c("BFROM" = "B FROM",
+                  "HFROM" = "H FROM",
+                  "LFROM" = "L FROM",
+                  "MFROM" = "M FROM",
+                  "NFROM" = "N FROM",
+                  ")TO " = ") TO",
+                  " STO " = " S TO ",
+                  "ONN " = "ON ",
+                  " STFROM " = " ST FROM ",
+                  " AVEFROM " = " AVE FROM ",
+                  ") TOW " = ") TO W ",
+                  ") TON " = ") TO N ",
+                  " FROMS " = " FROM S ")
+
+leftover_df <- leftover_df %>%
+  mutate(location = gsubfn("\\b(.*?)\\b", replacements, location))
+
 from_to_df <- leftover_df %>%
   filter(str_detect(location, regex(" FROM ", ignore_case = T))) %>%
   filter(str_detect(location, regex(" TO ", ignore_case = T))) %>%
-  filter(str_detect(location, regex("^ON ", ignore_case = T))) %>%
-  filter(!str_detect(location, regex(";", ignore_case = T))) %>%
+  filter(str_detect(location, regex("ON ", ignore_case = T))) %>%
   filter(!str_detect(location, "Relocate"))
 
 leftover_df <- leftover_df %>%
@@ -627,7 +614,7 @@ leftover_addition_df <- leftover_addition_df %>%
 df_with_2_ands_replacements <- c(
   "108 th & Buffalo & 104 th Ave 'M'" = "E 108TH ST & S BUFFALO AVE & E 104TH ST",
   "Kedzie & 105 th St. & 107 th St." = "S KEDZIE AVE & W 105TH ST & W 107TH ST",
-  "Victoria & Spaulding & 6123 Ravenswood" = "N VICTORIA ST & N SPAULDING AVE & 6123 N RAVENSWOOD AVE",
+  "Victoria & Spaulding & 6123 Ravenswood" = "N VICTORIA ST & N SPAULDING AVE & 6123 N RAVENSWOOD AVE"
 )
 #create two new columns for the two intersections and apply generate_intersections to each row
 df_2_results <- df_with_2_ands %>%
@@ -638,7 +625,7 @@ df_2_results <- df_with_2_ands %>%
   rowwise() %>%
   mutate(location = list(generate_intersections(unlist(location)))) %>%
   unnest(location) %>%
-  mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% 3) + 1)) %>%
+  mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% 2) + 1)) %>%
   pivot_wider(names_from = intersection_number, values_from = location) 
 
 df_with_2_ands <- df_with_2_ands %>%
@@ -648,8 +635,7 @@ df_with_2_ands <- df_with_2_ands %>%
 #convert intersection_1 2 and 3 to character
 df_with_2_ands <- df_with_2_ands %>%
   mutate(intersection_1 = map_chr(intersection_1, ~ paste(.x, collapse = "; "))) %>%
-  mutate(intersection_2 = map_chr(intersection_2, ~ paste(.x, collapse = "; "))) %>%
-  mutate(intersection_3 = map_chr(intersection_3, ~ paste(.x, collapse = "; ")))
+  mutate(intersection_2 = map_chr(intersection_2, ~ paste(.x, collapse = "; "))) 
 
 write.csv(df_with_2_ands, "../temp/df_with_2_ands.csv", row.names = F)
 
