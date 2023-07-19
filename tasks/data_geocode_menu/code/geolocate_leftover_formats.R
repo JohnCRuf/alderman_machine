@@ -1,7 +1,7 @@
 library(tidyverse)
 library(tidygeocoder)
 source("geolocate_function.R")
-df <- read_csv("../temp/leftover_df.csv")
+df <- read_csv("../input/leftover_df.csv")
 #additional cleaning needed
 #create a list called "filter list" and filter df by it
 filter_list <- c("16 TH WARD", "15 locations", "Various Locations", "8 locations", "9 locations", "11 locations",
@@ -69,4 +69,4 @@ geolocated_df <- menu_geolocate(df, "location_1", 100) %>%  #100 b/c of tougher 
     menu_geolocate(., "location_3", 10) %>% 
     rename(lat_3 = lat, lon_3 = long, query_3 = query) 
 
-write_csv(geolocated_df, "../temp/geolocated_from_to_df.csv")
+write_csv(geolocated_df, "../output/geolocated_from_to_df.csv")

@@ -1,7 +1,7 @@
 library(tidyverse)
 library(tidygeocoder)
 source("geolocate_function.R")
-df <- read_csv("../temp/df_with_3_ands.csv")
+df <- read_csv("../input/df_with_3_ands.csv")
 #
 
 geolocated_df <- menu_geolocate(df, "intersection_1", 100) %>%  #100 b/c of tougher geocoding.
@@ -14,4 +14,4 @@ geolocated_df <- menu_geolocate(df, "intersection_1", 100) %>%  #100 b/c of toug
     rename(lat_4 = lat, lon_4 = long, query_4 = query) 
  
 
-write_csv(geolocated_df, "../temp/geolocated_from_to_df.csv")
+write_csv(geolocated_df, "../output/geolocated_from_to_df.csv")
