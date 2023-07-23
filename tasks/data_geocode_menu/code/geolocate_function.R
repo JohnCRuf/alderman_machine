@@ -20,6 +20,14 @@ menu_geolocate <- function(df, var_name, batch_size) {
         )
     }) %>%
         select(-singlelineaddress)
+    # Geocode "Chicago, IL"
+    chicago_df <- data.frame(address = 'Chicago, IL')
+    chicago_coords <- geocode(chicago_df, method = 'google', address = 'address')
+    # Replace with NA when the coordinates match that of "Chicago, IL"
+    results <- results %>%
+      mutate(lat = ifelse(lat == chicago_coords$lat & long == chicago_coords$long, NA, lat),
+             long = ifelse(long == chicago_coords$long & lat == chicago_coords$lat, NA, long))
+
     return (results)
 }
 
