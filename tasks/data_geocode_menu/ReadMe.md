@@ -2,7 +2,12 @@
     This task uses the census and google maps APIs to geolocate each construction project and save the results as a CSV. 
 
 ## Output
-* `geolocated_menu.csv`: A CSV file containing the menu money allocation cost, the ward, year, and the geographic coordinates of the project.
+* `geolocated_(format)_df.csv`: A CSV file containing the menu money allocation cost, the ward, year, and the geographic coordinates of the project location for a specific location text format.
+The location text formats include "2 ands," "3 ands," "double dash to," "from to," "intersection", "normal address," "school park," "through address," and "leftover."
+
+Leftover contains the uncategorized location text formats and are just fed into the google maps API as a last-ditch effort to geolocate the project. 
+There are currently ~700 leftover projects from the ~45000 total projects.
+
 
 ## Code
 * `clean_menu_location.R`: This script cleans the menu money data's location column to prepare it for geolocation.

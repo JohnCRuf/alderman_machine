@@ -8,4 +8,4 @@ geolocated_df <- menu_geolocate(df, "from_intersection", 500) %>% #rename lat la
     menu_geolocate(., "to_intersection", 500) %>% #rename lat lat_to_intersection
     rename(lat_to_intersection = lat, lon_to_intersection = long, query_to_intersection = query) 
 
-write_csv(geolocated_df, "../output/geolocated_double_dash_df.csv")
+write_csv(geolocated_df, "../output/geolocated_double_dash_to_df.csv")

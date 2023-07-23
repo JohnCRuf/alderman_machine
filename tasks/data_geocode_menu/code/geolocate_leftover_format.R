@@ -69,4 +69,4 @@ geolocated_df <- menu_geolocate(df, "location_1", 100) %>%  #100 b/c of tougher 
     menu_geolocate(., "location_3", 10) %>% 
     rename(lat_3 = lat, lon_3 = long, query_3 = query) 
 
-write_csv(geolocated_df, "../output/geolocated_from_to_df.csv")
+write_csv(geolocated_df, "../output/geolocated_leftover_df.csv")
