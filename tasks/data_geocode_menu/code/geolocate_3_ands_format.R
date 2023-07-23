@@ -2,8 +2,6 @@ library(tidyverse)
 library(tidygeocoder)
 source("geolocate_function.R")
 df <- read_csv("../input/df_with_3_ands.csv")
-#filter to 100
-df <- df %>% filter(row_number() <= 100)
 
 geolocated_df <- menu_geolocate(df, "intersection_1", 100) %>%  #100 b/c of tougher geocoding.
     rename(lat_1 = lat, lon_1 = long, query_1 = query) %>%
