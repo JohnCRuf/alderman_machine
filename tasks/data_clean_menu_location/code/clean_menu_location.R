@@ -290,23 +290,6 @@ through_address_df <- leftover_df %>%
 through_address_sum1 <- sum(through_address_df$est_cost)
  leftover_df <- leftover_df %>%
    anti_join(through_address_df)
-#if there is only 1 ; or : in location, then delete everything after ;|: otherwise keep everything after ;|:
-through_address_df <- through_address_df %>%
-  mutate(location = ifelse(str_count(location, ";|:") == 1, str_replace(location, ";|:.*", ""),location))
-#if there is a ; or : in location, then split the row into multiple rows with the est_cost divided by the number of rows and each location is one of the split locations
-through_address_df <- through_address_df %>%
-  rowwise() %>%
-  mutate(
-    location_temp = strsplit(location, ";\\s*|:\\s*")
-  ) %>% # split location into multiple rows
-    mutate(num_elements = length(location_temp),
-           num_elements = num_elements - map_int(location_temp, ~ sum(.x == "")),) %>% 
-  unnest(location_temp) %>%
-  group_by(location) %>%
-  mutate(est_cost = est_cost / num_elements,
-         location = location_temp) %>%
-  ungroup() %>%
-  select(-num_elements, -location_temp)
 #create new df where location does not contain -
 through_address_leftover <- through_address_df %>%
   filter(!str_detect(location, "-"))

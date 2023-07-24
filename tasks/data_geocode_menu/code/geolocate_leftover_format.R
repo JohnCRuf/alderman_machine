@@ -26,7 +26,7 @@ replacement_list <- c("Saughnash" = "4321 W Peterson Ave",
 "Ohio Street Dog Park Fence" = "Ohio Place Dog Park", #obvious typo
 "CTA Fullerton Stop- Healy Stone Project. Menu 2003,2004,2005," = "CTA Fullerton Stop",
 "Sheridan Rd @ Castlewood Terrace" = "942 W Castlewood Terrace", #nearest address to intersection-like thing
-"Dog Park across from Clarendon Park" = "Clarendon Community Center" #center that operates the dog park
+"Dog Park across from Clarendon Park" = "Clarendon Community Center", #center that operates the dog park
 "PINE GROVE AVE" = "Hazel & Wilson; Clarendon & Wilson Broadway & Leland; Addison & Pine Grove", #location stored in "type" column
 "Lincoln Ave at Cullom Ave" = "N Lincoln Ave & W Cullom Ave", 
 "Damen @ Byron" = "N Damen Ave & W Byron St",
@@ -47,7 +47,8 @@ replacement_list <- c("Saughnash" = "4321 W Peterson Ave",
 "Estes at RR (1600 W)" = "W Estes Ave & N Glenwood Ave",
 "Touhy at RR (1600 W)" = "W Touhy Ave & Main st", #nearest intersection
 "Birchwood at RR (1600 W)" = "1600 W Birchwood Ave", #close enough
-"2728", "2728-2890 S State"
+"2728", "2728-2890 S State",
+"104 th Ave 'M'" = "104th AVE & S M AVE"
 )
 #apply the replacements to the df, using mutate and ifelse() if location is in the list
 df <- df %>% mutate(location = ifelse(location %in% names(replacement_list), replacement_list[location], location))
@@ -56,17 +57,37 @@ df <- df %>% mutate(location = ifelse(location %in% names(replacement_list), rep
 #remove any text in location after (menu and (TPC
 df <- df %>% mutate(location = str_remove(location, "\\(menu.*"))
 df <- df %>% mutate(location = str_remove(location, "\\(TPC.*"))
-#split the df into rows that contain a - and rows that don't
-df_with_dash <- df %>% filter(str_detect(location, "-"))
-df_without_dash <- df %>% filter(!str_detect(location, "-"))
+#split the df into rows that contain a - between two numbers and rows that don't
+df_with_dash <- df %>% filter(str_detect(location, "^[0-9]{2,5}-[0-9]{1,5}"))
+df_without_dash <- df %>% filter(!str_detect(location, "^[0-9]{2,5}-[0-9]{1,5}"))
+
+#rename location to avoid function name conflict
+df_with_dash <- df_with_dash %>% rename(location_dash = location)
+df_without_dash <- df_without_dash %>% rename(location_no_dash = location)
+
+geolocated_df_no_dash <- menu_geolocate(df_without_dash, "location_no_dash", 10)
+write_csv(geolocated_df_no_dash, "../output/geolocated_leftover_df.csv")
 
 
+#apply the same process of through_address_df to df_with_dash and then geolocate
+df_with_dash <- df_with_dash %>%
+  mutate(
+    N1 = str_extract(location_dash, "^[0-9]{2,5}"), 
+    N2 = str_extract(location_dash, "(?<=-)[0-9]{1,5}"),
+    street = str_extract(location_dash, "[A-Z].*")
+  )
 
-geolocated_df <- menu_geolocate(df, "location_1", 100) %>%  #100 b/c of tougher geocoding.
-    rename(lat_1 = lat, lon_1 = long, query_1 = query) %>%
-    menu_geolocate(., "location_2", 10) %>% 
-    rename(lat_2 = lat, lon_2 = long, query_2 = query) %>%
-    menu_geolocate(., "location_3", 10) %>% 
-    rename(lat_3 = lat, lon_3 = long, query_3 = query) 
+df_with_dash <- df_with_dash %>%
+  mutate(
+    N2 = ifelse(str_length(N1) > str_length(N2), paste0(substr(N1, 1, str_length(N1)-str_length(N2)), N2), N2),
+    start_address = ifelse(str_length(N1) == str_length(N2), paste0(N1, " ", street), NA_character_),
+    end_address = ifelse(str_length(N1) == str_length(N2), paste0(N2, " ", street), NA_character_)
+  ) %>%
+  select(-N1, -N2, -street)
 
-write_csv(geolocated_df, "../output/geolocated_leftover_df.csv")
+geolocated_df_dash <- menu_geolocate(df_with_dash, "start_address", 10) %>%
+    rename(lat_start = lat, lon_start = long, query_start = query) %>%
+    menu_geolocate(., "end_address", 10) %>%
+    rename(lat_end = lat, lon_end = long, query_end = query)
+
+write_csv(geolocated_df_dash, "../output/geolocated_leftover_df_dash.csv")
