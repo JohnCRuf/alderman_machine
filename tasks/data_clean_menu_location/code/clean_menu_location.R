@@ -105,7 +105,69 @@ location_replacements <- c(
 "E107 Ewing to 1 st alley east" = "ON E 107TH ST FROM S EWING AVE TO S AVE J", #closest intersection
 "63rd St (Wentworth - State)" = "ON W 63RD ST FROM S WENTWORTH AVE TO S STATE ST",
 "Division St., 2400 - 3200 Festival Lights" = "ON W DIVISION ST FROM N WESTERN AVE TO N KEDZIE AVE",
-"Altgeld-Fullerton-Springfield-Harding" = "W ALTGELD ST & N SPRINGFIELD AVE & W FULLERTON AVE & N HARDING AVE"
+"Altgeld-Fullerton-Springfield-Harding" = "W ALTGELD ST & N SPRINGFIELD AVE & W FULLERTON AVE & N HARDING AVE",
+"Pylmouth/Roosevelt N&S of viaduct" = "Plymouth Pedestrian Tunnel",
+"Pulaski and Argyle - SE Corner" = "N Pulaski Rd & W Argyle St",
+"Randolph & Harbor Dr." = "E Randolph St & N Harbor Dr",
+"Paulina and Schubert" = "N Paulina St & W Schubert Ave",
+"Paulina - Moorman to Division" = "ON N PAULINA ST FROM W MOORMAN ST TO W DIVISION ST",
+"Path Restoration at Lincoln Park Zoo" = "Lincoln Park Zoo",
+"Parkside and Wellington" = "N Parkside Ave & W Wellington Ave",
+"Oakley and Race" =  "N OAKLEY BLVD & W RACE AVE",
+"Oak St./Michigan Av/ Rush St." = "ON E OAK ST FROM N MICHIGAN AVE TO N RUSH ST",
+"Rhodes & 67 th/ 67 th/S. Chicago" = "ON S RHODES AVE FROM E 67TH ST TO S CHICAAGO AVE",
+"Richmond & Walton" = "N RICHMOND ST & W WALTON ST",
+"Roscoe St & Campbell Ave between Belmont Ave & Wes" = "W ROSCOE ST & N CAMPBELL AVE",
+"Throop/18" = "S THROOP ST & W 18TH ST",
+"Touhy at RR (1600 W)" = "1600 W Touhy Ave",
+"SW corner of Argyle and N. Troy" = "N Troy St & W Argyle St",
+"Sacremento/Washington" = "N SACRAMENTO BLVD & W WASHINGTON BLVD",
+"Seminary & Maud" = "N SEMINARY AVE & W MAUD AVE",
+"Sheil Park - 3505 N. Southport" = "3505 N Southport Ave",
+"Sherdian-Belmont to Diversey" = "ON N SHERIDAN RD FROM W BELMONT AVE TO W DIVERSEY PKWY",
+"Sheridan Rd @ Castlewood Terrace" = "N Sheridan Rd & W Castlewood Ter",
+"Site Acquisition for community garden - 4228 W. Ogden" = "4228 W Ogden Ave",
+"Southwest corner of DMLKD & 31 st S" = "ON S DR MARTIN LUTHER KING JR DR FROM E 31ST ST TO E 31ST ST",
+"Springfield & Hirsch" = "N SPRINGFIELD AVE & W HIRSCH ST",
+"Springfield and Schubert" = "N SPRINGFIELD AVE & W SCHUBERT AVE",
+"St. Louis & McLean (SW corner)" = "N ST LOUIS AVE & W MCLEAN AVE",
+"St. Louis and Wabansia (SW corner)" = "N ST LOUIS AVE & W WABANSIA AVE",
+"State & Pearson" = "N STATE ST & E PEARSON ST",
+"State St. / North Ave. / Astor St." = "ON E NORTH BLVD FROM N STATE PKWY TO N ASTOR ST", #obvious typo, Astor street doesn't intersect with State st. 
+"State/North/Astor" = "ON E NORTH BLVD FROM N STATE PKWY TO N ASTOR ST",
+"Street Sign at 87 th & Damen/North Beverly Civic Assoc" = "E 87th ST & S Damen Ave",
+"THORNDALE AVE & N KENMORE AVE 6149 N GLENWOOD AVE" = "THORNDALE AVE & N KENMORE AVE",
+"Taylor Street-Western to Ogden" = "ON W TAYLOR ST FROM S WESTERN AVE TO W OGDEN AVE",
+"Taylor-Western to Ogden" = "ON W TAYLOR ST FROM S WESTERN AVE TO W OGDEN AVE",
+"Viaduct art Panel at 53 rd and 55 th St" = "ON S LAKE PARK AVE FROM E 53RD ST TO E 55TH ST", #close enough
+"Victoria/Spaulding & 6123 Ravenswood" = "6123 N Ravenswood Ave",
+"Von Humboldt/Duprey - 2620 W. Hirsch St." = "2620 W Hirsch St",
+"W. 71 st St. / S. Ada" = "W 71st ST & S ADA ST",
+"W. Lawrence and North Troy" = "W LAWRENCE AVE & N TROY ST",
+"W. Wisconsin / Mohawk / Larrabee" = "ON W WISCONSIN ST FROM N MOHAWK ST TO N LARRABEE ST",
+"W57 ST/S Francisco-S Richmond" = "ON W 57TH ST FROM S FRANCISCO AVE TO S RICHMOND ST",
+"WPA-33 rd/Racine to Throop"  = " ON W 33RD ST FROM S RACINE AVE TO S THROOP ST",
+"Wabansia / Hoyne" = "W WABANSIA AVE & N HOYNE AVE",
+"Wacker Dr. near Field Blvd." = "E WACKER DR & S FIELD BLVD",
+"Walnut & St. Louis" = "N WALNUT ST & W ST LOUIS AVE",
+"Washington and Sacramento" = "W WASHINGTON BLVD & N SACRAMENTO BLVD",
+"Washtenaw & LeMoyne" = "N WASHTENAW AVE & W LEMOYNE ST",
+"Washtenaw & Warren" = "N WASHTENAW AVE & W WARREN BLVD",
+"Wellington & Kilpatrick 2011 menu is $5250" = "W WELLINGTON AVE & N KILPATRICK AVE",
+"Wellington & Kilpatrick 2012 menu" = "W WELLINGTON AVE & N KILPATRICK AVE",
+"West Bell Plaine/LaVergne" = "W BELL PL & N LAVERGNE AVE",
+"West End & Kildare" = "W WEST END AVE & N KILDARE AVE",
+"West End & Laramie" = "W WEST END AVE & N LARAMIE AVE",
+"Western & Flournoy - NE corner" = "N WESTERN AVE & W FLOURNOY ST",
+"Western Ave & Congress Parkway" = "N WESTERN AVE & W CONGRESS PKWY",
+"Wilcox and Francisco" = "W WILCOX ST & N FRANCISCO AVE",
+"Winthrop & Winona" = "N WINTHROP AVE & W WINONA ST",
+"Wolcott/22" = "S WOLCOTT AVE & W 22ND ST",
+"from 51 st & Ashland to 63 rd & Peoria" = "ON S ASHLAND AVE FROM W 51ST ST TO W 63RD ST", #close enough
+"106 th/Ewing - 4 corners" = "E 106th ST & S EWING AVE",
+"108 th/Buffalo" = "E 108th ST & S BUFFALO AVE",
+"112 th/Ewing - 4 corners" = "E 112th ST & S EWING AVE",
+"117 th St - 117 th Pl - Lowe - Wallace" = "E 117th ST & S LOWE AVE & E 117th PL & S WALLACE ST"
 )
 
 type_replacements <- c(
@@ -588,8 +650,7 @@ write.csv(df_with_3_ands, "../output/df_with_3_ands.csv", row.names = F)
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3"
 # --------------------
 df_with_2_ands <- leftover_addition_df %>%
-  filter(str_count(location, fixed(" & ")) == 2) %>%
-  mutate(location = str_replace_all(location, "\\(.*?\\)", ""))
+  filter(str_count(location, fixed(" & ")) == 2)
 
 leftover_addition_df <- leftover_addition_df %>%
   anti_join(df_with_2_ands)
@@ -597,7 +658,10 @@ leftover_addition_df <- leftover_addition_df %>%
 df_with_2_ands_replacements <- c(
   "108 th & Buffalo & 104 th Ave 'M'" = "E 108TH ST & S BUFFALO AVE & E 104TH ST",
   "Kedzie & 105 th St. & 107 th St." = "S KEDZIE AVE & W 105TH ST & W 107TH ST",
-  "Victoria & Spaulding & 6123 Ravenswood" = "N VICTORIA ST & N SPAULDING AVE & 6123 N RAVENSWOOD AVE"
+  "Victoria & Spaulding & 6123 Ravenswood" = "N VICTORIA ST & N SPAULDING AVE & 6123 N RAVENSWOOD AVE",
+  "Division & Oakley Blvd. & Leavitt St." = "W DIVISION ST & N OAKLEY BLVD & N LEAVITT ST",
+  "Milwaukee & Wood & Wolcott" = "N MILWAUKEE AVE & N WOOD ST & N WOLCOTT AVE",
+  "Pylmouth & Roosevelt N & S of viaduct"
 )
 #create two new columns for the two intersections and apply generate_intersections to each row
 df_2_results <- df_with_2_ands %>%
