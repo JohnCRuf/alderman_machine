@@ -229,7 +229,7 @@ menu_df <- menu_df %>%
 # split location into multiple rows by : or ; and divide est_cost equally among non-empty rows
 colon_df <- colon_df %>%
   mutate(
-    location_temp = strsplit(location, ":|;"),
+    location_temp = strsplit(location, regex(":|;", ignore_case = T)),
     num_elements = map_int(location_temp, length),
     num_elements = num_elements - map_int(location_temp, ~ sum(.x == "")),
     est_cost = est_cost / num_elements
@@ -553,7 +553,7 @@ df_with_3_ands <- addition_modified_df %>%
 leftover_addition_df <- addition_modified_df  %>%
   anti_join(df_with_3_ands)
   
-generate_intersections <- function(streets) {
+generate_intersections <- function(streets, maxpairs) {
   diag_streets <- c("N MILWAUKEE AV", "N MILWAUKEE AVE","S ARCHER AVE", "S BLUE ISLAND AV", "N CLYBOURN AVE",
    "S HILLCOCK AV", "S GROVE ST", "S ELEANOR ST", "N CALDWELL AVE", "N CALDWELL AVE","N LEOTI AVE",
    "N MAUD AV", "N CLYBORN AV", "N LISTER AV", "N WOLCOTT AV", "N FOREST GLEN AV", "N IONIA AV",
@@ -561,7 +561,7 @@ generate_intersections <- function(streets) {
    "N OWEN AV", "N OLMSTED AV", "N ALGONQUIN AV", "N SHERIDAN RD")
   ns <- streets[substr(streets, 1, 1) %in% c("N", "S")]
   ew <- streets[substr(streets, 1, 1) %in% c("E", "W")]
-  if (any(streets %in% diag_streets)) {
+  if (length(ns) != length(ew)) {
     diag_streets_used <- intersect(diag_streets, streets)
     ns <- c(ns, diag_streets_used)
     ew <- c(ew, diag_streets_used)
@@ -570,15 +570,18 @@ generate_intersections <- function(streets) {
   ns <- unique(ns)
   ew <- unique(ew)
   intersect_pairs <- expand.grid(ns, ew)
+  #remove all pairs after pair 4
   intersect_pairs <- paste(intersect_pairs$Var1, intersect_pairs$Var2, sep=" & ")
   #remove any pairs where the same street comes before and after the &
   intersect_pairs_split <- str_split_fixed(intersect_pairs, " & ", 2)
   intersect_pairs <- intersect_pairs[intersect_pairs_split[, 1] != intersect_pairs_split[, 2]]
   #if any of streets have 3-5 numbers in them, add the street to intersect_pairs
-  streets_with_3_5_numbers <- streets[str_count(streets, "[0-9]") %in% 3:5]
+  streets_with_3_5_numbers <- streets[str_count(streets, "[0-9] [N|S|E|W]") %in% 3:5]
   if (length(streets_with_3_5_numbers) > 0) {
     intersect_pairs <- c(intersect_pairs, streets_with_3_5_numbers)
   }
+  #restrict intersect_pairs to maxpairs
+  intersect_pairs <- intersect_pairs[1:maxpairs]
   return(intersect_pairs)
 }
 
@@ -612,7 +615,7 @@ df_results <- df_with_3_ands %>%
     location = str_split(location, " & ")
   ) %>%
   rowwise() %>%
-  mutate(location = list(generate_intersections(unlist(location)))) %>%
+  mutate(location = list(generate_intersections(unlist(location), 4))) %>%
   unnest(location) %>%
   mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% 4) + 1)) %>%
   pivot_wider(names_from = intersection_number, values_from = location)
@@ -670,7 +673,7 @@ df_2_results <- df_with_2_ands %>%
     location = str_split(location, " & ")
   ) %>%
   rowwise() %>%
-  mutate(location = list(generate_intersections(unlist(location)))) %>%
+  mutate(location = list(generate_intersections(unlist(location),2))) %>%
   unnest(location) %>%
   mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% 2) + 1)) %>%
   pivot_wider(names_from = intersection_number, values_from = location) 
@@ -717,7 +720,7 @@ df_mult_results <- df_with_mult_ands %>%
     location = str_split(location, " & ")
   ) %>%
   rowwise() %>%
-  mutate(location = list(generate_intersections(unlist(location)))) %>%
+  mutate(location = list(generate_intersections(unlist(location), max_ands))) %>%
   unnest(location) %>%
   mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% max_ands) + 1)) %>%
   pivot_wider(names_from = intersection_number, values_from = location)
