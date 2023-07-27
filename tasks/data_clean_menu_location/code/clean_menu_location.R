@@ -677,6 +677,10 @@ df_with_2_ands_replacements <- c(
 #apply replacements
 df_with_2_ands <- df_with_2_ands %>%
   mutate(location = ifelse(location %in% names(df_with_2_ands_replacements), df_with_2_ands_replacements[location], location))
+
+#replace all instances of DEAD END with nothing
+df_with_2_ands <- df_with_2_ands %>%
+  mutate(location = str_replace(location, "DEAD END", ""))
 #create two new columns for the two intersections and apply generate_intersections to each row 
 df_2_results <- df_with_2_ands %>%
   mutate(
@@ -688,9 +692,6 @@ df_2_results <- df_with_2_ands %>%
   unnest(location) %>%
   mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% 2) + 1)) %>%
   pivot_wider(names_from = intersection_number, values_from = location) 
-#replace all instances of DEAD END with nothing
-df_with_2_ands <- df_with_2_ands %>%
-  mutate(location = str_replace(location, "DEAD END", ""))
 
 
 df_with_2_ands <- df_with_2_ands %>%
