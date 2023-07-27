@@ -10,13 +10,13 @@
 1,"Miscellaneous-CDOT","Hass Park",2008,50000,"Hass Park"
 1,"Chicago Park District","Dean Park & Commercial Park",2008,72500,"Dean Park"
 1,"Chicago Park District","Dean Park & Commercial Park",2008,72500,"Commercial Park"
-1,"Schools","Pritzker Playground (Menu 2010, 2009,",2008,169.5,NA
-1,"Schools","Pritzker Playground (Menu 2010, 2009,",2008,169.5,NA
-1,"Schools","Pritzker Playground (Menu 2010, 2009,",2009,55.5,NA
-1,"Schools","Pritzker Playground (Menu 2010, 2009,",2009,55.5,NA
+1,"Schools","Pritzker Playground (Menu 2010 , 2009 ,",2008,169.5,NA
+1,"Schools","Pritzker Playground (Menu 2010 , 2009 ,",2008,169.5,NA
+1,"Schools","Pritzker Playground (Menu 2010 , 2009 ,",2009,55.5,NA
+1,"Schools","Pritzker Playground (Menu 2010 , 2009 ,",2009,55.5,NA
 1,"Chicago Park District","Haas Park Fieldhouse",2010,2e+05,"Haas Park"
-1,"Schools","Pritzker Playground (Menu 2010, 2009,",2010,23576.5,NA
-1,"Schools","Pritzker Playground (Menu 2010, 2009,",2010,23576.5,NA
+1,"Schools","Pritzker Playground (Menu 2010 , 2009 ,",2010,23576.5,NA
+1,"Schools","Pritzker Playground (Menu 2010 , 2009 ,",2010,23576.5,NA
 1,"POD Camera","Wicker Park Fieldhouse",2011,22500,"Wicker Park"
 1,"Schools","LaSalle II Elementary School Playground (TPC = $25",2011,1037,"LaSalle II Elementary School"
 1,"Chicago Park District","Haas Park Field House",2012,605000,"Haas Park Field"
@@ -90,7 +90,7 @@
 25,"Chicago Park District","Sheridan Park - 2012 ",2012,9724,"Sheridan Park"
 25,"Chicago Park District","Harrison Park - Athletic Field",2012,1e+05,"Harrison Park"
 25,"School Projects","Benito Juarez High School - public art",2012,50000,"Benito Juarez High School"
-25,"Chicago Park District","Harrison Park (2012-2016 - TPC = $500000)",2013,1e+05,"Harrison Park"
+25,"Chicago Park District","Harrison Park (2012-2016 - TPC = $500000 )",2013,1e+05,"Harrison Park"
 25,"Chicago Park District","Sheridan Park ($175276 2012 + $185000 2013 menu)",2013,360276,"Sheridan Park"
 26,"Miscellaneous-CDOT","Humboldt Park Improvements",2006,155000,"Humboldt Park"
 26,"Chicago Park District","Humboldt Park Boat House",2006,25000,"Humboldt Park"
@@ -158,10 +158,12 @@
 43,"Chicago Park District","Jonquil Park",2008,27225,"Jonquil Park"
 43,"Miscellaneous-CDOT","Armitage-Larrabee Park",2009,243,"Armitage-Larrabee Park"
 43,"Miscellaneous-CDOT","Street Lighting at Chicago Park District location",2010,45000,"Street Lighting at Chicago Park"
-43,"Miscellaneous-CDOT","Oz Park",2010,17541,"Oz Park"
+43,"Miscellaneous-CDOT","Armitage-Larrabee Park (2009 , 2008 Menu)",2010,8770.5,"Armitage-Larrabee Park"
+43,"Miscellaneous-CDOT","Armitage-Larrabee Park (2009 , 2008 Menu)",2010,8770.5,NA
 43,"Chicago Park District","Lincoln Park Zoo",2010,55000,"Lincoln Park"
 43,"Chicago Park District","Lincoln park Conservatory",2010,5000,"Lincoln park"
-43,"Chicago Park District","Wiggly Field",2012,10000,"Wiggly Field"
+43,"Chicago Park District","Wiggly Field - (Park #425 ) - Schubert & Sheffield",2012,5000,"Wiggly Field"
+43,"Chicago Park District","Wiggly Field - (Park #425 ) - Schubert & Sheffield",2012,5000,NA
 43,"Lincoln Park Conservatory Park - Benches","Lincoln Park Conservatory",2019,10000,"Lincoln Park"
 44,"Chicago Park District","Roscoe Playlot",2005,1e+05,NA
 44,"Chicago Park District","Hawthorne School",2007,147875,"Hawthorne School"
