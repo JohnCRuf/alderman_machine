@@ -10,23 +10,12 @@ create_sf_lines <- function(df, lat1, lon1, lat2, lon2, crs) {
 }
 
 geomatch_lines <- function(lines, map) {
-  # Ensure both sf objects have the same CRS
-  if(st_crs(lines) != st_crs(map)) {
-    map <- st_transform(map, st_crs(lines))
-  }
-
   # Intersect the lines with the map
   intersections <- st_intersection(lines, map)
 
   # Calculate the length of each intersection and of each original line
   intersections <- intersections %>%
-    mutate(intersect_length = st_length(geometry)) %>%
-    left_join(lines %>% mutate(line_length = st_length(geometry)), by = c("index" = "index"))
-
-  # Calculate the proportion of each line in each polygon
-  intersections <- intersections %>%
-    mutate(proportion = intersect_length / line_length) %>%
-    select(index, proportion)
+    mutate(intersect_length = st_length(geometry)) 
 
   return(intersections)
 }
