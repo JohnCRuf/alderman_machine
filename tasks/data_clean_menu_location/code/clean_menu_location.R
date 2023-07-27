@@ -10,7 +10,8 @@ source("ordinal_indicator_fn.R")
 menu_df <- read_csv("../input/menu_df.csv")
 
 # Step 1: Apply manually edit locations with weird acronyms and typos
-# Define lookup tables for replacements
+# Define lookup tables for replacements 
+#TODO: replace for "E 97TH ST & E 98TH ST & S AVENUE HS AVENUE G", "Kimball & Wabansia Ave &"
 location_replacements <- c(
   "N--N--N--N" = "N Oakley -- N Oakley -- N Oakley -- N Oakley", # from bug in data processing
   "Diversey Ave Bridge" = "W Diversey Ave & W Logan Blvd", # nearest intersection
@@ -211,6 +212,13 @@ menu_df <- menu_df %>%
     #get rid of POD camera at . or POD Camera - ignore case
     location = str_replace(location, regex("POD Camera.*", ignore_case = T), "")
   )
+#replace HS AVENUE to H & S AVENUE
+menu_df$location <- str_replace_all(menu_df$location, "HS AVENUE", "H & S AVENUE")
+#replace WE 37TH ST to & E 37TH ST
+menu_df$location <- str_replace_all(menu_df$location, "WE 37TH ST", "& E 37TH ST")
+#replace  "(S) SD" with ""
+menu_df$location <- str_replace_all(menu_df$location, " \\(S\\) SD", "")
+
 
 # remove any spacing issues, but don't replace ordinal indicators and dashes between numbers
 menu_df$location <- str_replace_all(menu_df$location, "(\\d)(?!(?:ST|ND|RD|TH|-))(\\D)", "\\1 \\2")
@@ -660,6 +668,7 @@ write.csv(df_with_3_ands, "../output/df_with_3_ands.csv", row.names = F)
 # --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3"
 # --------------------
+#TODO: A lot of bugs are coming from the fact that we're not exploiting the numbers in () as much as we should. Unlike 3 ands these ones are relatively easy to use. 
 df_with_2_ands <- leftover_addition_df %>%
   filter(str_count(location, fixed(" & ")) == 2)
 
@@ -712,7 +721,9 @@ intersection_replacements_2_ands <- c( #Some intersections don't exist, so they 
   "N WOLCOTT AV & W CORNELIA AVE" = "1900 W CORNELIA AVE",
   "N CALDWELL AV & W THORNDALE AV" = "5803 N CALDWELL AVE",
   "S WENTWORTH AV & W 25 TH PL" = "200 W 25TH PL",
-  "N IONIA AV & W PETERSON AV" = "6108 N FOREST GLEN AVE"
+  "N IONIA AV & W PETERSON AV" = "6108 N FOREST GLEN AVE",
+  "S RACINE AVE & W 121st ST" = "12100 S RACINE AVE",
+  "W THOME AVE & W 6000 N NORTHWEST HWY" = "7226 W THOME AVE"
 )
 #replace any intersections in intersection_replacements_2_ands
 df_with_2_ands <- df_with_2_ands %>%
