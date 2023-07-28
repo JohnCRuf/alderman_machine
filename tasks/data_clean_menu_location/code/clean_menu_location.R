@@ -716,8 +716,8 @@ df_with_2_ands <- df_with_2_ands %>%
 df_with_2_ands <-  df_with_2_ands %>%
   mutate(location_temp = location) %>%
   separate(location_temp, into = c("location_1", "location_2", "location_3"), sep = " & ", fill = "right") %>%
-  mutate(intersection_1 = ifelse(is.na(intersection_1) & is.na(intersection_2), paste(location_1, location_2, sep = " & "), intersection_1)) %>%
-  mutate(intersection_2 = ifelse(is.na(intersection_1) & is.na(intersection_2), paste(location_1, location_3, sep = " & "), intersection_2)) %>%
+  mutate(intersection_1 = ifelse(intersection_1 == "NA" & intersection_2 == "NA", paste(location_1, location_2, sep = " & "), intersection_1)) %>%
+  mutate(intersection_2 = ifelse(intersection_2 == "NA", paste(location_1, location_3, sep = " & "), intersection_2)) %>%
   select(-location_1, -location_2, -location_3)
   
 
@@ -733,7 +733,7 @@ df_with_2_ands <- df_with_2_ands %>%
   separate(location_temp, into = c("location_1", "location_2", "location_3"), sep = " & ", extra = "merge") %>%
   mutate(
     intersection_1 = ifelse(!is.na(inter_num_1), paste(inter_num_1, location_1), intersection_1),
-    intersection_2 = ifelse(!is.na(inter_num_2), paste(inter_num_2, location_2), intersection_2)
+    intersection_2 = ifelse(!is.na(inter_num_2), paste(inter_num_2, location_1), intersection_2)
   ) %>%
   select(-inter_num_1, -inter_num_2, -location_1, -location_2, -location_3)
 
