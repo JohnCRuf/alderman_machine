@@ -712,25 +712,36 @@ df_with_2_ands <- df_with_2_ands %>%
   mutate(intersection_1 = map_chr(intersection_1, ~ paste(.x, collapse = "; "))) %>%
   mutate(intersection_2 = map_chr(intersection_2, ~ paste(.x, collapse = "; "))) 
 
+#split create location temp, split into location_1, location_2, and location_3, and then if intersection_1 and intersection_2 are both empty replace intersection_1 with "location_1 & location_2" and intersection_2 with "location_1 & location_3" noting the paste with &
+df_with_2_ands <-  df_with_2_ands %>%
+  mutate(location_temp = location) %>%
+  separate(location_temp, into = c("location_1", "location_2", "location_3"), sep = " & ", fill = "right") %>%
+  mutate(intersection_1 = ifelse(is.na(intersection_1) & is.na(intersection_2), paste(location_1, location_2, sep = " & "), intersection_1)) %>%
+  mutate(intersection_2 = ifelse(is.na(intersection_1) & is.na(intersection_2), paste(location_1, location_3, sep = " & "), intersection_2)) %>%
+  select(-location_1, -location_2, -location_3)
+  
+
 #if (#### N|S|E|W) is in intersection_1, replace with #### location[1] where #### comes from searching a number immediately after ( such as "(3300"
+#We do this because using numbers in () is more accurate than using the street name, and this dataframe happens to have a lot of numbers in ().
+
 df_with_2_ands <- df_with_2_ands %>%
   mutate(
-    intersection_1 = ifelse(
-      str_detect(intersection_1, "\\(\\d+ [N|S|E|W]\\)"),
-      str_replace(
-        intersection_1, 
-        "\\(\\d+ [N|S|E|W]\\)",
-        paste0("(", str_extract(intersection_1, "\\d+ [N|S|E|W]"), " ", word(location[1], 2), ")")
-      ),
-      intersection_1
-    )
-  )
+    location_temp = location,
+    inter_num_1 = str_remove_all(str_extract(intersection_1, "\\(\\d+"), "[()]"),
+    inter_num_2 = str_remove_all(str_extract(intersection_2, "\\(\\d+"), "[()]")
+  ) %>%
+  separate(location_temp, into = c("location_1", "location_2", "location_3"), sep = " & ", extra = "merge") %>%
+  mutate(
+    intersection_1 = ifelse(!is.na(inter_num_1), paste(inter_num_1, location_1), intersection_1),
+    intersection_2 = ifelse(!is.na(inter_num_2), paste(inter_num_2, location_2), intersection_2)
+  ) %>%
+  select(-inter_num_1, -inter_num_2, -location_1, -location_2, -location_3)
 
 
 #remove all text in () from intersection_1 and intersection_2
-df_with_2_ands <- df_with_2_ands %>%
-  mutate(intersection_1 = str_replace_all(intersection_1, "\\(.*?\\)", "")) %>%
-  mutate(intersection_2 = str_replace_all(intersection_2, "\\(.*?\\)", ""))
+# df_with_2_ands <- df_with_2_ands %>%
+#   mutate(intersection_1 = str_replace_all(intersection_1, "\\(.*?\\)", "")) %>%
+#   mutate(intersection_2 = str_replace_all(intersection_2, "\\(.*?\\)", ""))
 
 intersection_replacements_2_ands <- c( #Some intersections don't exist, so they need to be replaced
   "N WOLCOTT AV & W CORNELIA AVE" = "1900 W CORNELIA AVE",
