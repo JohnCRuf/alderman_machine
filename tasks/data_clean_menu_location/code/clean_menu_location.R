@@ -712,6 +712,21 @@ df_with_2_ands <- df_with_2_ands %>%
   mutate(intersection_1 = map_chr(intersection_1, ~ paste(.x, collapse = "; "))) %>%
   mutate(intersection_2 = map_chr(intersection_2, ~ paste(.x, collapse = "; "))) 
 
+#if (#### N|S|E|W) is in intersection_1, replace with #### location[1] where #### comes from searching a number immediately after ( such as "(3300"
+df_with_2_ands <- df_with_2_ands %>%
+  mutate(
+    intersection_1 = ifelse(
+      str_detect(intersection_1, "\\(\\d+ [N|S|E|W]\\)"),
+      str_replace(
+        intersection_1, 
+        "\\(\\d+ [N|S|E|W]\\)",
+        paste0("(", str_extract(intersection_1, "\\d+ [N|S|E|W]"), " ", word(location[1], 2), ")")
+      ),
+      intersection_1
+    )
+  )
+
+
 #remove all text in () from intersection_1 and intersection_2
 df_with_2_ands <- df_with_2_ands %>%
   mutate(intersection_1 = str_replace_all(intersection_1, "\\(.*?\\)", "")) %>%
