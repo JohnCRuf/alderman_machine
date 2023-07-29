@@ -46,15 +46,10 @@ write_csv(df_single, "../output/geomatched_2_ands_singles.csv")
 #now mutate and geomatch df_line
 df_line <- df_line %>% mutate(id = 1:nrow(df_line))
 df_line_sf <- create_sf_lines(df_line, "lat_1", "lon_1", "lat_2", "lon_2", 4326)
-#generate line length
-df_line_sf <- df_line_sf %>% mutate(total_length = st_length(geometry))
-#keep only 100 rows for testing
-df_line_sf_test <- df_line_sf %>% filter(id <= 100)
-map <- map_2003_2011 
-lines <- df_line_sf_test
+#keep 
 
-df_line_matched <- geomatch_lines(df_line_sf, map_2003_2011)
+df_line_matched <- geomatch_lines(df_line_sf, map_2003_2011, 200)
 #convert total length to double
 df_line_matched <- df_line_matched %>% mutate(total_length = as.double(total_length))
-#filter to total length > 1000
-df_line_matched <- df_line_matched %>% filter(total_length > 1000)
+#sort df_line_matched by total_length largest to smallest
+df_line_matched <- df_line_matched %>% arrange(desc(total_length))
