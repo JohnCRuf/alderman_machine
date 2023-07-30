@@ -218,6 +218,9 @@ menu_df$location <- str_replace_all(menu_df$location, "HS AVENUE", "H & S AVENUE
 menu_df$location <- str_replace_all(menu_df$location, "WE 37TH ST", "& E 37TH ST")
 #replace  "(S) SD" with ""
 menu_df$location <- str_replace_all(menu_df$location, " \\(S\\) SD", "")
+#remove any " - 4 corners" from location
+menu_df$location <- str_replace_all(menu_df$location, " - 4 corners", "")
+
 
 
 # remove any spacing issues, but don't replace ordinal indicators and dashes between numbers
@@ -529,7 +532,7 @@ write.csv(from_to_df, "../output/from_to_df.csv", row.names = F)
 # --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3 & N/S/E/W road_4"
 # --------------------
-#remove any badly formatted lists with ones seperated by &
+#remove any badly formatted lists with ones separated by &
 leftover_df <- leftover_df %>%
 mutate(location =  str_replace_all(location, "([)A-Z]) ([NSEW] )", "\\1 & \\2")) 
 
@@ -668,7 +671,6 @@ write.csv(df_with_3_ands, "../output/df_with_3_ands.csv", row.names = F)
 # --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3"
 # --------------------
-#TODO: A lot of bugs are coming from the fact that we're not exploiting the numbers in () as much as we should. Unlike 3 ands these ones are relatively easy to use. 
 df_with_2_ands <- leftover_addition_df %>%
   filter(str_count(location, fixed(" & ")) == 2)
 
@@ -775,24 +777,29 @@ df_and_dash <- leftover_addition_df %>%
 #now process similar to "double-dash to" where "--" is & and "to" is "-"
 leftover_addition_df <- leftover_addition_df %>%
   anti_join(df_and_dash)
+#Fix formatting
+and_dash_replacements <- c(
+  "Clybourn & Leavitt to Hoyne-alley apron change orde" = "N CLYBOURN AVE & N LEAVITT ST - N HOYNE AVE",
+  "Jackson - between Damen & Ogden" = "W JACKSON BLVD & S DAMEN AVE - S OGDEN AVE",
+  "Congress Pkwy - Michigan & Wells" = "W CONGRESS PKWY & S MICHIGAN AVE - S WELLS ST")
+and_dash_removal <- c(
+  "85 Trees & 53 concrete cut-outs"
+)
 
-#for each row, split location by " & " and  "-" to create a list
-#then generate intersection_1 by combining the first and second element of the list with " & " between them
-#then generate intersection_2 by combining the first and third element of the list with " & " between them
 df_and_dash <- df_and_dash %>%
   mutate(
     id = row_number(),
-    location = str_split(location, " & ")
-  ) %>%
-  rowwise() %>%
-  mutate(location = list(generate_intersections(unlist(location), 2))) %>%
-  unnest(location) %>%
-  mutate(intersection_number = paste0("intersection_", ((row_number() - 1) %% 2) + 1)) %>%
-  pivot_wider(names_from = intersection_number, values_from = location) %>%
-  mutate(intersection_1 = map_chr(intersection_1, ~ paste(.x, collapse = "; "))) %>%
-  mutate(intersection_2 = map_chr(intersection_2, ~ paste(.x, collapse = "; ")))
-
-
+    location_temp = location) %>%
+    separate(location_temp, into = c("location_1", "location_2", "location_3"), sep = " & |-", extra = "merge") %>%
+  mutate(intersection_1 = paste(location_1, location_2, sep = " & "),
+         intersection_2 = paste(location_1, location_3, sep = " & ")) %>%
+  select(-location_1, -location_2, -location_3, -id)
+#apply the ordinal indicator function to intersection_1 and intersection_2
+for (i in 1:2) {
+  var <- paste0("intersection_", i)
+  df_and_dash <- add_ordinal_indicator(df_and_dash, var)
+}
+write.csv(df_and_dash, "../output/and_dash_df.csv", row.names = F)
 
 # --------------------
 # Location Data of format "# N/S/E/W road_1 (& or ; or :) N/S/E/W road_2
