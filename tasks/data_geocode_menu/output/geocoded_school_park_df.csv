@@ -23,8 +23,8 @@ ward,type,location,year,est_cost,school_park_name,lat,long,query
 26,Schools,Cameron School - 1234 N. Monticllo,2011,20000,Cameron School,41.9040769,-87.7182641,google
 46,Chicago Park District,Carendon Park,2007,300000,Carendon Park,41.9633603,-87.6486024,google
 47,Miscellaneous Other,Chase Park Improvements - 4701 N. Ashland,2012,20000,Chase Park,41.9675376,-87.6682323,google
-25,Chicago Park District,Claremont Playlot Park,2011,25000,Claremont Playlot Park,41.9533793,-87.6872347,google
-25,Chicago Park District,Claremont Playlot Park,2012,75000,Claremont Playlot Park,41.9533793,-87.6872347,google
+25,Chicago Park District,Claremont Playlot Park,2011,25000,Claremont Playlot Park,41.9733474,-87.7421049,google
+25,Chicago Park District,Claremont Playlot Park,2012,75000,Claremont Playlot Park,41.9733474,-87.7421049,google
 46,Chicago Park District,Clarenson Park,2007,124050,Clarenson Park,41.9633603,-87.6486024,google
 1,Chicago Park District,Commercial Park Gym Floor,2005,29000,Commercial Park,41.896629,-87.6738079,google
 1,Chicago Park District,Dean Park & Commercial Park,2008,72500,Commercial Park,41.896629,-87.6738079,google
@@ -156,7 +156,6 @@ ward,type,location,year,est_cost,school_park_name,lat,long,query
 36,Chicago Park District,Shabbona Park Playground - 6935 W. Addison,2011,59422,Shabbona Park,41.9427387,-87.8001607,google
 36,Chicago Park District,Shabbona Park Plaground - 6935 W. Addison,2012,85301,Shabbona Park,41.9427387,-87.8001607,google
 36,Chicago Park District,Shabbona Park,2013,35277,Shabbona Park,41.9427387,-87.8001607,google
-44,Chicago Park District,Sheil Park - 3505 N. Southport,2009,25000,Sheil Park,41.9455104,-87.6636556,google
 25,Chicago Park District,Sheridan Park,2006,10000,Sheridan Park,41.9655201,-87.6629672,google
 25,Chicago Park District,Sheridan Park (also 2010 menu TPC=,2009,100000,Sheridan Park,41.9655201,-87.6629672,google
 25,Chicago Park District,Sheridan Park (also 2009 menu. TPC =,2010,100000,Sheridan Park,41.9655201,-87.6629672,google
@@ -211,7 +210,6 @@ ward,type,location,year,est_cost,school_park_name,lat,long,query
 19,Miscellaneous-Other,Edna White Community Garden,2010,1126,NA,NA,NA,
 19,Miscellaneous-Other,Edna White Community Garden,2011,932,NA,NA,NA,
 19,Miscellaneous Other,Edna White Community Garden,2012,20000,NA,NA,NA,
-22,Miscellaneous Other,Site Acquisition for community garden - 4228 W. Ogden,2012,150000,NA,NA,NA,
 22,Lawndale Triangle Community Garden,Lawndale Triangle Community Garden,2016,13415,NA,NA,NA,
 23,Chicago Park District,Archer Playground,2012,150000,NA,NA,NA,
 32,Chicago Park District,Adams Playground Renovations,2005,70000,NA,NA,NA,

@@ -63,7 +63,7 @@ ward,type,location_no_dash,year,est_cost,lat,long,query
 26,Alley Resurfacing Menu,1615 N LOWELL AVE,2021,25154.14,41.910544379000044,-87.73488885799998,census
 29,Alley Resurfacing Menu,1645 N OAKPARK AVE,2021,21679.305,41.91012148800007,-87.79481555999996,census
 26,Alley Resurfacing Menu,1700 NPULASKI RD,2021,16466.03,41.911813,-87.7266698,google
-15,Alley Resurfacing Menu,1714 W 47 TH ST,2022,25913.175,41.808582426000044,-87.66804060999993,census
+15,Alley Resurfacing Menu,1714 W 47 TH ST,2022,25913.175,41.85699632400008,-87.74321594199995,census
 34,Miscellaneous Other,1720 w Montvale,2012,955,41.68813494600005,-87.66483239099995,census
 49,Miscellaneous Other,1780 W LUNT AVE,2015,6000,42.008962207000025,-87.67577701499994,census
 49,Miscellaneous Other,1781 W LUNT AVE,2015,6000,42.00896453900003,-87.67497166999999,census
@@ -218,8 +218,8 @@ ward,type,location_no_dash,year,est_cost,lat,long,query
 26,Alley Resurfacing Menu,3615 WDICKENS AVE,2022,23288.325,41.9191056,-87.7174288,google
 47,Street Light Upgrade Menu,3634 N WESTERN AVE,2021,500,41.947418705000075,-87.68828125999994,census
 23,Alley Apron Menu,3655 W 60 TH PL,2022,9899.33333333333,41.783333378000066,-87.71450241599996,census
-23,Alley Apron Menu,3700 W 58 TH ST,2022,7864.03,41.78787323100005,-87.71585304399997,census
-23,Alley Apron Menu,3701 W 60 TH PL,2021,8208.67,41.7831221,-87.7157724,google
+23,Alley Apron Menu,3700 W 58 TH ST,2022,7864.03,41.7880915,-87.7158391,google
+23,Alley Apron Menu,3701 W 60 TH PL,2021,8208.67,41.783315765000054,-87.71572071899999,census
 12,Sidewalk Menu,3712 S HONORE ST,2021,3269.635,41.82644961300008,-87.67151467999997,census
 44,Alley Resurfacing Menu,3717 N RACINE AVE,2021,9723.235,41.94954868600007,-87.65921716499997,census
 44,Curb & Gutter Menu,3719 NLAKEWOOD AVE,2021,11836.46,41.9495796,-87.6613624,google
@@ -446,13 +446,11 @@ ward,type,location_no_dash,year,est_cost,lat,long,query
 25,Alley Resurfacing Menu,927 S CARPENTER ST,2021,20074.81,41.86992650900004,-87.65320474999999,census
 4,Alley Resurfacing Menu,936 E 47 TH ST,2021,11377.22,41.80958783300008,-87.60232237899999,census
 10,Sidewalk Menu,9413 S COMMERCIAL AVE,2021,77222.18,41.72422619400004,-87.55110766899998,census
-46,Miscellaneous-CDOT,942 W Castlewood Terrace,2009,250,41.97083713600006,-87.65302504599998,census
-48,Miscellaneous-CDOT,942 W Castlewood Terrace,2007,250,41.97083713600006,-87.65302504599998,census
 44,Alley Resurfacing Menu,946 WDIVERSEY PKWY,2021,15021.36,41.9327425,-87.6533384,google
 21,Street Speed Hump Menu,9656 S UNION AVE,2021,1175,41.71865993900008,-87.64071685099998,census
 48,POD Camera,Argy,2011,1800,NA,NA,google
 26,Chicago Park District,Augusta Pool,2006,20000,41.8991199,-87.7158208,google
-28,Street Light Residential Staggered Piggy Back Menu,AVE (250 N),2021,41570.75,NA,NA,google
+28,Street Light Residential Staggered Piggy Back Menu,AVE (250 N),2021,41570.75,40.7813163,-87.7469859,google
 49,Street Lighting,BELL-BIRCHWOOD TO HOWARD,2005,60000,NA,NA,google
 26,Miscellaneous-Other,Bloomingdale Trail,2008,15000,41.9136553,-87.7201679,google
 48,Miscellaneous-CDOT,Broadway Avenue Study,2009,50000,41.9512089,-87.6496156,google
@@ -536,6 +534,7 @@ ward,type,location_no_dash,year,est_cost,lat,long,query
 25,Miscellaneous-CDOT,Permanent Street Cleaning Signs,2007,101002,41.7679382,-87.8140025,google
 25,Miscellaneous-Other,Pilsen Community,2006,6524,41.857639,-87.659894,google
 25,Miscellaneous Other,Plaza Tenochtitlan - CPAG,2012,85000,NA,NA,google
+2,Miscellaneous-CDOT,Plymouth Pedestrian Tunnel,2006,1377,41.8676101,-87.6285815,google
 49,Miscellaneous-Other,Rogers Park Train Station,2010,78900,42.0091098,-87.6753999,google
 39,Miscellaneous Other,Saugnash Mural,2013,10000,41.9899768,-87.7425332,google
 48,Schools,Senn Academy,2006,25000,41.9890128,-87.6667743,google
@@ -562,7 +561,6 @@ ward,type,location_no_dash,year,est_cost,lat,long,query
 40,Viaduct Improvement Menu,W,2022,5516.764,NA,NA,google
 48,3 LPR Existing POD; 3 LPR w.o Existing POD; 1 POD Camera: Various Locations,W,2021,19988.4285714286,NA,NA,google
 21,Sidewalk Menu - Change Order,W. 101 st Pl. Elizabeth Vincennes,2007,1486,41.7090312,-87.6537646,google
-42,Miscellaneous-CDOT,Wacker Dr. near Field Blvd.,2007,2900,41.8781718,-87.6366732,google
 1,Miscellaneous-Other,West Town Branch Library,2010,500000,41.8935946,-87.6721671,google
 46,Miscellaneous-Other,Wilson Yard Development,2005,63962,41.9619841,-87.6559213,google
 46,Miscellaneous-Other,Wilson Yard Development,2006,120432,41.9619841,-87.6559213,google
