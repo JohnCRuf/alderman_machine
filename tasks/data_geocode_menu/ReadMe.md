@@ -1,5 +1,7 @@
 # data_geolocate_menu
-    This task uses the census and google maps APIs to geolocate each construction project and save the results as a CSV. 
+    This task uses the census and google maps APIs to geolocate each construction project and save the results as a CSV.
+
+    Note that this repo distinguishes between geolocation and geomatching. Geolocation is the process of finding the geographic coordinates of a location from a text format, while geomatching is the process of matching coordinates to a geographic boundary. This task only performs geolocation.
 
 ## Output
 * `geolocated_(format)_df.csv`: A CSV file containing the menu money allocation cost, the ward, year, and the geographic coordinates of the project location for a specific location text format.
