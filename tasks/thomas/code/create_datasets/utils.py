@@ -95,10 +95,10 @@ def fix_address(s1, s2):
 def load_ward_shapefiles():
     import geopandas as gpd
     print('Loading ward shapes...')
-    wards_pre2012 = gpd.read_file('../data/raw/Boundaries - Wards (2003-2015).geojson').change_type('ward', int, ignore_exception='fillna').to_crs(epsg=3857)
+    wards_pre2012 = gpd.read_file('../data/raw/ward_boundaries_2003_2015.geojson').change_type('ward', int, ignore_exception='fillna').to_crs(epsg=3857)
     wards_pre2012 = wards_pre2012[wards_pre2012.ward.notna()]
 
-    wards_post2012 = gpd.read_file('../data/raw/Boundaries - Wards (2015-2023).geojson').change_type('ward', int, ignore_exception='fillna').to_crs(epsg=3857)
+    wards_post2012 = gpd.read_file('../data/raw/ward_boundaries_2015_2023.geojson').change_type('ward', int, ignore_exception='fillna').to_crs(epsg=3857)
     wards_post2012 = wards_post2012[wards_post2012.ward.notna()]
 
     return {
