@@ -11,7 +11,7 @@ menu_df <- read_csv("../input/menu_df.csv")
 
 # Step 1: Apply manually edit locations with weird acronyms and typos
 # Define lookup tables for replacements 
-#TODO: replace for "E 97TH ST & E 98TH ST & S AVENUE HS AVENUE G", "Kimball & Wabansia Ave &"
+#TODO: replace for, "Kimball & Wabansia Ave &"
 location_replacements <- c(
   "N--N--N--N" = "N Oakley -- N Oakley -- N Oakley -- N Oakley", # from bug in data processing
   "Diversey Ave Bridge" = "W Diversey Ave & W Logan Blvd", # nearest intersection
@@ -828,8 +828,8 @@ df_with_mult_ands <- addition_modified_df %>%
 #find the maximum number of & in a row
 max_ands <- max(str_count(df_with_mult_ands$location, fixed("&")))
 
-# leftover_addition_df <- leftover_addition_df %>%
-#   anti_join(df_with_mult_ands)
+leftover_addition_df <- leftover_addition_df %>%
+  anti_join(df_with_mult_ands)
 
 
 df_mult_results <- df_with_mult_ands %>%
@@ -866,6 +866,5 @@ write.csv(df_with_mult_ands, "../output/df_with_mult_ands.csv", row.names = F)
 leftover_df <- leftover_df %>%
   anti_join(addition_df)
 
-rm(leftover_addition_df, addition_df, addition_modified_df)
 # write leftover_df to csv
 write.csv(leftover_df, "../output/leftover_df.csv", row.names = F)
