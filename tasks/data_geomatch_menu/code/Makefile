@@ -23,11 +23,11 @@ all: $(OUTPUTS)
 #OUTPUT RECIPES
 .SECONDEXPANSION:
 ../output/geomatched_%_2003_2011_points.csv ../output/geomatched_%_2003_2011_lines.csv ../output/geomatched_%_2003_2011_shapes.csv: geomatch_%.R $$(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' geomatch_$$*.R) $$(shell grep -o 'geomatch_[A-Za-z_0-9]*\.R' geomatch_$$*.R)  ../temp/ward_precincts_2003_2011 | ../output run.sbatch slurmlogs
-	$(R) --no-job-name $< ../temp/ward_precincts_2003_2011/ward_precincts_2003_2011.shp ../output/geomatched_$*_points.csv ../output/geomatched_$*_lines.csv ../output/geomatched_$*_shapes.csv
+	$(R) --no-job-name $< ../temp/ward_precincts_2003_2011/ward_precincts_2003_2011.shp ../output/geomatched_$*_2003_2011_points.csv ../output/geomatched_$*_2003_2011_lines.csv ../output/geomatched_$*_2003_2011_shapes.csv
 
 .SECONDEXPANSION: #TODO: There's got to be a way to merge these two recipes.
 ../output/geomatched_%_2012_2022_points.csv ../output/geomatched_%_2012_2022_lines.csv ../output/geomatched_%_2012_2022_shapes.csv: geomatch_%.R $$(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' geomatch_$$*.R) $$(shell grep -o 'geomatch_[A-Za-z_0-9]*\.R' geomatch_$$*.R)  ../temp/ward_precincts_2012_2022 | ../output run.sbatch slurmlogs
-	$(R) --no-job-name $< ../temp/ward_precincts_2012_2022/ward_precincts_2012_2022.shp../output/geomatched_$*_points.csv ../output/geomatched_$*_lines.csv ../output/geomatched_$*_shapes.csv
+	$(R) --no-job-name $< ../temp/ward_precincts_2012_2022/ward_precincts_2012_2022.shp ../output/geomatched_$*_2012_2022_points.csv ../output/geomatched_$*_2012_2022_lines.csv ../output/geomatched_$*_2012_2022_shapes.csv
 #TEMP RECIPES
 ../temp/ward_precincts_%: ../input/ward_precincts_%.zip | ../temp
 	unzip -o -d ../temp/ward_precincts_$* $<

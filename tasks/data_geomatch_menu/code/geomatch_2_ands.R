@@ -5,6 +5,7 @@ library(lwgeom)
 library(sf)
 source("geomatch_points_fn.R")
 source("geomatch_lines_fn.R")
+source("map_data_prep_fn.R")
 ARGS<- commandArgs(trailingOnly = TRUE)
 df <- read_csv("../input/geocoded_2_ands_df.csv")
 
@@ -32,28 +33,8 @@ df_line <- df_line %>% filter(!is.na(lat_2) & is.numeric(lat_2) & !is.na(lon_2) 
 df_single <- rbind(df_single_1, df_single_2)
 
 #load either 2003-2011 or 2012-2022 precinct shapefile
-map <- st_read(ARGS[1])
-#print column names in maps to terminal
-print(colnames(map))
-#if ARGS[1] contains the string "2003"
-if (grepl("2003", ARGS[1])) {
-  map <- map %>%
-    rename(
-      ward_locate = WARD,
-      precinct_locate = PRECINCT,
-      ward_precinct_locate = WARD_PRECI
-    )
-    #set crs to 4326
-        map <- st_transform(map, 4326)
-} else {
-  map <- map %>%
-    rename(
-      ward_locate = ward, 
-      precinct_locate = precinct, 
-      ward_precinct_locate = full_text
-    )
-}
-#print, done with renaming
+map <- map_load(ARGS[1])
+
 #feed single addresses into geomatch_single_coordinate
 df_matched_single <-geomatch_single_coordinate(df_single, map, 4326)
 write_csv(df_single, ARGS[2])
