@@ -3,9 +3,11 @@ library(sp)
 library(rgdal)
 library(lwgeom)
 library(sf)
-source("geomatch_single_coordinate_fn.R")
+source("geomatch_points_fn.R")
 source("geomatch_lines_fn.R")
-df <- read_csv("../input/geolocated_2_ands_df.csv")
+ARGS<- commandArgs(trailingOnly = TRUE)
+df <- read_csv("../input/geocoded_2_ands_df.csv")
+
 
 #remove cases where both lat_1 and lat_2 are NA
 df <- df %>% filter(!(is.na(lat_1) & is.na(lat_2)))
@@ -29,42 +31,41 @@ df_line <- df_line %>% filter(!is.na(lat_2) & is.numeric(lat_2) & !is.na(lon_2) 
 #combine df_single_1 and df_single_2
 df_single <- rbind(df_single_1, df_single_2)
 
-#load 2003-2011 precinct shapefile
-map_2003_2011 <- st_read("../temp/ward_precincts_2003_2011/ward_precincts_2003_2011.shp")
-#rename WARD to ward_locate, PRECINCT to precinct_locate, and WARD_PRECI to ward_precinct_locate
-map_2003_2011 <- map_2003_2011 %>% 
-rename(ward_locate_2003 = WARD, 
-precinct_locate_2003 = PRECINCT, 
-ward_precinct_locate_2003 = WARD_PRECI)
-map_2003_2011 <- st_transform(map_2003_2011, 4326)
-
-map_2012_2022 <- st_read("../temp/ward_precincts_2012_2022/ward_precincts_2012_2022.shp")
-#rename WARD to ward_locate, PRECINCT to precinct_locate, and WARD_PRECI to ward_precinct_locate
-map_2012_2022 <- map_2012_2022 %>%
-rename(ward_locate_2012 = WARD,
-precinct_locate_2012 = PRECINCT,
-ward_precinct_locate_2012 = WARD_PRECI)
-map_2012_2022 <- st_transform(map_2012_2022, 4326)
-
+#load either 2003-2011 or 2012-2022 precinct shapefile
+map <- st_read(ARGS[1])
+#print column names in maps to terminal
+print(colnames(map))
+#if ARGS[1] contains the string "2003"
+if (grepl("2003", ARGS[1])) {
+  map <- map %>%
+    rename(
+      ward_locate = WARD,
+      precinct_locate = PRECINCT,
+      ward_precinct_locate = WARD_PRECI
+    )
+    #set crs to 4326
+        map <- st_transform(map, 4326)
+} else {
+  map <- map %>%
+    rename(
+      ward_locate = ward, 
+      precinct_locate = precinct, 
+      ward_precinct_locate = full_text
+    )
+}
+#print, done with renaming
 #feed single addresses into geomatch_single_coordinate
-df_matched_single <-geomatch_single_coordinate(df_single, map_2003_2011, 4326)
-df_matched_single <- geomatch_single_coordinate(df_matched_single, map_2012_2022, 4326)
-write_csv(df_single, "../output/geomatched_2_ands_singles.csv")
+df_matched_single <-geomatch_single_coordinate(df_single, map, 4326)
+write_csv(df_single, ARGS[2])
 
 #now mutate and geomatch df_line
 df_line <- df_line %>% mutate(id = 1:nrow(df_line))
 df_line_sf <- create_sf_lines(df_line, "lat_1", "lon_1", "lat_2", "lon_2", 4326)
 
-df_line_matched <- geomatch_lines(df_line_sf, map_2003_2011, 200)
+df_line_matched <- geomatch_lines(df_line_sf, map, 200)
 df_line_matched <- df_line_matched %>%
  mutate(total_length_2003 = as.double(total_length),
         intersect_length_2003 = as.double(intersect_length)) %>%
  arrange(desc(total_length_2003)) %>%
  select(-total_length, -intersect_length) 
-df_line_matched <- geomatch_lines(df_line_matched, map_2012_2022, 200)
-df_line_matched <- df_line_matched %>%
- mutate(total_length_2012 = as.double(total_length),
-        intersect_length_2012 = as.double(intersect_length)) %>%
- arrange(desc(total_length_2012)) %>%
- select(-total_length, -intersect_length) 
-write_csv(df_line_matched, "../output/geomatched_2_ands_df_lines.csv")
+write_csv(df_line_matched, ARGS[3])
