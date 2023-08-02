@@ -2,39 +2,38 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-OUTPUTS = $(addprefix ../output/geomatched_, $(foreach geo, shapes lines points, 3_ands_df_$(geo).csv 2_ands_df_$(geo).csv \
-and_dash_df_$(geo).csv mult_ands_df_$(geo).csv \
-from_to_df_$(geo).csv normal_address_df_$(geo).csv double_dash_to_df_$(geo).csv \
-intersection_df_$(geo).csv school_park_df_$(geo).csv leftover_df_$(geo).csv through_address_df_$(geo).csv))
+OUTPUTS_shapes_lines_points = $(addprefix ../output/geomatched_, $(foreach geo, shapes lines points, $(foreach years, 2003_2011 2012_2022,  3_ands_$(years)_$(geo).csv  mult_ands_$(years)_$(geo).csv  )))
+OUTPUTS_lines_points = $(addprefix ../output/geomatched_, $(foreach geo, lines points, $(foreach years, 2003_2011 2012_2022, 2_ands_$(years)_$(geo).csv and_dash_$(years)_$(geo).csv \
+from_to_$(years)_$(geo).csv double_dash_to_$(years)_$(geo).csv \
+through_address_$(years)_$(geo).csv)))
+OUTPUTS_points = $(addprefix ../output/geomatched_, $(foreach years , 2003_2011 2012_2022, \
+  normal_address_$(years)_points.csv  intersection_$(years)_points.csv \
+  school_park_$(years)_points.csv leftover_$(years)_points.csv))
+OUTPUTS = $(OUTPUTS_shapes_lines_points) $(OUTPUTS_lines_points) $(OUTPUTS_points)
 
 INPUTS_csv = $(addprefix ../input/geocoded_, 3_ands_df.csv 2_ands_df.csv \
 from_to_df.csv normal_address_df.csv double_dash_to_df.csv \
 intersection_df.csv school_park_df.csv leftover_df.csv through_address_df.csv)
 INPUTS_maps = $(addprefix ../input/, ward_precincts_2003_2011.zip \
 ward_precincts_2012_2022.zip)
-TEMP_maps_2003 = $(addprefix ../temp/ward_precincts_2003_2011/, \
-$(foreach filestub, .shp .shx .sbn .sbx .dbf .prj, ward_precincts_2003_2011$(filestub)))
-TEMP_maps_2012 = $(addprefix ../temp/ward_precincts_2012_2022/, \
-$(foreach filestub, .shp .shx .dbf .prj, ward_precincts_2012_2022$(filestub)))
-TEMP_maps = $(TEMP_maps_2003) $(TEMP_maps_2012)
+
 all: $(OUTPUTS)
-.INTERMEDIATE: $(TEMP_maps) ../temp/ward_precincts_2003_2011 ../temp/ward_precincts_2012_2022
+
 
 #OUTPUT RECIPES
 .SECONDEXPANSION:
-../output/geomatched_%_df_shapes.csv ../output/geomatched_%_df_lines.csv ../output/geomatched_%_df_points.csv: geomatch_%.R $$(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' geomatch_$$*.R) $$(shell grep -o 'geomatch_[A-Za-z_0-9]*\.R' geomatch_$$*.R) $(TEMP_maps)  | ../output run.sbatch slurmlogs 
-	$(R) --no-job-name $<
+../output/geomatched_%_2003_2011_points.csv ../output/geomatched_%_2003_2011_lines.csv ../output/geomatched_%_2003_2011_shapes.csv: geomatch_%.R $$(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' geomatch_$$*.R) $$(shell grep -o 'geomatch_[A-Za-z_0-9]*\.R' geomatch_$$*.R)  ../temp/ward_precincts_2003_2011 | ../output run.sbatch slurmlogs
+	$(R) --no-job-name $< ../temp/ward_precincts_2003_2011/ward_precincts_2003_2011.shp ../output/geomatched_$*_points.csv ../output/geomatched_$*_lines.csv ../output/geomatched_$*_shapes.csv
 
+.SECONDEXPANSION: #TODO: There's got to be a way to merge these two recipes.
+../output/geomatched_%_2012_2022_points.csv ../output/geomatched_%_2012_2022_lines.csv ../output/geomatched_%_2012_2022_shapes.csv: geomatch_%.R $$(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' geomatch_$$*.R) $$(shell grep -o 'geomatch_[A-Za-z_0-9]*\.R' geomatch_$$*.R)  ../temp/ward_precincts_2012_2022 | ../output run.sbatch slurmlogs
+	$(R) --no-job-name $< ../temp/ward_precincts_2012_2022/ward_precincts_2012_2022.shp../output/geomatched_$*_points.csv ../output/geomatched_$*_lines.csv ../output/geomatched_$*_shapes.csv
 #TEMP RECIPES
-$(TEMP_maps_2003): ../temp/ward_precincts_2003_2011/ward_precincts_2003_2011%: ../temp/ward_precincts_2003_2011
-	mv ../temp/ward_precincts_2003_2011/WardPrecincts$* $@
-$(TEMP_maps_2012): ../temp/ward_precincts_2012_2022/ward_precincts_2012_2022%: ../temp/ward_precincts_2012_2022
-	mv ../temp/ward_precincts_2012_2022/geo_export_90b54a76-f42d-472d-bde6-5ca1377ae02a$* $@
-
 ../temp/ward_precincts_%: ../input/ward_precincts_%.zip | ../temp
-	unzip -d ../temp/ward_precincts_$* $<
-
-
+	unzip -o -d ../temp/ward_precincts_$* $<
+	for file in ../temp/ward_precincts_$*/* ; do \
+		mv $$file ../temp/ward_precincts_$*/ward_precincts_$*.`basename $$file | sed 's/.*\.//'`; \
+	done
 #INPUT RECIPES
 $(INPUTS_csv): ../input/%.csv: ../../data_geocode_menu/output/%.csv | ../input
 	ln -s $< $@
