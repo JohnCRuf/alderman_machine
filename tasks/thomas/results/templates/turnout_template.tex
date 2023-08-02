@@ -1,0 +1,30 @@
+{\centering
+\begin{tabular}{lcccc}
+    \toprule
+    & (1) & (2) & (3) & (4) \\
+    & Turnout & Turnout & Turnout & Turnout \\\midrule
+    &$\num{⟪VAR0_MEAN:.2f⟫}$ & $\num{⟪VAR1_MEAN:.2f⟫}$ & $\num{⟪VAR2_MEAN:.2f⟫}$ & $\num{⟪VAR3_MEAN:.2f⟫}$ \\
+    &($\num{⟪VAR0_SE:.2f⟫}$)⟪VAR0_STARS⟫ & ($\num{⟪VAR1_SE:.2f⟫}$)⟪VAR1_STARS⟫ & ($\num{⟪VAR2_SE:.2f⟫}$)⟪VAR2_STARS⟫ & ($\num{⟪VAR3_SE:.2f⟫}$)⟪VAR3_STARS⟫ \\
+    \midrule
+    Controls for $t-1$ turnout & N & Y & N & Y \\
+    Ward FE & N & N & Y & Y \\
+    Time FE & N & N & Y & Y \\
+    \# of elections in bandwidth & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ \\
+    \# of wards in bandwidth & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ \\
+    \bottomrule
+\end{tabular}
+}
+
+\noindent\begin{tabular}{rl}
+    $^{*}:$ & $p<0.1$ \\
+    $^{**}:$ & $p<0.05$ \\
+    $^{***}:$ & $p<0.01$ \\
+\end{tabular}
+
+% \vspace{1em}
+
+\noindent {\small Notes: Results represent the discontinuous change in the dependent variable as the incumbent's victory margin crosses zero. Each entry corresponds to a local linear regression with a triangular kernel and a bandwidth of 0.18. Standard errors are clustered at the ward level. The dependent variable is turnout (measured in the raw number of votes cast for all candidates) in the decisive election (either the general or the runoff). Lagged turnout is the raw number of votes cast in the decisive election in the prior electoral cycle.}
+
+% \vspace{1em}
+
+
