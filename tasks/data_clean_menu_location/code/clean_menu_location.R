@@ -270,7 +270,7 @@ menu_df <- menu_df %>%
 # Location Data of Parks or Schools
 # --------------------
 school_park_df <- menu_df %>%
-  filter(str_detect(location, regex("( garden| school| playground|play lot| playlot| park| field|Beach)", ignore_case = T))) %>% # filter out any "st" or "av
+  filter(str_detect(location, regex("(garden| school| playground|play lot| playlot| park| field|Beach)", ignore_case = T))) %>% # filter out any "st" or "av
   filter(!str_detect(location, regex("( St| Dr.| rd| blvd| BV | av| AVE|Lake Park Av|Central Park|lincoln park w)", ignore_case = T))) %>% # filter out ON FROM TO
   filter(!str_detect(location, regex("( on | from | to |/)", ignore_case = T))) %>%
   filter(!str_detect(location, regex("(parkway|parkside|parking)", ignore_case = T)))
@@ -278,34 +278,44 @@ school_park_df_sum <- sum(school_park_df$est_cost) #saving for later assertion
 
 leftover_df <- menu_df %>%
   anti_join(school_park_df)
+#create new variable called school_park_name that is location
+school_park_df <- school_park_df %>%
+  mutate(school_park_name = location)
 school_replace_vector <- c("Supera" = "Supera Park",
                     "Swift and Pierce schools" = "Swift Elementary School & Pierce Elementary School",
                     "Path Restoration at Lincoln Park Zoo" = "Lincoln Park Zoo",
                     "Restoration of Door at the Alfred Lily Pool at the Lincoln Park Conserancy" = "Lincoln park Conservatory",
                     "Donoghue and Price Schools - murals" = "Donoghue Elementary School and Price Elementary School",
                     "Piotrowsi Park - Addt'l lighting and equipment" = "Piotrowski Park",
-                    " and " = " & ")
+                    " and " = " & ",
+                    "PARKAVE" = "PARK AVE",
+                    "Playlot" = "Park",
+                    "Play lot" = "Park")
 
 school_detect_vector <- c("Ravenswood School" = "Ravenswood School",
                    "Valley Forge Field House" = "Valley Forge Park",
                    "Edna White Garden" = "Edna White Community Garden",
-                   "Kathy Osterman Beach House" = "Kathy Osterman Beach House")
+                   "Kathy Osterman" = "Kathy Osterman Beach House",
+                   "Pritzker Playground" = "Pritzker Park",
+                   "Micek Playground" = "Micek Park",
+                   "Wiggly Field" = "Wiggly Field",
+                   "Lincoln Square Community Garden" = "Lincoln Square Community Garden")
 
 school_exact_match_vector <- c("5861 N. Kostner (Sauganash Park)" = "Sauganash Park",
                         "5100 N. Ridgeway - Eugene Field" = "Eugene Field",
                         "Brooks Park- tennis cours surface and fence repair" = "Brooks Park",
                         "Armitage-Larrabee Park (2009, 2008 Menu)" = "Oz Park",
-                        "Wiggly Field - (Park #425) - Schubert and Sheffield" = "Wiggly Field")
+                        "Forest Glen Playlot" = "Forest Glen Park")
 
 school_park_df <- replace_strings_in_df(school_park_df, 
-                                        location,
+                                        school_park_name,
                                         school_replace_vector, 
                                         school_detect_vector, 
                                         school_exact_match_vector)
 # eliminate implicit lists in location:
 school_park_df <- school_park_df %>% 
   rowwise() %>%
-  mutate(location_temp = strsplit(location, ",\\s*|\\s*&\\s*|;\\s*")) %>%
+  mutate(location_temp = strsplit(school_park_name, ",\\s*|\\s*&\\s*|;\\s*")) %>%
   mutate(num_elements = length(location_temp)) %>%
   unnest(location_temp) %>%
   group_by(location_temp) %>%
@@ -316,27 +326,25 @@ school_park_df <- school_park_df %>%
 # remove irrelevant information
 school_park_df <- school_park_df %>%
   mutate(
-    location_2 = str_replace_all(location_temp, "\\(.*?\\)", ""), # remove text in parentheses
-    location_2 = str_replace_all(location_2, "\\(also .*?", ""), # remove text in parentheses
-    location_2 = str_replace(location_2, "(\\(TPC).*", ""), # remove TPC
-    location_2 = str_replace(location_2, "(\\)TPC).*", ""), # remove typo TPC
-    location_2 = str_replace(location_2, "Hih", "High"), # remove typo 
-    location_2 = ifelse(str_detect(location_2, " Campus Park"),
-      location_2,
-      str_replace(location_2, " -.*", "")
+    school_park_name = str_replace_all(location_temp, "\\(.*?\\)", ""), # remove text in parentheses
+    school_park_name = str_replace_all(school_park_name , "\\(also .*?", ""), # remove text in parentheses
+    school_park_name = str_replace(school_park_name , "(\\(TPC).*", ""), # remove TPC
+    school_park_name = str_replace(school_park_name , "(\\)TPC).*", ""), # remove typo TPC
+    school_park_name = str_replace(school_park_name , "Hih", "High"), # remove typo 
+    school_park_name = ifelse(str_detect(school_park_name , " Campus Park"),
+      school_park_name,
+      str_replace(school_park_name , " -.*", "")
     ),
-    last_keyword_pos = map_int(location_2, last_keyword_position),
-    school_park_name = map2_chr(location_2, last_keyword_pos, ~ ifelse(is.na(.y), NA_character_, str_sub(.x, end = .y)))
+    last_keyword_pos = map_int(school_park_name , last_keyword_position),
+    school_park_name = map2_chr(school_park_name, last_keyword_pos, ~ ifelse(is.na(.y), NA_character_, str_sub(.x, end = .y)))
   ) %>% # extract text before "school" or "park"
   # now we split the rows that contain multiple schools
-  select(-location_2, -last_keyword_pos, -location_temp)
-
+  select(-last_keyword_pos, -location_temp)
+#if school_park_name is NA, replace with location
+school_park_df <- school_park_df %>%
+  mutate(school_park_name = ifelse(is.na(school_park_name), location, school_park_name))
 school_park_df_sum2 <- sum(school_park_df$est_cost)
 assert_that(school_park_df_sum == school_park_df_sum2) 
-
-#If location contains the phrase "Sheridan Park" set school_park_name to "Sheridan (Philip Henry) Park"
-school_park_df <- school_park_df %>%
-  mutate(school_park_name = ifelse(str_detect(location, "Sheridan Park"), "Sheridan (Philip Henry) Park", school_park_name))
 
 write.csv(school_park_df, "../output/school_park_df.csv", row.names = F)
 # --------------------
