@@ -6,7 +6,7 @@ OUTPUT = $(addprefix ../output/, from_to_df.csv normal_address_df.csv double_das
 all: $(OUTPUT)
 
 #OUTPUT RECIPES
-$(OUTPUT):   clean_menu_location.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' clean_menu_location.R) intersection_generation_fn.R ordinal_indicator_fn.R keyword_fn.R | ../output run.sbatch slurmlogs
+$(OUTPUT):   clean_menu_location.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' clean_menu_location.R) intersection_generation_fn.R ordinal_indicator_fn.R editing_fns.R | ../output run.sbatch slurmlogs
 	$(R) --no-job-name $<
 #INPUT RECIPES
 ../input/menu_df.csv: ../input/%: ../../data_clean_menu_money/output/% | ../input

@@ -5,7 +5,7 @@ library(gsubfn)
 library(readr)
 library(assertthat)
 source("intersection_generation_fn.R")
-source("keyword_fn.R")
+source("editing_fns.R")
 source("ordinal_indicator_fn.R")
 menu_df <- read_csv("../input/menu_df.csv")
 
@@ -270,7 +270,7 @@ menu_df <- menu_df %>%
 # Location Data of Parks or Schools
 # --------------------
 school_park_df <- menu_df %>%
-  filter(str_detect(location, regex("( garden| school| playground|play lot| playlot| park| field|Park;|Beach)", ignore_case = T))) %>% # filter out any "st" or "av
+  filter(str_detect(location, regex("( garden| school| playground|play lot| playlot| park| field|Beach)", ignore_case = T))) %>% # filter out any "st" or "av
   filter(!str_detect(location, regex("( St| Dr.| rd| blvd| BV | av| AVE|Lake Park Av|Central Park|lincoln park w)", ignore_case = T))) %>% # filter out ON FROM TO
   filter(!str_detect(location, regex("( on | from | to |/)", ignore_case = T))) %>%
   filter(!str_detect(location, regex("(parkway|parkside|parking)", ignore_case = T)))
@@ -278,26 +278,32 @@ school_park_df_sum <- sum(school_park_df$est_cost) #saving for later assertion
 
 leftover_df <- menu_df %>%
   anti_join(school_park_df)
+school_replace_vector <- c("Supera" = "Supera Park",
+                    "Swift and Pierce schools" = "Swift Elementary School & Pierce Elementary School",
+                    "Path Restoration at Lincoln Park Zoo" = "Lincoln Park Zoo",
+                    "Restoration of Door at the Alfred Lily Pool at the Lincoln Park Conserancy" = "Lincoln park Conservatory",
+                    "Donoghue and Price Schools - murals" = "Donoghue Elementary School and Price Elementary School",
+                    "Piotrowsi Park - Addt'l lighting and equipment" = "Piotrowski Park",
+                    " and " = " & ")
 
+school_detect_vector <- c("Ravenswood School" = "Ravenswood School",
+                   "Valley Forge Field House" = "Valley Forge Park",
+                   "Edna White Garden" = "Edna White Community Garden",
+                   "Kathy Osterman Beach House" = "Kathy Osterman Beach House")
+
+school_exact_match_vector <- c("5861 N. Kostner (Sauganash Park)" = "Sauganash Park",
+                        "5100 N. Ridgeway - Eugene Field" = "Eugene Field",
+                        "Brooks Park- tennis cours surface and fence repair" = "Brooks Park",
+                        "Armitage-Larrabee Park (2009, 2008 Menu)" = "Oz Park",
+                        "Wiggly Field - (Park #425) - Schubert and Sheffield" = "Wiggly Field")
+
+school_park_df <- replace_strings_in_df(school_park_df, 
+                                        location,
+                                        school_replace_vector, 
+                                        school_detect_vector, 
+                                        school_exact_match_vector)
 # eliminate implicit lists in location:
 school_park_df <- school_park_df %>% 
-  mutate(location = str_replace_all(location, "Supera", "Supera Park")) %>%
-  mutate(location = str_replace_all(location, "Swift and Pierce schools", "Swift Elementary School & Pierce Elementary School")) %>%
-  mutate(location = str_replace_all(location, "Path Restoration at Lincoln Park Zoo", "Lincoln Park Zoo")) %>%
-  mutate(location = str_replace_all(location, "Restoration of Door at the Alfred Lily Pool at the Lincoln Park Conserancy", "Lincoln park Conservatory")) %>% # typo
-  mutate(location = str_replace_all(location, "Donoghue and Price Schools - murals", "Donoghue Elementary School and Price Elementary School")) %>%
-  mutate(location = str_replace_all(location, "Piotrowsi Park - Addt'l lighting and equipment", "Piotrowski Park")) %>% # additional dash not needed
-  mutate(location = ifelse(str_detect(location, "Ravenswood School"), "Ravenswood School", location)) %>% # additional dash not needed
-  #iff location contains "Valley Forge Field House" rename to "Valley Forge Park"
-  mutate(location = ifelse(location=="5861 N. Kostner (Sauganash Park)", "Sauganash Park", location)) %>%
-  mutate(location = ifelse(location=="5100 N. Ridgeway - Eugene Field", "Eugene Field", location)) %>%
-  mutate(location = ifelse(str_detect(location, "Valley Forge Field House"), "Valley Forge Park", location)) %>%
-  mutate(location = ifelse(location =="Brooks Park- tennis cours surface and fence repair", "Brooks Park", location)) %>% # additional dash not needed
-  mutate(location = ifelse(location == "Armitage-Larrabee Park (2009, 2008 Menu)", "Oz Park", location)) %>%
-  mutate(location = ifelse(location == "Wiggly Field - (Park #425) - Schubert and Sheffield", "Wiggly Field", location)) %>%
-  mutate(location = str_replace_all(location, " and ", " & ")) %>%
-  mutate(location = ifelse(str_detect(location, "Edna White Garden"), "Edna White Community Garden", location)) %>%
-  mutate(location = ifelse(str_detect(location, "Kathy Osterman Beach House"), "Kathy Osterman Beach House", location)) %>%
   rowwise() %>%
   mutate(location_temp = strsplit(location, ",\\s*|\\s*&\\s*|;\\s*")) %>%
   mutate(num_elements = length(location_temp)) %>%
@@ -327,6 +333,10 @@ school_park_df <- school_park_df %>%
 
 school_park_df_sum2 <- sum(school_park_df$est_cost)
 assert_that(school_park_df_sum == school_park_df_sum2) 
+
+#If location contains the phrase "Sheridan Park" set school_park_name to "Sheridan (Philip Henry) Park"
+school_park_df <- school_park_df %>%
+  mutate(school_park_name = ifelse(str_detect(location, "Sheridan Park"), "Sheridan (Philip Henry) Park", school_park_name))
 
 write.csv(school_park_df, "../output/school_park_df.csv", row.names = F)
 # --------------------
