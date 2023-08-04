@@ -1,4 +1,4 @@
-menu_geolocate <- function(df, var_name, batch_size) {
+menu_geocode <- function(df, var_name, batch_size) {
     df <- df %>%
         mutate(singlelineaddress = paste0(str_replace_all(!!sym(var_name), ",", " "), ", Chicago, IL"),
         singlelineaddress = ifelse(is.na(!!sym(var_name)), NA, singlelineaddress))
@@ -30,7 +30,7 @@ menu_geolocate <- function(df, var_name, batch_size) {
 
     return (results)
 }
-menu_geolocate_googleonly <- function(df, var_name, batch_size) {
+menu_geocode_googleonly <- function(df, var_name, batch_size) {
     df <- df %>%
         mutate(singlelineaddress = paste0(str_replace_all(!!sym(var_name), ",", " "), ", Chicago, IL"),
         singlelineaddress = ifelse(is.na(!!sym(var_name)), NA, singlelineaddress))
@@ -66,4 +66,4 @@ menu_geolocate_googleonly <- function(df, var_name, batch_size) {
 # library(tidygeocoder)
 # main_df <- read_csv("../temp/normal_address_df.csv")
 # test_df <- main_df[1:1000,]
-# geo_results <- menu_geolocate(test_df, "address", 500)
+# geo_results <- menu_geocode(test_df, "address", 500)

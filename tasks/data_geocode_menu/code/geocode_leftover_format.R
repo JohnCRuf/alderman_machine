@@ -1,6 +1,6 @@
 library(tidyverse)
 library(tidygeocoder)
-source("geolocate_function.R")
+source("geocode_function.R")
 df <- read_csv("../input/leftover_df.csv")
 #additional cleaning needed
 #create a list called "filter list" and filter df by it
@@ -65,11 +65,11 @@ df_without_dash <- df %>% filter(!str_detect(location, "^[0-9]{2,5}-[0-9]{1,5}")
 df_with_dash <- df_with_dash %>% rename(location_dash = location)
 df_without_dash <- df_without_dash %>% rename(location_no_dash = location)
 
-geolocated_df_no_dash <- menu_geolocate(df_without_dash, "location_no_dash", 10)
-write_csv(geolocated_df_no_dash, "../output/geolocated_leftover_df.csv")
+geocoded_df_no_dash <- menu_geocode(df_without_dash, "location_no_dash", 10)
+write_csv(geocoded_df_no_dash, "../output/geocoded_leftover_df.csv")
 
 
-#apply the same process of through_address_df to df_with_dash and then geolocate
+#apply the same process of through_address_df to df_with_dash and then geocode
 df_with_dash <- df_with_dash %>%
   mutate(
     N1 = str_extract(location_dash, "^[0-9]{2,5}"), 
@@ -85,9 +85,9 @@ df_with_dash <- df_with_dash %>%
   ) %>%
   select(-N1, -N2, -street)
 
-geolocated_df_dash <- menu_geolocate(df_with_dash, "start_address", 10) %>%
+geocoded_df_dash <- menu_geocode(df_with_dash, "start_address", 10) %>%
     rename(lat_start = lat, lon_start = long, query_start = query) %>%
-    menu_geolocate(., "end_address", 10) %>%
+    menu_geocode(., "end_address", 10) %>%
     rename(lat_end = lat, lon_end = long, query_end = query)
 
-write_csv(geolocated_df_dash, "../output/geolocated_leftover_df_dash.csv")
+write_csv(geocoded_df_dash, "../output/geocoded_leftover_df_dash.csv")
