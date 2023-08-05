@@ -7,7 +7,7 @@ source("geomatch_points_fn.R")
 source("geomatch_lines_fn.R")
 source("map_data_prep_fn.R")
 ARGS<- commandArgs(trailingOnly = TRUE)
-df <- read_csv("../input/geocoded_from_to_df.csv")
+df <- read_csv("../input/geocoded_double_dash_to_df.csv")
 
 
 #remove cases where both lat_1 and lat_2 are NA

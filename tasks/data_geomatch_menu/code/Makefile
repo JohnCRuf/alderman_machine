@@ -12,13 +12,15 @@ OUTPUTS_points = $(addprefix ../output/geomatched_, $(foreach years , 2003_2011 
 OUTPUTS = $(OUTPUTS_shapes_lines_points) $(OUTPUTS_lines_points) $(OUTPUTS_points)
 
 INPUTS_csv = $(addprefix ../input/geocoded_, 3_ands_df.csv 2_ands_df.csv \
-from_to_df.csv normal_address_df.csv double_dash_to_df.csv \
+from_to_df.csv normal_address_df.csv and_dash_df.csv double_dash_to_df.csv \
 intersection_df.csv school_park_df.csv leftover_df.csv through_address_df.csv)
 INPUTS_maps = $(addprefix ../input/, ward_precincts_2003_2011.zip \
 ward_precincts_2012_2022.zip)
 
 all: $(OUTPUTS)
-
+points: $(OUTPUTS_points)
+lines_points: $(OUTPUTS_lines_points)
+shapes_lines_points: $(OUTPUTS_shapes_lines_points)
 
 #OUTPUT RECIPES
 .SECONDEXPANSION:

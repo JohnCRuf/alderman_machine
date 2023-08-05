@@ -45,8 +45,8 @@ df_line_sf <- create_sf_lines(df_line, "lat_1", "lon_1", "lat_2", "lon_2", 4326)
 
 df_line_matched <- geomatch_lines(df_line_sf, map, 200)
 df_line_matched <- df_line_matched %>%
- mutate(total_length_2003 = as.double(total_length),
-        intersect_length_2003 = as.double(intersect_length)) %>%
- arrange(desc(total_length_2003)) %>%
+ mutate(total_length = as.double(total_length),
+        intersect_length = as.double(intersect_length)) %>%
+ arrange(desc(total_length)) %>%
  select(-total_length, -intersect_length) 
 write_csv(df_line_matched, ARGS[3])
