@@ -66,6 +66,8 @@ df_with_dash <- df_with_dash %>% rename(location_dash = location)
 df_without_dash <- df_without_dash %>% rename(location_no_dash = location)
 
 geocoded_df_no_dash <- menu_geocode(df_without_dash, "location_no_dash", 10)
+#replace all obviously non-Chicago coordinates with NA
+geocoded_df_no_dash <- filter_chicago_coordinates(geocoded_df_no_dash)
 write_csv(geocoded_df_no_dash, "../output/geocoded_leftover_df.csv")
 
 
@@ -89,5 +91,6 @@ geocoded_df_dash <- menu_geocode(df_with_dash, "start_address", 10) %>%
     rename(lat_start = lat, lon_start = long, query_start = query) %>%
     menu_geocode(., "end_address", 10) %>%
     rename(lat_end = lat, lon_end = long, query_end = query)
-
+#replace all obviously non-Chicago coordinates with NA
+geocoded_df_dash <- filter_chicago_coordinates(geocoded_df_dash)
 write_csv(geocoded_df_dash, "../output/geocoded_leftover_df_dash.csv")

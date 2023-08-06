@@ -14,5 +14,6 @@ geocoded_df <- menu_geocode(df, "intersection_1", 100) %>%  #100 b/c of tougher 
     menu_geocode(., "intersection_5", 100) %>%
     rename(lat_5 = lat, lon_5 = long, query_5 = query) 
  
-
+#replace all obviously non-Chicago coordinates with NA
+geocoded_df <- filter_chicago_coordinates(geocoded_df)
 write_csv(geocoded_df, "../output/geocoded_mult_ands_df.csv")
