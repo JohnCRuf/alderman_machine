@@ -56,8 +56,7 @@ extract_unique_lat_lon <- function(df_points) {
       lat = ifelse(is.na(lat_1) | !is.numeric(lat_1), lat_2, lat_1),
       long = ifelse(is.na(lon_1) | !is.numeric(lon_1), lon_2, lon_1)
     ) %>%
-    ungroup() %>%
-    select(lat, long)
+    ungroup()
   
   return(df_points)
 }
