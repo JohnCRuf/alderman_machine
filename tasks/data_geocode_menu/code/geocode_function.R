@@ -77,8 +77,8 @@ filter_chicago_coordinates <- function(df) {
   lon_min <- -87.9401  # Approximate westernmost longitude
   lon_max <- -87.5240  # Approximate easternmost longitude
   
-  lat_cols <- grep("^lat_", names(df))
-  lon_cols <- grep("^lon_", names(df))
+  lat_cols <- grep("^lat", names(df))
+  lon_cols <- grep("^lon", names(df))
   
   # Loop through each lat and lon column to apply the conditions
   for(i in 1:length(lat_cols)) {
