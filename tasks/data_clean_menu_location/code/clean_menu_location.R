@@ -8,6 +8,9 @@ source("intersection_generation_fn.R")
 source("editing_fns.R")
 source("ordinal_indicator_fn.R")
 menu_df <- read_csv("../input/menu_df.csv")
+#add id column
+menu_df <- menu_df %>%
+  mutate(id = row_number())
 
 # Step 1: Apply manually edit locations with weird acronyms and typos
 # Define lookup tables for replacements 
@@ -643,7 +646,7 @@ df_with_3_ands <- df_with_3_ands %>%
 
 df_results <- df_with_3_ands %>%
   mutate(
-    id = row_number(),
+    temp_id= row_number(),
     location = str_split(location, " & ")
   ) %>%
   rowwise() %>%
@@ -653,7 +656,7 @@ df_results <- df_with_3_ands %>%
   pivot_wider(names_from = intersection_number, values_from = location)
 # add "id" column to df_with_3_ands
 df_with_3_ands <- df_with_3_ands %>%
-  mutate(id = row_number())
+  mutate(temp_id= row_number())
 df_with_3_ands <- left_join(df_with_3_ands, df_results) %>%
   select(-id)
 
@@ -713,7 +716,7 @@ df_with_2_ands <- df_with_2_ands %>%
 #create two new columns for the two intersections and apply generate_intersections to each row 
 df_2_results <- df_with_2_ands %>%
   mutate(
-    id = row_number(),
+    temp_id= row_number(),
     location = str_split(location, " & ")
   ) %>%
   rowwise() %>%
@@ -724,7 +727,7 @@ df_2_results <- df_with_2_ands %>%
 
 
 df_with_2_ands <- df_with_2_ands %>%
-  mutate(id = row_number()) %>%
+  mutate(temp_id= row_number()) %>%
   left_join(df_2_results) %>%
   select(-id)
 #convert intersection_1 2 and 3 to character
@@ -806,7 +809,7 @@ and_dash_removal <- c(
 
 df_and_dash <- df_and_dash %>%
   mutate(
-    id = row_number(),
+    temp_id= row_number(),
     location_temp = location) %>%
     separate(location_temp, into = c("location_1", "location_2", "location_3"), sep = " & |-", extra = "merge") %>%
   mutate(intersection_1 = paste(location_1, location_2, sep = " & "),
@@ -852,7 +855,7 @@ leftover_addition_df <- leftover_addition_df %>%
 
 df_mult_results <- df_with_mult_ands %>%
   mutate(
-    id = row_number(),
+    temp_id= row_number(),
     location = str_split(location, " & ")
   ) %>%
   rowwise() %>%
@@ -862,7 +865,7 @@ df_mult_results <- df_with_mult_ands %>%
   pivot_wider(names_from = intersection_number, values_from = location)
 
 df_with_mult_ands <- df_with_mult_ands %>%
-  mutate(id = row_number()) %>%
+  mutate(temp_id= row_number()) %>%
   left_join(df_mult_results) %>%
   select(-id)
 #Convert all intersection_# from 1 to max_ands to character
