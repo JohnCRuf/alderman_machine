@@ -41,14 +41,14 @@
 9,"Miscellaneous-CDOT","137 - 141 E 114 th Place (parkway)",2010,41,6931
 9,"Schools","Gwendolyn Brooks",2010,474000,6957
 9,"Schools","Gately Stadium - scoreboard",2011,5000,6985
-9,"High Definition Camera","NA",2012,1559,7012
-9,"High Definition Camera","NA",2013,20941,7031
-9,"High Definition Camera","NA",2013,22500,7032
+9,"High Definition Camera","",2012,1559,7012
+9,"High Definition Camera","",2013,20941,7031
+9,"High Definition Camera","",2013,22500,7032
 10,"Miscellaneous-CDOT","E107 Ewing to 1 st alley east",2006,8887,7636
 10,"Miscellaneous-CDOT","Commercial 8926-27-30-32",2007,8886,7718
 10,"Miscellaneous-Other","10 th Ward",2008,1e+05,7849
 10,"Miscellaneous-Other","TIF Study Expansion - Calumet Marina",2009,20000,7899
-10,"High Definition Camera","NA",2013,22500,8081
+10,"High Definition Camera","",2013,22500,8081
 11,"POD Camera","2 Option i POD",2005,26838,8562
 11,"POD Camera","2 Option I POD",2006,45161,8605
 11,"Miscellaneous-CDOT","Stockyard Truckers",2007,612,8632
@@ -75,7 +75,7 @@
 19,"Miscellaneous Other","Tree planting -2037 W. 108 th Pl",2012,515,16563
 20,"Guardrail Menu","6858 DR. MARTIN LUTHER KING JR. DR",2008,1011,17002
 21,"Sidewalk Menu - Change Order","W. 101 st Pl. Elizabeth Vincennes",2007,1486,17652
-22,"POD Camera","NA",2011,740000,18677
+22,"POD Camera","",2011,740000,18677
 23,"Miscellaneous-CDOT","Honorary Signs - Sanchez Dr.",2008,102,19435
 24,"Miscellaneous-BOE","24 th Ward DSS office-1817 S Pulaski",2007,31850,20761
 24,"Miscellaneous-CDOT","16 th St. at Spaulding Ave",2009,1200,20816
@@ -142,6 +142,7 @@
 42,"Miscellaneous Other","LaSalle Plaza 335",2012,979,36635
 42,"Miscellaneous Other","LaSalle Plaza 335",2013,6100,36697
 43,"Miscellaneous-Other","CTA Fullerton Stop- Healy Stone Project. Menu 2003 ,2004 ,2005 ,",2005,6646,37163
+43,"Pole Painting","INNER LAKESHORE-DIVISION(1200 N) to NORTH AVE (1600 N)",2006,11200,37193
 43,"Miscellaneous-CDOT","Lincoln Park West @ Dickens (Additional Work)",2008,30000,37287
 43,"Miscellaneous-Other","CTA Fullerton Stop-healy Stone Project. Menu",2009,354,37403
 44,"Miscellaneous-Other","Center on Halsted",2006,350000,38153
@@ -168,6 +169,7 @@
 47,"Miscellaneous-CDOT","Lincoln Ave at Cullom Ave",2008,900,40500
 47,"Miscellaneous-CDOT","Damen @ Byron",2008,800,40502
 47,"Miscellaneous-CDOT","Lawrence @ Campbell",2009,800,40571
+47,"Curb/Gutter Menu","W PATTERSON AVEDead End (4652 W)Dead End (4521 W)",2011,90,40667
 47,"Miscellaneous Other","Various arterial Streets (in file) - Tree planting",2012,23765,40719
 47,"Miscellaneous Other","Installation of four bike stations",2012,265000,40721
 48,"Miscellaneous-CDOT","Gravel Pave Alley surface",2006,150000,41480
@@ -183,7 +185,7 @@
 48,"POD Camera","Sheridan on lightpole North of Thorndale",2010,20000,41642
 48,"Alley Apron Menu","N BROADWAYW ARDMORE AV (5800 N)",2011,12462,41652
 48,"POD Camera","Argy",2011,1800,41678
-48,"High Definition Camera","NA",2012,22500,41698
+48,"High Definition Camera","",2012,22500,41698
 48,"Miscellaneous Other","Fence at 4919 N. Winthrop (City property)",2013,10325,41716
 49,"Street Lighting","BELL-BIRCHWOOD TO HOWARD",2005,60000,42278
 49,"Miscellaneous-CDOT","Tree Gates at 7300 N Oakley",2006,18500,42295
@@ -201,6 +203,11 @@
 49,"Miscellaneous Other","Estes at RR (1600 W)",2013,3228,42570
 49,"Miscellaneous Other","Touhy at RR (1600 W)",2013,3228,42575
 49,"Miscellaneous Other","Birchwood at RR (1600 W)",2013,3228,42576
+49,"O Alley Apron Menu  R","N & N WOLCOTT AVE FROM & W CHASE AVE (7300 N) TO & N OGERS AVE (7340 N)",2019,21289.73,42886
+49,"O Sidewalk Menu  W","N & W SHERWIN AVE FROM 1200 W TO & N SHERIDAN RD (1300 )",2019,36487.23,42909
+49,"O Sidewalk Menu  W","N & W SHERWIN AVE FROM 1200 W TO & N SHERIDAN RD (1300 )",2019,2343.46,42920
+49,"O Street Resurfacing Menu  A","N & W JARVIS AVE FROM & N BELL AVE (2200 W) TO & N OAKLEY VE (2300 W)",2019,34239.48,42929
+49,"O Street Resurfacing Menu  W","N & W PRATT BLVD FROM 1051 W TO & N SHERIDAN RD (1200 )",2019,76768.71,42930
 50,"Miscellaneous-CDOT","6201 Monticello",2005,8568,43067
 50,"Chicago Park District","Parks",2005,7e+05,43082
 50,"Chicago Park District","Thillens Stadium",2009,250000,43152
@@ -219,12 +226,10 @@
 3,"Miscellaneous CDOT Projects"," 435 E 43RD ST",2021,75,3110
 3,"Miscellaneous CDOT Projects"," 5221 S WABASH AVE",2021,133.065,3114
 3,"Miscellaneous CDOT Projects"," 5314 S INDIANA AVE",2021,150,3116
-3,"Street Light Residential Staggered Piggy Back Menu"," ON & S PLYMOUTH CT FROM 1211 STO & W 14TH ST (1400 S)",2021,61665.38,3133
 3,"Alley Resurfacing Menu"," 4906 S INDIANA AVE",2022,23593.905,3167
 3,"Alley Speed Hump Menu"," 516-538 E 44TH PL",2022,350,3175
 3,"Alley Speed Hump Menu"," 4810 S INDIANA AVE",2022,350,3176
 3,"Speed Indicator Signs"," 1829 S STATE ST",2022,5500,3196
-3,"Street Light Residential Staggered Piggy Back Menu"," ON & S PLYMOUTH CT FROM 1211 STO & W 14TH ST (1400 S)",2022,10878.84,3198
 4,"POD Camera"," 5299 S Drexel",2006,36000,3264
 4,"POD Camera"," 4659 S Cottage Grove",2007,24000,3295
 4,"3 LPR No POD Cameras: 101 W Ida B Wells; 110 E Roosevelt Rd; 600 S State St"," 110 E ROOSEVELT RD",2021,27410,3763
@@ -300,7 +305,6 @@
 13,"Bollard Menu"," 4308 W MARQUETTE RD",2021,2495.11,11394
 13,"Sidewalk Menu"," 5442 W 63RD PL",2021,2627.82,11436
 13,"Sidewalk Menu"," 5521 S KOLMAR AVE",2021,741.433333333333,11438
-13,"Sidewalk Menu"," ON & S KOLMAR AVE FROM & W 55TH ST (5500 S) TOW 56TH ST (5600 S)",2021,741.433333333333,11438
 13,"Sidewalk Menu"," 5606 S KEELER AVE",2021,1487.98,11444
 13,"Sidewalk Menu"," 6200 S MULLIGAN AVE",2021,1319.535,11506
 13,"Alley Resurfacing Menu"," 5623 S MEADE AVE",2022,12027.625,11545
@@ -518,7 +522,6 @@
 32,"Alley Apron Menu"," 1544 W BARRY AVE",2021,15881.71,28593
 32,"Alley Resurfacing Menu"," 2300 W NELSON ST",2021,14557.45,28602
 32,"Alley Resurfacing Menu"," 2219 N SEELEY AVE",2021,9633.46333333333,28605
-32,"Street Resurfacing Menu"," ONN HONORE ST FROM & W WABANSIA AVE (1700 N) TO & W CORTLAND ST (1900 N)",2022,31929.865,28677
 33,"Alley Resurfacing Menu"," 4313 N MOZARTST",2021,15885.36,29330
 33,"Street Light Upgrade Menu"," 4338 N FRANCISCO AVE",2021,500,29374
 33,"Street Light Upgrade Menu"," 3738 N SACRAMENTO AVE",2021,500,29374
@@ -643,7 +646,6 @@
 46,"Sidewalk Menu"," 4545 N BROADWAY",2022,15207.37,40279
 46,"Speed Indicator Signs"," 4140 N MARINE DR",2022,7000,40288
 46,"Speed Indicator Signs"," 4420 N BEACON ST",2022,5500,40289
-47,"Sidewalk Menu"," ON & W BELLE PLAINE AVE FROM & N CLAREMONT AVE (2330 W) TON WESTERN AVE (2400 W)",2021,2207.545,41300
 47,"Street Bump Outs Menu"," 4015 N ROCKWELL ST",2021,6654.7275,41312
 47,"Street Bump Outs Menu"," 4045 N ROCKWELL ST",2021,6654.7275,41312
 47,"Street Bump Outs Menu"," 4121 N ROCKWELL ST",2021,6654.7275,41312
@@ -651,7 +653,6 @@
 47,"Street Light Upgrade Menu"," 3634 N WESTERN AVE",2021,500,41323
 47,"Speed Indicator Signs"," 1466-1468 W IRVING PARK RD",2022,985.096666666667,41398
 47,"Speed Indicator Signs"," 1511 W IRVINGPARK RD",2022,985.096666666667,41398
-47,"Street Bump Outs Menu"," ON & W BERTEAU AVE FROM & N WESTERN AVE (2400 W)TO & N CAMPBELL AVE (2520 W)",2022,1499.485,41408
 48,"3 LPR Existing POD; 3 LPR w.o Existing POD; 1 POD Camera: Various Locations"," W",2021,19988.4285714286,42158
 48,"Alley Resurfacing Menu"," 916 W CARMEN AVE",2021,19832.84,42164
 48,"Speed Indicator Signs"," 1416 WFOSTER AVE",2021,5500,42186

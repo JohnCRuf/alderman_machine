@@ -314,7 +314,7 @@ school_park_df <- replace_strings_in_df(school_park_df,
                                         school_park_name,
                                         school_replace_vector, 
                                         school_detect_vector, 
-                                        school_exact_match_vector)
+                                        school_exact_match_vector) #TODO: apply this function broadly
 # eliminate implicit lists in location:
 school_park_df <- school_park_df %>% 
   rowwise() %>%
@@ -374,6 +374,10 @@ double_dash_to_df <- double_dash_to_df %>%
   select(-location_2, -main_street, -from_street, -to_street)
 
 double_dash_to_df_sum2 <- sum(double_dash_to_df$est_cost)
+
+#apply add ordinal indicator function to from_intersection and to_intersection
+double_dash_to_df <- add_ordinal_indicator(double_dash_to_df, "from_intersection")
+double_dash_to_df <- add_ordinal_indicator(double_dash_to_df, "to_intersection")
 
 write.csv(double_dash_to_df, "../output/double_dash_to_df.csv", row.names = F)
 
@@ -435,7 +439,7 @@ write.csv(normal_address_df, "../output/normal_address_df.csv", row.names = F)
 #--------------------
 # Location Data of format "ON _ AV from _ ST to _ ST"
 #--------------------
-on_from_to_replacements <- c("24 TH PL FROM S ROCKWELL ST (2600 W) TO S WASHTENAW AVE (2700 W)" = "ON W 24th PL FROM S ROCKWELL ST (2600 W) TO S WASHTENAW AVE (2700 W)",
+on_from_to_exact_match <- c("24 TH PL FROM S ROCKWELL ST (2600 W) TO S WASHTENAW AVE (2700 W)" = "ON W 24th PL FROM S ROCKWELL ST (2600 W) TO S WASHTENAW AVE (2700 W)",
 "GREENVIEW-JARVIS TO HOWARD" = "ON N GREENVIEW AVE FROM W JARVIS AVE TO W HOWARD ST",
 "N MCCLURG CT FROM E NORTH WATER ST (430 N) TO E RIVER DR (404 N)" = "ON N MCCLURG CT FROM E NORTH WATER ST (430 N) TO E RIVER DR (404 N)",
 "N W PRATT BLVD FROM 1051 W TO N SHERIDAN RD (1200 )" = "ON W PRATT BLVD FROM 1051 W TO N SHERIDAN RD (1200 W)",
@@ -473,33 +477,29 @@ on_from_to_replacements <- c("24 TH PL FROM S ROCKWELL ST (2600 W) TO S WASHTENA
 "Baltimore / from Brainard (13460 Baltimore)" = "ON S BALTIMORE AVE FROM W BRAINARD AVE TO 13460 S BALTIMORE AVE",
 "N N GREENVIEW AVE FROM W ALBION AVE (6600 N) TO W RATT BLVD (6800 N)" = "ON N GREENVIEW AVE FROM W ALBION AVE (6600 N) TO W PRATT BLVD (6800 N)",
 "ON E 69TH ST FROM SDORCHESTER AVE (1400 E) TO S DANTE AVE (1440 E)" = "ON E 69TH ST FROM S DORCHESTER AVE (1400 E) TO S DANTE AVE (1440 E)",
-"N N WOLCOTT AVE FROM W CHASE AVE (7300 N) TO N OGERS AVE (7340 N)" = "ON N WOLCOTT AVE FROM W CHASE AVE (7300 N) TO N ROGERS AVE (7340 N)",
-"ON N KILDARE AVE FROM W MAYPOLE AVE (250 N) TO W LAKE ST (300 N)")
-
-#repeatedly remove \n from location until none remain
-# while (any(str_detect(leftover_df$location, "\n"))) {
-#   leftover_df$location <- str_replace_all(leftover_df$location, "\n", "")
-# }
-leftover_df <- leftover_df %>%
-  mutate(location = ifelse(location %in% names(on_from_to_replacements), on_from_to_replacements[location], location))
+"N N WOLCOTT AVE FROM W CHASE AVE (7300 N) TO N OGERS AVE (7340 N)" = "ON N WOLCOTT AVE FROM W CHASE AVE (7300 N) TO N ROGERS AVE (7340 N)")
 
 #Correct a whole bunch of typos
-replacements <- c("BFROM" = "B FROM",
+on_from_to_replace <- c("BFROM" = "B FROM",
                   "HFROM" = "H FROM",
                   "LFROM" = "L FROM",
                   "MFROM" = "M FROM",
                   "NFROM" = "N FROM",
-                  ")TO " = ") TO",
+                  "\\)TO " = "\\) TO",
                   " STO " = " S TO ",
                   "ONN " = "ON ",
                   " STFROM " = " ST FROM ",
                   " AVEFROM " = " AVE FROM ",
-                  ") TOW " = ") TO W ",
-                  ") TON " = ") TO N ",
+                  "\\) TOW " = "\\) TO W ",
+                  "\\) TON " = "\\) TO N ",
                   " FROMS " = " FROM S ")
+#apply function to leftover df
+leftover_df <- replace_strings_in_df(leftover_df, 
+                                     location,
+                                     on_from_to_replace, 
+                                     on_from_to_exact_match, 
+                                     NULL) #TODO: apply this function broadly
 
-leftover_df <- leftover_df %>%
-  mutate(location = gsubfn("\\b(.*?)\\b", replacements, location))
 
 from_to_df <- leftover_df %>%
   filter(str_detect(location, regex(" FROM ", ignore_case = T))) %>%
@@ -547,6 +547,9 @@ from_to_df <- from_to_df %>%
   mutate(to_intersection = ifelse(str_detect(to_street, "^[0-9]+ [NSEW]"),
                                      paste(str_extract(to_street, "[0-9]+"), main_street),
                                      paste(main_street, "and", to_street)))
+#apply ordinal indicator function to from_intersection and to_intersection
+from_to_df <- add_ordinal_indicator(from_to_df, "from_intersection")
+from_to_df <- add_ordinal_indicator(from_to_df, "to_intersection")
 
 write.csv(from_to_df, "../output/from_to_df.csv", row.names = F)
 
@@ -658,7 +661,7 @@ df_results <- df_with_3_ands %>%
 df_with_3_ands <- df_with_3_ands %>%
   mutate(temp_id= row_number())
 df_with_3_ands <- left_join(df_with_3_ands, df_results) %>%
-  select(-id)
+  select(-temp_id)
 
 #change intersection_1 from list to character
 df_with_3_ands <- df_with_3_ands %>%
@@ -698,7 +701,7 @@ df_with_2_ands <- leftover_addition_df %>%
 leftover_addition_df <- leftover_addition_df %>%
   anti_join(df_with_2_ands)
 
-df_with_2_ands_replacements <- c(
+df_with_2_ands_exact_match <- c(
   "108 th & Buffalo & 104 th Ave 'M'" = "E 108TH ST & S BUFFALO AVE & E 104TH ST",
   "Kedzie & 105 th St. & 107 th St." = "S KEDZIE AVE & W 105TH ST & W 107TH ST",
   "Victoria & Spaulding & 6123 Ravenswood" = "N VICTORIA ST & N SPAULDING AVE & 6123 N RAVENSWOOD AVE",
@@ -706,9 +709,12 @@ df_with_2_ands_replacements <- c(
   "Milwaukee & Wood & Wolcott" = "N MILWAUKEE AVE & N WOOD ST & N WOLCOTT AVE",
   "S RUBLE ST & W 16 ST (1600 S) & N DAN RYAN ENTR RP (1676 S)" = "S RUBLE ST & W 16TH ST (1600 S) & S UNION AVE"
 )
-#apply replacements
-df_with_2_ands <- df_with_2_ands %>%
-  mutate(location = ifelse(location %in% names(df_with_2_ands_replacements), df_with_2_ands_replacements[location], location))
+#use function to replace strings in df
+df_with_2_ands <- replace_strings_in_df(df_with_2_ands, 
+                                        location,
+                                        NULL, 
+                                        df_with_2_ands_exact_match, 
+                                        NULL) 
 
 #replace all instances of DEAD END with nothing
 df_with_2_ands <- df_with_2_ands %>%
@@ -729,7 +735,7 @@ df_2_results <- df_with_2_ands %>%
 df_with_2_ands <- df_with_2_ands %>%
   mutate(temp_id= row_number()) %>%
   left_join(df_2_results) %>%
-  select(-id)
+  select(-temp_id)
 #convert intersection_1 2 and 3 to character
 df_with_2_ands <- df_with_2_ands %>%
   mutate(intersection_1 = map_chr(intersection_1, ~ paste(.x, collapse = "; "))) %>%
@@ -799,14 +805,19 @@ df_and_dash <- leftover_addition_df %>%
 leftover_addition_df <- leftover_addition_df %>%
   anti_join(df_and_dash)
 #Fix formatting
-and_dash_replacements <- c(
+and_dash_exact_match <- c(
   "Clybourn & Leavitt to Hoyne-alley apron change orde" = "N CLYBOURN AVE & N LEAVITT ST - N HOYNE AVE",
   "Jackson - between Damen & Ogden" = "W JACKSON BLVD & S DAMEN AVE - S OGDEN AVE",
   "Congress Pkwy - Michigan & Wells" = "W CONGRESS PKWY & S MICHIGAN AVE - S WELLS ST")
 and_dash_removal <- c(
-  "85 Trees & 53 concrete cut-outs"
+  "85 Trees & 53 concrete cut-outs" = "NA"
 )
-
+#apply and_dash_exact_match
+df_and_dash <- replace_strings_in_df(df_and_dash, 
+                                     location,
+                                     NULL, 
+                                     and_dash_exact_match, 
+                                     and_dash_removal)
 df_and_dash <- df_and_dash %>%
   mutate(
     temp_id= row_number(),
@@ -814,7 +825,7 @@ df_and_dash <- df_and_dash %>%
     separate(location_temp, into = c("location_1", "location_2", "location_3"), sep = " & |-", extra = "merge") %>%
   mutate(intersection_1 = paste(location_1, location_2, sep = " & "),
          intersection_2 = paste(location_1, location_3, sep = " & ")) %>%
-  select(-location_1, -location_2, -location_3, -id)
+  select(-location_1, -location_2, -location_3, -temp_id)
 #apply the ordinal indicator function to intersection_1 and intersection_2
 for (i in 1:2) {
   var <- paste0("intersection_", i)
@@ -867,7 +878,7 @@ df_mult_results <- df_with_mult_ands %>%
 df_with_mult_ands <- df_with_mult_ands %>%
   mutate(temp_id= row_number()) %>%
   left_join(df_mult_results) %>%
-  select(-id)
+  select(-temp_id)
 #Convert all intersection_# from 1 to max_ands to character
 for (i in 1:max_ands) {
   df_with_mult_ands <- df_with_mult_ands %>%
