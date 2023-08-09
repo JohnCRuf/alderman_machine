@@ -1,5 +1,4 @@
 geomatch_shapes <- function(df, map, rows_per_chunk) {
-  df <- df %>% filter(!is.na(geometry_list))
   #split df into chunks of size rows_per_chunk to avoid memory issues
   df_split <- split(df, ceiling(seq_along(df$id)/rows_per_chunk))
   #create empty dataframe to store results
@@ -13,9 +12,6 @@ geomatch_shapes <- function(df, map, rows_per_chunk) {
     df_split[[i]] <- df_split[[i]] %>%
         mutate(total_area = st_area(geometry_list))
     intersections <- st_intersection(df_split[[i]], map)
-    #make sure intersections is valid
-    intersections <- intersections %>%
-      mutate(geometry_list = st_make_valid(geometry_list))
     #calcualte the area of each intersection
     intersections <- intersections %>%
         mutate(intersect_area = st_area(geometry_list))
@@ -23,7 +19,7 @@ geomatch_shapes <- function(df, map, rows_per_chunk) {
     df_matched <- rbind(df_matched, intersections)
   print(i)
   }
-  suppressWarnings(
+    suppressWarnings(
     df_matched <- df_matched %>% select(-geometry_list) %>% as.data.frame()
   )
   return(df_matched)
@@ -46,8 +42,8 @@ create_sf_geometry <- function(df, lat_pattern, lon_pattern, crs) {
     ) %>%
     mutate(
       geometry_list = {
-        x = unlist(lat_values)
-        y = unlist(lon_values)
+        y = unlist(lat_values)  # latitudes are 'y'
+        x = unlist(lon_values)  # longitudes are 'x'
         good_values = !is.na(x) & !is.na(y) & sapply(x, is.numeric) & sapply(y, is.numeric)
         x = x[good_values]
         y = y[good_values]

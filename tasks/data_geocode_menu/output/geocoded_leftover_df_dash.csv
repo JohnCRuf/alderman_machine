@@ -1,4 +1,4 @@
-ward,type,location_dash,year,est_cost,id,start_address,end_address,lat_start,lon_start,query_start,lat_end,lon_end,query_end
+ward,type,location_dash,year,est_cost,id,start_address,end_address,lat_1,lon_1,query_1,lat_2,lon_2,query_2
 44,Alley Resurfacing Menu,1244-1254 WADDISON ST,2022,6576.85,38908,1244 WADDISON ST,1254 WADDISON ST,41.9472545,-87.660761,google,41.9473091,-87.661315,google
 6,Sidewalk Menu,129-131 E 72ND ST,2021,20933.99,5002,129 E 72ND ST,131 E 72ND ST,41.76377463000006,-87.62058248999995,census,41.76377486400003,-87.62056841799995,census
 47,Speed Indicator Signs,1466-1468 W IRVING PARK RD,2022,985.096666666667,41398,1466 W IRVING PARK RD,1468 W IRVING PARK RD,41.95433430000003,-87.66630227099995,census,41.95433396400006,-87.66632786799994,census

@@ -9,7 +9,6 @@ source("geomatch_shapes_fn.R")
 source("map_data_prep_fn.R")
 source("geomatch_data_prep_fns.R")
 ARGS<- commandArgs(trailingOnly = TRUE)
-# ARGS <- c("../temp/ward_precincts_2003_2011/ward_precincts_2003_2011.shp", "../output/geomatched_3_ands_2003_2011_points.csv", "../output/geomatched_3_ands_2003_2011_lines.csv", "../output/geomatched_3_ands_2003_2011_shapes.csv")
 df <- read_csv("../input/geocoded_3_ands_df.csv")
 #replace all non-numeric lat_1, lat_2, lat_3, lat_4, lon_1, lon_2, lon_3, lon_4 with NA
 df <- convert_lat_lon_to_na(df)
@@ -20,7 +19,7 @@ df <- df %>%
     anti_join(df_points)
 
 #create new variables lat and long that is the only unique lat-lon pair
-df_points <- df
+df_points <- extract_unique_lat_lon(df_points)
 
 #load either 2003-2011 or 2012-2022 precinct shapefile
 map <- map_load(ARGS[1])
@@ -40,8 +39,8 @@ df<- df %>%
 df_line <- df_line %>%
   rowwise() %>%
   mutate(
-    all_lats = list(unique(c_across(starts_with("lat_"))[!is.na(c_across(starts_with("lat_")))])),
-    all_lons = list(unique(c_across(starts_with("lon_"))[!is.na(c_across(starts_with("lon_")))])),
+    all_lats = list(c_across(starts_with("lat_"))[!is.na(c_across(starts_with("lat_")))]),
+    all_lons = list(c_across(starts_with("lon_"))[!is.na(c_across(starts_with("lon_")))]),
     lat_A = ifelse(length(all_lats) >= 1, all_lats[[1]], NA_real_),
     lon_A = ifelse(length(all_lons) >= 1, all_lons[[1]], NA_real_),
     lat_B = ifelse(length(all_lats) >= 2, all_lats[[2]], NA_real_),

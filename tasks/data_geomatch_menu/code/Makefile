@@ -2,7 +2,7 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-OUTPUTS_shapes_lines_points = $(addprefix ../output/geomatched_, $(foreach geo, shapes lines points, $(foreach years, 2003_2011 2012_2022,  3_ands_$(years)_$(geo).csv  mult_ands_$(years)_$(geo).csv  )))
+OUTPUTS_shapes_lines_points = $(addprefix ../output/geomatched_, $(foreach geo, shapes lines points, $(foreach years, 2003_2011 2012_2022,  3_ands_$(years)_$(geo).csv  mult_ands_$(years)_shapes.csv  )))
 OUTPUTS_lines_points = $(addprefix ../output/geomatched_, $(foreach geo, lines points, $(foreach years, 2003_2011 2012_2022, 2_ands_$(years)_$(geo).csv and_dash_$(years)_$(geo).csv \
 from_to_$(years)_$(geo).csv double_dash_to_$(years)_$(geo).csv through_address_$(years)_$(geo).csv \
 leftover_dash_$(years)_$(geo).csv)))
@@ -37,7 +37,9 @@ shapes_lines_points: $(OUTPUTS_shapes_lines_points)
 		mv $$file ../temp/ward_precincts_$*/ward_precincts_$*.`basename $$file | sed 's/.*\.//'`; \
 	done
 #INPUT RECIPES
-$(INPUTS_csv): ../input/%.csv: ../../data_geocode_menu/output/%.csv | ../input
+../input/geomatched_%.csv: ../../data_geomatch_menu/output/geomatched_%.csv | ../input
+	ln -s $< $@
+../input/map_data_prep_fn.R: ../../data_geomatch_menu/code/map_data_prep_fn.R | ../input
 	ln -s $< $@
 
 $(INPUTS_maps): ../input/%.zip: ../../initialdata/output/%.zip | ../input

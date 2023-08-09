@@ -8,16 +8,20 @@ source("geomatch_lines_fn.R")
 source("map_data_prep_fn.R")
 source("geomatch_data_prep_fns.R")
 ARGS<- commandArgs(trailingOnly = TRUE)
-df <- read_csv("../input/leftover_dash.csv")
+df <- read_csv("../input/geocoded_leftover_df_dash.csv")
 #load either 2003-2011 or 2012-2022 precinct shapefile
 map <- map_load(ARGS[1])
 
 #filter to cases where df only has one unique lat-lon pair
 df_points<- unique_pairs_filter(df, 1, GEQ = FALSE)
-
+if (nrow(df_points) > 0) {
+df_points <- extract_unique_lat_lon(df_points)
 #feed single addresses into geomatch_single_coordinate
 df_matched_single <-geomatch_single_coordinate(df_points, map, 4326)
-write_csv(df_points, ARGS[2])
+#if df_matched_single is not empty, write to csv
+
+  write_csv(df_matched_single, ARGS[2])
+}
 
 #now mutate and geomatch df_line
 df_line <- unique_pairs_filter(df, 2, GEQ = FALSE)

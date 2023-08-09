@@ -6,6 +6,7 @@ library(sf)
 source("geomatch_points_fn.R")
 source("geomatch_lines_fn.R")
 source("map_data_prep_fn.R")
+source("geomatch_data_prep_fns.R")
 ARGS<- commandArgs(trailingOnly = TRUE)
 df <- read_csv("../input/geocoded_from_to_df.csv")
 #load either 2003-2011 or 2012-2022 precinct shapefile
