@@ -1,0 +1,10 @@
+ward,type,location,year,est_cost,id,intersection_1,intersection_2,lat_1,lon_1,query_1,lat_2,lon_2,query_2,lat,long
+27,POD Camera,"Albany & Walnut - TPC = $20 ,000 (2009 , 2008 menu)",2010,19455,23514,Albany & Walnut,"Albany & TPC = $20 ,000 (2009 , 2008 menu)",41.8854175,-87.7037832,google,NA,NA,google,41.8854175,-87.7037832
+27,POD Camera,"Albany & Walnut - TPC = $20 ,000 (2010 , 2009 , 2008 menu)",2009,413,23466,Albany & Walnut,"Albany & TPC = $20 ,000 (2010 , 2009 , 2008 menu)",41.8854175,-87.7037832,google,NA,NA,google,41.8854175,-87.7037832
+27,POD Camera,"Albany & Walnut - TPC = $20 ,000 (2010 ,2009 ,2008 )",2008,132,23418,Albany & Walnut,"Albany & TPC = $20 ,000 (2010 ,2009 ,2008 )",41.8854175,-87.7037832,google,NA,NA,google,41.8854175,-87.7037832
+43,Chicago Park District,Goudy Park -Astor & Schiller,2011,200000,37496,Goudy Park & Astor,Goudy Park & Schiller,41.905567,-87.6268213,google,41.905567,-87.6268213,google,41.905567,-87.6268213
+1,Miscellaneous-Other,NA,2011,49936,444,NA & NA,NA & NA,41.8249626,-87.6485519,google,41.8249626,-87.6485519,google,41.8249626,-87.6485519
+47,Miscellaneous-Other,North Center Senior Campus-Irving & Oakley,2005,50000,40375,North Center Senior Campus & Irving,North Center Senior Campus & Oakley,41.9541553,-87.6787412,google,41.9541553,-87.6787412,google,41.9541553,-87.6787412
+45,Chicago Park District,Our Lady of Victory & St Johns Food PantryGarden - rain barrels. planting,2013,2500,39324,Our Lady of Victory & St Johns Food PantryGarden,Our Lady of Victory & rain barrels. planting,NA,NA,google,41.9619884,-87.758604,google,41.9619884,-87.758604
+22,Chicago Park District,Piotrowski Park - drinking fountain & lighting,2010,30000,18658,Piotrowski Park & drinking fountain,Piotrowski Park & lighting,41.8361245,-87.7307657,google,41.8361245,-87.7307657,google,41.8361245,-87.7307657
+14,Miscellaneous-CDOT,S Francisco & W 45 ST - W 46 ST,2006,1358,11805,S Francisco & W 45th ST,S Francisco & W 46th ST,41.811991,-87.6894217,google,NA,NA,google,41.811991,-87.6894217

@@ -17,7 +17,7 @@ df_points<- unique_pairs_filter(df, 1, GEQ = FALSE)
 df_points <- extract_unique_lat_lon(df_points)
 #feed single addresses into geomatch_single_coordinate
 df_matched_single <-geomatch_single_coordinate(df_points, map, 4326)
-write_csv(df_points, ARGS[2])
+write_csv(df_matched_single, ARGS[2])
 
 #now mutate and geomatch df_line
 df_line <- unique_pairs_filter(df, 2, GEQ = FALSE)

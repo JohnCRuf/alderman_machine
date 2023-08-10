@@ -5,7 +5,7 @@ include ../../shell_functions.make
 OUTPUTS_shapes_lines_points = $(addprefix ../output/geomatched_, $(foreach geo, shapes lines points, $(foreach years, 2003_2011 2012_2022,  3_ands_$(years)_$(geo).csv  mult_ands_$(years)_shapes.csv  )))
 OUTPUTS_lines_points = $(addprefix ../output/geomatched_, $(foreach geo, lines points, $(foreach years, 2003_2011 2012_2022, 2_ands_$(years)_$(geo).csv and_dash_$(years)_$(geo).csv \
 from_to_$(years)_$(geo).csv double_dash_to_$(years)_$(geo).csv through_address_$(years)_$(geo).csv \
-leftover_dash_$(years)_$(geo).csv)))
+leftover_dash_$(years)_lines.csv)))
 OUTPUTS_points = $(addprefix ../output/geomatched_, $(foreach years , 2003_2011 2012_2022, \
   normal_address_$(years)_points.csv  intersection_$(years)_points.csv \
   school_park_$(years)_points.csv leftover_$(years)_points.csv))
