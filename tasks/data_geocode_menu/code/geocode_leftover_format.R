@@ -93,4 +93,6 @@ geocoded_df_dash <- menu_geocode(df_with_dash, "start_address", 10) %>%
     rename(lat_2 = lat, lon_2 = long, query_2 = query)
 #replace all obviously non-Chicago coordinates with NA
 geocoded_df_dash <- filter_chicago_coordinates(geocoded_df_dash)
+#replace location_dash with location
+geocoded_df_dash <- geocoded_df_dash %>% rename(location = location_dash)
 write_csv(geocoded_df_dash, "../output/geocoded_leftover_df_dash.csv")
