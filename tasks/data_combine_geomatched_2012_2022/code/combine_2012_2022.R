@@ -49,9 +49,10 @@ df_append <- df_append %>%
         precinct_locate = as.character(precinct_locate)) %>%
   filter(sum(ward_locate != ward) <= 2) %>%
   ungroup()
-#remove any rows where ward_locate != ward
+#remove any rows where ward_locate != ward, this implicitly sets "gifts" between wards to 0
 df_append <- df_append %>%
-  filter(ward_locate == ward)
+  filter(ward_locate == ward) 
+#TODO: I should probably include a version of this that doesn't drop the rows where ward_locate != ward
 #now create a new variable called weighted_cost, which is the est_cost * weight
 df_append <- df_append %>%
   mutate(weighted_cost = est_cost * weight)
