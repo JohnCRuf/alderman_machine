@@ -1,4 +1,4 @@
-ward,type,location_no_dash,year,est_cost,id,lat,long,query
+ward,type,location,year,est_cost,id,lat,long,query
 43,Street Resurfacing Menu,1-20 E BANKS ST,2021,13606.915,38057,41.90676331600008,-87.62867005799995,census
 33,Miscellaneous-CDOT,100 tree grates on Kedzie Ave,2006,186000,28751,41.9241386,-87.7071964,google
 34,Alley Resurfacing Menu,100- 134 W 111TH ST,2016,7769.115,30149,41.692548077000026,-87.62661576099998,census
