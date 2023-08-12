@@ -4,8 +4,11 @@ library(sp)
 library(assertr)
 source("../input/map_data_prep_fn.R")
 ARGS<- commandArgs(trailingOnly = TRUE)
+map_filename <- paste0("../temp/ward_precincts_", ARGS[1], "/ward_precincts_", ARGS[1], ".shp")
+output_filename_rds <- paste0("../output/ward_precinct_menu_panel_", ARGS[1], ".rds")
+output_filename_csv <- paste0("../output/ward_precinct_menu_panel_", ARGS[1], ".csv")
 #load the map
-map <- map_load("../temp/ward_precincts_2012_2022/ward_precincts_2012_2022.shp")
+map <- map_load(map_filename)
 #repeat the map every year from 2003 to 2022
 map <- map %>% 
   crossing(year = 2003:2022) %>%
@@ -19,7 +22,7 @@ map <- map %>%
   filter(ward_locate != "0")
 #for every argument, load the file, keep the location, ward, year ward_locate, precinct_locate, est_cost, and  total_length and intersect_length if it exists
 df_append <- data.frame()
-for (i in 1:length(ARGS)) {
+for (i in 2:length(ARGS)) {
   df <- read_csv(ARGS[i])
   print(ARGS[i])
   #if the file has a column called "total_length" and "intersect_length", 
@@ -66,8 +69,8 @@ final_df <- map %>%
   left_join(df_append, by = c("ward_locate", "precinct_locate", "year")) %>%
   mutate(weighted_cost = ifelse(is.na(weighted_cost), 0, weighted_cost))
 #write the final_df to a csv
-saveRDS(final_df, file ="../output/ward_precinct_menu_panel_2012_2022.rds")
+saveRDS(final_df, file =output_filename_rds)
 #remove geometry column and write to csv
 final_df <- final_df %>%
   select(-geometry)
-write_csv(final_df, "../output/ward_precinct_menu_panel_2012_2022.csv")
+write_csv(final_df, output_filename_csv)
