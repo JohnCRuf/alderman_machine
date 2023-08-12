@@ -11,11 +11,13 @@ with open('params.json', 'r') as infile:
     params = json.load(infile)
 
 def main():
+    # Load data on Chicago elections (year, ward, victor, margin, and whether it went to a runoff)
     election_data = load_election_data()
 
     elecs = election_data['elecs']
     decisive_incumbent_elecs = election_data['decisive_elecs']
 
+    # Create a finely binned histogram, a la Vogl (2014)
     hist_points = np.arange(-1, 1.0001, 0.01)
     binsize = (hist_points.max() - hist_points.min()) / (len(hist_points) - 1)
 
@@ -41,6 +43,7 @@ def main():
     num_elecs_in_bw = len(decisive_incumbent_elecs.query(f'margin.abs() < {bw/2}'))
     num_wards_in_bw = len(decisive_incumbent_elecs.query(f'margin.abs() < {bw/2}').ward.unique())
 
+    # Perform a local linear fit on the discontinuity at c=0 (where the incumbent wins exactly 50%)
     margin_df['ll_est'] = local_linear_reg(
         margin_df.margin_mp.to_numpy(),
         margin_df.freq.to_numpy(),
@@ -49,6 +52,7 @@ def main():
         bw=bw
     )
 
+    # Create pretty plots of the discontinuity in density
     plt.plot((m:=margin_df.query('margin<0')).margin_mp, m.ll_est, color='k')
     plt.plot((m:=margin_df.query('margin>=0')).margin_mp, m.ll_est, color='k')
     plt.axvline(0, color='k', linestyle=':')
@@ -61,6 +65,8 @@ def main():
 
     plt.savefig('../../results/figures/electoral_density.pdf')
 
+    # Calculate the significance of the discontinuity in logs
+
     m_plus = margin_df.query('winner == 1').head(1).margin_mp.item()
     f_plus = margin_df.query('winner == 1').head(1).ll_est.item()
     m_minus = margin_df.query('winner == 0').tail(1).margin_mp.item()
@@ -69,6 +75,8 @@ def main():
     theta = (
         np.log(f_plus) - np.log(f_minus)
     )
+
+    # ...and in levels
 
     p1 = local_linear_reg_backend(
         m_plus,
@@ -100,6 +108,8 @@ def main():
     print(t_stat)
 
     sigma_theta = sigma(n, bw, f_plus, f_minus)
+
+    # Write those estimates to a table.
 
     res_table = load_template('../../results/templates/hist_template.tex').format(**{
         'LEVEL_MEAN_EST': mean_diff,

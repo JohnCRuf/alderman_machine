@@ -1,0 +1,27 @@
+{\centering
+\begin{tabular}{lcccccc}
+    \toprule
+    & (1) & (2) & (3) & (4) & (5) & (6) \\
+    & Rats & Rats & Graffiti & Graffiti & Potholes & Potholes \\\midrule
+    &$\num{-0.07}$ & $\num{0.14}$ & $\num{4.18}$ & $\num{3.81}$ & $\num{5.86}$ & $\num{2.59}$ \\
+    &($\num{1.35}$) & ($\num{0.98}$) & ($\num{2.49}$)$^{*}$ & ($\num{2.57}$) & ($\num{5.05}$) & ($\num{5.55}$) \\
+    \midrule
+    Ward FE & N & Y & N & Y & N & Y \\
+    Time FE & N & Y & N & Y & N & Y \\
+    \# of elections in bandwidth & 54 & 54 & 54 & 54 & 54 & 54 \\
+    \# of wards in bandwidth & 33 & 33 & 33 & 33 & 33 & 33 \\
+    \bottomrule
+\end{tabular}
+}
+
+\noindent\begin{tabular}{rl}
+    $^{*}:$ & $p<0.1$ \\
+    $^{**}:$ & $p<0.05$ \\
+    $^{***}:$ & $p<0.01$ \\
+\end{tabular}
+
+% \vspace{1em}
+
+\noindent {\small Notes: Results represent the discontinuous change in the response time for various service requests during the pre-election period as the incumbent's victory margin crosses zero. Each entry corresponds to a local linear regression with a triangular kernel and a bandwidth of 0.18. Standard errors are clustered at the ward level. The dependent variable is mean response time (measured in days).}
+
+% \vspace{1em}

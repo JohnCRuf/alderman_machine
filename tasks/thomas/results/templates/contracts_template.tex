@@ -1,0 +1,37 @@
+{\centering
+\begin{tabular}{lcccc}
+    \toprule
+    &(1) & (2)                                                   \\
+    & Contracts/day & Contracts/day                              \\ 
+    \midrule
+    & $\num{⟪VAR0_MEAN:.2f⟫}$ & $\num{⟪VAR1_MEAN:.2f⟫}$     \\ 
+    & ($\num{⟪VAR0_SE:.2f⟫}$)⟪VAR0_STARS⟫ & ($\num{⟪VAR1_SE:.2f⟫}$)⟪VAR1_STARS⟫ \\   
+Ward FE & N & Y                                                    \\
+Time FE & N & Y                                                    \\
+\# of elections in bandwidth & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫              \\
+\# of wards in bandwidth & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫                  \\
+\toprule
+& (3) & (4) \\
+& \$ awarded/day & \$ awarded/day\\
+\midrule
+& $\num{⟪VAR2_MEAN:.2f⟫}$ & $\num{⟪VAR3_MEAN:.2f⟫}$ \\
+& ($\num{⟪VAR2_SE:.2f⟫}$)⟪VAR2_STARS⟫ & ($\num{⟪VAR3_SE:.2f⟫}$)⟪VAR3_STARS⟫ \\
+\midrule
+Ward FE & N & Y\\
+Time FE & N & Y\\
+\# of elections in bandwidth & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ \\
+\# of wards in bandwidth & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ \\
+\bottomrule
+\end{tabular}
+}
+
+
+\noindent {\small Notes: Results represent the discontinuous change in the dependent variable as the incumbent's victory margin crosses zero. Each entry corresponds to a local linear regression with a triangular kernel and a bandwidth of 0.18. Standard errors are clustered at the ward level. The dependent variables represent measures of procurement activity in the months prior to the decisive election.}
+
+% \vspace{1em}
+
+\noindent\begin{tabular}{rl}
+    $^{*}:$ & $p<0.1$ \\
+    $^{**}:$ & $p<0.05$ \\
+    $^{***}:$ & $p<0.01$ \\
+\end{tabular}

@@ -12,11 +12,14 @@ with open('params.json', 'r') as infile:
     params = json.load(infile)
 
 def main():
+    # Load electoral data
     election_data = load_election_data()
 
     elecs = election_data['elecs']
     decisive_incumbent_elecs = election_data['decisive_elecs']
 
+    # Calculate adjusted values by two methods: year-ward fixed effects, and controlling for lagged turnout (and the combination)
+    # of the two
     decisive_incumbent_elecs['total_votes_adj'] = (decisive_incumbent_elecs.total_votes - smf.ols(
         'total_votes ~ 1 + total_votes_L1',
         data=decisive_incumbent_elecs
@@ -32,6 +35,7 @@ def main():
         data=decisive_incumbent_elecs
     ).fit().predict(decisive_incumbent_elecs))
 
+    # Assign nice names to each output variable
     var_mapping = {
         'total_votes': 'Turnout',
         'total_votes_adj': 'Turnout Residual (Lag)',
@@ -46,6 +50,8 @@ def main():
 
     num_elecs_in_bw = len(decisive_incumbent_elecs.query(f'margin.abs() < {bw/2}'))
     num_wards_in_bw = len(decisive_incumbent_elecs.query(f'margin.abs() < {bw/2}').ward.unique())
+
+    # For each output, calculate a nonparametric fit and compute the magnitude (and SE) of discontinuity
 
     for var in ['total_votes', 'total_votes_adj', 'total_votes_FE', 'total_votes_adj_FE']:
         print(f'Processing {var}')
@@ -73,6 +79,8 @@ def main():
     #     df[var] = df[var] / integral
         
         m = df.query('margin.abs() < 0.5').sort_values('margin')
+
+        # And make a nice picture of the discontinuity (we don't use all of these.)
 
         fix,ax = plt.subplots()
 
@@ -139,6 +147,8 @@ def main():
             't_stat': t_stat,
             'p_value_l': scipy.stats.t(len(df)-2).pdf(t_stat),
         })
+
+    # And write all the results to a table
 
     turnout_results = pd.DataFrame(out)
 

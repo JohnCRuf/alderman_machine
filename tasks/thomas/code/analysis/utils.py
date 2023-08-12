@@ -89,3 +89,20 @@ def make_stars(p):
 
 def t_test(t, dof):
     return scipy.stats.t(dof).pdf(t)
+
+
+def load_ward_shapefiles():
+    import geopandas as gpd
+    print('Loading ward shapes...')
+    wards_pre2012 = gpd.read_file('../../data/raw/data.cityofchicago.org/ward_boundaries_2003_2015.geojson').to_crs(epsg=3857)
+    wards_pre2012.ward = pd.to_numeric(wards_pre2012.ward, errors='coerce')
+    wards_pre2012 = wards_pre2012[wards_pre2012.ward.notna()]
+
+    wards_post2012 = gpd.read_file('../../data/raw/data.cityofchicago.org/ward_boundaries_2015_2023.geojson').to_crs(epsg=3857)
+    wards_post2012.ward = pd.to_numeric(wards_post2012.ward, errors='coerce')
+    wards_post2012 = wards_post2012[wards_post2012.ward.notna()]
+
+    return {
+        'pre': wards_pre2012,
+        'post': wards_post2012
+    }
