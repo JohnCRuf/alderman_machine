@@ -93,7 +93,7 @@ incumbent_vs_df <- incumbent_vs_df %>%
   rename(ward = Ward)  %>%
   rename(candidate = Candidate)
 
-write_csv(incumbent_vs_df, file = "../output/incumbent_voteshare_df.csv")
+write_csv(incumbent_vs_df, file = "../output/incumbent_voteshare_df_ward_level.csv")
 
 
 #aggregate_candidate_df <- election_winners %>%
