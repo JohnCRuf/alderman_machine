@@ -3,7 +3,7 @@ library(stringr)
 library(readr)
 library(assertthat)
 # Read and clean data
-incumbent_df <- read.csv("../output/incumbent_voteshare_df.csv") 
+incumbent_df <- read.csv("../output/incumbent_voteshare_df_ward_level.csv") 
 election_df <- read.csv("../input/elections.csv") %>%
   mutate(Candidate = gsub("  ", " ", Candidate),
          Candidate = gsub("Patricia ''Pat'' Dowell", "Pat Dowell", Candidate),
