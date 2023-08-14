@@ -1,4 +1,4 @@
-"ward","type","location","year","est_cost","id","main_street","from_street","to_street","from_intersection","to_intersection"
+"ward","type","location","year","est_cost","id","main_street","from_street","to_street","start_location","end_location"
 1,"Pole Painting","ON N MILWAUKEE AVE FROM N DAMEN AVE TO N WESTERN AVE",2005,11600,77,"N MILWAUKEE AVE","N DAMEN AVE","N WESTERN AVE","N MILWAUKEE AVE and N DAMEN AVE","N MILWAUKEE AVE and N WESTERN AVE"
 1,"Miscellaneous-CDOT","ON W DIVERSEY AVE FROM N MAPLEWOOD AVE TO N WOLCOTT AVE",2008,334392,252,"W DIVERSEY AVE","N MAPLEWOOD AVE","N WOLCOTT AVE","W DIVERSEY AVE and N MAPLEWOOD AVE","W DIVERSEY AVE and N WOLCOTT AVE"
 1,"Sidewalk Menu - Change Order","ON N PAULINA ST FROM W MOORMAN ST TO W DIVISION ST",2011,2541,419,"N PAULINA ST","W MOORMAN ST","W DIVISION ST","N PAULINA ST and W MOORMAN ST","N PAULINA ST and W DIVISION ST"

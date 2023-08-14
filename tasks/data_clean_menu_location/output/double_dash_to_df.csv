@@ -1,4 +1,4 @@
-"ward","type","location","year","est_cost","id","from_intersection","to_intersection"
+"ward","type","location","year","est_cost","id","start_location","end_location"
 1,"Miscellaneous-CDOT","N MILWAUKEE AV-- N PAULINA ST (1270 N) -to- N HERMITAGE AV (1323 N)",2005,4735,23,"N MILWAUKEE AV AND N PAULINA ST","N MILWAUKEE AV AND N HERMITAGE AV"
 1,"Sidewalk Menu","N HERMITAGE AV-- W WALTON ST (928 N) -to- W AUGUSTA BV (1000 N)",2005,42217,24,"N HERMITAGE AV AND W WALTON ST","N HERMITAGE AV AND W AUGUSTA BV"
 1,"Sidewalk Menu","N HERMITAGE AV-- W CORTEZ ST (1040 N) -to- W HADDON AV (1132 N)",2005,17291,25,"N HERMITAGE AV AND W CORTEZ ST","N HERMITAGE AV AND W HADDON AV"

@@ -1,4 +1,4 @@
-"ward","type","location","year","est_cost","id","school_park_name"
+"ward","type","location","year","est_cost","id","point_location"
 1,"Chicago Park District","Dean Park",2005,50000,93,"Dean Park"
 1,"Chicago Park District","Commercial Park Gym Floor",2005,29000,94,"Commercial Park"
 1,"Schools","Sabin School Sculpture Art Project",2005,3750,95,"Sabin School"

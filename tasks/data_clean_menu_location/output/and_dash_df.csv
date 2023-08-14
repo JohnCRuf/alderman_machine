@@ -1,4 +1,4 @@
-"ward","type","location","year","est_cost","id","intersection_1","intersection_2"
+"ward","type","location","year","est_cost","id","start_location","end_location"
 1,"Miscellaneous-CDOT","N CLYBOURN AVE & N LEAVITT ST - N HOYNE AVE",2011,1488,397,"N CLYBOURN AVE & N LEAVITT ST ","N CLYBOURN AVE & N HOYNE AVE"
 1,"Miscellaneous-Other","NA",2011,49936,443,"NA & NA","NA & NA"
 2,"Miscellaneous-CDOT","W JACKSON BLVD & S DAMEN AVE - S OGDEN AVE",2007,13800,1065,"W JACKSON BLVD & S DAMEN AVE ","W JACKSON BLVD & S OGDEN AVE"
