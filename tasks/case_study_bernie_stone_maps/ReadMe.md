@@ -5,10 +5,7 @@
 
 ## Output
 * `stone_menu_money_spending_map_2005_2011.png`: A map of Bernie Stone's menu money spending by precinct from 2005 to 2011.
-* `stone_2007_runoff_precinct_results.png`: A map of Bernie Stone's 2007 election results by precinct.
-* `stone_2011_runoff_precinct_results.png`: A map of Bernie Stone's 2011 election results by precinct.
-* `stone_spending_2007_results_scatterplot.png`: A scatterplot of Bernie Stone's menu money spending by precinct against net votes for him in the 2007 election.
-* `stone_spending_2011_results_scatterplot.png`: A scatterplot of Bernie Stone's menu money spending by precinct against net votes for him in the 2011 election.
+* `stone_(year)_(type)_precinct_(outcome).png`: A map of Bernie Stone's (year) (type) election (results/turnout) by precinct.
 
 
 ## Code
