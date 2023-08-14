@@ -8,10 +8,6 @@ source("intersection_generation_fn.R")
 source("editing_fns.R")
 source("ordinal_indicator_fn.R")
 menu_df <- read_csv("../input/menu_df.csv")
-#add id column
-menu_df <- menu_df %>%
-  mutate(id = row_number())
-
 # Step 1: Apply manually edit locations with weird acronyms and typos
 # Define lookup tables for replacements 
 #TODO: replace for, "Kimball & Wabansia Ave &"
@@ -219,6 +215,37 @@ menu_df <- menu_df %>%
 menu_df$location <- str_replace_all(menu_df$location, "HS AVENUE", "H & S AVENUE")
 #replace WE 37TH ST to & E 37TH ST
 menu_df$location <- str_replace_all(menu_df$location, "WE 37TH ST", "& E 37TH ST")
+menu_df$location <- str_replace_all(menu_df$location, "WDEVON AVE", "W DEVON AVE")
+menu_df$location <- str_replace_all(menu_df$location, "WFARWELL AVE", "W FARWELL AVE")
+#list of phrases to replace
+typo_replace_vector <- c("HS AVENUE" = "H & S AVENUE",
+               "WE 37TH ST" = "& E 37TH ST",
+               "WDEVON AVE" = "W DEVON AVE",
+               "WFARWELL AVE" = "W FARWELL AVE",
+               "WFOSTER AVE" = "W FOSTER AVE",
+               "NMAGNOLIA AVE" = "N MAGNOLIA AVE",
+               "NSOUTHPORT AVE" = "N SOUTHPORT AVE",
+               "WDIVERSEY" = "W DIVERSEY",
+               "NSHEFFIELD" = "N SHEFFIELD",
+               "NCLARK" = "N CLARK",
+               "NMILDRED" = "N MILDRED",
+               "NHERMITAGE" = "N HERMITAGE",
+               "NRUTHERFORD" = "N RUTHERFORD",
+               "NNEW ENGLAND" = "N NEW ENGLAND",
+               "NKILPATRICK" = "N KILPATRICK",
+               "NLAMON" = "N LAMON",
+               "NLINDER" = "N LINDER",
+               "WWRIGHTWOOD" = "W WRIGHTWOOD",
+               "WCHICAGO" = "W CHICAGO",
+               "NNATOMA" = "N NATOMA",
+               "WJACKSON" = "W JACKSON",
+               "WGLADYS" = "W GLADYS")
+#replace typo_list using function
+menu_df<- replace_strings_in_df(menu_df, 
+                                location, 
+                                typo_replace_vector, 
+                                detect_vector = NULL, 
+                                exact_match_vector = NULL)
 #replace  "(S) SD" with ""
 menu_df$location <- str_replace_all(menu_df$location, " \\(S\\) SD", "")
 #remove any " - 4 corners" from location
@@ -265,6 +292,15 @@ menu_df <- menu_df %>%
   mutate(location = str_replace(location, "WEVERGREEN", "W EVERGREEN"),
         location = str_replace(location, "NPULASKI", "N PULASKI"),
         location = str_replace(location, "NPARKSIDE" , "N PARKSIDE"))
+#replace space in front of location with nothing
+menu_df <- menu_df %>%
+  mutate(location = str_replace(location, "^ ", ""))
+
+#add id column
+menu_df <- menu_df %>%
+  mutate(id = row_number())
+completed_id_list <- c()
+
 
 # Step 2: Split location data into different standard formats and save to temp folder
 
@@ -274,7 +310,7 @@ menu_df <- menu_df %>%
 # --------------------
 school_park_df <- menu_df %>%
   filter(str_detect(location, regex("(garden| school| playground|play lot| playlot| park| field|Beach)", ignore_case = T))) %>% # filter out any "st" or "av
-  filter(!str_detect(location, regex("( St| Dr.| rd| blvd| BV | av| AVE|Lake Park Av|Central Park|lincoln park w)", ignore_case = T))) %>% # filter out ON FROM TO
+  filter(!str_detect(location, regex("( St| Dr.| rd| blvd| BV | av| AVE|Lake Park Av|Central Park|lincoln park w)", ignore_case = T))) %>% 
   filter(!str_detect(location, regex("( on | from | to |/)", ignore_case = T))) %>%
   filter(!str_detect(location, regex("(parkway|parkside|parking)", ignore_case = T)))
 school_park_df_sum <- sum(school_park_df$est_cost) #saving for later assertion

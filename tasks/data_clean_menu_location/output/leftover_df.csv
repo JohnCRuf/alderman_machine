@@ -1,676 +1,232 @@
 "ward","type","location","year","est_cost","id"
 1,"Miscellaneous-CDOT","Sign Installation project",2005,8885,21
-1,"Miscellaneous-CDOT","Hermitage Green Space",2008,24320,254
-1,"Miscellaneous-CDOT","Maplewood Ave. at Diversey",2008,40000,259
-1,"Miscellaneous-CDOT","Mautene Court Plaza Improvement",2008,35000,260
-1,"Miscellaneous-Other","West Town Branch Library",2010,5e+05,371
-1,"Miscellaneous-CDOT","Installation of two bike stations",2011,106000,402
-2,"Miscellaneous-CDOT","9 th Street Median improvements",2005,150000,1033
-2,"Miscellaneous-CDOT","Plymouth Pedestrian Tunnel",2006,1377,1059
-2,"Miscellaneous-Other","Decorative Baskets - Installed at 107 locations",2008,68266,1560
-2,"Miscellaneous-CDOT","Purchase of 32 decorative waste baskets",2010,42618,1749
-2,"Miscellaneous-CDOT","Decorative Waste Receptacles - various locations",2010,55851,1752
-2,"Miscellaneous-CDOT","Decorative Waste Receptacles - various locations",2011,33963,1909
-2,"Miscellaneous-Other","Trees on the public way",2011,82145,1929
-2,"Miscellaneous Other","Temporary Parking signs in WEst Loop",2012,10000,1941
-2,"Miscellaneous Other","Martin Luther King Boulevard artwork installation",2012,30000,1943
-3,"Miscellaneous-Other","Christmass Tree decorations",2005,10000,2527
-3,"Miscellaneous-Other","Tree Planting - 4239",2011,3300,2750
-3,"Miscellaneous Other","8 decorative garbage cans",2012,11450,2761
-3,"Miscellaneous Other","Trees on MLK Drive (2012 installation)",2013,963,2794
-4,"Miscellaneous-CDOT","53 rd Street - 5 tree grates",2007,9500,3272
-4,"Miscellaneous-CDOT","Woodlawn to Harper",2007,47200,3273
-4,"Chicago Park District","41 st St. Beach House",2009,290000,3348
-4,"Chicago Park District","Dyett Green Youth Farm Fence",2010,59020,3374
-4,"Chicago Park District","41 st Street Beach House",2010,250000,3375
-4,"Miscellaneous-CDOT","Harper Ave. Construction",2011,2e+05,3385
-4,"Miscellaneous Other","Harper Ave.",2012,2e+05,3415
-5,"Chicago Park District","South Shore Cultural Center",2009,50370,4117
-5,"Chicago Park District","South Shore Cultural Center",2009,42000,4118
-5,"Miscellaneous-Other","Chicago Public Art Group - various Locations",2009,2000,4119
-5,"Miscellaneous-Other","Shot Spotters",2009,167000,4120
-5,"Miscellaneous-Other","Chicago Public Art Group- various locations",2009,32728,4121
-5,"Miscellaneous-Other","Various Chicago Public Art Group Projects",2011,10000,4196
-6,"Bollard Menu","7757 DR. MARTIN LUTHER KING JR. DR",2006,714,4554
-6,"Bollard Menu","7600 DR. MARTIN LUTHER KING JR. DR",2007,714,4606
-6,"Model Block","Model block",2007,21000,4617
-8,"Schools","Gately Stadium Scoreboard",2011,5000,6170
-9,"POD Camera","15 locations",2007,360000,6843
-9,"Bollard Menu","10557 DR. MARTIN LUTHER KING JR. DR",2008,714,6845
-9,"Schools","Gwendolyn Brooks School - 250 E. 111 th St.",2009,2e+05,6926
-9,"Miscellaneous-CDOT","137 - 141 E 114 th Place (parkway)",2010,41,6931
-9,"Schools","Gwendolyn Brooks",2010,474000,6957
-9,"Schools","Gately Stadium - scoreboard",2011,5000,6985
-9,"High Definition Camera","",2012,1559,7012
-9,"High Definition Camera","",2013,20941,7031
-9,"High Definition Camera","",2013,22500,7032
-10,"Miscellaneous-CDOT","E107 Ewing to 1 st alley east",2006,8887,7636
-10,"Miscellaneous-CDOT","Commercial 8926-27-30-32",2007,8886,7718
-10,"Miscellaneous-Other","10 th Ward",2008,1e+05,7849
-10,"Miscellaneous-Other","TIF Study Expansion - Calumet Marina",2009,20000,7899
-10,"High Definition Camera","",2013,22500,8081
-11,"POD Camera","2 Option i POD",2005,26838,8562
-11,"POD Camera","2 Option I POD",2006,45161,8605
-11,"Miscellaneous-CDOT","Stockyard Truckers",2007,612,8632
-11,"Miscellaneous-CDOT","Mary Street - fence",2007,17500,8633
-11,"Sidewalk Menu","3203",2012,3367,8828
-12,"Street Lighting","VARIOUS LOCATIONS IN WARD",2008,2450,9630
-13,"Model Block","Various Locations",2005,275000,10384
-13,"Miscellaneous-Other","8 th Dist Police Station",2005,1178,10419
-13,"Miscellaneous-Other","8 th Dist Police Station",2006,1777,10494
-13,"Miscellaneous-Other","Police Bikes",2007,8785,10582
-14,"Model Block","Model block various locations",2005,42335,11675
-14,"Sidewalk Menu - Change Order","various locations",2011,18476,12272
-16,"Pole Painting","16TH WARD",2007,291600,14017
-16,"Street Lighting","16TH WARD",2007,588200,14018
-16,"Miscellaneous-CDOT","Various locations- Decorative Waste Receptacles",2011,42716,14196
-16,"Miscellaneous Other","Flower baskets- 63 rd St.",2012,47200,14254
-17,"POD Camera","9 locations",2006,216000,14776
-19,"Miscellaneous-Other","OBM Concrete Alley Program",2005,27162,16298
-19,"Miscellaneous-Other","OBM Concrete Alley Program",2006,415,16330
-19,"Miscellaneous-Other","OBM Concrete Alley Program",2007,474,16378
-19,"Miscellaneous-Other","OBM Concrete Alley Program",2008,918,16416
-19,"Miscellaneous-Other","OBM Concrete Alley Program",2009,382,16455
-19,"Miscellaneous-Other","OBM Concrete Alley Program",2010,89399,16490
-19,"Miscellaneous Other","Tree planting -2037 W. 108 th Pl",2012,515,16563
-20,"Guardrail Menu","6858 DR. MARTIN LUTHER KING JR. DR",2008,1011,17002
-21,"Sidewalk Menu - Change Order","W. 101 st Pl. Elizabeth Vincennes",2007,1486,17652
-22,"POD Camera","",2011,740000,18677
-23,"Miscellaneous-CDOT","Honorary Signs - Sanchez Dr.",2008,102,19435
-24,"Miscellaneous-BOE","24 th Ward DSS office-1817 S Pulaski",2007,31850,20761
-24,"Miscellaneous-CDOT","16 th St. at Spaulding Ave",2009,1200,20816
-24,"New Alley Construction","Gladys, Van Buren, Dead End, Kilpatrick",2010,1507,20843
-24,"Concrete Alley Menu","Gladys",2012,148082,20897
-24,"Miscellaneous Other","Tree installation - 4043 W. Harrison St.",2012,539,20934
-25,"Miscellaneous-Other","Pilsen Community",2006,6524,21471
-25,"POD Camera","8 locations",2006,264000,21472
-25,"Miscellaneous-CDOT","Permanent Street Cleaning Signs",2007,101002,21492
-25,"Miscellaneous Other","Plaza Tenochtitlan - CPAG",2012,85000,21888
-25,"Miscellaneous Other","18 th Street",2013,69300,21895
-26,"Schools","Pedro Albizu - 2658 W. Haddon",2005,48433,22368
-26,"Miscellaneous - Paseo Boriqua Medalli","Paseo Boricua Medallions",2006,20000,22391
-26,"Miscellaneous-CDOT","Paseo Boriqua Medallion",2006,45000,22393
-26,"Miscellaneous-CDOT","Division Gateway Flag Painting",2006,20000,22394
-26,"Miscellaneous-BOE","3 KING FESTIVAL",2006,85000,22422
-26,"Chicago Park District","Augusta Pool",2006,20000,22432
-26,"Schools","Pedro Albizu -2658 W. Haddon",2007,37323,22447
-26,"Miscellaneous-CDOT","Humboldt Dr. through Humboldt Park",2008,20000,22453
-26,"Miscellaneous-Other","Bloomingdale Trail",2008,15000,22479
-26,"Miscellaneous-Other","La Crucifixion De Don Pedro Albizu Mural -2423 W. North Ave.",2008,25000,22480
-26,"Schools","Pedro Albizu H.S. parking lot -2658 W. Haddon",2008,6244,22482
-26,"Miscellaneous-CDOT","Division Street Gateway",2010,424,22541
-26,"Miscellaneous-CDOT","Division Street Gateways",2011,40771,22615
-26,"Miscellaneous-CDOT","Division Street Gateways",2011,826,22616
-26,"Schools","Lowell School - 3320 W. Hirsch St.",2011,20000,22642
-26,"Schools","Funston School - 2010 N. Central Park Ave.",2011,20000,22644
-26,"Schools","Casals School - 3501 W. Potomac Ave.",2011,20000,22646
-26,"Miscellaneous Other","Division Street Gateways",2012,45711,22658
-27,"POD Camera","11 locations",2007,192000,23381
-27,"Chicago Park District","Eckhart Park- playground - 1330 W. Chicago Ave.",2011,175000,23561
-28,"Miscellaneous-CDOT","Hamlin Blvd Landscape Enhancement",2006,13963,24076
-28,"POD Camera","8 locations",2006,192000,24126
-32,"Miscellaneous-CDOT","Roscoe Ave pavers",2006,125000,27842
-32,"Chicago Park District","North Racine",2007,150000,27980
-32,"Miscellaneous-CDOT","Chicago Ave. at Hoyne Ave. (crosswalk)",2008,875,28005
-32,"Miscellaneous-CDOT","Replace faded bikeway marking",2009,30000,28064
-32,"Miscellaneous-CDOT","1300 block of W. Altgeld",2010,49300,28132
-33,"Bollard Menu","4 .00",2006,2586,28749
-33,"Miscellaneous-CDOT","100 tree grates on Kedzie Ave",2006,186000,28751
-34,"Alley Resurfacing Menu","117 th St - 117 th Pl - Lowe - Wallace",2012,2762,29914
-34,"Miscellaneous Other","1720 w Montvale",2012,955,29930
-34,"Miscellaneous Other","City owned vacant land (signs)",2012,54015,29931
-36,"Miscellaneous-Other","36 th ward library",2007,5e+05,31585
-39,"Chicago Park District","Gompers Park - Pulaski Ave.",2009,30000,34196
-39,"Sidewalk Menu - Change Order","N KRUGER AVEELSTON",2011,593,34256
-39,"Sidewalk Menu - Change Order","W FOSTER AVEKOSTNER",2011,1669,34257
-39,"Miscellaneous Other","Saughnash",2012,264865,34287
-39,"Miscellaneous Other","Saugnash Mural",2013,10000,34316
-39,"Miscellaneous Other","Forest Glen Mural",2013,3000,34319
-39,"Floodlight Menu","W CARMEN AVE & N SPAULDING AVE ON & N KENTON AVE FROM & W SUNNYSIDE AVE (4500 N) TO",2013,1200,34341
-39,"Tree Planting in Ward","various locations",2018,10000,34513
-40,"Sidewalk Menu - Change Order","California (Gunnison Ainlsie)",2010,598,34966
-41,"Miscellaneous-CDOT","Devon at Normandy",2007,600,35600
-41,"Miscellaneous-CDOT","Hiawatha Ave - multiple locations",2011,1700,35816
-42,"Miscellaneous-CDOT","Clinton - Fulton River District",2005,1485,36236
-42,"Miscellaneous-CDOT","Ohio Street Dog Park Fence",2006,11701,36303
-42,"Miscellaneous-CDOT","Access Living Public Improvements",2006,75525,36304
-42,"Street Lighting","MADISON-WACKER TO CANAL",2006,1600,36370
-42,"Miscellaneous-CDOT","LSD on north side of Cedar Street",2008,400,36461
-42,"Miscellaneous-Other","Michigan Ave. Planter maintenance",2008,77000,36509
-42,"In-Road State Law Stop for Pedestrians S","N STATE STDEAD END",2011,410,36598
-42,"Miscellaneous-CDOT","LaSalle Plaza 335",2011,5121,36601
-42,"Miscellaneous Other","LaSalle Plaza 335",2012,979,36635
-42,"Miscellaneous Other","LaSalle Plaza 335",2013,6100,36697
-43,"Miscellaneous-Other","CTA Fullerton Stop- Healy Stone Project. Menu 2003 ,2004 ,2005 ,",2005,6646,37163
-43,"Pole Painting","INNER LAKESHORE-DIVISION(1200 N) to NORTH AVE (1600 N)",2006,11200,37193
-43,"Miscellaneous-CDOT","Lincoln Park West @ Dickens (Additional Work)",2008,30000,37287
-43,"Miscellaneous-Other","CTA Fullerton Stop-healy Stone Project. Menu",2009,354,37403
-44,"Miscellaneous-Other","Center on Halsted",2006,350000,38153
-44,"Chicago Park District","Lakse Shore Dr. Diversey-Briar",2009,9000,38244
-44,"Curb & Gutter Menu","Melrose - Broadway to Lake Shore Dr",2012,3515,38349
-44,"Miscellaneous Other","Tree installation",2012,784,38398
-44,"Miscellaneous Other","108 signs will be posted in the designated areas of the ward",2013,10497,38429
-45,"POD Camera","4956 Bell Plaine Ave",2007,24000,39084
-46,"Miscellaneous-Other","Wilson Yard Development",2005,63962,39772
-46,"Miscellaneous-CDOT","10 Decorative Benches",2006,27000,39778
-46,"Miscellaneous-Other","Wilson Yard Development",2006,120432,39796
-46,"Streetscape","20 Decorative Bench installation",2007,54000,39805
-46,"Miscellaneous-Other","Wilson Yard Development",2007,6009,39818
-46,"Miscellaneous-Other","Wilson Yard Development",2008,500117,39841
-46,"Miscellaneous-CDOT","Decorative Bench",2009,2100,39847
-46,"Chicago Park District","Clarendon Dog Friendly Area",2009,75000,39881
-46,"Miscellaneous-Other","Wilson Yard Development",2009,59480,39882
-46,"In-Road State Law Stop for Pedestrians S","W LAWRENCE AVEDEAD END",2011,410,39917
-46,"In-Road State Law Stop for Pedestrians S","W ADDISON STDEAD END",2011,410,39919
-46,"In-Road State Law Stop for Pedestrians S","W MONTROSE AVEDEAD END",2011,410,39921
-46,"In-Road State Law Stop for Pedestrians S","W WILSON AVEDEAD END",2011,410,39922
-46,"Miscellaneous Other","30 Trees to be planted in the Ward",2012,13353,39967
-47,"Miscellaneous-Other","Lane Tech",2006,25000,40413
-47,"Miscellaneous-CDOT","Lincoln Ave at Cullom Ave",2008,900,40500
-47,"Miscellaneous-CDOT","Damen @ Byron",2008,800,40502
-47,"Miscellaneous-CDOT","Lawrence @ Campbell",2009,800,40571
-47,"Curb/Gutter Menu","W PATTERSON AVEDead End (4652 W)Dead End (4521 W)",2011,90,40667
-47,"Miscellaneous Other","Various arterial Streets (in file) - Tree planting",2012,23765,40719
-47,"Miscellaneous Other","Installation of four bike stations",2012,265000,40721
-48,"Miscellaneous-CDOT","Gravel Pave Alley surface",2006,150000,41480
-48,"Schools","Senn Academy",2006,25000,41493
-48,"Miscellaneous-CDOT","Foster Ave at Marine Drive",2007,1800,41503
-48,"Miscellaneous-CDOT","Foster at Lake Shore Dr. Sandblasting",2008,11000,41559
-48,"Miscellaneous-CDOT","Broadway Avenue Study",2009,50000,41602
-48,"Miscellaneous-CDOT","South Edgewater Study",2009,60000,41603
-48,"Miscellaneous-Other","48 th Ward Retail Study",2009,26000,41627
-48,"POD Camera","Broadway at Thorndale",2009,13000,41628
-48,"Miscellaneous-CDOT","Thorndale CTA Station (lighting)",2010,31500,41634
-48,"Miscellaneous-Other","Edgewater Branch Library",2010,1e+06,41639
-48,"POD Camera","Sheridan on lightpole North of Thorndale",2010,20000,41642
-48,"Alley Apron Menu","N BROADWAYW ARDMORE AV (5800 N)",2011,12462,41652
-48,"POD Camera","Argy",2011,1800,41678
-48,"High Definition Camera","",2012,22500,41698
-48,"Miscellaneous Other","Fence at 4919 N. Winthrop (City property)",2013,10325,41716
-49,"Street Lighting","BELL-BIRCHWOOD TO HOWARD",2005,60000,42278
-49,"Miscellaneous-CDOT","Tree Gates at 7300 N Oakley",2006,18500,42295
-49,"Miscellaneous-Other","Gale Community Center",2006,4e+05,42316
-49,"Miscellaneous-CDOT","Morse Ave. Design",2007,65000,42338
-49,"Miscellaneous-CDOT","N. Clark St. (Benazir Bhutto Way Honorarily Sign)",2008,102,42376
-49,"Miscellaneous-CDOT","Honorary Sign Wayne Peters Ave",2008,51,42380
-49,"Chicago Park District","Capital Upgrades",2010,89790,42469
-49,"CTA","Benches, shelters- Red line stops Jarvis,Morse,Loyola (Final cost shown).",2010,59246,42470
-49,"Miscellaneous-Other","Solar Powered Garbage Containers - 8 locations. TPC =",2010,41000,42471
-49,"Miscellaneous-Other","Murals in Rogers Park on CTA Viaducts",2010,78900,42472
-49,"Chicago Park District","Capital Upgrades",2011,89790,42509
-49,"Miscellaneous-Other","Solar Powered Garbage Containers- 8 locations (201",2011,2628,42512
-49,"Miscellaneous Other","Lunt at RR (1600 W)",2013,3228,42569
-49,"Miscellaneous Other","Estes at RR (1600 W)",2013,3228,42570
-49,"Miscellaneous Other","Touhy at RR (1600 W)",2013,3228,42575
-49,"Miscellaneous Other","Birchwood at RR (1600 W)",2013,3228,42576
-49,"O Alley Apron Menu  R","N & N WOLCOTT AVE FROM & W CHASE AVE (7300 N) TO & N OGERS AVE (7340 N)",2019,21289.73,42886
-49,"O Sidewalk Menu  W","N & W SHERWIN AVE FROM 1200 W TO & N SHERIDAN RD (1300 )",2019,36487.23,42909
-49,"O Sidewalk Menu  W","N & W SHERWIN AVE FROM 1200 W TO & N SHERIDAN RD (1300 )",2019,2343.46,42920
-49,"O Street Resurfacing Menu  A","N & W JARVIS AVE FROM & N BELL AVE (2200 W) TO & N OAKLEY VE (2300 W)",2019,34239.48,42929
-49,"O Street Resurfacing Menu  W","N & W PRATT BLVD FROM 1051 W TO & N SHERIDAN RD (1200 )",2019,76768.71,42930
-50,"Miscellaneous-CDOT","6201 Monticello",2005,8568,43067
-50,"Chicago Park District","Parks",2005,7e+05,43082
-50,"Chicago Park District","Thillens Stadium",2009,250000,43152
-1,"2 LPR on Existing Cameras: 1933 N Milwaukee; 1955 N Damen"," 1955 N DAMEN AVE",2021,10971,943
-1,"Alley Resurfacing Menu"," 2342-2346 W ALTGELD ST",2021,5081.48333333333,945
-1,"Alley Resurfacing Menu"," 850 N OAKLEY BLVD",2021,32906.95,948
-1,"Alley Resurfacing Menu"," 1927 W RACE AVE",2021,18755.92,949
-1,"Alley Resurfacing Menu"," 1900 N MOZARTST",2022,12807.105,990
-1,"Alley Speed Hump Menu"," 3505-3539 WARMITAGE AVE",2022,700,992
-2,"2 POD Cameras: 2000 W Chicago Ave; 1300 N Cleveland"," 1300 N CLEVELAND AVE",2021,24776,2417
-2,"Sidewalk Menu"," 230 ELAKE SHORE DR",2021,10623.155,2426
-2,"Street Resurfacing Menu"," 850 N DEWITT PL",2021,52357.98,2427
-2,"Alley Resurfacing Menu"," 455 W NORTHAVE",2022,16638.72,2464
-2,"Curb & Gutter Menu"," 115 W CHICAGOAVE",2022,10184.52,2470
-3,"Alley Resurfacing Menu","2036",2020,10976.615,3060
-3,"Miscellaneous CDOT Projects"," 435 E 43RD ST",2021,75,3110
-3,"Miscellaneous CDOT Projects"," 5221 S WABASH AVE",2021,133.065,3114
-3,"Miscellaneous CDOT Projects"," 5314 S INDIANA AVE",2021,150,3116
-3,"Alley Resurfacing Menu"," 4906 S INDIANA AVE",2022,23593.905,3167
-3,"Alley Speed Hump Menu"," 516-538 E 44TH PL",2022,350,3175
-3,"Alley Speed Hump Menu"," 4810 S INDIANA AVE",2022,350,3176
-3,"Speed Indicator Signs"," 1829 S STATE ST",2022,5500,3196
-4,"POD Camera"," 5299 S Drexel",2006,36000,3264
-4,"POD Camera"," 4659 S Cottage Grove",2007,24000,3295
-4,"3 LPR No POD Cameras: 101 W Ida B Wells; 110 E Roosevelt Rd; 600 S State St"," 110 E ROOSEVELT RD",2021,27410,3763
-4,"3 LPR No POD Cameras: 101 W Ida B Wells; 110 E Roosevelt Rd; 600 S State St"," 600 S STATE ST",2021,27410,3763
-4,"Alley Resurfacing Menu"," 936 E 47TH ST",2021,11377.22,3766
-4,"Street Light Upgrade Menu"," 813 E 47TH PL",2021,500,3793
-4,"Speed Indicator Signs"," 4825 S DREXEL BLVD",2022,8333.33333333333,3827
-5,"6 POD Cameras; 6 LPR on Existing Cameras: Various Locations"," 7000 S EAST END AVE",2021,35747,4449
-5,"6 POD Cameras; 6 LPR on Existing Cameras: Various Locations"," 7100 S DORCHESTER AVE",2021,35747,4449
-5,"Sidewalk Menu"," 1001 E 53RD ST",2021,2900.155,4459
-5,"Street Bump Outs Menu"," 4930 S CORNELL AVE",2021,5878.425,4461
-5,"Miscellaneous CDOT Projects"," 7138 S INGLESIDE AVE",2022,187.5,4478
-5,"Miscellaneous CDOT Projects"," 6504-6506 S GREENWOOD AVE",2022,187.5,4478
-5,"Miscellaneous CDOT Projects"," 6602 SDREXEL AVE",2022,187.5,4478
-6,"Alley Apron Menu"," 8645 S PRAIRIE AVE",2021,33966.46,4991
-6,"Alley Apron Menu"," 7203 S STLAWRENCE AVE",2021,12013.88,4992
-6,"Alley Speed Hump Menu"," 846 W 69TH ST",2021,700,4994
-6,"Sidewalk Menu"," 129-131 E 72ND ST",2021,20933.99,5002
-6,"Alley Apron Menu"," 7513 S LANGLEY AVE",2022,12060.605,5032
-6,"Sidewalk Menu"," 49 W 77TH PL",2022,5052.88,5041
-6,"Sidewalk Menu"," 55 W 77TH PL",2022,12003.495,5042
-6,"Sidewalk Menu"," 7515 S RHODES AVE",2022,2849.26,5048
-7,"Miscellaneous CDOT Projects"," 7139 S RIDGELAND AVE",2021,18225.135,5720
-7,"Miscellaneous CDOT Projects"," 8240-8242 S BURLEY AVE",2021,150,5723
-7,"Miscellaneous CDOT Projects"," 8240-8242 S BUFFALO AVE",2021,150,5724
-7,"Miscellaneous CDOT Projects"," 8256-8260 S BUFFALO AVE",2021,150,5724
-7,"Miscellaneous CDOT Projects"," 8247-8251 SBUFFALO AVE",2021,150,5724
-7,"Street Light Upgrade Menu"," 2424 E 103RD ST",2021,500,5745
-7,"Street Light Upgrade Menu"," 8800 S SOUTH CHICAGO AVE",2022,500,5789
-8,"Alley Speed Hump Menu"," 1614 E 83RD PL",2021,350,6519
-8,"Alley Speed Hump Menu"," 7514 S CREGIER AVE",2021,700,6521
-8,"Miscellaneous CDOT Projects"," 7841 S STONY ISLAND AVE E",2022,75,6582
-9,"Miscellaneous CDOT Projects"," 10048 S MICHIGAN AVE",2022,187.5,7316
-9,"Miscellaneous CDOT Projects"," 625-631 E 103RD ST",2022,187.5,7316
-9,"Miscellaneous CDOT Projects"," 11919 S MICHIGANAVE",2022,187.5,7316
-9,"Sidewalk Menu"," 11040 S INDIANA AVE",2022,11533.455,7318
-10,"POD Camera"," 104 th Ave 'M'",2007,36000,7801
-10,"Sidewalk Menu"," 10254 S AVENUE G",2021,7252.28,8420
-10,"Sidewalk Menu"," 2617 E 108TH ST",2021,1455.29666666667,8426
-10,"Sidewalk Menu"," 13316 S AVENUE K",2021,4050.94,8434
-10,"Sidewalk Menu"," 9413 S COMMERCIAL AVE",2021,77222.18,8441
-11,"Alley Resurfacing Menu"," 329 W 24TH PL",2021,8599.44,9258
-11,"Alley Resurfacing Menu"," 3242 S CANAL ST",2021,19374.915,9259
-11,"Alley Resurfacing Menu"," 724 W 48TH PL",2021,39242.93,9260
-11,"Concrete Alley Menu"," 2628 S THROOP ST",2021,33500,9265
-11,"Concrete Alley Menu"," 3439 S LOWE AVE",2021,47483.35,9266
-11,"Street Light Upgrade Menu"," 2955 S UNION AVE",2021,500,9288
-11,"Street Speed Hump Menu"," 2830 S LOCK ST",2021,1175,9307
-11,"Street Traffic Circle Menu"," W 30TH",2021,15746.2857142857,9311
-11,"Alley Resurfacing Menu"," 745 W 48TH PL",2022,34091.105,9319
-11,"Alley Speed Hump Menu"," 3001 S CANAL ST",2022,466.666666666667,9322
-11,"Concrete Alley Menu"," 3439 S LOWE AVE",2022,143017,9331
-11,"Street Light Upgrade Menu"," 2855 S HILLOCKAVE",2022,4833.33333333333,9367
-11,"Street Light Upgrade Menu"," 2879 S HILLOCK AVE",2022,4833.33333333333,9367
-12,"POD Camera"," 3558 S California",2007,18000,9588
-12,"POD Camera","3825 California",2008,15000,9631
-12,"POD Camera","4200 California",2008,15000,9631
-12,"POD Camera","4500 Talman",2008,15000,9631
-12,"2 LPR on Existing Cameras: 1586 W 33rd St; 3109 S Archer Ave"," 3109 S ARCHER AVE",2021,10971,10256
-12,"Alley Apron Menu"," 2817 W 40TH ST",2021,8111.32,10259
-12,"Alley Resurfacing Menu"," 1614 W 33RD ST",2021,7005.23,10275
-12,"Sidewalk Menu"," 3426-3428 S BELL AVE",2021,4671.385,10301
-12,"Sidewalk Menu"," 3533 S WOOD ST",2021,1834.11333333333,10303
-12,"Sidewalk Menu"," 3532 S WOOD ST",2021,1834.11333333333,10303
-12,"Sidewalk Menu"," 3712 S HONORE ST",2021,3269.635,10307
-12,"Street Light Upgrade Menu"," 3401 W 38TH ST",2021,500,10316
-12,"Street Light Upgrade Menu"," 3517 S MARSHFIELD AVE",2021,500,10316
-12,"Alley Resurfacing Menu"," 3844 S HONORE ST",2022,3474.725,10348
-13,"POD Camera"," 8100 S Kostner",2005,24000,10420
-13,"POD Camera","6340 Cicero",2007,24000,10584
-13,"POD Camera"," 6000 S Keeler",2007,12000,10586
-13,"POD Camera"," 7825 S Kostner",2007,12000,10586
-13,"Bollard Menu"," 4308 W MARQUETTE RD",2021,2495.11,11394
-13,"Sidewalk Menu"," 5442 W 63RD PL",2021,2627.82,11436
-13,"Sidewalk Menu"," 5521 S KOLMAR AVE",2021,741.433333333333,11438
-13,"Sidewalk Menu"," 5606 S KEELER AVE",2021,1487.98,11444
-13,"Sidewalk Menu"," 6200 S MULLIGAN AVE",2021,1319.535,11506
-13,"Alley Resurfacing Menu"," 5623 S MEADE AVE",2022,12027.625,11545
-13,"Sidewalk Menu"," 5825 S RUTHERFORD AVE",2022,6619.975,11569
-13,"Street Light Upgrade Menu"," 6310 S LOREL AVE",2022,500,11600
-13,"Street Light Upgrade Menu"," 6058 S MASON AVE",2022,500,11601
-14,"Alley Resurfacing Menu (1-1)"," 4600 S CHRISTIANA AVE",2021,18579.545,12900
-14,"Alley Resurfacing Menu"," 4822 S RIDGEWAY AVE",2021,14756.98,12903
-14,"Alley Resurfacing Menu"," 5723 S WHIPPLE ST",2021,16885.315,12904
-14,"Sidewalk Menu"," 2924 W 55TH ST",2021,4924.675,12940
-14,"Sidewalk Menu"," 2503 W 50TH ST",2022,2067.95,12964
-14,"Sidewalk Menu"," 4747 S KOLIN AVE",2022,4616.86666666667,12974
-14,"Sidewalk Menu"," 4743 S KOLIN AVE",2022,4616.86666666667,12974
-14,"Sidewalk Menu"," 5220 S NATOMA AVE",2022,9960.42,12987
-14,"Sidewalk Menu"," 5244-5248 S NATOMA AVE",2022,9960.42,12987
-14,"Sidewalk Menu"," 5258 S MULLIGAN AVE",2022,13315.12,12991
-15,"Alley Apron Menu"," 4444 S ARTESIAN AVE",2021,11107.7,13739
-15,"Sidewalk Menu"," 3000 W 47TH ST",2021,27521.68,13802
-15,"Alley Apron Menu"," 4312 S ARTESIAN AVE",2022,11398.045,13811
-15,"Alley Resurfacing Menu"," 4600 SHONORE ST",2022,17912.5466666667,13817
-15,"Alley Resurfacing Menu"," 4601 SWINCHESTER AVE",2022,18914.01,13818
-15,"Alley Resurfacing Menu"," 1714 W 47TH ST",2022,25913.175,13821
-16,"POD Camera"," 5200 S Ada",2006,24000,13947
-16,"Bollard Menu"," 5300 S DAMEN AVE",2022,1668.935,14658
-16,"Street Resurfacing Menu"," 6100 S PEORIA ST",2022,16644.87,14669
-17,"Alley Apron Menu"," 1500 W 74TH ST",2022,8617.77666666667,15368
-18,"Sidewalk Menu"," 8156 S RICHMOND ST",2021,2183.45666666667,16154
-18,"Sidewalk Menu"," 8112 S RICHMOND ST",2021,2183.45666666667,16154
-18,"Speed Indicator Signs"," 2832 W 83RD ST",2021,12500,16163
-18,"Speed Indicator Signs"," 4260 W 79TH PL",2021,14000,16166
-18,"Speed Indicator Signs"," 4139 W 79TH ST",2021,14000,16166
-18,"Sidewalk Menu"," 8155 S FAIRFIELD AVE",2022,1731.65,16208
-19,"POD Camera"," 11300 S Hermosa",2007,12000,16379
-20,"Alley Speed Hump Menu"," 4758 S RACINE AVE",2021,1050,17490
-20,"Miscellaneous CDOT Projects"," 5828 S DR MARTIN LUTHER KING JR DR",2022,150,17524
-20,"Miscellaneous CDOT Projects"," 6555 S INGLESIDE AVE",2022,75,17525
-21,"Sidewalk Menu"," 9221 S BISHOP ST",2021,9685.535,18413
-21,"Street Speed Hump Menu"," 8229 SWENTWORTH AVE",2021,2350,18440
-21,"Street Speed Hump Menu"," 9656 S UNION AVE",2021,1175,18441
-21,"Curb & Gutter Menu"," 8840 S EMERALD AVE",2022,799.805,18463
-22,"Arterial Street Bump Outs Menu"," 4332 W 26TH ST",2021,31861.26,19139
-22,"Street Speed Hump Menu"," 4210 W 25TH ST",2021,1175,19162
-22,"Alley Apron Menu"," 2800 SMILLARD AVE",2022,10223.4,19175
-22,"Alley Resurfacing Menu"," 2700-2758 S SAWYER AVE",2022,23520.15,19182
-22,"Alley Resurfacing Menu"," 2257 S DRAKE AVE",2022,15529.735,19183
-22,"Arterial Street Bump Outs Menu"," 4332 W 26TH ST",2022,15779.715,19195
-22,"Sidewalk Menu"," 2800 SRIDGEWAY AVE",2022,5740.82,19221
-22,"Sidewalk Menu"," 3201 SKEDVALE AVE",2022,5683.31,19222
-22,"Street Bump Outs Menu"," 3259 S PULASKI RD",2022,8962.43,19223
-22,"Street Resurfacing Menu"," 4400 S LAWLER AVE",2022,26653.55,19230
-23,"Alley Apron Menu"," 3701 W 60TH PL",2021,8208.67,20478
-23,"Alley Apron Menu"," 5258 S SAYRE AVE",2021,14086.015,20479
-23,"Alley Apron Menu"," 5358 S HAMLIN AVE",2021,7512,20480
-23,"Alley Apron Menu"," 5601 S MASSASOIT AVE",2021,7630.175,20481
-23,"Alley Speed Hump Menu"," 5301 S HARDING AVE",2021,466.666666666667,20486
-23,"Alley Speed Hump Menu"," 5344 S MILLARD AVE",2021,350,20487
-23,"Alley Speed Hump Menu"," 5817 S TRUMBULL AVE",2021,245.83,20488
-23,"Speed Indicator Signs"," 5185 S ARCHER AVE",2021,11000,20518
-23,"Speed Indicator Signs"," 6115 S PULASKI RD",2021,14000,20519
-23,"Viaduct Improvement Menu"," 5346 S CICERO AVE",2021,21183.24,20545
-23,"Alley Apron Menu"," 3655 W 60TH PL",2022,9899.33333333333,20552
-23,"Alley Apron Menu"," 3700 W 58TH ST",2022,7864.03,20555
-23,"Alley Apron Menu"," 3759 W 57TH PL",2022,9174.38333333333,20557
-23,"Alley Speed Hump Menu"," 3607 W 61ST ST",2022,1050,20564
-23,"Diagonal Parking Menu"," 6758 W ARCHER AVE",2022,20000,20572
-23,"Street Light Upgrade Menu"," 5430 S NOTTINGHAM AVE",2022,500,20600
-23,"Street Resurfacing Menu"," 5300 S NAGLE AVE",2022,23240.61,20606
-24,"5 POD Camera + 5 LPR Existing Cameras: Various Locations"," 4100 W ARTHINGTON ST",2021,33552.8,21217
-24,"Alley Speed Hump Menu"," 4300 W CULLERTON ST",2021,700,21234
-24,"Alley Resurfacing Menu"," 3752 W 16TH ST",2022,15895.61,21277
-24,"Alley Resurfacing Menu"," 735-757 SINDEPENDENCE BLVD",2022,17460.315,21281
-24,"Miscellaneous CDOT Projects"," 1608 S TRUMBULL AVE",2022,150,21295
-24,"Miscellaneous CDOT Projects"," 1610 S TRUMBULL AVE",2022,150,21295
-25,"POD Camera"," 348 W 24 thPl",2007,24000,21513
-25,"POD Camera"," 1301 S Heath",2007,24000,21513
-25,"Alley Resurfacing Menu"," 927 S CARPENTER ST",2021,20074.81,22223
-25,"Miscellaneous CDOT Projects"," 1942 S MAY ST",2021,660,22226
-25,"Miscellaneous CDOT Projects"," 2030 S BLUE ISLAND AVE",2022,660,22278
-26,"Miscellaneous - Paseo Boriqua Medalli"," 2733 W Division",2005,8250,22358
-26,"Miscellaneous - Paseo Boriqua Medalli"," 2739 W Division",2005,8250,22358
-26,"Miscellaneous - Paseo Boriqua Medalli"," 2459 W Division",2005,8250,22358
-26,"Alley Resurfacing Menu"," 3524-3556 W NORTH AVE",2021,16751.2333333333,23069
-26,"Alley Resurfacing Menu"," 1501 N KARLOV AVE",2021,18594.74,23075
-26,"Alley Resurfacing Menu"," 1615 N KEYSTONEAVE",2021,30151.565,23077
-26,"Alley Resurfacing Menu"," 1615 N LOWELL AVE",2021,25154.14,23079
-26,"Alley Resurfacing Menu"," 1700 N PULASKI RD",2021,16466.03,23082
-26,"Alley Resurfacing Menu"," 3400 W EVERGREEN AVE",2021,19547.65,23084
-26,"Alley Resurfacing Menu"," 2600 W EVERGREEN AVE",2021,20045.37,23085
-26,"Alley Resurfacing Menu"," 4016 W KAMERLINGAVE",2021,22575.86,23087
-26,"Alley Resurfacing Menu"," 3410 W PIERCE AVE",2021,18468.11,23089
-26,"Alley Speed Hump Menu"," 2606 W DIVISIONST",2021,1400,23092
-26,"Sidewalk Menu"," 1130 N FRANCISCO AVE",2021,2847.95,23113
-26,"Sidewalk Menu"," 1111 N FRANCISCO AVE",2021,2847.95,23113
-26,"Sidewalk Menu"," 4305 W LE MOYNE ST",2021,51631.255,23116
-26,"Street Speed Hump Menu"," 1045 NSACRAMENTO AVE",2021,1175,23131
-26,"Alley Resurfacing Menu"," 1300 N ARTESIANAVE",2022,22075.835,23145
-26,"Alley Resurfacing Menu"," 1400 NCENTRAL PARK AVE",2022,23051.98,23146
-26,"Alley Resurfacing Menu"," 1400 N KARLOV AVE",2022,24739.38,23147
-26,"Alley Resurfacing Menu"," 1501 N KARLOV AVE",2022,2960.665,23148
-26,"Alley Resurfacing Menu"," 1501 NSPRINGFIELD AVE",2022,25872.175,23149
-26,"Alley Resurfacing Menu"," 3500 W ARMITAGEAVE",2022,16728.465,23152
-26,"Alley Resurfacing Menu"," 3615 WDICKENS AVE",2022,23288.325,23153
-26,"Alley Resurfacing Menu"," 3501 W LEMOYNE ST",2022,39467.915,23156
-26,"Alley Resurfacing Menu"," 4101 W NORTH AVE",2022,18309.04,23157
-26,"Sidewalk Menu"," 1456 N SPRINGFIELD AVE",2022,3742.22666666667,23180
-26,"Sidewalk Menu"," 3901 W LE MOYNE ST",2022,3742.22666666667,23180
-27,"Alley Resurfacing Menu"," 617 W EVERGREEN AVE",2022,10050.41,23949
-27,"Sidewalk Menu"," 639 N HOMAN AVE",2022,24175.9433333333,23963
-28,"Alley Speed Hump Menu","240- 268 N HAMLIN BLVD",2016,1400,24567
-28,"Sidewalk Menu"," 324 S LEAMINGTON AVE",2021,7993.305,24767
-28,"Sidewalk Menu"," 2534 W LEXINGTON ST",2021,20374.675,24770
-28,"Street Light Residential Staggered Piggy Back Menu","AVE (250 N)",2021,41570.75,24773
-28,"Street Light Residential Staggered Piggy Back Menu"," ON & N KILDARE AVE FROM W",2021,41570.75,24773
-28,"Street Light Upgrade Menu"," 147 S WHIPPLE ST",2021,625,24774
-28,"Street Light Upgrade Menu"," 201 S WHIPPLE ST",2021,625,24774
-28,"Street Light Upgrade Menu"," 3023 W FIFTH AVE",2021,500,24775
-29,"Alley Resurfacing Menu"," 1645 N OAKPARK AVE",2021,21679.305,25451
-29,"Alley Resurfacing Menu"," 5400 W QUINCY ST",2021,35012.575,25454
-29,"Alley Resurfacing Menu"," 7117 W BELMONTAVE",2021,12369.685,25455
-29,"Sidewalk Menu"," 6928 W PALMER ST",2021,10624.77,25494
-29,"Street Light Upgrade Menu"," 3108 N SAYRE AVE",2021,250,25506
-29,"Street Speed Hump Menu"," 5900 W IOWAST",2021,2350,25527
-29,"Alley Resurfacing Menu"," 1324 N CENTRALAVE",2022,18001.14,25541
-29,"Alley Resurfacing Menu"," 1457 N MASON AVE",2022,18976.075,25542
-29,"Alley Resurfacing Menu"," 1837 NNATOMA AVE",2022,22075.835,25543
-29,"Alley Resurfacing Menu"," 1900 N OAKPARK AVE",2022,21333.83,25544
-29,"Alley Resurfacing Menu"," 5255 WJACKSON BLVD",2022,20831.59,25549
-29,"Alley Resurfacing Menu"," 5548 W GLADYS AVE",2022,19183.98,25550
-29,"Alley Speed Hump Menu"," 5045 WGLADYS AVE",2022,1400,25552
-29,"Miscellaneous CDOT Projects"," 5339 W MONROE ST",2022,125,25563
-29,"Miscellaneous CDOT Projects"," 132 N WALLER AVE",2022,125,25563
-29,"Miscellaneous CDOT Projects"," 5300 W VAN BUREN ST",2022,125,25563
-29,"Miscellaneous CDOT Projects"," 5930 WCHICAGO AVE",2022,125,25563
-29,"Miscellaneous CDOT Projects"," 5517 W WEST END AVE",2022,125,25563
-29,"Sidewalk Menu"," 2056 N NEVA AVE",2022,12616.335,25573
-29,"Sidewalk Menu"," 6928 W PALMER ST",2022,17875.065,25574
-29,"Street Resurfacing Menu"," 1400 N PARKSIDE AVE",2022,1340.87,25587
-30,"Alley Resurfacing Menu"," 3570 N MILWAUKEEAVE",2021,36430.66,26670
-30,"Curb & Gutter Menu"," 5347 W MELROSE ST",2022,2293.26444444444,26748
-30,"Curb & Gutter Menu"," 5353 W MELROSE ST",2022,2293.26444444444,26748
-30,"Curb & Gutter Menu"," 5355 W MELROSE ST",2022,2293.26444444444,26748
-30,"Curb & Gutter Menu"," 5319 W MELROSE ST",2022,2293.26444444444,26748
-30,"Curb & Gutter Menu"," 5323 W MELROSE ST",2022,2293.26444444444,26748
-30,"Curb & Gutter Menu"," 5328 W MELROSE ST",2022,2293.26444444444,26748
-30,"Curb & Gutter Menu"," 5318 W MELROSE ST",2022,2293.26444444444,26748
-30,"Curb & Gutter Menu"," 5340 W",2022,2293.26444444444,26748
-30,"Curb & Gutter Menu","MELROSE ST 5531 W PARKER AVE",2022,3452.64,26749
-30,"Curb & Gutter Menu"," 5515 W PARKER AVE",2022,3452.64,26749
-30,"Curb & Gutter Menu"," 5518 W PARKER AVE",2022,3452.64,26749
-30,"Curb & Gutter Menu"," 5536 W PARKER AVE",2022,3452.64,26749
-30,"Curb & Gutter Menu"," 5537 W PARKER AVE",2022,3452.64,26749
-30,"Curb & Gutter Menu"," 5529 W PARKER AVE",2022,3452.64,26749
-30,"Sidewalk Menu"," 2519 N MANGO AVE",2022,5770.555,26756
-30,"Sidewalk Menu"," 2629 N MANGO AVE",2022,4471.96333333333,26758
-30,"Sidewalk Menu"," 2635 N MANGO AVE",2022,4471.96333333333,26758
-30,"Sidewalk Menu"," 3504 N KILPATRICK AVE",2022,4204.4575,26769
-30,"Sidewalk Menu"," 3505 N KILPATRICK AVE",2022,4204.4575,26769
-30,"Sidewalk Menu"," 3525 NKILPATRICK AVE",2022,4204.4575,26769
-30,"Sidewalk Menu"," 4834 W WAVELAND AVE",2022,3989.935,26772
-31,"Street Resurfacing Menu","4800- 4832 W NEWPORT AVE",2020,8977.735,27680
-31,"Alley Apron Menu"," 3112-3210 NLAMON AVE",2021,5988.675,27692
-31,"Alley Apron Menu"," 2811-2815 NLINDER AVE",2021,6577.91,27693
-31,"Alley Apron Menu"," 3725 WWRIGHTWOOD AVE",2021,5888.08,27694
-31,"Alley Resurfacing Menu"," 2901 N KILPATRICK AVE",2021,16176.27,27700
-31,"Street Light Upgrade Menu"," 3122 N CENTRAL AVE",2021,500,27728
-31,"Street Light Upgrade Menu"," 3116 N LOTUS AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 3010 N LAVERGNE AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 3038 N CENTRAL AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 2556 N LARAMIE AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 2524 N LARAMIE AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 3237 N LAVERGNE AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 3058 N CENTRAL AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 5236 W SCHOOL ST",2021,750,27729
-31,"Street Light Upgrade Menu"," 5000 W FLETCHER ST",2021,750,27729
-31,"Street Light Upgrade Menu"," 4858 W MELROSE ST",2021,750,27729
-31,"Street Light Upgrade Menu"," 3535 N LAVERGNE AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 3303 N LAMON AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 3305 N LAVERGNE AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 4812 W NEWPORT AVE",2021,750,27729
-31,"Street Light Upgrade Menu"," 2557 N LOCKWOOD AVE",2021,750,27729
-31,"Street Resurfacing Menu"," 2724 N RIDGEWAY AVE",2021,7252.48375,27730
-31,"Street Resurfacing Menu"," 2930 N PARKSIDE AVE",2021,7252.48375,27730
-31,"Street Resurfacing Menu"," 3016 N PARKSIDE AVE",2021,7252.48375,27730
-31,"Street Resurfacing Menu"," 3108 N LOCKWOOD AVE",2021,7252.48375,27730
-31,"Street Resurfacing Menu"," 5219 W WRIGHTWOOD AVE",2021,7252.48375,27730
-31,"Street Resurfacing Menu"," 2500 N LARAMIE AVE",2021,7252.48375,27730
-31,"Alley Resurfacing Menu"," 2813 N KOSTNERAVE",2022,23782.625,27746
-31,"Alley Resurfacing Menu"," 3001 N LINDER AVE",2022,20670.305,27747
-31,"Alley Resurfacing Menu"," 2300 N TRIPP AVE",2022,27015.33,27748
-31,"Alley Speed Hump Menu"," 5218 WDIVERSEY AVE",2022,700,27752
-31,"Floodlight Menu"," 2314 N LOCKWOOD AVE",2022,950,27761
-31,"Sidewalk Menu"," 2938 N KEATING AVE",2022,5588.01,27763
-31,"Sidewalk Menu"," 4558 W SCHUBERT AVE",2022,7363.13,27765
-31,"Sidewalk Menu"," 5259 WOAKDALE AVE",2022,3721.4,27773
-31,"Speed Indicator Signs"," 3451 N LARAMIE AVE",2022,6192.80333333333,27776
-31,"Street Light Upgrade Menu"," 2434 N LOTUS AVE",2022,500,27777
-31,"Street Light Upgrade Menu"," 2458 N LOTUS AVE",2022,500,27777
-31,"Street Light Upgrade Menu"," 2457 N LOTUS AVE",2022,500,27778
-31,"Street Light Upgrade Menu"," 2415 N LOTUS AVE",2022,500,27778
-31,"Street Light Upgrade Menu"," 2821 N LONG AVE",2022,500,27779
-31,"Street Light Upgrade Menu"," 2825 N LONG AVE",2022,500,27779
-31,"Street Light Upgrade Menu"," 2845 N LONG AVE",2022,500,27779
-31,"Street Light Upgrade Menu"," 2923-2925 N LONG AVE",2022,500,27780
-31,"Street Light Upgrade Menu"," 2959 N LONG AVE",2022,500,27780
-31,"Street Light Upgrade Menu"," 4923 W BARRY AVE",2022,500,27782
-31,"Street Light Upgrade Menu"," 5418 W SCHUBERT AVE",2022,500,27784
-31,"Street Light Upgrade Menu"," 5435 W SCHUBERT AVE",2022,500,27784
-31,"Street Light Upgrade Menu"," 5456 WSCHUBERT AVE",2022,500,27784
-31,"Street Light Upgrade Menu"," 5428 W SCHUBERT AVE",2022,500,27784
-31,"Street Light Upgrade Menu"," 5521 W DRUMMOND PL",2022,500,27786
-31,"Street Light Upgrade Menu"," 5539 W DRUMMOND PL",2022,500,27786
-31,"Street Light Upgrade Menu"," 5555 W DRUMMONDPL",2022,500,27786
-31,"Street Light Upgrade Menu"," 5537 W SCHUBERT AVE",2022,500,27787
-32,"Chicago Park District","Supera",2007,98750,27979
-32,"Alley Apron Menu"," 1544 W BARRY AVE",2021,15881.71,28593
-32,"Alley Resurfacing Menu"," 2300 W NELSON ST",2021,14557.45,28602
-32,"Alley Resurfacing Menu"," 2219 N SEELEY AVE",2021,9633.46333333333,28605
-33,"Alley Resurfacing Menu"," 4313 N MOZARTST",2021,15885.36,29330
-33,"Street Light Upgrade Menu"," 4338 N FRANCISCO AVE",2021,500,29374
-33,"Street Light Upgrade Menu"," 3738 N SACRAMENTO AVE",2021,500,29374
-33,"Street Speed Hump Menu"," 4917 N DRAKEAVE",2021,2350,29392
-33,"Miscellaneous CDOT Projects"," 4801 N CENTRAL PARK AVE",2022,2600,29426
-33,"Miscellaneous CDOT Projects"," 3537 W LAWRENCE AVE",2022,2600,29426
-33,"Miscellaneous CDOT Projects"," 4801 N STLOUIS AVE",2022,2600,29426
-33,"Miscellaneous CDOT Projects"," 4600 N KIMBALL AVE",2022,2600,29426
-33,"Miscellaneous CDOT Projects"," 3001 W IRVING PARK RD",2022,2600,29426
-33,"Sidewalk Menu"," 4925 N MONTICELLO AVE",2022,11360.8233333333,29438
-33,"Sidewalk Menu"," 4957 N MONTICELLO AVE",2022,11360.8233333333,29438
-33,"Street Speed Hump Menu"," 4500 NRICHMOND ST",2022,2350,29448
-33,"Street Speed Hump Menu"," 2400 W FLETCHER ST",2022,1175,29451
-34,"Alley Resurfacing Menu","100- 134 W 111TH ST",2016,7769.115,30149
-34,"Alley Resurfacing Menu"," 12222 S BISHOP ST",2022,27478.875,30393
-35,"Floodlight Menu"," 3812 W WILSON AVE",2021,950,31259
-35,"Miscellaneous CDOT Projects"," 4201 N ST LOUIS AVE",2021,660,31283
-35,"Street Light Upgrade Menu"," 3933 N BERNARD ST",2021,500,31299
-36,"Miscellaneous CDOT"," 3425 N MAJOR AVE",2015,16666.6666666667,31857
-36,"Miscellaneous CDOT"," 3030 N MOBILE AVE",2015,16666.6666666667,31857
-36,"Alley Apron Menu"," 2201 N NATCHEZ AVE",2021,11380.155,32131
-36,"Alley Resurfacing Menu"," 3258 N NORMANDY AVE",2021,9387.26666666667,32132
-36,"Alley Resurfacing Menu"," 2208 N MERRIMAC AVE",2021,10935.67,32134
-36,"Concrete Alley Menu"," 3007 NNEW ENGLAND AVE",2021,20268.9,32154
-36,"Curb & Gutter Menu"," 3307 N NEWLAND AVE",2021,3924.855,32162
-36,"Sidewalk Menu"," 2105 N MERRIMAC AVE",2021,7650.61,32167
-36,"Sidewalk Menu"," 2186 N MERRIMAC AVE",2021,7650.61,32167
-36,"Sidewalk Menu"," 2215 N MOBILE AVE",2021,3973.18,32171
-36,"Sidewalk Menu"," 2245 N KEATING AVE",2021,3881.74333333333,32172
-36,"Sidewalk Menu"," 2246 N KEATING AVE",2021,3881.74333333333,32172
-36,"Sidewalk Menu"," 2850 N NEW ENGLAND AVE",2021,4581.94,32174
-36,"Sidewalk Menu"," 3024 N NEWCASTLE AVE",2021,2809.58,32177
-36,"Sidewalk Menu"," 6928 W PALMER ST",2021,28499.835,32183
-36,"Alley Resurfacing Menu"," 2235 N KEATINGAVE",2022,23096.295,32205
-36,"Alley Resurfacing Menu"," 5615 W EDDY ST",2022,16987.515,32209
-36,"Alley Resurfacing Menu"," 5600 W NEWPORTAVE",2022,17799.96,32210
-36,"Alley Resurfacing Menu"," 5800 W ROSCOEST",2022,14727.435,32214
-36,"Concrete Alley Menu"," 2900 NNEWCASTLE AVE",2022,4561.14,32223
-36,"Sidewalk Menu"," 2203 N MOBILE AVE",2022,15306.275,32245
-36,"Sidewalk Menu"," 2300 N OAK PARK AVE",2022,1720.038,32254
-36,"Sidewalk Menu"," 2312 N OAK PARK AVE",2022,1720.038,32254
-36,"Sidewalk Menu"," 2350 N OAK PARK AVE",2022,1720.038,32254
-36,"Sidewalk Menu"," 2749 N RUTHERFORD AVE",2022,3716.2325,32256
-36,"Sidewalk Menu"," 2723 N RUTHERFORD AVE",2022,3716.2325,32256
-36,"Sidewalk Menu"," 2726 NRUTHERFORD AVE",2022,3716.2325,32256
-36,"Sidewalk Menu"," 2744 N OAK PARK AVE",2022,4271.835,32257
-37,"Alley Resurfacing Menu"," 4719 WGRAND AVE",2021,41000,33007
-37,"Alley Resurfacing Menu"," 4300 W AUGUSTABLVD",2021,18809.065,33008
-37,"Sidewalk Menu"," 1234 N LAMON AVE",2021,10538.345,33016
-37,"Sidewalk Menu"," 4900 W POTOMAC AVE",2021,4936.765,33017
-37,"Alley Resurfacing Menu"," 5527 W CRYSTAL ST",2022,15498.985,33065
-37,"Alley Resurfacing Menu"," 5445 W NORTH AVE",2022,14769.55,33069
-37,"Alley Resurfacing Menu"," 4900 W WALTON ST",2022,2056.635,33070
-37,"Street Resurfacing Menu"," 5200 N LARAMIE AVE",2022,53917.925,33097
-38,"Speed Indicator Signs"," 7015 W IRVING PARK RD",2022,9333.33333333333,33942
-38,"Speed Indicator Signs"," 6949 W IRVING PARK RD",2022,9333.33333333333,33942
-39,"POD Camera"," 3532 W Lawrence",2007,12000,34082
-39,"Curb & Gutter Menu"," 6375-6399 N LEHIGH AVE",2021,16204.775,34619
-39,"Miscellaneous CDOT Projects"," 5405 W DEVON AVE",2021,8333.33333333333,34622
-39,"Miscellaneous CDOT Projects"," 5363 W DEVON AVE",2021,8333.33333333333,34622
-39,"Miscellaneous CDOT Projects"," 5001 N PULASKI RD",2021,2537.5,34625
-39,"Speed Indicator Signs"," 4418 W FOSTER AVE",2021,5500,34632
-39,"Street Resurfacing Menu"," 5400 N LAPORTE AVE",2021,11898.905,34641
-39,"Eugene Fields and Hollywood Parks Tennis Courts Rehabilitation"," 3312 W THORNDALE AVE",2022,32500,34659
-40,"POD Camera"," 5900 N California",2006,36000,34802
-40,"Concrete Alley Menu"," 5814 NHERMITAGE AVE",2021,70000,35400
-40,"Concrete Alley Menu"," 6001 N PAULINA ST",2021,8919.27,35401
-40,"Street Light Upgrade Menu"," 5334 N CALIFORNIA AVE",2021,331.12,35417
-40,"Alley Resurfacing Menu"," 6100-6104 N SEELEY AVE",2022,6576.85,35444
-40,"Concrete Alley Menu"," 6001 N PAULINA ST",2022,56080.73,35446
-40,"Emerson; Green Briar; Gross; Mather Park - Basketball Court Upgrades; Green Briar; River Park - Pickleball Striping"," 2650 W PETERSON AVE",2022,40000,35451
-40,"Emerson; Green Briar; Gross; Mather Park - Basketball Court Upgrades; Green Briar; River Park - Pickleball Striping"," 1820 W GRANVILLE AVE",2022,40000,35451
-40,"Emerson; Green Briar; Gross; Mather Park - Basketball Court Upgrades; Green Briar; River Park - Pickleball Striping"," 5941 N RICHMOND ST",2022,40000,35451
-40,"Emerson; Green Briar; Gross; Mather Park - Basketball Court Upgrades; Green Briar; River Park - Pickleball Striping"," 5100 N FRANCISCO AVE",2022,40000,35451
-40,"Sidewalk Menu"," 4820 N WASHTENAW AVE",2022,1217.80666666667,35458
-40,"Viaduct Improvement Menu"," W",2022,5516.764,35472
-42,"W. OHIO; FRANKLIN & CHICAGO MONTGOMERY WARD PARK","ST",2018,36014.6666666667,36957
-43,"POD Camera"," 2100 N Howe",2008,24000,37352
-43,"POD Camera"," 1350 N Wells",2008,24000,37352
-43,"Curb & Gutter Menu"," 400 W DEMING PL",2021,13727.88,38041
-43,"Sidewalk Menu"," 1056 W ARMITAGE AVE",2021,3430.79,38051
-43,"Street Resurfacing Menu","1-20 E BANKS ST",2021,13606.915,38057
-43,"Alley Resurfacing Menu"," 2113 N CLIFTONAVE",2022,18228.34,38068
-43,"Alley Resurfacing Menu"," 1600 N HALSTED ST",2022,26311.91,38069
-43,"Alley Resurfacing Menu"," 1944 N MAUD AVE",2022,5892.83,38070
-43,"Alley Resurfacing Menu"," 2748 NMILDRED AVE",2022,24217.74,38071
-43,"Concrete Alley Menu"," 613 W BELDEN AVE",2022,120969.665,38079
-43,"In-Road State Law Stop For Pedestrians Sign Menu"," 2530 N CLARK ST",2022,175,38089
-43,"In-Road State Law Stop For Pedestrians Sign Menu"," 2717 N CLARK ST",2022,350,38090
-44,"Alley Apron Menu"," 3014 N CLIFTON AVE",2021,9603.075,38839
-44,"Alley Apron Menu"," 3114 N CLIFTON AVE",2021,8447.15,38840
-44,"Alley Apron Menu"," 3147 N CAMBRIDGE AVE",2021,5994.52,38841
-44,"Alley Apron Menu"," 3515 N LAKEWOOD AVE",2021,6039.24,38842
-44,"Alley Apron Menu"," 3614 N WILTON AVE",2021,10950.52,38843
-44,"Alley Resurfacing Menu"," 2817 NCLARK ST",2021,4736.0575,38846
-44,"Alley Resurfacing Menu"," 611 W SURF ST",2021,4736.0575,38846
-44,"Alley Resurfacing Menu"," 3538-3550 N CLARK ST",2021,4608.785,38848
-44,"Alley Resurfacing Menu"," 3154-3184 N CLARKST",2021,7070.74333333333,38849
-44,"Alley Resurfacing Menu"," 850-918 W FLETCHER ST",2021,7070.74333333333,38849
-44,"Alley Resurfacing Menu"," 3717 N RACINE AVE",2021,9723.235,38852
-44,"Alley Resurfacing Menu"," 2848 NSHEFFIELD AVE",2021,14166.11,38854
-44,"Alley Resurfacing Menu"," 946 WDIVERSEY PKWY",2021,15021.36,38855
-44,"Alley Resurfacing Menu"," 1002 WDIVERSEY PKWY",2021,3367.96,38856
-44,"Curb & Gutter Menu"," 3719 NLAKEWOOD AVE",2021,11836.46,38868
-44,"Miscellaneous CDOT Projects"," 2937-2951 N SHEFFIELD AVE",2021,2212.5,38869
-44,"Sidewalk Menu"," 2935-2951 N SHEFFIELD AVE",2021,17817.455,38871
-44,"Sidewalk Menu"," 3478 N CLARK ST",2021,24712.62,38875
-44,"Alley Apron Menu"," 1143 W GEORGE ST",2022,41172.68,38886
-44,"Alley Apron Menu"," 1142 W OAKDALE AVE",2022,18813.92,38887
-44,"Alley Apron Menu"," 1343 W WAVELAND AVE",2022,16907.375,38888
-44,"Alley Resurfacing Menu"," 3309-3321 N CLARK ST",2022,2762.315,38906
-44,"Alley Resurfacing Menu"," 3236-3258 NSOUTHPORT AVE",2022,5672.35,38907
-44,"Alley Resurfacing Menu"," 1244-1254 WADDISON ST",2022,6576.85,38908
-44,"Miscellaneous CDOT Projects"," 2937-2951 N SHEFFIELD AVE",2022,537.5,38913
-45,"Chicago Park District"," 5421 N. Menard",2006,1e+05,39035
-45,"Alley Resurfacing Menu","W GOODMAN ST",2019,5412.52333333333,39630
-46,"Alley Speed Hump Menu"," 4417 N BEACONST",2021,350,40225
-46,"Concrete Alley Menu"," 4300 N MARINEDR",2021,1686.78,40230
-46,"Miscellaneous CDOT Projects"," 4438 N RACINE AVE",2021,16398.165,40234
-46,"Sidewalk Menu"," 4545 N BROADWAY",2021,6885.77,40241
-46,"Concrete Alley Menu"," 4300 N MARINEDR",2022,29028.735,40271
-46,"Sidewalk Menu"," 4545 N BROADWAY",2022,15207.37,40279
-46,"Speed Indicator Signs"," 4140 N MARINE DR",2022,7000,40288
-46,"Speed Indicator Signs"," 4420 N BEACON ST",2022,5500,40289
-47,"Street Bump Outs Menu"," 4015 N ROCKWELL ST",2021,6654.7275,41312
-47,"Street Bump Outs Menu"," 4045 N ROCKWELL ST",2021,6654.7275,41312
-47,"Street Bump Outs Menu"," 4121 N ROCKWELL ST",2021,6654.7275,41312
-47,"Street Light Upgrade Menu"," 2447 W CUYLER AVE",2021,500,41322
-47,"Street Light Upgrade Menu"," 3634 N WESTERN AVE",2021,500,41323
-47,"Speed Indicator Signs"," 1466-1468 W IRVING PARK RD",2022,985.096666666667,41398
-47,"Speed Indicator Signs"," 1511 W IRVINGPARK RD",2022,985.096666666667,41398
-48,"3 LPR Existing POD; 3 LPR w.o Existing POD; 1 POD Camera: Various Locations"," W",2021,19988.4285714286,42158
-48,"Alley Resurfacing Menu"," 916 W CARMEN AVE",2021,19832.84,42164
-48,"Speed Indicator Signs"," 1416 WFOSTER AVE",2021,5500,42186
-48,"Alley Resurfacing Menu"," 5648 NMAGNOLIA AVE",2022,5542.83,42211
-48,"Alley Resurfacing Menu"," 4900 N SHERIDAN RD",2022,7888.115,42214
-49,"POD Camera"," 7500 N Hoyne",2006,36000,42317
-49,"Miscellaneous Other"," 1335 W COLUMBIA AVE",2015,6000,42693
-49,"Miscellaneous Other"," 1300 W ALBION AVE",2015,6000,42693
-49,"Miscellaneous Other"," 1780 W LUNT AVE",2015,6000,42693
-49,"Miscellaneous Other"," 1781 W LUNT AVE",2015,6000,42693
-49,"Alley Resurfacing Menu"," 6412 N MAGNOLIAAVE",2021,30744.64,42956
-49,"Alley Resurfacing Menu"," 1600 W LUNT AVE",2022,14447.975,43018
-49,"Alley Resurfacing Menu"," 6600 NLAKEWOOD AVE",2022,10181.155,43019
-49,"Alley Resurfacing Menu"," 1309 W ARTHUR AVE",2022,34720.455,43020
-49,"Alley Resurfacing Menu"," 2050 W BIRCHWOODAVE",2022,29439.1,43021
-49,"Alley Resurfacing Menu"," 1500 WFARWELL AVE",2022,24325.755,43022
-49,"Alley Resurfacing Menu"," 1500 W PRATTBLVD",2022,18793.085,43023
-50,"Alley Resurfacing Menu"," 2801-2813 WDEVON AVE",2021,5642.81,43503
-50,"Curb & Gutter Menu"," 6757 N RICHMOND ST",2021,731.6,43510
-50,"Street Light Upgrade Menu"," 6090 N ALBANY AVE",2021,500,43519
-50,"Alley Speed Hump Menu"," 6111 NMOZART ST",2022,350,43548
+1,"Miscellaneous-CDOT","Hermitage Green Space",2008,24320,253
+1,"Miscellaneous-CDOT","Maplewood Ave. at Diversey",2008,40000,258
+1,"Miscellaneous-CDOT","Mautene Court Plaza Improvement",2008,35000,259
+1,"Miscellaneous-Other","West Town Branch Library",2010,5e+05,370
+1,"Miscellaneous-CDOT","Installation of two bike stations",2011,106000,401
+2,"Miscellaneous-CDOT","9 th Street Median improvements",2005,150000,948
+2,"Miscellaneous-CDOT","Plymouth Pedestrian Tunnel",2006,1377,974
+2,"Miscellaneous-Other","Decorative Baskets - Installed at 107 locations",2008,68266,1474
+2,"Miscellaneous-CDOT","Purchase of 32 decorative waste baskets",2010,42618,1663
+2,"Miscellaneous-CDOT","Decorative Waste Receptacles - various locations",2010,55851,1666
+2,"Miscellaneous-CDOT","Decorative Waste Receptacles - various locations",2011,33963,1823
+2,"Miscellaneous-Other","Trees on the public way",2011,82145,1843
+2,"Miscellaneous Other","Temporary Parking signs in WEst Loop",2012,10000,1855
+2,"Miscellaneous Other","Martin Luther King Boulevard artwork installation",2012,30000,1857
+3,"Miscellaneous-Other","Christmass Tree decorations",2005,10000,2393
+3,"Miscellaneous-Other","Tree Planting - 4239",2011,3300,2616
+3,"Miscellaneous Other","8 decorative garbage cans",2012,11450,2627
+3,"Miscellaneous Other","Trees on MLK Drive (2012 installation)",2013,963,2660
+4,"Miscellaneous-CDOT","53 rd Street - 5 tree grates",2007,9500,3084
+4,"Miscellaneous-CDOT","Woodlawn to Harper",2007,47200,3085
+4,"Chicago Park District","41 st St. Beach House",2009,290000,3159
+4,"Chicago Park District","Dyett Green Youth Farm Fence",2010,59020,3185
+4,"Chicago Park District","41 st Street Beach House",2010,250000,3186
+4,"Miscellaneous-CDOT","Harper Ave. Construction",2011,2e+05,3196
+4,"Miscellaneous Other","Harper Ave.",2012,2e+05,3226
+5,"Chicago Park District","South Shore Cultural Center",2009,50370,3899
+5,"Chicago Park District","South Shore Cultural Center",2009,42000,3900
+5,"Miscellaneous-Other","Chicago Public Art Group - various Locations",2009,2000,3901
+5,"Miscellaneous-Other","Shot Spotters",2009,167000,3902
+5,"Miscellaneous-Other","Chicago Public Art Group- various locations",2009,32728,3903
+5,"Miscellaneous-Other","Various Chicago Public Art Group Projects",2011,10000,3978
+6,"Bollard Menu","7757 DR. MARTIN LUTHER KING JR. DR",2006,714,4295
+6,"Bollard Menu","7600 DR. MARTIN LUTHER KING JR. DR",2007,714,4347
+6,"Model Block","Model block",2007,21000,4358
+8,"Schools","Gately Stadium Scoreboard",2011,5000,5827
+9,"POD Camera","15 locations",2007,360000,6442
+9,"Bollard Menu","10557 DR. MARTIN LUTHER KING JR. DR",2008,714,6444
+9,"Schools","Gwendolyn Brooks School - 250 E. 111 th St.",2009,2e+05,6525
+9,"Miscellaneous-CDOT","137 - 141 E 114 th Place (parkway)",2010,41,6530
+9,"Schools","Gwendolyn Brooks",2010,474000,6556
+9,"Schools","Gately Stadium - scoreboard",2011,5000,6584
+9,"High Definition Camera","",2012,1559,6611
+9,"High Definition Camera","",2013,20941,6629
+9,"High Definition Camera","",2013,22500,6630
+10,"Miscellaneous-CDOT","E107 Ewing to 1 st alley east",2006,8887,7214
+10,"Miscellaneous-CDOT","Commercial 8926-27-30-32",2007,8886,7295
+10,"Miscellaneous-Other","10 th Ward",2008,1e+05,7425
+10,"Miscellaneous-Other","TIF Study Expansion - Calumet Marina",2009,20000,7475
+10,"High Definition Camera","",2013,22500,7654
+11,"POD Camera","2 Option i POD",2005,26838,8078
+11,"POD Camera","2 Option I POD",2006,45161,8121
+11,"Miscellaneous-CDOT","Stockyard Truckers",2007,612,8148
+11,"Miscellaneous-CDOT","Mary Street - fence",2007,17500,8149
+11,"Sidewalk Menu","3203",2012,3367,8344
+12,"Street Lighting","VARIOUS LOCATIONS IN WARD",2008,2450,9061
+13,"Model Block","Various Locations",2005,275000,9745
+13,"Miscellaneous-Other","8 th Dist Police Station",2005,1178,9780
+13,"Miscellaneous-Other","8 th Dist Police Station",2006,1777,9854
+13,"Miscellaneous-Other","Police Bikes",2007,8785,9942
+14,"Model Block","Model block various locations",2005,42335,10988
+14,"Sidewalk Menu - Change Order","various locations",2011,18476,11585
+16,"Pole Painting","16TH WARD",2007,291600,13166
+16,"Street Lighting","16TH WARD",2007,588200,13167
+16,"Miscellaneous-CDOT","Various locations- Decorative Waste Receptacles",2011,42716,13345
+16,"Miscellaneous Other","Flower baskets- 63 rd St.",2012,47200,13403
+17,"POD Camera","9 locations",2006,216000,13874
+19,"Miscellaneous-Other","OBM Concrete Alley Program",2005,27162,15317
+19,"Miscellaneous-Other","OBM Concrete Alley Program",2006,415,15349
+19,"Miscellaneous-Other","OBM Concrete Alley Program",2007,474,15396
+19,"Miscellaneous-Other","OBM Concrete Alley Program",2008,918,15433
+19,"Miscellaneous-Other","OBM Concrete Alley Program",2009,382,15472
+19,"Miscellaneous-Other","OBM Concrete Alley Program",2010,89399,15507
+19,"Miscellaneous Other","Tree planting -2037 W. 108 th Pl",2012,515,15580
+20,"Guardrail Menu","6858 DR. MARTIN LUTHER KING JR. DR",2008,1011,16011
+21,"Sidewalk Menu - Change Order","W. 101 st Pl. Elizabeth Vincennes",2007,1486,16625
+22,"POD Camera","",2011,740000,17589
+23,"Miscellaneous-CDOT","Honorary Signs - Sanchez Dr.",2008,102,18197
+24,"Miscellaneous-BOE","24 th Ward DSS office-1817 S Pulaski",2007,31850,19457
+24,"Miscellaneous-CDOT","16 th St. at Spaulding Ave",2009,1200,19512
+24,"New Alley Construction","Gladys, Van Buren, Dead End, Kilpatrick",2010,1507,19539
+24,"Concrete Alley Menu","Gladys",2012,148082,19593
+24,"Miscellaneous Other","Tree installation - 4043 W. Harrison St.",2012,539,19630
+25,"Miscellaneous-Other","Pilsen Community",2006,6524,20101
+25,"POD Camera","8 locations",2006,264000,20102
+25,"Miscellaneous-CDOT","Permanent Street Cleaning Signs",2007,101002,20122
+25,"Miscellaneous Other","Plaza Tenochtitlan - CPAG",2012,85000,20516
+25,"Miscellaneous Other","18 th Street",2013,69300,20523
+26,"Schools","Pedro Albizu - 2658 W. Haddon",2005,48433,20943
+26,"Miscellaneous - Paseo Boriqua Medalli","Paseo Boricua Medallions",2006,20000,20966
+26,"Miscellaneous-CDOT","Paseo Boriqua Medallion",2006,45000,20968
+26,"Miscellaneous-CDOT","Division Gateway Flag Painting",2006,20000,20969
+26,"Miscellaneous-BOE","3 KING FESTIVAL",2006,85000,20997
+26,"Chicago Park District","Augusta Pool",2006,20000,21007
+26,"Schools","Pedro Albizu -2658 W. Haddon",2007,37323,21022
+26,"Miscellaneous-CDOT","Humboldt Dr. through Humboldt Park",2008,20000,21028
+26,"Miscellaneous-Other","Bloomingdale Trail",2008,15000,21054
+26,"Miscellaneous-Other","La Crucifixion De Don Pedro Albizu Mural -2423 W. North Ave.",2008,25000,21055
+26,"Schools","Pedro Albizu H.S. parking lot -2658 W. Haddon",2008,6244,21057
+26,"Miscellaneous-CDOT","Division Street Gateway",2010,424,21116
+26,"Miscellaneous-CDOT","Division Street Gateways",2011,40771,21190
+26,"Miscellaneous-CDOT","Division Street Gateways",2011,826,21191
+26,"Schools","Lowell School - 3320 W. Hirsch St.",2011,20000,21217
+26,"Schools","Funston School - 2010 N. Central Park Ave.",2011,20000,21219
+26,"Schools","Casals School - 3501 W. Potomac Ave.",2011,20000,21221
+26,"Miscellaneous Other","Division Street Gateways",2012,45711,21233
+27,"POD Camera","11 locations",2007,192000,21773
+27,"Chicago Park District","Eckhart Park- playground - 1330 W. Chicago Ave.",2011,175000,21952
+28,"Miscellaneous-CDOT","Hamlin Blvd Landscape Enhancement",2006,13963,22417
+28,"POD Camera","8 locations",2006,192000,22467
+32,"Miscellaneous-CDOT","Roscoe Ave pavers",2006,125000,25718
+32,"Chicago Park District","North Racine",2007,150000,25855
+32,"Miscellaneous-CDOT","Chicago Ave. at Hoyne Ave. (crosswalk)",2008,875,25880
+32,"Miscellaneous-CDOT","Replace faded bikeway marking",2009,30000,25939
+32,"Miscellaneous-CDOT","1300 block of W. Altgeld",2010,49300,26007
+33,"Bollard Menu","4 .00",2006,2586,26572
+33,"Miscellaneous-CDOT","100 tree grates on Kedzie Ave",2006,186000,26574
+34,"Alley Resurfacing Menu","117 th St - 117 th Pl - Lowe - Wallace",2012,2762,27633
+34,"Miscellaneous Other","1720 w Montvale",2012,955,27649
+34,"Miscellaneous Other","City owned vacant land (signs)",2012,54015,27650
+36,"Miscellaneous-Other","36 th ward library",2007,5e+05,29186
+39,"Chicago Park District","Gompers Park - Pulaski Ave.",2009,30000,31537
+39,"Sidewalk Menu - Change Order","N KRUGER AVEELSTON",2011,593,31596
+39,"Sidewalk Menu - Change Order","W FOSTER AVEKOSTNER",2011,1669,31597
+39,"Miscellaneous Other","Saughnash",2012,264865,31627
+39,"Miscellaneous Other","Saugnash Mural",2013,10000,31656
+39,"Miscellaneous Other","Forest Glen Mural",2013,3000,31659
+39,"Floodlight Menu","W CARMEN AVE & N SPAULDING AVE ON & N KENTON AVE FROM & W SUNNYSIDE AVE (4500 N) TO",2013,1200,31680
+39,"Tree Planting in Ward","various locations",2018,10000,31844
+40,"Sidewalk Menu - Change Order","California (Gunnison Ainlsie)",2010,598,32279
+41,"Miscellaneous-CDOT","Devon at Normandy",2007,600,32849
+41,"Miscellaneous-CDOT","Hiawatha Ave - multiple locations",2011,1700,33065
+42,"Miscellaneous-CDOT","Clinton - Fulton River District",2005,1485,33463
+42,"Miscellaneous-CDOT","Ohio Street Dog Park Fence",2006,11701,33529
+42,"Miscellaneous-CDOT","Access Living Public Improvements",2006,75525,33530
+42,"Street Lighting","MADISON-WACKER TO CANAL",2006,1600,33596
+42,"Miscellaneous-CDOT","LSD on north side of Cedar Street",2008,400,33687
+42,"Miscellaneous-Other","Michigan Ave. Planter maintenance",2008,77000,33735
+42,"In-Road State Law Stop for Pedestrians S","N STATE STDEAD END",2011,410,33824
+42,"Miscellaneous-CDOT","LaSalle Plaza 335",2011,5121,33827
+42,"Miscellaneous Other","LaSalle Plaza 335",2012,979,33861
+42,"Miscellaneous Other","LaSalle Plaza 335",2013,6100,33923
+43,"Miscellaneous-Other","CTA Fullerton Stop- Healy Stone Project. Menu 2003 ,2004 ,2005 ,",2005,6646,34366
+43,"Pole Painting","INNER LAKESHORE-DIVISION(1200 N) to NORTH AVE (1600 N)",2006,11200,34396
+43,"Miscellaneous-CDOT","Lincoln Park West @ Dickens (Additional Work)",2008,30000,34490
+43,"Miscellaneous-Other","CTA Fullerton Stop-healy Stone Project. Menu",2009,354,34605
+44,"Miscellaneous-Other","Center on Halsted",2006,350000,35292
+44,"Chicago Park District","Lakse Shore Dr. Diversey-Briar",2009,9000,35383
+44,"Curb & Gutter Menu","Melrose - Broadway to Lake Shore Dr",2012,3515,35488
+44,"Miscellaneous Other","Tree installation",2012,784,35537
+44,"Miscellaneous Other","108 signs will be posted in the designated areas of the ward",2013,10497,35568
+45,"POD Camera","4956 Bell Plaine Ave",2007,24000,36149
+46,"Miscellaneous-Other","Wilson Yard Development",2005,63962,36797
+46,"Miscellaneous-CDOT","10 Decorative Benches",2006,27000,36803
+46,"Miscellaneous-Other","Wilson Yard Development",2006,120432,36821
+46,"Streetscape","20 Decorative Bench installation",2007,54000,36830
+46,"Miscellaneous-Other","Wilson Yard Development",2007,6009,36843
+46,"Miscellaneous-Other","Wilson Yard Development",2008,500117,36866
+46,"Miscellaneous-CDOT","Decorative Bench",2009,2100,36872
+46,"Chicago Park District","Clarendon Dog Friendly Area",2009,75000,36906
+46,"Miscellaneous-Other","Wilson Yard Development",2009,59480,36907
+46,"In-Road State Law Stop for Pedestrians S","W LAWRENCE AVEDEAD END",2011,410,36942
+46,"In-Road State Law Stop for Pedestrians S","W ADDISON STDEAD END",2011,410,36944
+46,"In-Road State Law Stop for Pedestrians S","W MONTROSE AVEDEAD END",2011,410,36946
+46,"In-Road State Law Stop for Pedestrians S","W WILSON AVEDEAD END",2011,410,36947
+46,"Miscellaneous Other","30 Trees to be planted in the Ward",2012,13353,36992
+47,"Miscellaneous-Other","Lane Tech",2006,25000,37385
+47,"Miscellaneous-CDOT","Lincoln Ave at Cullom Ave",2008,900,37472
+47,"Miscellaneous-CDOT","Damen @ Byron",2008,800,37474
+47,"Miscellaneous-CDOT","Lawrence @ Campbell",2009,800,37543
+47,"Curb/Gutter Menu","W PATTERSON AVEDead End (4652 W)Dead End (4521 W)",2011,90,37639
+47,"Miscellaneous Other","Various arterial Streets (in file) - Tree planting",2012,23765,37691
+47,"Miscellaneous Other","Installation of four bike stations",2012,265000,37693
+48,"Miscellaneous-CDOT","Gravel Pave Alley surface",2006,150000,38376
+48,"Schools","Senn Academy",2006,25000,38389
+48,"Miscellaneous-CDOT","Foster Ave at Marine Drive",2007,1800,38399
+48,"Miscellaneous-CDOT","Foster at Lake Shore Dr. Sandblasting",2008,11000,38455
+48,"Miscellaneous-CDOT","Broadway Avenue Study",2009,50000,38498
+48,"Miscellaneous-CDOT","South Edgewater Study",2009,60000,38499
+48,"Miscellaneous-Other","48 th Ward Retail Study",2009,26000,38523
+48,"POD Camera","Broadway at Thorndale",2009,13000,38524
+48,"Miscellaneous-CDOT","Thorndale CTA Station (lighting)",2010,31500,38530
+48,"Miscellaneous-Other","Edgewater Branch Library",2010,1e+06,38535
+48,"POD Camera","Sheridan on lightpole North of Thorndale",2010,20000,38538
+48,"Alley Apron Menu","N BROADWAYW ARDMORE AV (5800 N)",2011,12462,38548
+48,"POD Camera","Argy",2011,1800,38574
+48,"High Definition Camera","",2012,22500,38594
+48,"Miscellaneous Other","Fence at 4919 N. Winthrop (City property)",2013,10325,38609
+49,"Street Lighting","BELL-BIRCHWOOD TO HOWARD",2005,60000,39075
+49,"Miscellaneous-CDOT","Tree Gates at 7300 N Oakley",2006,18500,39092
+49,"Miscellaneous-Other","Gale Community Center",2006,4e+05,39113
+49,"Miscellaneous-CDOT","Morse Ave. Design",2007,65000,39134
+49,"Miscellaneous-CDOT","N. Clark St. (Benazir Bhutto Way Honorarily Sign)",2008,102,39172
+49,"Miscellaneous-CDOT","Honorary Sign Wayne Peters Ave",2008,51,39176
+49,"Chicago Park District","Capital Upgrades",2010,89790,39265
+49,"CTA","Benches, shelters- Red line stops Jarvis,Morse,Loyola (Final cost shown).",2010,59246,39266
+49,"Miscellaneous-Other","Solar Powered Garbage Containers - 8 locations. TPC =",2010,41000,39267
+49,"Miscellaneous-Other","Murals in Rogers Park on CTA Viaducts",2010,78900,39268
+49,"Chicago Park District","Capital Upgrades",2011,89790,39305
+49,"Miscellaneous-Other","Solar Powered Garbage Containers- 8 locations (201",2011,2628,39308
+49,"Miscellaneous Other","Lunt at RR (1600 W)",2013,3228,39365
+49,"Miscellaneous Other","Estes at RR (1600 W)",2013,3228,39366
+49,"Miscellaneous Other","Touhy at RR (1600 W)",2013,3228,39371
+49,"Miscellaneous Other","Birchwood at RR (1600 W)",2013,3228,39372
+49,"O Alley Apron Menu  R","N & N WOLCOTT AVE FROM & W CHASE AVE (7300 N) TO & N OGERS AVE (7340 N)",2019,21289.73,39622
+49,"O Sidewalk Menu  W","N & W SHERWIN AVE FROM 1200 W TO & N SHERIDAN RD (1300 )",2019,36487.23,39637
+49,"O Sidewalk Menu  W","N & W SHERWIN AVE FROM 1200 W TO & N SHERIDAN RD (1300 )",2019,2343.46,39648
+49,"O Street Resurfacing Menu  A","N & W JARVIS AVE FROM & N BELL AVE (2200 W) TO & N OAKLEY VE (2300 W)",2019,34239.48,39657
+49,"O Street Resurfacing Menu  W","N & W PRATT BLVD FROM 1051 W TO & N SHERIDAN RD (1200 )",2019,76768.71,39658
+50,"Miscellaneous-CDOT","6201 Monticello",2005,8568,39770
+50,"Chicago Park District","Parks",2005,7e+05,39785
+50,"Chicago Park District","Thillens Stadium",2009,250000,39855
+3,"Alley Resurfacing Menu","2036",2020,10976.615,40343
+10,"POD Camera","104 th Ave 'M'",2007,36000,40648
+11,"Street Traffic Circle Menu","W 30TH",2021,15746.2857142857,40813
+12,"POD Camera","3825 California",2008,15000,40838
+12,"POD Camera","4200 California",2008,15000,40839
+12,"POD Camera","4500 Talman",2008,15000,40840
+13,"POD Camera","6340 Cicero",2007,24000,40910
+28,"Alley Speed Hump Menu","240- 268 N HAMLIN BLVD",2016,1400,41931
+28,"Street Light Residential Staggered Piggy Back Menu","AVE (250 N)",2021,41570.75,42016
+28,"Street Light Residential Staggered Piggy Back Menu","ON & N KILDARE AVE FROM W",2021,41570.75,42022
+30,"Curb & Gutter Menu","MELROSE ST 5531 W PARKER AVE",2022,3452.64,42263
+31,"Street Resurfacing Menu","4800- 4832 W NEWPORT AVE",2020,8977.735,42308
+32,"Chicago Park District","Supera",2007,98750,42406
+34,"Alley Resurfacing Menu","100- 134 W 111TH ST",2016,7769.115,42535
+40,"Viaduct Improvement Menu","W",2022,5516.764,42939
+42,"W. OHIO; FRANKLIN & CHICAGO MONTGOMERY WARD PARK","ST",2018,36014.6666666667,42966
+43,"Street Resurfacing Menu","1-20 E BANKS ST",2021,13606.915,43083
+45,"Alley Resurfacing Menu","W GOODMAN ST",2019,5412.52333333333,43279
+48,"3 LPR Existing POD; 3 LPR w.o Existing POD; 1 POD Camera: Various Locations","W",2021,19988.4285714286,43483
