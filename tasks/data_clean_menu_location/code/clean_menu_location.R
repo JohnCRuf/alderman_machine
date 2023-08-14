@@ -390,7 +390,7 @@ school_park_df <- school_park_df %>%
 school_park_df_sum2 <- sum(school_park_df$est_cost)
 assert_that(school_park_df_sum == school_park_df_sum2) 
 
-write.csv(school_park_df, "../output/school_park_df.csv", row.names = F)
+write.csv(school_park_df, "../temp/school_park_df.csv", row.names = F)
 # --------------------
 # Location Data of format "_ ST -- _ AV -to- _ ST"
 # --------------------
@@ -420,7 +420,7 @@ double_dash_to_df_sum2 <- sum(double_dash_to_df$est_cost)
 double_dash_to_df <- add_ordinal_indicator(double_dash_to_df, "start_location")
 double_dash_to_df <- add_ordinal_indicator(double_dash_to_df, "end_location")
 
-write.csv(double_dash_to_df, "../output/double_dash_to_df.csv", row.names = F)
+write.csv(double_dash_to_df, "../temp/double_dash_to_df.csv", row.names = F)
 
 
 #--------------------
@@ -461,7 +461,7 @@ through_address_df <- through_address_df %>%
 #assert that the sum of est_cost is within 0.0001 beginning
 through_address_sum3 <- sum(through_address_df$est_cost)
 assert_that(through_address_sum1 - through_address_sum2 - through_address_sum3 < 0.0001) #not exact due to computational error
-write.csv(through_address_df, "../output/through_address_df.csv", row.names = F)
+write.csv(through_address_df, "../temp/through_address_df.csv", row.names = F)
 # --------------------
 # Location Data of format "# N/S/E/W _ ST"
 # --------------------
@@ -474,7 +474,7 @@ leftover_df <- leftover_df %>%
 
 normal_address_df <- normal_address_df %>%
   mutate(point_location = str_replace_all(location, "\\(.*?\\)", ""))
-write.csv(normal_address_df, "../output/normal_address_df.csv", row.names = F)
+write.csv(normal_address_df, "../temp/normal_address_df.csv", row.names = F)
 
 
 #--------------------
@@ -587,12 +587,13 @@ from_to_df <- from_to_df %>%
                                      paste(main_street, "and", from_street))) %>%
   mutate(end_location = ifelse(str_detect(to_street, "^[0-9]+ [NSEW]"),
                                      paste(str_extract(to_street, "[0-9]+"), main_street),
-                                     paste(main_street, "and", to_street)))
+                                     paste(main_street, "and", to_street))) %>%
+                                     select(-main_street, -from_street, -to_street) 
 #apply ordinal indicator function to start_location and end_location
 from_to_df <- add_ordinal_indicator(from_to_df, "start_location")
 from_to_df <- add_ordinal_indicator(from_to_df, "end_location")
 
-write.csv(from_to_df, "../output/from_to_df.csv", row.names = F)
+write.csv(from_to_df, "../temp/from_to_df.csv", row.names = F)
 
 # --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3 & N/S/E/W road_4"
@@ -731,7 +732,7 @@ for (i in 1:4) {
   df_with_3_ands <- add_ordinal_indicator(df_with_3_ands, var)
 }
 
-write.csv(df_with_3_ands, "../output/df_with_3_ands.csv", row.names = F)
+write.csv(df_with_3_ands, "../temp/df_with_3_ands.csv", row.names = F)
 
 # --------------------
 # Location Data of format "# N/S/E/W road_1 & N/S/E/W road_2 & N/S/E/W road_3"
@@ -837,7 +838,7 @@ df_with_2_ands <- df_with_2_ands %>%
   rename(start_location = intersection_1,
          end_location = intersection_2)
 
-write.csv(df_with_2_ands, "../output/df_with_2_ands.csv", row.names = F)
+write.csv(df_with_2_ands, "../temp/df_with_2_ands.csv", row.names = F)
 
 # --------------------
 # Location Data of format "N/S/E/W road_1 % N/S/E/W road_2 - N/S/E/W road_3"
@@ -880,7 +881,7 @@ for (i in 1:2) {
 df_and_dash <- df_and_dash %>%
   rename(start_location = intersection_1,
          end_location = intersection_2)
-write.csv(df_and_dash, "../output/and_dash_df.csv", row.names = F)
+write.csv(df_and_dash, "../temp/and_dash_df.csv", row.names = F)
 
 # --------------------
 # Location Data of format "# N/S/E/W road_1 (& or ; or :) N/S/E/W road_2
@@ -899,7 +900,7 @@ intersection_df <- intersection_df %>%
 #apply ordinal indicator function
 intersection_df <- add_ordinal_indicator(intersection_df, "point_location")
 
-write.csv(intersection_df, "../output/intersection_df.csv", row.names = F)
+write.csv(intersection_df, "../temp/intersection_df.csv", row.names = F)
 
 # --------------------
 # Location Data of format with multiple "&'s
@@ -940,13 +941,15 @@ for (i in 1:max_ands) {
   df_with_mult_ands <- add_ordinal_indicator(df_with_mult_ands, var)
 }
 
-write.csv(df_with_mult_ands, "../output/df_with_mult_ands.csv", row.names = F)
+write.csv(df_with_mult_ands, "../temp/df_with_mult_ands.csv", row.names = F)
 # --------------------
 # Leftover Data
 # --------------------
 leftover_df <- leftover_df %>%
   anti_join(addition_df)
-#create two leftover dfs, one with '#- #"
+#create new column called point_location
+leftover_df <- leftover_df %>%
+  mutate(point_location = location)
 
 # write leftover_df to csv
-write.csv(leftover_df, "../output/leftover_df.csv", row.names = F)
+write.csv(leftover_df, "../temp/leftover_df.csv", row.names = F)
