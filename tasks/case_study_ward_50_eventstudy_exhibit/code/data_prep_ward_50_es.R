@@ -2,14 +2,15 @@ library(tidyverse)
 library(sf)
 ARGS<- commandArgs(trailingOnly = TRUE)
 n <- as.numeric(ARGS[1])
-output_file <- paste0("../temp/stone_eventstudy_", ARGS[1], "_precincts.rds")
+year_input <- as.numeric(ARGS[3])
+output_file <- paste0("../temp/stone_eventstudy_", ARGS[1], "_precincts_", ARGS[3], "_year.rds")
 election_data <- read.csv("../input/incumbent_challenger_voteshare_df_precinct_level.csv") 
 
 menu_data <- readRDS("../input/ward_precinct_menu_panel_2003_2011.rds")
 
 #drop observations of election data where year is greater than 2011 and ward != 50
 election_data <- election_data %>%
-  filter(ward == 50, year == 2007, type == "Runoff")
+  filter(ward == 50, year == year_input, type == "Runoff")
 
 election_data <- election_data %>%
   mutate(net = case_when(inc == 0 ~ -1,
@@ -38,6 +39,12 @@ middle_precinct_list <- stone_data_inc %>%
   head(n) %>%
   pull(precinct)
 
+#create new df called "total_df" which is the sum of all precincts spending by year
+total_df <- menu_data %>%
+  filter(year >= 2005, year <= 2015, ward_locate == 50) %>%
+  group_by(year) %>%
+  summarise(total_spending = sum(weighted_cost)) %>%
+  ungroup() 
 
 menu_data <- menu_data %>%
   filter(year >= 2005, year <= 2015, ward_locate == 50) %>%
@@ -51,16 +58,10 @@ menu_data <- menu_data %>%
                           )) %>%
     filter(lab != "Other") %>%
     select(-geometry)
-#create new dataframe with total spending across all precincts
-total_spending <- menu_data %>%
-  group_by(year, ward) %>%
-  summarise(total_spending = sum(weighted_cost)) %>%
-  ungroup() %>%
-  mutate(total_spending = total_spending/1000)
-#save as csv
-csv_label <- paste0("../output/stone_eventstudy_", ARGS[1], "_precincts.csv")
-write_csv(total_spending, csv_label)
 
-
+menu_data <- menu_data %>% 
+  left_join(total_df, by = "year") %>% 
+  mutate(observed_spending_fraction = weighted_cost/total_spending)
+#TODO: how to assert that this is a perfect join?
 #save to rds
 saveRDS(menu_data, output_file)
