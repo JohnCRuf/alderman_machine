@@ -3,10 +3,10 @@ include ../../shell_functions.make
 
 ## DEFINITIONS
 
-all: $(addprefix ../output/, stone_menu_money_spending_map_2005_2011.png stone_2007_runoff_precinct_results.png \
+all: $(addprefix ../output/, stone_menu_money_spending_map_2005_2010.png stone_2007_runoff_precinct_results.png \
 stone_2003_general_precinct_results.png stone_2011_runoff_precinct_results.png \
 stone_2007_runoff_precinct_turnout.png stone_2011_runoff_precinct_turnout.png \
-silverstein_menu_money_spending_map_2012_2015.png)
+silverstein_menu_money_spending_map_2011_2014.png)
 
 #OUTPUT RECIPES
 
@@ -16,9 +16,9 @@ silverstein_menu_money_spending_map_2012_2015.png)
 ../output/stone_%_precinct_turnout.png: stone_election_turnout_map.R ../temp/stone_dataset.rds | ../output run.sbatch slurmlogs
 	$(eval args := $(subst _, ,$*))
 	$(R) $< $(args)
-../output/stone_menu_money_spending_map_2005_2011.png: stone_menu_money_map.R ../temp/stone_dataset.rds | ../output run.sbatch slurmlogs
+../output/stone_menu_money_spending_map_2005_2010.png: stone_menu_money_map.R ../temp/stone_dataset.rds | ../output run.sbatch slurmlogs
 	$(R) $< 
-../output/silverstein_menu_money_spending_map_2012_2015.png: silverstein_menu_money_map.R ../temp/silverstein_dataset.rds | ../output run.sbatch slurmlogs
+../output/silverstein_menu_money_spending_map_2011_2014.png: silverstein_menu_money_map.R ../temp/silverstein_dataset.rds | ../output run.sbatch slurmlogs
 	$(R) $< 
 #TEMP RECIPES
 ../temp/stone_dataset.rds: prepare_stone_data.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[A-Z|a-z]*' prepare_stone_data.R)| ../temp run.sbatch slurmlogs

@@ -27,7 +27,7 @@ colors <- viridis::viridis(length(breaks) - 1, direction = -1, option = "viridis
 
 figure <- ggplot() +
   geom_sf(data = silverstein_data_inc, aes(fill = total_spending)) +
-  scale_fill_gradientn(name = "Menu Spending \n 2012-2015 \n(thousands of dollars)", 
+  scale_fill_gradientn(name = "Menu Spending \n 2011-2014 \n(thousands of dollars)", 
                        colours = colors, 
                        breaks = breaks, 
                        limits = c(0, max_spending),  # Add this line to set the limits
@@ -44,7 +44,7 @@ figure <- ggplot() +
 
 
 #save the map
-png(filename = "../output/silverstein_menu_money_spending_map_2012_2015.png", width = 8, height = 8, units = "in", res = 300)
+png(filename = "../output/silverstein_menu_money_spending_map_2012_2014.png", width = 8, height = 8, units = "in", res = 300)
 print(figure)
 dev.off()
 

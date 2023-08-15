@@ -27,7 +27,7 @@ colors <- viridis::viridis(length(breaks) - 1, direction = -1, option = "viridis
 
 figure <- ggplot() +
   geom_sf(data = stone_data_inc, aes(fill = total_spending)) +
-  scale_fill_gradientn(name = "Menu Spending \n 2005-2011 \n(thousands of dollars)", 
+  scale_fill_gradientn(name = "Menu Spending \n 2005-2010 \n(thousands of dollars)", 
                        colours = colors, 
                        breaks = breaks, 
                        labels = scales::comma_format(scale = 1/1000),
@@ -41,7 +41,7 @@ figure <- ggplot() +
   )
 
 #save the map
-png(filename = "../output/stone_menu_money_spending_map_2005_2011.png", width = 8, height = 8, units = "in", res = 300)
+png(filename = "../output/stone_menu_money_spending_map_2005_2010.png", width = 8, height = 8, units = "in", res = 300)
 print(figure)
 dev.off()
 

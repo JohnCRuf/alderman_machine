@@ -16,7 +16,7 @@ election_data <- election_data %>%
 
 #drop observations of menu data where year is greater than 2011 and ward != 50
 menu_data <- menu_data %>%
-  filter(year<2012, ward_locate == 50)
+  filter(year<2011, ward_locate == 50)
 
 #take total spending by precinct
 total_spending <- menu_data %>%
