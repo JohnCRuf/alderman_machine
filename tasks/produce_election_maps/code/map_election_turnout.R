@@ -6,36 +6,54 @@ library(ggplot2)
 library(viridis)
 library(labeling)
 library(RColorBrewer)
+source("../input/map_data_prep_fn.R")
 ARGS<- commandArgs(trailingOnly = TRUE)
-output_file <- paste0("../output/stone_", ARGS[1], "_", ARGS[2], "_precinct_turnout.png")
-#load the data
-stone_data <- readRDS("../temp/stone_dataset.rds")
-stone_data <- stone_data %>%
-  filter(year == ARGS[1], type == ARGS[2])
+output_file <- ARGS[6]
+
+data <- read.csv("../input/incumbent_challenger_voteshare_df_precinct_level.csv") 
+data <- data %>%
+  mutate(type = case_when(type == "General" ~ "general",
+                          type == "Runoff" ~ "runoff")) #to simplify arguments and ergo filenames
+data <- data %>%
+  filter(ward == as.numeric(ARGS[1]), year == ARGS[2], type == ARGS[3])
+#load map based on year selection
+if (as.numeric(ARGS[1]) < 2012) {
+  map <- map_load("../temp/ward_precincts_2003_2011/ward_precincts_2003_2011.shp")
+} else {
+  map <- map_load("../temp/ward_precincts_2012_2022/ward_precincts_2012_2022.shp")
+}
+#clean map
+map <- map %>%
+  rename(ward = ward_locate,
+         precinct = precinct_locate)
+
+data <- data %>%
+  left_join(map, by = c("ward", "precinct"))
 
 #group by precinct and calculate net votes by taking votes when inc = 1 and minus votes when inc = 0
-stone_data_inc <- stone_data %>%
+data_inc <- data %>%
   group_by(precinct, geometry) %>%
   summarise(total_votes = sum(votecount)) %>%
   ungroup()
-#convert to sf object
-stone_data_inc <- st_as_sf(stone_data_inc)
-#assert that there are 45 observations
-assert_that(nrow(stone_data_inc) == 45)
-#plot the map
-#set anything above 200 to 200 and anything below -200 to -200
-stone_data_inc$total_votes[stone_data_inc$total_votes > 400] <- 400
 
-breaks <- seq(0, 400, by = 50)
+#convert to sf object
+data_inc <- st_as_sf(data_inc)
+
+#map parameters
+breakmax <- as.numeric(ARGS[4])
+break_size <- as.numeric(ARGS[5])
+data_inc$total_votes[data_inc$total_votes > breakmax] <- breakmax
+breaks <- seq(-breakmax,breakmax , by = break_size)
 n_colors <- length(breaks) - 1
 diverging_colors <- colorRampPalette(c("white", "#4B0082"))(n_colors)
 
 
 #calculating central point for each precinct
-stone_data_inc$centroid <- sf::st_centroid(stone_data_inc)
-stone_data_inc$longitude <- sf::st_coordinates(stone_data_inc$centroid)[,1]
-stone_data_inc$latitude <- sf::st_coordinates(stone_data_inc$centroid)[,2]
+data_inc$centroid <- sf::st_centroid(data_inc)
+data_inc$longitude <- sf::st_coordinates(data_inc$centroid)[,1]
+data_inc$latitude <- sf::st_coordinates(data_inc$centroid)[,2]
 
+#function to calculate median voter
 weighted_median <- function(values, weights) {
   sorted_indices <- order(values)
   sorted_weights <- weights[sorted_indices]
@@ -46,13 +64,13 @@ weighted_median <- function(values, weights) {
   return(sorted_values[median_index])
 }
 
-median_longitude <- weighted_median(stone_data_inc$longitude, stone_data_inc$total_votes)
-median_latitude <- weighted_median(stone_data_inc$latitude, stone_data_inc$total_votes)
+median_longitude <- weighted_median(data_inc$longitude, data_inc$total_votes)
+median_latitude <- weighted_median(data_inc$latitude, data_inc$total_votes)
 
 median_location <- data.frame(longitude = median_longitude, latitude = median_latitude)
 
 figure <- ggplot() +
-  geom_sf(data = stone_data_inc, aes(fill = total_votes)) +
+  geom_sf(data = data_inc, aes(fill = total_votes)) +
   scale_fill_gradientn(name = "Turnout", 
                        colours = diverging_colors, 
                        breaks = breaks, 
