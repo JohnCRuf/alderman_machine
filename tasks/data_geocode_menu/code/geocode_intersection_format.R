@@ -1,6 +1,0 @@
-library(tidyverse)
-library(tidygeocoder)
-source("geolocate_function.R")
-df <- read_csv("../input/intersection_df.csv")
-geolocated_df <- menu_geolocate(df, "location", 500)
-write_csv(geolocated_df, "../output/geolocated_intersection_df.csv")

@@ -1,0 +1,8 @@
+CDAF5DEDD760D2C6C4D620FFD8CC0A86  ../output/incumbent_voteshare_df_ward_level.csv
+Lines:1051
+year,ward,type,candidate,total_votes_percandidate,votepct,inc
+2003,1,General,"Howard L. Crawford, Jr.",214,0.03088023088023088,0
+2003,1,General,Jesse D. Granato,3330,0.4805194805194805,1
+...
+2019,50,General,Debra L. Silverstein,6014,0.658419093496825,1
+2019,50,General,Zehra Quadri,1442,0.15787168819794176,0
