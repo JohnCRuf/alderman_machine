@@ -100,6 +100,33 @@ julia_pc_and_slurm() {
 	fi 
 } ;
 
+python_pc_and_slurm() {
+	if command -v sbatch > /dev/null ; then
+		command1="module load python/3.11.3";
+		command2="module load conda";
+		command3="conda activate alderman_machine";
+		if [ "$1" == "--no-job-name" ]; then
+			shift;
+			command4="python $@";
+			print_info python $@;
+        	sbatch -W --export=command1="$command1",command2="$command2", command3="$command3",command4="$command4" run.sbatch;
+		else
+			command4="python $@";
+			jobname1="${1%.*}_";
+        	jobname2=$(echo ${@:2} | sed -e "s/ /_/g");
+			print_info R $@;
+        	sbatch -W --export=command1="$command1",command2="$command2", command3="$command3",command4="$command4" run.sbatch;
+		fi;
+	else
+        if [ "$1" == "--no-job-name" ]; then
+            shift;
+        fi;
+		conda activate alderman_machine;
+        print_info python $@;
+        python $@;
+	fi 
+} ; 
+
 clean_task() {
 	find ${1} -type l -delete;
 	PARENT_DIR=${1%/code};
