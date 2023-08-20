@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from utils import *
 from LLR import *
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 
@@ -63,7 +64,7 @@ def main():
     plt.xlabel('Margin')
     plt.ylabel('Density')
 
-    plt.savefig('../../results/figures/electoral_density.pdf')
+    plt.savefig('../../outputs/figures/base/electoral_density.pdf')
 
     # Calculate the significance of the discontinuity in logs
 
@@ -111,7 +112,7 @@ def main():
 
     # Write those estimates to a table.
 
-    res_table = load_template('../../results/templates/hist_template.tex').format(**{
+    res_table = load_template('../../outputs/templates/hist_template.tex').format(**{
         'LEVEL_MEAN_EST': mean_diff,
         'LEVEL_SE': se_diff,
         'LEVEL_STARS': make_stars(t_test(mean_diff / se_diff, num_wards_in_bw - 2)),
@@ -122,9 +123,11 @@ def main():
         'NO_WARDS': num_wards_in_bw
     })
 
-    with open('../../results/tables/base_discont_table.tex', 'w') as outfile:
+    with open('../../outputs/tables/base_discont_table.tex', 'w') as outfile:
         outfile.write(res_table)
 
     
 if __name__ == '__main__':
     main()
+
+    Path('../../outputs/figures/base/base.txt').touch()

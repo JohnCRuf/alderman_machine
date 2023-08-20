@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from utils import *
 from LLR import *
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import statsmodels.formula.api as smf
@@ -93,7 +94,7 @@ def main():
         plt.xlabel('Margin')
         plt.ylabel(var_mapping[var])
         
-        plt.savefig(f'../../results/figures/{var}.pdf')
+        plt.savefig(f'../../outputs/figures/turnout/{var}.pdf')
         
         m_plus = m.query('winner == 1').margin.head(1).item()
         f_plus = m.query('winner == 1')[f'll_fit_{var}'].head(1).item()
@@ -160,9 +161,10 @@ def main():
         turnout_data[f'VAR{i}_STARS'] = make_stars(t_test(row.t_stat, num_wards_in_bw - 2))
 
 
-    with open('../../results/tables/turnout_discontinuity.tex', 'w') as outfile:
-        outfile.write(load_template('../../results/templates/turnout_template.tex').format(**turnout_data))
+    with open('../../outputs/tables/turnout_discontinuity.tex', 'w') as outfile:
+        outfile.write(load_template('../../outputs/templates/turnout_template.tex').format(**turnout_data))
 
 
 if __name__ == '__main__':
     main()
+    Path('../../outputs/figures/turnout/turnout.txt').touch()

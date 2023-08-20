@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from utils import *
 from LLR import *
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import statsmodels.formula.api as smf
@@ -146,7 +147,7 @@ def calculate_service(service_type):
         plt.xlabel('Margin')
         plt.ylabel(var_mapping[var])
         
-        plt.savefig(f'../../results/figures/{var}.pdf')
+        plt.savefig(f'../../outputs/figures/services/{var}.pdf')
         
 
         
@@ -254,10 +255,11 @@ def main():
         prep_results('VAR5', potholes_results.loc['duration_res'])
     )
 
-    res_table = load_template('../../results/templates/services_template.tex').format(**services_results)
+    res_table = load_template('../../outputs/templates/services_template.tex').format(**services_results)
 
-    with open('../../results/tables/services_table.tex', 'w') as outfile:
+    with open('../../outputs/tables/services_table.tex', 'w') as outfile:
         outfile.write(res_table)
 
 if __name__ == '__main__':
     main()
+    Path('../../outputs/figures/services/services.txt').touch()

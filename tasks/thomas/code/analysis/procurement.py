@@ -4,6 +4,7 @@ import janitor
 import numpy as np
 from utils import *
 from LLR import *
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import statsmodels.formula.api as smf
@@ -198,7 +199,7 @@ def main():
         plt.xlabel('Margin')
         plt.ylabel(var_mapping[var])
         
-        plt.savefig(f'../../results/figures/{var}.pdf')
+        plt.savefig(f'../../outputs/figures/procurement/{var}.pdf')
         
 
         
@@ -276,8 +277,9 @@ def main():
         contract_data[prefix + '_STARS'] = make_stars(t_test(row.t_stat, num_wards_in_bw - 2))
         
 
-    with open('../../results/tables/contracts_table.tex', 'w') as outfile:
-        outfile.write(load_template('../../results/templates/contracts_template.tex').format(**contract_data))
+    with open('../../outputs/tables/contracts_table.tex', 'w') as outfile:
+        outfile.write(load_template('../../outputs/templates/contracts_template.tex').format(**contract_data))
 
 if __name__ == '__main__':
     main()
+    Path('../../outputs/figures/procurement/procurement.txt').touch()
