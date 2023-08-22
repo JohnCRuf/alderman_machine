@@ -104,7 +104,7 @@ def scrape_elections():
         print(elec_name)
         req = requests.get(f"https://chicagoelections.gov/en/election-results.asp?election={elec_num}", headers=headers)
         
-        soup = BeautifulSoup(req.text)
+        soup = BeautifulSoup(req.text, features="lxml")
         
         elecs = []
         
@@ -136,7 +136,7 @@ def scrape_elections():
 
     dfs = []
 
-    for n, row in tqdm(all_races.filter_on('race_type == "alderman"').reset_index(drop=True).iterrows()):
+    for n, row in tqdm(all_races.query('race_type == "alderman"').reset_index(drop=True).iterrows()):
         d = {
             'election': f"{row.elec_num}",
             'race':     f"{row.race_num}",
