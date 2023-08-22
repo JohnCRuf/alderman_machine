@@ -1,14 +1,17 @@
 SHELL=bash
 include ../../shell_functions.make
 
-all: ../output/R_packages.txt ../output/conda_install_log.txt ../output/R_environ.txt
+all: ../output/R_packages.txt ../output/python_install_log.txt ../output/R_environ.txt
 
 ../output/R_packages.txt: packages.R | ../output
 	$(R) $<
 
-../output/conda_install_log.txt: python_environment.txt | ../output
-	conda config --add channels conda-forge
-	conda create --name alderman_machine --file python_environment.txt --yes | tee ../output/conda_install_log.txt 
+../output/python_install_log.txt: python_environment.txt | ../output
+	rm -rf ../../../.venv
+	python -m venv ../../../.venv
+	source ../../../.venv/bin/activate
+	python -m pip install -r python_environment.txt
+
 
 ../output/R_environ.txt: set_R_environ.R | ../output
 	$(R) $<
