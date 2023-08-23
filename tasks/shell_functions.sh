@@ -109,7 +109,7 @@ python_pc_and_slurm() {
 			print_info python $@;
         	sbatch -W --export=command1="$command1",command2="$command2" run.sbatch;
 		else
-			command4="python $@";
+			command2="python $@";
 			jobname1="${1%.*}_";
         	jobname2=$(echo ${@:2} | sed -e "s/ /_/g");
 			print_info R $@;
