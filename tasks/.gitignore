@@ -9,4 +9,3 @@ run.sbatch
 .Rprofile
 *.Rhistory
 *.pyc
-*/.venv/*
