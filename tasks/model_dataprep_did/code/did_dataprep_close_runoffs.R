@@ -16,7 +16,8 @@ treatment_df <- election_df %>%
     summarize(voteshare = votecount_inc/sum(votecount)) %>%
     ungroup() %>%
     filter(voteshare >= 0.5 - as.numeric(ARGS[2]) & voteshare <= 0.5 + as.numeric(ARGS[2])) %>%
-    mutate(treatment = ifelse(voteshare >= 0.5, 0, 1)) 
+    mutate(treatment = ifelse(voteshare >= 0.5, 0, 1)) %>%
+    rename(year_treat = year)
 #assert ward_level_df is not empty
 stopifnot(nrow(treatment_df) > 0)
 ward_list <- treatment_df$ward
@@ -37,5 +38,8 @@ top_precincts <- precinct_level_df %>%
 #filter menu_df to only include wards in ward_list and year +/- 3 from ARGS[1]
 menu_df <- menu_df %>%
   filter(ward_locate %in% ward_list & year >= as.numeric(ARGS[1]) - 3 & year <= as.numeric(ARGS[1]) + 3)
+#rename ward_locate to ward and precinct_locate to precinct
+menu_df <- menu_df %>%
+  rename(ward = ward_locate, precinct = precinct_locate)
 
 save(menu_df, top_precincts, treatment_df, file = paste0("../output/close_runoffs_year_", ARGS[1], "_cutoff_", ARGS[2],"_count_",ARGS[3],".rda"))
