@@ -113,7 +113,7 @@ python_pc_and_slurm() {
 			jobname1="${1%.*}_";
         	jobname2=$(echo ${@:2} | sed -e "s/ /_/g");
 			print_info R $@;
-        	sbatch -W --export=command1="$command1",command2="$command2" run.sbatch;
+        	sbatch -W --export=command1="$command1",command2="$command2" --job-name="$jobname1$jobname2" run.sbatch;
 		fi;
 	else
         if [ "$1" == "--no-job-name" ]; then
