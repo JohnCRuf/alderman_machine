@@ -6,8 +6,12 @@ election_df <- read.csv("../input/incumbent_challenger_voteshare_df_precinct_lev
 
 #create a list of all wards that have a close runoff in year = ARGS[1]
 #close is if voteshare is within ARGS[2] of 50%
+#drop elections that do not have an inc=1 candidate
 treatment_df <- election_df %>%
     filter(year == as.numeric(ARGS[1]), type == "Runoff") %>%
+    group_by(ward) %>%
+    filter(sum(inc) > 0) %>%
+    ungroup() %>%
     group_by(ward, year, inc) %>% #calculate the total ward-level voteshare for the canddidate where inc=1
     summarize(votecount_inc = sum(votecount*inc),
              votecount = sum(votecount)) %>%
@@ -15,7 +19,8 @@ treatment_df <- election_df %>%
     group_by(ward, year) %>%
     summarize(voteshare = votecount_inc/sum(votecount)) %>%
     ungroup() %>%
-    filter(voteshare >= 0.5 - as.numeric(ARGS[2]) & voteshare <= 0.5 + as.numeric(ARGS[2])) %>%
+    filter(voteshare > min(0.5 - as.numeric(ARGS[2]),0) & voteshare < min(0.5+as.numeric(ARGS[2]),1)) %>%
+    filter(voteshare >0) %>%
     mutate(treatment = ifelse(voteshare >= 0.5, 0, 1)) %>%
     rename(year_treat = year)
 #assert ward_level_df is not empty
@@ -33,13 +38,18 @@ top_precincts <- precinct_level_df %>%
     group_by(ward) %>%
     slice_max(order_by = net_inc_votes, n = as.numeric(ARGS[3])) %>%
     ungroup() %>%
-    select(ward, precinct)
+    select(ward, precinct, net_inc_votes)
+bottom_precincts <- precinct_level_df %>%
+    group_by(ward) %>%
+    slice_min(order_by = net_inc_votes, n = as.numeric(ARGS[3])) %>%
+    ungroup() %>%
+    select(ward, precinct, net_inc_votes)
 
 #filter menu_df to only include wards in ward_list and year +/- 3 from ARGS[1]
 menu_df <- menu_df %>%
-  filter(ward_locate %in% ward_list & year >= as.numeric(ARGS[1]) - 3 & year <= as.numeric(ARGS[1]) + 3)
+  filter(ward_locate %in% ward_list & year >= as.numeric(ARGS[1]) - 4 & year <= as.numeric(ARGS[1]) + 3)
 #rename ward_locate to ward and precinct_locate to precinct
 menu_df <- menu_df %>%
   rename(ward = ward_locate, precinct = precinct_locate)
 
-save(menu_df, top_precincts, treatment_df, file = paste0("../output/close_runoffs_year_", ARGS[1], "_cutoff_", ARGS[2],"_count_",ARGS[3],".rda"))
+save(menu_df, top_precincts, bottom_precincts, treatment_df, file = paste0("../output/close_runoffs_year_", ARGS[1], "_cutoff_", ARGS[2],"_count_",ARGS[3],".rda"))

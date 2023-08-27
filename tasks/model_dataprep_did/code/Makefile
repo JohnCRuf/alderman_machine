@@ -2,8 +2,8 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-years := 2019 #years to include in the analysis
-close_cutoff := 0.05 #cutoffs for "close" elections
+years := 2015 2019 #years to include in the analysis
+close_cutoff := 0.05 1.0 #cutoffs for "close" elections
 precinct_count := 5 10 15 #number of "most-supporting" precincts to include in the analysis
 triples = $(foreach year, $(years), $(foreach cutoff, $(close_cutoff), $(foreach precinct, $(precinct_count), year_$(year)_cutoff_$(cutoff)_count_$(precinct))))
 OUTPUTS = $(foreach triple, $(triples), ../output/close_runoffs_$(triple).rda)

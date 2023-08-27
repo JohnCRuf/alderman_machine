@@ -1,18 +1,27 @@
 SHELL=bash
 include ../../shell_functions.make
 ## DEFINITIONS
-years := 2019 #years to include in the analysis
-close_cutoff := 0.05 #cutoffs for "close" elections
+support := top bottom
+years := 2015 2019 #years to include in the analysis
+close_cutoff := 0.05 1.0 #cutoffs for "close" elections
 precinct_count := 5 10 15 #number of "most-supporting" precincts to include in the analysis
-close_election_triples = $(foreach year, $(years), $(foreach cutoff, $(close_cutoff), $(foreach precinct, $(precinct_count), year_$(year)_cutoff_$(cutoff)_count_$(precinct))))
+close_election_stubs = $(foreach sup, $(support), $(foreach year, $(years), $(foreach cutoff, $(close_cutoff), $(foreach precinct, $(precinct_count), support_$(sup)_year_$(year)_cutoff_$(cutoff)_count_$(precinct)))))
 
-
-OUTPUTS_close_TWFE = $(foreach triple, $(close_election_triples), ../output/twfe_table_$(triple).tex)
-all: $(OUTPUTS_close_TWFE)
+OUTPUTS_close_TWFE = $(foreach stub, $(close_election_stubs), ../output/twfe_table_$(stub).tex)
+OUTPUTS_close_HTE = $(foreach stub, $(close_election_stubs), ../output/hte_figure_$(stub).png)
+all: $(OUTPUTS_close_TWFE) $(OUTPUTS_close_HTE)
+TWFE: $(OUTPUTS_close_TWFE)
+HTE: $(OUTPUTS_close_HTE)
 
 #OUTPUT RECIPES
-../output/twfe_table_%.tex: estimate_twfe_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
-	$(R) $^ $*
+../output/twfe_table_support_top_%.tex: estimate_twfe_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/twfe_table_support_bottom_%.tex: estimate_twfe_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/hte_figure_support_top_%.png: estimate_het_te_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/hte_figure_support_bottom_%.png: estimate_het_te_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
 #INPUT RECIPES
 ../input/%: ../../model_dataprep_did/output/% | ../input
 	ln -s $< $@

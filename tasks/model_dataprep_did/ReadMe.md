@@ -3,7 +3,7 @@
 
 ## OUTPUTS
 * `close_runoffs_year_(year)_cutoff_(cutoff)_n_(n).rda`: 
-A RDA file with a ward-precinct level menu expenditure panel dataset, a list of the top n incumbent supporting" precincts for each ward in the sample, and a list of treatment and control wards for a given cutoff.
+A RDA file with a ward-precinct level menu expenditure panel dataset, a list of the top and bottom n incumbent supporting" precincts for each ward in the sample by net vote count, and a list of treatment and control wards for a given cutoff.
 
 
 ## CODE
