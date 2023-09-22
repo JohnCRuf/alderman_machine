@@ -1,0 +1,8 @@
+838EF85209D01246D6D0E7E79D040DC3  ../output/incumbent_challenger_voteshare_df_precinct_level.csv
+Lines:51226
+precinct,candidate,votecount,Election,ward,type,year,date,total_votes_percandidate,votepct,inc
+1,Leonard Deville,141,2003 Municipal Runoffs - 4/1/03,21,Runoff,2003,4/1/03,5887,0.494622752478575,1
+1,"Howard B. Brookins, Jr.",141,2003 Municipal Runoffs - 4/1/03,21,Runoff,2003,4/1/03,6015,0.505377247521425,0
+...
+44,Proco ''Joe'' Moreno,64,2019 Municipal General - 2/26/19,1,General,2019,2/26/19,4635,0.3875094055680963,1
+44,Daniel La Spata,188,2019 Municipal General - 2/26/19,1,General,2019,2/26/19,7326,0.6124905944319037,0

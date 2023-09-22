@@ -5,11 +5,11 @@
 ## Output
 * `geomatched_(format)_df_(shape/line/point).csv`: A CSV file containing the menu money allocation cost, the ward, year, and the geographic coordinates of the project location for a specific location text format for shapes, lines, and points.
 
-Due to missing geolocation, projects that should be shapes or lines are often geomatched as singular points.
-The location text formats include "2 ands," "3 ands," "double dash to," "from to," "intersection", "normal address," "school park," "through address," and "leftover."
+Due to missing coordiantes, projects that should be shapes or lines are often geomatched as singular points.
+The location text formats include "points," "lines," "quad," and "pent"
 
 Leftover contains the uncategorized location text formats and are just fed into the google maps API as a last-ditch effort to geocode the project. 
-There are currently ~700 leftover projects from the ~45000 total projects.
+There are currently ~300 leftover projects from the ~45000 total projects.
 
 
 ## Code
@@ -17,7 +17,8 @@ There are currently ~700 leftover projects from the ~45000 total projects.
 
 ## Inputs
 * `geocoded_(format)_df.csv`: A CSV file containing the menu money allocation cost, the ward, year, and the geographic coordinates of the project location for a specific location text format.
-The location text formats include "2 ands," "3 ands," "double dash to," "from to," "intersection", "normal address," "school park," "through address," and "leftover."
+The location text formats include "points," "lines," "quad," and "pent""
 
 Leftover contains the uncategorized location text formats and are just fed into the google maps API as a last-ditch effort to geocode the project. 
 There are currently ~700 leftover projects from the ~45000 total projects.
+This task takes several hours to run. It is recommended to run it on a server.

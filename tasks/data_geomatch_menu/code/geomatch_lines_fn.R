@@ -28,8 +28,6 @@ geomatch_lines <- function(lines, map,rows_per_chunk) {
     #bind the results to df_line_matched
     df_line_matched <- rbind(df_line_matched, intersections)
   }
-  #suppress warnings
-  
 
   return(df_line_matched)
 }

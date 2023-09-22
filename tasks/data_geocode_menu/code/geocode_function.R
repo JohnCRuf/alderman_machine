@@ -1,4 +1,4 @@
-menu_geolocate <- function(df, var_name, batch_size) {
+menu_geocode <- function(df, var_name, batch_size) {
     df <- df %>%
         mutate(singlelineaddress = paste0(str_replace_all(!!sym(var_name), ",", " "), ", Chicago, IL"),
         singlelineaddress = ifelse(is.na(!!sym(var_name)), NA, singlelineaddress))
@@ -30,7 +30,7 @@ menu_geolocate <- function(df, var_name, batch_size) {
 
     return (results)
 }
-menu_geolocate_googleonly <- function(df, var_name, batch_size) {
+menu_geocode_googleonly <- function(df, var_name, batch_size) {
     df <- df %>%
         mutate(singlelineaddress = paste0(str_replace_all(!!sym(var_name), ",", " "), ", Chicago, IL"),
         singlelineaddress = ifelse(is.na(!!sym(var_name)), NA, singlelineaddress))
@@ -66,4 +66,36 @@ menu_geolocate_googleonly <- function(df, var_name, batch_size) {
 # library(tidygeocoder)
 # main_df <- read_csv("../temp/normal_address_df.csv")
 # test_df <- main_df[1:1000,]
-# geo_results <- menu_geolocate(test_df, "address", 500)
+# geo_results <- menu_geocode(test_df, "address", 500)
+
+#error correcting function that removes all coordinates obviously not in Chicago
+
+filter_chicago_coordinates <- function(df) {
+  # Define the bounding box around Chicago
+  lat_min <- 41.6445   # Approximate southernmost latitude
+  lat_max <- 42.0231   # Approximate northernmost latitude
+  lon_min <- -87.9401  # Approximate westernmost longitude
+  lon_max <- -87.5240  # Approximate easternmost longitude
+  
+  lat_cols <- grep("^lat", names(df))
+  lon_cols <- grep("^lon", names(df))
+  
+  # Loop through each lat and lon column to apply the conditions
+  for(i in 1:length(lat_cols)) {
+    df <- df %>%
+      mutate(
+        !!names(df)[lat_cols[i]] := ifelse(
+          (get(names(df)[lat_cols[i]]) < lat_min | get(names(df)[lat_cols[i]]) > lat_max) | 
+          (get(names(df)[lon_cols[i]]) < lon_min | get(names(df)[lon_cols[i]]) > lon_max), 
+          NA, 
+          get(names(df)[lat_cols[i]])
+        ),
+        !!names(df)[lon_cols[i]] := ifelse(
+          is.na(get(names(df)[lat_cols[i]])), 
+          NA, 
+          get(names(df)[lon_cols[i]])
+        )
+      )
+  }
+  return(df)
+}

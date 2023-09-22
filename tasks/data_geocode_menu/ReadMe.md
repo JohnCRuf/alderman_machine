@@ -5,7 +5,7 @@
 
 ## Output
 * `geocoded_(format)_df.csv`: A CSV file containing the menu money allocation cost, the ward, year, and the geographic coordinates of the project location for a specific location text format.
-The location text formats include "2 ands," "3 ands," "double dash to," "from to," "intersection", "normal address," "school park," "through address," and "leftover."
+The location text formats include "points," "lines," "quad," and "pent""
 
 Leftover contains the uncategorized location text formats and are just fed into the google maps API as a last-ditch effort to geocode the project. 
 There are currently ~700 leftover projects from the ~45000 total projects.
@@ -17,3 +17,5 @@ There are currently ~700 leftover projects from the ~45000 total projects.
 
 ## Inputs
 * `menu_category_panel_df.csv`: A panel dataset of menu expenditures by alderman, with election data merged in.
+
+This task takes several hours to run. It is recommended to run it on a server.
