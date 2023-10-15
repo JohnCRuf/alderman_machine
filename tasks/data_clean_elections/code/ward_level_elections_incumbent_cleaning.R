@@ -25,7 +25,6 @@ election_winners <- election_group %>%
 year_vector_all <- sort(unique(elections$year), decreasing = TRUE)
 #drop 2017 because that was a special election and 2003 because that is first year in data
 year_vector <- year_vector_all[year_vector_all != 2017]
-year_vector <- year_vector[year_vector != 2003]
 
 appointments <- list(
   '2019' = c('Silvana Tabares'),
@@ -33,19 +32,7 @@ appointments <- list(
   '2011' = c("Proco ''Joe'' Moreno", "Roberto Maldonado", "Deborah L. Graham", "Jason C. Ervin", "John A. Rice", "Timothy M. Cullerton"),
   '2007' = c("Darcel A. Beavers", "Lona Lane", "Thomas W. Murphy", "Thomas M. Tunney"),
   '2003' = c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts"))
-
-incumbents_list <- lapply(year_vector, function(year) {
-  prev_year <- which(year_vector == year) + 1
-  prev_winners <- election_winners %>% filter(year == year_vector[prev_year], winner == 1) %>% pull(Candidate)
-  curr_candidates <- election_winners %>% filter(year == year) %>% pull(Candidate)
-  c(intersect(prev_winners, curr_candidates), appointments[[as.character(year)]])
-})
-
-names(incumbents_list) <- year_vector
-#manually inserting incumbent lists for 2003 and 2017 due to first year in data and special election
-incumbents_list <- append(incumbents_list, list('2017' = c("Sophia King")), after = 1)
-incumbents_list <- append(incumbents_list, list('2003' = c(
-c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts", "Rafael ''Ray'' Frias", 
+initial_aldermen <- c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts", "Rafael ''Ray'' Frias", 
 "Dorothy J. Tillman", "Toni Preckwinkle", "Leslie A. Hairston", "Freddrenna M. Lyle",
  "William M. Beavers", "Anthony A. Beale", "John A. Pope", "James A. Balcer", 
  "Frank J. Olivo",  "Theodore ''Ted'' Thomas", "Shirley A. Coleman", "Virginia A. Rugai", 
@@ -55,7 +42,32 @@ c("Todd H. Stroger", "Latasha R. Thomas", "Emma M. Mitts", "Rafael ''Ray'' Frias
  "Carrie M. Austin", "Vilma Colom", "William J.p. Banks", "Thomas R. Allen", 
  "Margaret Laurino", "Patrick J. O'connor", "Brian G. Doherty", "Burton F. Natarus", 
  "Vi Daley", "Helen Shiller", "Gene Schulter", "Joe Moore", "Bernard L. Stone", "Jesse D. Granato",
-"Edward M. Burke"))))
+"Edward M. Burke")
+
+incumbents_list <- lapply(year_vector, function(year) {
+  prev_year <- which(year_vector == year) + 1
+  prev_winners <- election_winners %>% 
+    filter(year == year_vector[prev_year], winner == 1) %>% 
+    pull(Candidate)
+  curr_candidates <- election_winners %>% 
+    filter(year == year) %>% 
+    pull(Candidate)
+
+  # Modify the assignment to initial
+  if (year == 2003) {
+    initial <- initial_aldermen
+  } else {
+    initial <- character(0)  # an empty character vector
+  }
+
+  c(intersect(prev_winners, curr_candidates), appointments[[as.character(year)]], initial)
+})
+
+names(incumbents_list) <- year_vector
+#manually inserting incumbent lists for 2003 and 2017 due to first year in data and special election
+incumbents_list <- append(incumbents_list, list('2017' = c("Sophia King")), after = 1)
+#add incumbents to 2003 list
+
 incumbents_all <- unique(unlist(incumbents_list))
 
 # Initialize incumbent columns
