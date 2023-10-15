@@ -1,7 +1,8 @@
-packages <- c("tidyverse", "RSelenium", "stargazer","stringr", "XML",
- "rstudioapi", "ggplot2", "rdd", "XML", "did", "rvest", "rdrobust",
+packages <- c("tidyverse", "RSelenium", "stargazer","stringr", "stringi",
+ "XML", "rstudioapi", "ggplot2", "rdd", "XML", "did", "rvest", "rdrobust",
   "assertthat", "tidygeocoder", "usethis", "prettyunits","mime", "gsubfn",
-  "sf")
+  "sf", "aod", "assertr", "ggmap", "gsubfn", "labeling", "lmtest", "lwgeom",
+  "RColorBrewer", "rgdal", "sandwich", "sp", "staggered", "viridis", "XML")
 
 # Create a directory for  packages
 dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
