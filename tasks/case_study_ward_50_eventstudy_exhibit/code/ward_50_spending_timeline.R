@@ -19,11 +19,12 @@ figure <- ggplot(df, aes(x = as.factor(year))) +
   labs(x = "Year", y = "Fraction of located spending (%)") +  
   scale_y_continuous(labels = comma_format(scale = 1)) +  
   scale_x_discrete(breaks = unique(df$year)[seq(1, length(unique(df$year)), by = 2)]) +
+  scale_color_discrete(name="Group") +   # Rename the color legend
+  scale_linetype_discrete(name="Group") + # Rename the linetype legend
   theme_bw() +
   theme(
     plot.caption = element_text(hjust = 0.5, size = 12, margin = margin(t = 0, b = 0)),
-    plot.margin = margin(0, 0, 0, 0),  # top, right, bottom, left margins set to zero
-    legend.title = element_text(hjust = 0.5)  # horizontally center the legend title
+    plot.margin = margin(0, 0, 0, 0)  # top, right, bottom, left margins set to zero
   )
 #save the figure as a png
 png(filename = output_file, width = 6, height = 4, units = "in", res = 300)
