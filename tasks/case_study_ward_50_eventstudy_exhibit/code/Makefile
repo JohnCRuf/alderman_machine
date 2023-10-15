@@ -2,7 +2,7 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-set_precincts = 5 10 15
+set_precincts = 5 
 set_year = 2007 2011
 OUTPUTS = $(addprefix ../output/ward_50_, $(foreach i, $(set_precincts), $(foreach year, $(set_year), $(i)_precinct_$(year)_year_timeline.png)))
 
