@@ -49,7 +49,6 @@ menu_data <- menu_data %>%
                           precinct %in% bottom_precinct_list ~ "Bottom",
                           TRUE ~ "Other"
                           )) %>%
-    filter(lab != "Other") %>%
     select(-geometry)
 
 menu_data <- menu_data %>% 
