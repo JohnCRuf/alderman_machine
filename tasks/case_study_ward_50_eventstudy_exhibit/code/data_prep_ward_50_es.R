@@ -32,12 +32,6 @@ bottom_precinct_list <- stone_data_inc %>%
     arrange(net_votes) %>%
     head(n) %>%
     pull(precinct)
-#make new df middle_precincts with new variable median_vote_dist which is the absolute value of the difference between net votes and median net votes
-middle_precinct_list <- stone_data_inc %>%
-  mutate(median_vote_dist = abs(net_votes - median_netvotes)) %>%
-  arrange(median_vote_dist) %>%
-  head(n) %>%
-  pull(precinct)
 
 #create new df called "total_df" which is the sum of all precincts spending by year
 total_df <- menu_data %>%
@@ -53,10 +47,8 @@ menu_data <- menu_data %>%
     mutate(precinct = as.character(precinct),
           lab = case_when(precinct %in% top_precinct_list ~ "Top",
                           precinct %in% bottom_precinct_list ~ "Bottom",
-                          precinct %in% middle_precinct_list ~ "Middle",
                           TRUE ~ "Other"
                           )) %>%
-    filter(lab != "Other") %>%
     select(-geometry)
 
 menu_data <- menu_data %>% 
