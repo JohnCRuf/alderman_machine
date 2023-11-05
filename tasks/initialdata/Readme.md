@@ -1,0 +1,2 @@
+## Initial Data
+    This task includes all initial data for the project. This includes the FOIA'd 2005-2011 Menu program data, campaign contribution data downloaded from https://www.elections.il.gov/CampaignDisclosure/DownloadList.aspx, pot hole and service request data, and ward-precinct boundary data.
