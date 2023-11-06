@@ -15,7 +15,7 @@ $(OUTPUTS): ../output/close_runoffs_%.rda: did_dataprep_close_runoffs.R $(shell 
 #INPUT RECIPES
 ../input/incumbent_challenger_voteshare_df_precinct_level.csv: ../input/%: ../../data_clean_elections/output/% | ../input
 	ln -s $< $@
-../input/ward_precinct_menu_panel_2012_2022.rds: ../../data_combine_geomatched/output/ward_precinct_menu_panel_2012_2022.rds | ../input
+../input/ward_precinct_menu_panel_2012_2022.rds: ../../data_combine_geomatched_menu/output/ward_precinct_menu_panel_2012_2022.rds | ../input
 	ln -s $< $@
 
 include ../../generic.make

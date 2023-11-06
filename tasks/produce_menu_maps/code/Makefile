@@ -23,7 +23,7 @@ all: $(ward_50_maps) $(corruption_maps)
 	$(R) $^ 2020 2022 $* total viridis 100000 130000000 $@
 
 #INPUT RECIPES
-../input/ward_precinct_menu_panel_%.rds: ../../data_combine_geomatched/output/ward_precinct_menu_panel_%.rds | ../input
+../input/ward_precinct_menu_panel_%.rds: ../../data_combine_geomatched_menu/output/ward_precinct_menu_panel_%.rds | ../input
 	ln -s $< $@
 
 include ../../generic.make
