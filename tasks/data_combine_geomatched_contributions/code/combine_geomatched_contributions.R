@@ -11,7 +11,6 @@ input_filename <- ARGS[1]
 map_filename <- paste0("../temp/ward_precincts_", ARGS[2], "/ward_precincts_", ARGS[2], ".shp")
 output_filename <- ARGS[3]
 
-
 map <- map_load(map_filename)
 #repeat the map every year from 2003 to 2022
 map <- map %>% 

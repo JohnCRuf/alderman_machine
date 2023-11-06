@@ -1,4 +1,4 @@
-# data_combine_geomatched
+# data_combine_geomatched_contributions
     This task compiles the geomatched campaign contribution data into a singular .rds file for all allocations between 2003 and 2022, under the 2003 through 2012 ward-precinct boundaries.
 ## Output
 * `$(alderman)_contribution_panel_(year-year).rds`: 
