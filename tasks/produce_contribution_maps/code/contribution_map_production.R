@@ -15,8 +15,6 @@ year_1 <- ARGS[3]
 year_2 <- ARGS[4]
 legend_setting <- "total"
 color_setting <- "viridis"
-break_size <- 15000
-break_max <- 150000
 output_file <- ARGS[5]
 
 #drop observations of menu data where year is greater than 2011 and ward != 50
@@ -34,6 +32,10 @@ contribution_spending_map <- st_as_sf(contribution_spending_df)
 
 arg_to_legend_list <- arg_to_legend(legend_setting, year_1, year_2, contribution_spending_map)
 #breaks go from 0 to seq_max in increments of break_size
+#break max is the max value of the variable rounded up the nearest 1000
+break_max <- ceiling(max(contribution_spending_df$contribution_spending)/1000)*1000
+#break size is 1/10 of break_max
+break_size <- break_max/10
 breaks <- seq(0, break_max, break_size)
 colors <- arg_to_color(color_setting, breaks)
 df <- arg_to_legend_list[[1]]
