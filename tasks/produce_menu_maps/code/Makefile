@@ -10,17 +10,17 @@ all: $(ward_50_maps) $(corruption_maps)
 #OUTPUT RECIPES
 #args for menu_map_production.R go as follows: year_start year_end ward legend_arg color_arg break_gap max_y_axis
 ../output/ward_50_menu_map_2005_2010.png: menu_map_production.R ../input/ward_precinct_menu_panel_2003_2011.rds | menu_title_mapper.R ../output run.sbatch slurmlogs
-	$(R) $^ 2005 2010 50 total viridis 100000 130000000 $@
+	$(R) $^ 2005 2010 50 total cividis 100000 130000000 $@
 ../output/ward_50_menu_map_2011_2014.png: menu_map_production.R ../input/ward_precinct_menu_panel_2003_2011.rds  | menu_title_mapper.R ../output run.sbatch slurmlogs
-	$(R) $^ 2010 2014 50 total viridis 100000 130000000 $@
+	$(R) $^ 2011 2014 50 total cividis 100000 130000000 $@
 ../output/ward_50_menu_map_2015_2018.png: menu_map_production.R ../input/ward_precinct_menu_panel_2012_2022.rds  | menu_title_mapper.R ../output run.sbatch slurmlogs
-	$(R) $^ 2015 2018 50 total viridis 100000 130000000 $@
+	$(R) $^ 2015 2018 50 total cividis 100000 130000000 $@
 ../output/ward_14_menu_map_2012_2022.png: menu_map_production.R ../input/ward_precinct_menu_panel_2012_2022.rds  | menu_title_mapper.R ../output run.sbatch slurmlogs
-	$(R) $^ 2012 2022 14 total viridis 100000 130000000 $@
+	$(R) $^ 2012 2022 14 total cividis 100000 130000000 $@
 ../output/ward_%_menu_map_2012_2019.png: menu_map_production.R ../input/ward_precinct_menu_panel_2012_2022.rds  | menu_title_mapper.R ../output run.sbatch slurmlogs
-	$(R) $^ 2012 2019 $* total viridis 100000 130000000 $@
+	$(R) $^ 2012 2019 $* total cividis 100000 130000000 $@
 ../output/ward_%_menu_map_2020_2022.png: menu_map_production.R ../input/ward_precinct_menu_panel_2012_2022.rds  | menu_title_mapper.R ../output run.sbatch slurmlogs
-	$(R) $^ 2020 2022 $* total viridis 100000 130000000 $@
+	$(R) $^ 2020 2022 $* total cividis 100000 130000000 $@
 
 #INPUT RECIPES
 ../input/ward_precinct_menu_panel_%.rds: ../../data_combine_geomatched_menu/output/ward_precinct_menu_panel_%.rds | ../input

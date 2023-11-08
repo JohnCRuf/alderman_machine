@@ -39,7 +39,6 @@ colors <- arg_to_color(color_setting, breaks)
 df <- arg_to_legend_list[[1]]
 scale_name <- arg_to_legend_list[[2]]
 label_name <- arg_to_legend_list[[3]]
-
 figure <- ggplot() +
   geom_sf(data = df, aes(fill = precinct_spending)) +
   scale_fill_gradientn(name = scale_name, 

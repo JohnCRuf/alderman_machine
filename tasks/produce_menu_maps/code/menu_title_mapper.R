@@ -20,10 +20,12 @@ return(list(df, scale_name, label_name))
 }
 
 arg_to_color <- function(color_arg, breaks) {
-    if (color_arg == "viridis") {
-        colors <- viridis::viridis(length(breaks) - 1, direction = -1, option = "viridis")
-     } else if (color_arg == "red_blue") {
-        colors <- colorRampPalette(rev(brewer.pal(n = 11, name = "RdBu")))(n_colors)
+    if (color_arg == "red_blue") {
+        colors <- colorRampPalette(rev(brewer.pal(n = 11, name = "RdBu")))(n_colors)}
+    else {
+        # create command that is color_arg
+        viridis_color_command <- paste0("viridis::", color_arg, "( length(breaks) - 1, , direction = -1)")
+        colors <- eval(parse(text = viridis_color_command))
      } 
     return(colors)
 }
