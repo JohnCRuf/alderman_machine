@@ -14,7 +14,7 @@ ward_select <- ARGS[2]
 year_1 <- ARGS[3]
 year_2 <- ARGS[4]
 legend_setting <- "total"
-color_setting <- "viridis"
+color_setting <- "magma"
 output_file <- ARGS[5]
 
 #drop observations of menu data where year is greater than 2011 and ward != 50
