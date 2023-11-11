@@ -19,9 +19,11 @@ df <- df %>%
 #create an ordinal rank of precincts by total_contributions
 df <- df %>%
   mutate(rank = rank(total_contribution, ties.method = "first"))
-#sort by rank
 df <- df %>%
   arrange(rank)
+#add a variable called ward that is the same as the input argument
+df <- df %>%
+  mutate(ward = ward,
+         map = "2003-2011")
 #save as csv
 write_csv(df, output_filename)
-
