@@ -15,7 +15,7 @@ did_df <- menu_df %>%
     mutate(ward = as.numeric(ward),
             precinct = as.numeric(precinct)) %>%
     left_join(treatment_df, by = c("ward")) %>%
-    mutate(treatment_group = ifelse(ward %in% treated_wards, election_year+1, 0)) %>%
+    mutate(treatment_group = ifelse(ward %in% treated_wards, year_treat+1, 0)) %>%
     group_by(ward, year) %>%
     mutate(total_spending = sum(weighted_cost)) %>%
     ungroup() %>%
