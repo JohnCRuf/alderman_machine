@@ -2,7 +2,7 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-alders = austin beale brookins burke burnett cochran daley mitts moreno munoz reboyras solis stone tunney zalewski
+alders = austin beale brookins burke burnett cardenas cochran daley dowell hairston harris mitts maldonado moreno munoz reboyras solis stone tunney zalewski
 OUTPUTS = $(foreach alder, $(alders), $(foreach map, 2003_2011 2012_2022, ../output/$(alder)_contribution_panel_$(map).rds))
 
 INPUTS_maps = $(addprefix ../input/, ward_precincts_2012_2022.zip ward_precincts_2003_2011.zip)

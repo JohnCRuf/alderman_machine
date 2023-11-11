@@ -2,9 +2,7 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-alders = austin_34 beale_9 brookins_21 burke_14 burnett_27 cochran_20 \
-daley_11 mitts_37 moreno_1 munoz_22 reboyras_30 solis_25  \
-stone_50 tunney_44 zalewski_23 
+alders = austin_34 beale_9 brookins_21 burke_14 burnett_27 cardenas_12 cochran_20 daley_11 dowell_3 hairston_5 harris_8 mitts_37 maldonado_26 moreno_1 munoz_22 reboyras_30 solis_25 stone_50 tunney_44 zalewski_23
 temp = $(foreach alder, $(alders), $(foreach map, 2003_2011 2012_2022, ../temp/$(alder)_supporting_opposing_precincts_$(map).csv))
 INPUTS_maps = $(addprefix ../input/, ward_precincts_2012_2022.zip ward_precincts_2003_2011.zip)
 all: ../output/incumbent_contribution_suppporting_opposing_precincts.csv

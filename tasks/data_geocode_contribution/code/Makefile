@@ -2,7 +2,7 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-alders = austin beale brookins burke burnett cochran daley mitts moreno munoz reboyras solis stone tunney zalewski
+alders = austin beale brookins burke burnett cardenas cochran daley dowell hairston harris mitts maldonado moreno munoz reboyras solis stone tunney zalewski
 INPUT_data = $(foreach alder, $(alders), ../input/$(alder)_receipts.csv)
 OUTPUTS = $(foreach alder, $(alders), ../output/geocoded_$(alder).csv)
 all: $(OUTPUTS)
