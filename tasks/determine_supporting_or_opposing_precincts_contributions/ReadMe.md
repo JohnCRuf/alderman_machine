@@ -1,0 +1,2 @@
+# Determine_Supporting_or_Opposing_Precincts_Contributions
+This folder contains the code to determine what precincts are supporting or opposing a candidate based on their campaign contributions to the candidate.

@@ -18,7 +18,7 @@ data <- data %>%
 data <- data %>%
   filter(ward == ARGS[1], year == as.numeric(ARGS[2]), type == ARGS[3])
 #if ARGS[1] < 2012 load the 2012-2019 maps
-if (as.numeric(ARGS[1]) < 2012) {
+if (as.numeric(ARGS[2]) < 2012) {
   map <- map_load("../temp/ward_precincts_2003_2011/ward_precincts_2003_2011.shp")
 } else {
   map <- map_load("../temp/ward_precincts_2012_2022/ward_precincts_2012_2022.shp")

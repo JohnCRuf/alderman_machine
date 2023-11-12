@@ -14,3 +14,5 @@ PYTHON := PYTHON
 WIPECLEAN := WIPECLEAN
 endif
 
+get_even_elements = $(foreach idx, $(shell seq 2 2 $(words $(1))), $(word $(idx),$(1)))
+get_odd_elements = $(foreach idx, $(shell seq 1 2 $(words $(1))), $(word $(idx),$(1)))

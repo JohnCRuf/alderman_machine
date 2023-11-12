@@ -1,26 +1,35 @@
 SHELL=bash
 include ../../shell_functions.make
-
 ## DEFINITIONS
+support := top bottom
+years := 2015 2019 #years to include in the analysis
+close_cutoff := 0.05 1.0 #cutoffs for "close" elections
+precinct_count := 5 8 10 15 #number of "most-supporting" precincts to include in the analysis
+close_election_stubs = $(foreach sup, $(support), $(foreach year, $(years), $(foreach cutoff, $(close_cutoff), $(foreach precinct, $(precinct_count), support_$(sup)_year_$(year)_cutoff_$(cutoff)_count_$(precinct)))))
 
-all: ../output/off_menu_did.tex ../output/beauty_did.tex
+OUTPUTS_close_TWFE = $(foreach stub, $(close_election_stubs), ../output/twfe_table_$(stub).tex)
+OUTPUTS_close_HTE = $(foreach stub, $(close_election_stubs), ../output/hte_figure_$(stub).png)
+OUTPUTS_corruption_HTE = $(foreach precinct, $(precinct_count), ../output/hte_figure_corruption_bottom_$(precinct)_precincts.png ../output/hte_figure_corruption_top_$(precinct)_precincts.png)
+all: $(OUTPUTS_close_TWFE) $(OUTPUTS_close_HTE) $(OUTPUTS_corruption_HTE)
+TWFE: $(OUTPUTS_close_TWFE)
+HTE: $(OUTPUTS_close_HTE)
+corruption: $(OUTPUTS_corruption_HTE)
 
 #OUTPUT RECIPES
-
-../output/did_menu.tex:   did_estimation.R $(shell grep -o '../type/[A-Za-z_0-9]*\.[a-z]*' did_estimation.R)  | ../output run.sbatch slurmlogs
-	$(R) --no-job-name $<
-
-../output/did_beauty.tex:   did_estimation_beauty.R $(shell grep -o '../\(temp\|input\)/[A-Za-z_0-9]*\.[a-z]*' did_estimation_beauty.R) | ../output run.sbatch slurmlogs
-	$(R) --no-job-name $<
-#TEMP RECIPES
-
-../temp/BLP_df.csv ../temp/BLP_df_beauty.csv:   BLP_data_preprocessing.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' BLP_data_preprocessing.R) | ../output ../temp run.sbatch slurmlogs
-	$(R) --no-job-name $<
+../output/twfe_table_support_top_%.tex: estimate_twfe_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/twfe_table_support_bottom_%.tex: estimate_twfe_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/hte_figure_support_top_%.png: estimate_het_te_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/hte_figure_support_bottom_%.png: estimate_het_te_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/hte_figure_corruption_bottom_%_precincts.png: estimate_corruption_het_te_did.R ../input/corruption_%_precincts.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/hte_figure_corruption_top_%_precincts.png: estimate_corruption_het_te_did.R ../input/corruption_%_precincts.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
 #INPUT RECIPES
-../input/menu_category_panel_df.csv: ../input/%: ../../data_clean_menu/output/% | ../input
+../input/%: ../../model_dataprep_did/output/% | ../input
 	ln -s $< $@
-../input/incumbent_voteshare_df.csv: ../input/%: ../../data_clean_elections/output/% | ../input
-	ln -s $< $@
-
 
 include ../../generic.make

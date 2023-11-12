@@ -7,7 +7,7 @@ all: ../output/ward_precincts_2012_2022.zip ../output/ward_precincts_2003_2011.z
 
 #OUTPUT RECIPES
 
-#shape feile recipes
+#shape file recipes
 ../output/ward_precincts_2012_2022.zip:
 	wget "https://data.cityofchicago.org/api/geospatial/uvpq-qeeq?method=export&format=Shapefile" -O ../output/ward_precincts_2012_2022.zip
 ../output/ward_precincts_2003_2011.zip:

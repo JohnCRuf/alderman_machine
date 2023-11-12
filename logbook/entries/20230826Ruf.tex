@@ -1,0 +1,25 @@
+This entry discusses the results of the close-election differences-in-differences study.
+
+Using the research concept outlined, I estimate the following model:
+
+\begin{equation}
+\label{eq:diffindiff}
+\begin{split}
+\Delta Y_{it} = \theta_t + \eta_i + \beta L_{it} + \epsilon_{it}
+\end{split}
+\end{equation}
+
+Where $\Delta Y_{it}$ is the fraction of spending going to precinct $i$ in year $t$. $\theta_t$ is a year fixed effect, $\eta_i$ is a precinct fixed effect, and $L_{it}$ is a dummy variable indicating whether the incumbent lost reelection in year $t^*$. 
+
+There are two models estimated in this framework, the "supporting precinct" model which estimates the effect of the incumbent losing reelection on the fraction of spending going to precincts that supported the incumbent in that same election, and the "opposing precinct" model which estimates the effect of the incumbent losing reelection on the fraction of spending going to precincts that opposed the incumbent in that same election.
+Thus $\beta_{\text{supporting}}$ estimates the loss in public goods spending in precincts that supported a losing incumbent, and $\beta_{\text{opposing}}$ estimates the gain in public goods spending in precincts that opposed a losing incumbent.
+I estimate this model using TWFE regression, and cluster my standard errors at the ward level.
+I define ``supporting'' precincts as the top $n$ precincts that supported the incumbent in the current election. 
+
+I change the top $n$ to be 5, 10, and 15, and I change the election year $t^*$ to be 2015 and 2019. 
+I also change the close-election threshold from +/- 5\% to all runoff elections.
+In all of these models, I find no statistically significant effect of the incumbent losing reelection on the fraction of spending going to precincts that either supported or opposed the incumbent in that election.
+
+For example, the table below shows the results of the supporting precinct model for the 2019 runoff election for the top 5 precincts that supported the incumbent in that election with a 5\% cutoff.
+
+\input{input/twfe_table_support_top_year_2019_cutoff_0.05_count_5.tex}

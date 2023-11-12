@@ -16,7 +16,7 @@ reports = $(foreach range, 2003_2011 2012_2022, ../report/menu_cycle_hhi_$(range
 	$(R) $^ $(subst _, ,$*)
 
 #INPUT RECIPES
-../input/ward_precinct_menu_panel_%.rds: ../../data_combine_geomatched/output/ward_precinct_menu_panel_%.rds | ../input
+../input/ward_precinct_menu_panel_%.rds: ../../data_combine_geomatched_menu/output/ward_precinct_menu_panel_%.rds | ../input
 	ln -s $< $@
 
 include ../../generic.make
