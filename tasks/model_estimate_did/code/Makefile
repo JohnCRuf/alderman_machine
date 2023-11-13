@@ -28,6 +28,10 @@ corruption: $(OUTPUTS_corruption_HTE)
 	$(R) $^ $@
 ../output/hte_figure_corruption_top_%_precincts.png: estimate_corruption_het_te_did.R ../input/corruption_%_precincts.rda | ../output run.sbatch slurmlogs
 	$(R) $^ $@
+../output/hte_figure_combined_support_bottom.png: estimate_close_election_het_te_did_combined.R ../input/close_runoffs_combined.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
+../output/hte_figure_combined_support_top.png: estimate_close_election_het_te_did_combined.R ../input/close_runoffs_combined.rda | ../output run.sbatch slurmlogs
+	$(R) $^ $@
 #INPUT RECIPES
 ../input/%: ../../model_dataprep_did/output/% | ../input
 	ln -s $< $@
