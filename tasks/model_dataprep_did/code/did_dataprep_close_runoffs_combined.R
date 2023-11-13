@@ -22,7 +22,7 @@ treatment_df <- election_df %>%
     ungroup() %>%
     filter(voteshare > min(0.5 - as.numeric(ARGS[1]),0) & voteshare < min(0.5+as.numeric(ARGS[1]),1)) %>%
     filter(voteshare >0) %>%
-    mutate(treatment = ifelse(voteshare >= 0.5, 0, 1)) %>%
+    mutate(treatment = ifelse(voteshare <= 0.5, 0, 1)) %>%
     rename(year_treat = year)
 #remove any ward that has a treatment in 2015 and 2019 from treatment_df
 treatment_df <- treatment_df %>%
