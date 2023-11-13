@@ -4,7 +4,7 @@ This dataset comes from Menu spending reports that are publicly available from 2
 I then scraped these PDFs and used the resulting cost total, ward, and location description data to create map of shapes of the locations of the expenditures.
 I then used the location description text to to locate the described vertices of each project using the Census' geocoding API. 
 If the census's API failed, google maps' API would be used instead.
-In total, there were 43,596 projects that needed to be geolocated, and 83\% of them were successfully located using one of the two above methods.
+In total, there were 43,596 projects that needed to be located, and 83\% of them were successfully located using one of the two above methods.
 For example, spending on playground equipment would be a singular point, while spending on a street would be a line, and spending of all alleys within a given block would be a polygon.
 This dataset contain 41,381 precinct-year observations which record the total amount of spending in a given voting precinct in a given year.
 
