@@ -54,10 +54,14 @@ precinct_spending_map$precinct_spending <- ifelse(precinct_spending_map$precinct
 heatmap <- ggplot() +
   geom_sf(data = precinct_spending_map, aes(fill = precinct_spending/1000), alpha = 0.7, color = NA) +
   geom_sf(data = ward_level_map, fill = NA, color = "black", size = 2) + # Overlay ward boundaries
-  scale_fill_gradient(low = "skyblue", high = "red") + 
+  scale_fill_gradient(low = "skyblue", high = "red") +
   labs(fill = paste0("Precinct Spending (", text_year1_to_year2, ") \n Thousands of Dollars")) + # Label for the legend
-  theme_void() # Minimalist theme
-
+  theme_void() + # Minimalist theme
+  theme(
+    legend.title = element_text(size = 14),  # Increase legend title size
+    legend.text = element_text(size = 12),   # Increase legend text size
+    legend.position = "bottom"               # Optionally change legend position
+  )
 
 # Print the heatmap
 ggsave(output_file, heatmap, width = 8, height = 6)
