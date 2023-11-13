@@ -37,3 +37,5 @@ input/ward_50_menu_map_%.png: ../tasks/produce_menu_maps/output/ward_50_menu_map
 	cp $< $@
 input/ward_50_contribution_%_timeline.png: ../tasks/case_study_ward_50_eventstudy_exhibit/output/ward_50_contribution_%_timeline.png | input
 	cp $< $@
+input/hte_figure_%.png: ../tasks/model_estimate_did/output/hte_figure_%.png | input
+	cp $< $@
