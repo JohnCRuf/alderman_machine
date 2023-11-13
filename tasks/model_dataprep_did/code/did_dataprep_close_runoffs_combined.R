@@ -1,5 +1,6 @@
 library(tidyverse)
 library(sf)
+library(assertthat)
 ARGS<- commandArgs(trailingOnly = TRUE)
 menu_df <- read_rds("../input/ward_precinct_menu_panel_2012_2022.rds")
 election_df <- read.csv("../input/incumbent_challenger_voteshare_df_precinct_level.csv")
@@ -38,17 +39,28 @@ precinct_level_df <- election_df %>%
     group_by(ward, precinct) %>%
     summarize(net_inc_votes = sum(votes_for_against_inc)) %>%
     ungroup() 
-#find the top ARGS[2] precincts by ward
+#rank the precincts by net_inc_votes, break ties by first
+precinct_level_df <- precinct_level_df %>%
+    group_by(ward) %>%
+    arrange(precinct, desc(net_inc_votes)) %>%
+    mutate(rank = row_number()) %>%
+    ungroup() 
+#now group by ward and select only the top 5 precincts for each ward
 top_precincts <- precinct_level_df %>%
     group_by(ward) %>%
-    slice_max(order_by = net_inc_votes, n = as.numeric(ARGS[2])) %>%
+    filter(rank <= as.numeric(ARGS[2])) %>%
     ungroup() %>%
-    select(ward, precinct, net_inc_votes)
+    select(ward, precinct)
+#now group by ward and select only the bottom 5 precincts for each ward
 bottom_precincts <- precinct_level_df %>%
     group_by(ward) %>%
-    slice_min(order_by = net_inc_votes, n = as.numeric(ARGS[2])) %>%
+    filter(rank > (max(rank) - as.numeric(ARGS[2]))) %>%
     ungroup() %>%
-    select(ward, precinct, net_inc_votes)
+    select(ward, precinct)
+assert_that(nrow(top_precincts) == nrow(bottom_precincts))
+#assert that there are more than args[2] precincts in each top and bottom list
+assert_that(nrow(top_precincts) > as.numeric(ARGS[2]))
+assert_that(nrow(bottom_precincts) > as.numeric(ARGS[2]))
 
 #filter menu_df to only include wards in ward_list and year +/- 3 from ARGS[1]
 menu_df <- menu_df %>%
