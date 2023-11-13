@@ -28,6 +28,9 @@ We use the 2012 through 2022 years to estimate this model, due to the 2011 redis
 
 The second two variations rely on a simultaneous set of indictments of aldermen in 2019, causing three aldermen to either be ineligible for reelection, or to retire. 
 We compare this group to a set of 10 control aldermen who were not indicted, have been in office for at least 10 years, and won reelection in 2019 in the general election, indicating that they were not in a competitive election. 
+To measure whether or not a precinct supported an alderman, we use the total number of campaign contributions donated to the aldermen in the 2015 and 2019 elections from the precinct.
+We do this because many of the ``entrenched'' aldermen have not faced a competitive election in decades, so we cannot use the vote margin to determine whether or not a precinct supported an alderman.
+Despite this, all aldermen still accept campaign contributions even when there is no challenger, so we can use this as a proxy for support.
 In this case, we expect that the trends for the indicted and control aldermen will be the same, as they are all not in competitive elections and thus their spending preferences should both be stable over time.
 Furthermore, the unexpected nature of indictments should preclude any anticipatory behavior.
 In both cases I cluster standard errors at the ward level, as that is the level at which the treatment is assigned.
