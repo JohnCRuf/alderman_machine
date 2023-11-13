@@ -43,4 +43,3 @@ did_attgt<-att_gt(yname="fraction_spending",tname="year",idname="id", gname="tre
 png(ARGS[2], width = 800, height = 600)
 ggdid(did_attgt)
 dev.off()
-

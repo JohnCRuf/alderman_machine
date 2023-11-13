@@ -14,6 +14,7 @@ all: $(OUTPUTS_close_TWFE) $(OUTPUTS_close_HTE) $(OUTPUTS_corruption_HTE)
 TWFE: $(OUTPUTS_close_TWFE)
 HTE: $(OUTPUTS_close_HTE)
 corruption: $(OUTPUTS_corruption_HTE)
+combined: ../output/hte_figure_combined_support_bottom.png ../output/hte_figure_combined_support_top.png
 
 #OUTPUT RECIPES
 ../output/twfe_table_support_top_%.tex: estimate_twfe_did.R ../input/close_runoffs_%.rda | ../output run.sbatch slurmlogs
