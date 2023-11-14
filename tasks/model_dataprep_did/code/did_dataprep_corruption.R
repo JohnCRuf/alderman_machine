@@ -12,7 +12,7 @@ treatment_list <- list( c(22, 2019), c(25, 2019), c(20, 2019), c(23, 2018))
 #Danny Solis,  Proco Joe Moreno,  Willie Cochran,  Michael Zalewski
 # Youngest was elected in 2010
 treatment_ward_list <- c(22, 25, 20)
-control_ward_list <- c(9, 37, 27, 44, 26, 30, 12, 3, 5, 8, 21, 14, 34) #need 26 12 3 5 8
+control_ward_list <- c(9, 37, 27, 44, 26, 12, 3, 8, 14, 34) #need 26 12 3 5 8
 
 #assert that all wards in control list and treatment list are in `supporting_df`
 assert_that(all(control_ward_list %in% support_df$ward))
@@ -53,7 +53,7 @@ bottom_precincts <- bottom_precincts %>%
 #TODO: figure out a way to to do this without hardcoding
 treatment_df <- tibble(ward = c(treatment_ward_list, control_ward_list), 
                        year_treat = 2019,
-                       treatment = c(rep(1, 3), rep(0, 13)))
+                       treatment = c(rep(1, 3), rep(0, 10)))
 
 #filter menu_df to only include wards in ward_list and years greater than 2012
 menu_df <- menu_df %>%

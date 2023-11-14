@@ -9,9 +9,9 @@ all: ../output/menu_total_errors.csv
 	$(R) verify_menu_totals.R $^ $@
 
 #INPUT RECIPES
-../input/menu_df.csv: ../../menumoney_datacleaner/output/menu_df.csv | ../input
+../input/menu_df.csv: ../../data_clean_menu_money/output/menu_df.csv | ../input
 	ln -s $< $@
-../input/menu_totals.csv: ../../gather_menu_data/output/menu_totals.csv | ../input
+../input/menu_totals.csv: ../../data_scrape_menu/output/menu_totals.csv | ../input
 	ln -s $< $@
 
 

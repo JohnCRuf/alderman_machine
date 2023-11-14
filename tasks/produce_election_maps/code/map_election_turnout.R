@@ -82,10 +82,12 @@ figure <- ggplot() +
   theme_void() +
   labs(caption = "Source: Chicago Board of Elections") +
   theme(
-    plot.caption = element_text(hjust = 0.5, size = 12, margin = margin(t = 0, b = 0)),
-    plot.margin = margin(0, 0, 0, 0),
-    legend.title = element_text(hjust = 0.5)
-  ) +
+    plot.caption = element_text(hjust = 0.5, size = 16, margin = margin(t = 0, b = 0)),
+    plot.margin = margin(0, 0, 0, 0),  # top, right, bottom, left margins set to zero
+    legend.title = element_text(hjust = 0.5, size = 14),  # Increase legend title size
+    legend.text = element_text(size = 12),  # Increase legend text size
+    legend.key.size = unit(1.5, "lines")   # Increase legend key size
+  )+
   guides(color = guide_legend(override.aes = list(fill = NA)))  # To display the color legend without a box fill
 
 

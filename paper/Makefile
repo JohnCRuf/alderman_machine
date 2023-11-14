@@ -25,3 +25,17 @@ input/did_hist.png input/did_plot.png input/did_treatmenteffect_plot.png input/v
 	cp $< $@
 $(addprefix input/, Full_IK_MSE_CER_Bandwidth_comparison_table.tex Full_IK_MSE_CER_Bandwidth_comparison_table_beauty.tex placebo_test_effects.png placebo_test_pvalue.png rdd_density.png RDD_plot.png RDD_statistics.tex off_menu_expenditures_histogram.png voteshare_histogram.png): input/%: ../tasks/estimate_RDD_model/output/%
 	cp $< $@
+input/spending_histogram%.png: ../tasks/data_menu_summary_statistics/output/spending_histogram%.png | input
+	cp $< $@
+input/whole_chicago_map%.png: ../tasks/produce_menu_maps/output/whole_chicago_map%.png | input
+	cp $< $@
+input/contribution_map%.png: ../tasks/produce_contribution_maps/output/contribution_map%.png | input
+	cp $< $@
+input/ward_50_2007_runoff%.png: ../tasks/produce_election_maps/output/ward_50_2007_runoff%.png | input
+	cp $< $@
+input/ward_50_menu_map_%.png: ../tasks/produce_menu_maps/output/ward_50_menu_map_%.png | input
+	cp $< $@
+input/ward_50_contribution_%_timeline.png: ../tasks/case_study_ward_50_eventstudy_exhibit/output/ward_50_contribution_%_timeline.png | input
+	cp $< $@
+input/hte_figure_%.png: ../tasks/model_estimate_did/output/hte_figure_%.png | input
+	cp $< $@
