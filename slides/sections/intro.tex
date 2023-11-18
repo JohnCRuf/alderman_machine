@@ -1,54 +1,60 @@
 \section{Introduction}
-\begin{frame}{Aims of Project}
-There are three (very ambitious) goals of the project
-\begin{enumerate}
-    \item Create a social welfare function for road resurfacing, i.e. Map an intersection-to-intersection value of road resurfacing 
+
+\begin{frame}{Motivation}
+    How do local politicians allocate infrastructure maintenance and other key public goods?
     \begin{itemize}
-        \item Use commuting time data to estimate the time saved and its value. Two approaches in mind.
-        \item Use Lyft vertical acceleration data (Via John List?) with a vehicle dynamics model to estimate the odds of tire damage.
-    \end{itemize}
-    \item Create a political-economy model (PEM) of road resurfacing using precinct-level electoral data.
-    \item Compare actual allocations to the PEM's predictions and the predictions of an social planner (SP).
-\end{enumerate}
-\end{frame}
-\begin{frame}{Why it's important}
-    \begin{itemize}
-        \item Local politicians have political incentives to allocate resources to their constituents efficiently
-        \begin{enumerate}
-            \item Citizens most effected by potholes have incentives to signal their preferences to politicians via 311 calls
-            \item Deadweight costs are, in theory, minimized by competition between pressure groups (Becker, 1983)
-        \end{enumerate} 
-        \item They also have incentives to misallocate resources towards supporters and away from opponents (Myerson, 1998)
         \item (Glaeser 2019) find a strong shortage of road maintenance in the country: is it a political economy problem?
-        \item Incentives for politicians moving unilaterally with their own budgets are the same incentives that congress has when voting on infrastructure budgets, only in this setting we don't have any `noise' from the voting process. 
+        \item If local politicians cannot be trusted to maintain key infrastructure and roads, that has important welfare implications for optimal placement of ``large'' welfare enhancing projects.
+        \item How prevalent would clientelism be if we allocated public resources in a more decentralized manner?
+        \item What are the costs of giving local politicians unilateral control over infrastructure maintenance? What magnitude would the benefits like ``local knowledge'' and ``accountability'' need to be to justify this?
     \end{itemize}
-    \end{frame}
+\end{frame}
     
-\section{Context}
 \begin{frame}{What do aldermen do?}
-``I remember crossing California going west, every street was resurfaced almost every year. They always had brand new lighting and then east of California, where Ald. Bernie Stone would lose the precincts consistently, I mean the streets were in shambles.'' \\
--Ald. Carlos Ramirez-Rosa (35th Ward).
-\newline
-\begin{itemize}
-    \item Aldermen as Mini-Mayor over Ward
+    \begin{center}
+    \begin{quotation}
+        ``I remember crossing California going west, every street was resurfaced almost every year. They always had brand new lighting and then east of California, where Ald. Bernie Stone would lose the precincts consistently, I mean the streets were in shambles.'' \\
+    \end{quotation}
+    \end{center}
+    \raggedleft{ -Ald. Carlos Ramirez-Rosa (35th Ward).}
     \begin{itemize}
-        \item City council defers to Ward Alderman all internal issues
-        \item Eg. \ snow plows, garbage cleanup, sign permits, business licenses, liquor-moratoriums, and of course, construction and zoning.
-        \item A relatively new power that aldermen were granted in 1995 is the ability to allocate \$1.3M in infrastructure ``menu'' requests 
+        \item Aldermen as Mini-Mayor over Ward
+        \begin{itemize}
+            \item City council defers to Ward Alderman all internal issues
+            \item Eg. \ snow plows, garbage cleanup, sign permits, business licenses, liquor-moratoriums, and of course, construction and zoning.
+            \item A relatively new power that aldermen were granted in 1995 is the ability to allocate \$1.5M in infrastructure ``menu'' requests 
+        \end{itemize}
     \end{itemize}
-\end{itemize}
+\end{frame}
+    
+\begin{frame}{What is the Aldermanic Menu Program?}
+        Alderman have the power to allocate \$ 1.5M on a variety of infrastructure projects. They are given a map of 311 complaints for guidance.
+    \begin{itemize}
+        \item  5 primary categories:
+        \begin{itemize}
+            \item \textbf{Streets/CDOT:} Alley/Road/Sidewalk Resurfacing, speed bump replacement, sign installation, Curb and Gutter fixes, etc. 
+            \item \textbf{Crime Prevention and Lighting:} Camera installation and street lights
+            \item \textbf{Arts:} Murals and Neighborhood Arts programs
+            \item \textbf{Schools:} Direct grants to CPS, Sports Fields, Gardens, Auditoriums, Playgrounds, etc. 
+            \item \textbf{Parks, Trees, and Gardens:} Tree planting, public garden formation, and park cleanup programs. 
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{What is the Aldermanic Menu Program?}
-    Alderman have the power to allocate \$ 1.3M on a variety of infrastructure projects. They are given a map of 311 complaints for guidance.
-\begin{itemize}
-    \item  5 primary categories:
-    \begin{itemize}
-        \item \textbf{Streets/CDOT:} Alley/Road/Sidewalk Resurfacing, speed bump replacement, sign installation, Curb and Gutter fixes, etc. 
-        \item \textbf{Crime Prevention and Lighting:} Camera installation and street lights
-        \item \textbf{Arts:} Murals and Neighborhood Arts programs
-        \item \textbf{Schools:} Direct grants to CPS, Sports Fields, Gardens, Auditoriums, Playgrounds, etc. 
-        \item \textbf{Parks, Trees, and Gardens:} Tree planting, public garden formation, and park cleanup programs. 
-    \end{itemize}
-\end{itemize}
+\begin{frame}{2017 OIG Audit}
+        The office of the inspector general (OIG) conducted an audit of the menu program in 2017.
+        The audit was scathing. 
+        They recommended dismantling the program and reallocating the funds to a more traditional central planning model.
+        The primary findings of the audit are given below.
+    \begin{enumerate}
+        \item  Menu, which serves as the City's primary residential infrastructure
+        program, underfunds residential infrastructure needs and results in
+        significant funding disparities relative to need between wards.
+        \item   In the years 2012 through 2015, the City permitted aldermen to designate
+        \$15.1 million of Menu funds for projects unrelated to core residential
+        infrastructure.
+        \item CDOT allowed at least \$825,292 in Menu spending on projects falling outside
+        the appropriate ward boundaries and did not enforce project selection
+        submission deadlines.
+    \end{enumerate}
 \end{frame}

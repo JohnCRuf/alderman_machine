@@ -1,72 +1,27 @@
+\section{Methods}
+\begin{frame}{Differences-in-Differences strategy}
+    I employ a differences-in-differences identification strategy. 
+    The simplest formation of this model is given by:
 
-\begin{frame}{Resurfacing Data}
-    Assuming we want to map a road's characteristics to a predicted value of resurfacing. What resurfacing data might we use?
-\begin{itemize}
-    \item I have 3881 resurfacing events since 2015
-    \item I know the location and blocks of each of these events. 
-    \item We observe road closure permits, which are issued by the city to allow for road construction, that gives us timing.
-\end{itemize}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.75\textwidth]{input/resurfacing_example.png}
-    \caption{Example of Resurfacing Data}
-\end{figure}
+    \begin{equation}\label{eq:standard_did}
+        Y_{pt} = \alpha_{p} + \gamma_{t} + \beta T_{pt} + \epsilon{pt}
+    \end{equation}
+    Where $Y_{pt}$ is the fraction of observed spending in precinct $p$ in year $t$. $T_{pt}$ is a dummy variable that is equal to 1 if the incumbent alderman was removed by office in year $t$. $\alpha_{p}$ and $\gamma_{t}$ are precinct and year fixed effects respectively. $\epsilon_{pt}$ is the error term.
+
+    Of the new DiD estimators, I use the heterogeneous-treatment effect robust estimator proposed by (Callaway et al. 2021).
 \end{frame}
 
-\begin{frame}{DiD method}
-    \begin{center}
-        \begin{tikzpicture}[scale=1]
-            \begin{axis}[
-                xlabel={$t$},
-                ylabel={Flowrate, $V$},
-                legend style={at={(1.4,0.5)},anchor=east, text=white, fill=none},
-                ymax=10,
-                ]
-              \addplot[blue, smooth, domain=0:10] {x*(-0.001)+7-0.01*x^2};
-              \addplot[red, smooth, domain=0:4.9] {x*(-0.001)+4-0.01*x^2};
-              \addplot[red, smooth, domain=5.1:10, unbounded coords=jump] {x*(-0.001)+9-0.01*x^2};
-              \draw[dotted] (axis cs:5,0) -- (axis cs:5,8.89);
-              \legend{Treated,Control}
-            \end{axis}
-          \end{tikzpicture}
-    \end{center}
-\end{frame}
-
-\begin{frame}{Dingel's critique: What if roads don't all decay at the same speed?}
-    \begin{center}
-        \begin{tikzpicture}[scale=1]
-            \begin{axis}[
-                xlabel={Time, $t$},
-                ylabel={Flowrate, $V$},
-                legend style={at={(1.4,0.5)},anchor=east, text=white, fill=none},
-                ymax=10,
-                ymin=0
-                ]
-              \addplot[blue, smooth, domain=0:10] {x*(-0.001)+7-0.01*x^2};
-              \addplot[red, smooth, domain=0:4.99] {x*(-0.3)+4-0.03*x^2};
-              \addplot[red, smooth, domain=5.01:10, unbounded coords=jump] {x*(-0.001)+9-0.005*x^2};
-              \draw[dotted] (axis cs:5,0) -- (axis cs:5,8.89);
-              \legend{Treated,Control}
-            \end{axis}
-          \end{tikzpicture}
-    \end{center}
-\end{frame}
-
-\begin{frame}{Structural Option: Assume that `fresh' roads have identical density-flow mapping}
-If DiD is unconvincing, then we can try to find a structural option.
-
-Let $Q_{t,r} (\rho_t, k,r)$ be the density-flow mapping for a road $r$ of type $k$ at time $t$, and let $t^*$ be the time at which the road was resurfaced.
-We assume the following:
-\begin{align*}
-    \forall \ t \ s.t. \ \epsilon+t^* >t \geq t^*: Q_{t,r}(\rho_t, k) = Q_{t^*}(\rho_t)
-\end{align*}
-Then we can find $\mathbf{E}[Q_{t^*}|\rho_t, k]$, and can compute road-specific treatments ($\gamma_r$):
-
-\begin{align}
-    \gamma_{r} =  Q_{t^*}(\rho_{t^*},k)-Q_{t_b,r}(\rho_{t_b}, k) 
-\end{align}
-
-Where $t_b$ is the time before resurfacing.
-
-Key problem: We'll only be able to identify treatment effects for roads with densities and types covered by the menu data. 
+\begin{frame}{Parallel Trends Justification}
+    There are two subsets of aldermen that I focus on
+    \begin{enumerate}
+        \item Wards with highly competitive elections (within 10\% margin)
+        \begin{itemize}
+            \item Close elections justify parallel trends as the incumbent is equally likely to win as the challenger, thus incumbents who win and incumbents who lose should have similar expectations ex ante.
+        \end{itemize}
+        \item Wards where the incumbent was indicted for corruption
+        \begin{itemize}
+            \item Indictments justify parallel pre-trends due to the inherently unknown nature of federal corruption and racketeering investigations. Also, indicted aldermen typically do not face serious electoral challenges.
+            \item Comparing indicted aldermen to aldermen who also do not face serious challenges justifies the parallel trends assumption as ex ante they both should have similar and stable spending preferences.
+        \end{itemize}
+    \end{enumerate}
 \end{frame}
