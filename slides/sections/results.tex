@@ -1,0 +1,93 @@
+\section{Results}
+
+\begin{frame}{Result Table| Close Election Design}
+These null results are robust to the choice of number of `top` and bottom precincts included.
+    \begin{table}[ht]
+        \centering
+        \caption{Comparison of Average Treatment Effects: Competitive Election Designs}
+        \label{tab:att_comparison_close_election}
+        \scalebox{0.85}{% Scale down the table by 15%
+        \begin{tabular}{lcc}
+        \hline
+         & Least Supporting Precincts ATT & Most Supporting Precincts ATT \\
+        \hline
+        ATT & 0.500 &  -1.511 \\
+        Std. Error & 0.451 &  1.120 \\
+        95\% Conf. Int. & (-0.384, 1.385) & (-3.705, 0.684) \\
+        Pre-Trends P-value & 0.005  & 0.076 \\
+        Obs & 1680 & 1680 \\
+        \hline
+        \end{tabular}
+        }% end scalebox
+    \end{table}
+\end{frame}
+
+\begin{frame}{Results Least Supporting Figure | Close Election Design}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.6\textwidth]{input/hte_figure_combined_support_bottom.png}
+        \caption{Average treatment effect over time for least supporting precincts: competitive election design}
+        \label{fig:att_comparison_close_election_bottom}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Results Most Supporting Figure | Close Election Design}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.6\textwidth]{input/hte_figure_combined_support_top.png}
+        \caption{Average treatment effect over time for most supporting precincts: competitive election design}
+        \label{fig:att_comparison_close_election_bottom}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}{Results Table | Indictment Design}
+The coefficients are similar in magnitude even when you vary the number of precincts included in the analysis.
+Statistical significance fluctuates somewhat.
+    \begin{table}[H]
+        \centering
+        \caption{Comparison of Average Treatment Effects: Indictment Designs}
+        \label{tab:att_comparison_corruption}
+        \scalebox{0.85}{% Scale down the table by 15%
+        \begin{tabular}{lcc}
+        \hline
+         & Least Supporting Precincts ATT & Most Supporting Precincts ATT \\
+        \hline
+        ATT & 2.5881 & -1.147 \\
+        Std. Error & 0.7776 & 0.3191 \\
+        95\% Conf. Int. & (1.064, 4.112) & (-1.772, -0.521) \\
+        Pre-Trends P-value & 0.199 & 0.174 \\
+        Obs & 1144 & 1144 \\
+        \hline
+        \end{tabular}
+        }% end scalebox
+    \end{table}
+\end{frame}
+
+\begin{frame}{Results Least Supporting Figure | Indictment Design}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.6\textwidth]{input/hte_figure_corruption_bottom_8_precincts.png}
+        \caption{Average treatment effect over time for least supporting precincts: indictment design}
+        \label{fig:att_comparison_close_election_bottom}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Results Most Supporting Figure | Indictment Design}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.6\textwidth]{input/hte_figure_corruption_top_8_precincts.png}
+        \caption{Average treatment effect over time for most supporting precincts: indictment design}
+        \label{fig:att_comparison_close_election_bottom}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Conclusions}
+    \begin{enumerate}
+        \item This collects a brand new policy-relevant dataset and brings it to the public for the first time
+        \item Using this data, we verify a long-standing rumor of selective spending in Chicago's 50th ward
+        \item A diff-in-diff design shows that selective spending is not happening in competitive elections
+        \item Another diff-in-diff design, albeit flawed, shows selective spending is happening at least with aldermen who were indicted for other reasons.
+        \item Tidbit: Chi-hack night is using my data to create an app to help citizens track menu spending in their wards.
+    \end{enumerate}
+    \end{frame}
