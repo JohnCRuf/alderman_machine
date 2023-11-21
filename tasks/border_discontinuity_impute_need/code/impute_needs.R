@@ -78,7 +78,10 @@ map_ward_2003 <- map_ward_2003 %>%
   mutate(pct_of_needs = predict(lm1, newdata = .))
 
 #add variable called "year range" to map_2003 that is always 2003-2011
-map_2003$year_range <- "2003-2011"
+map_ward_2003$year_range <- "2003-2011"
+#remove ward 0 from 2003
+map_ward_2003 <- map_ward_2003 %>%
+  filter(ward_locate != 0)
 
 #take map_ward, remove percent of needs, add predicted percent of needs, and add year range
 map_ward <- map_ward %>%
@@ -89,5 +92,11 @@ map_ward <- map_ward %>%
 #combine map_ward and map_ward_2003
 map_ward <- bind_rows(map_ward, map_ward_2003)
 
-#write to output rda file
-saveRDS(map_ward, "../output/ward_pct_of_needs.rda")
+#convert from sf object to normal dataframe and remove geometry column
+map_ward <- map_ward %>%
+  st_drop_geometry()
+map_ward <- map_ward %>%
+  select(ward_locate, pct_of_needs, year_range)
+
+#write to output csv file
+write_csv(map_ward, "../output/ward_needs_data.csv")
