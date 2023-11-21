@@ -66,5 +66,24 @@ map_distances_needs_spending <- map_distances_needs %>%
   left_join(spending, by = c("map", "ward_locate", "precinct_locate"))
 #remove geometry using sf
 map_distances_needs_spending <- st_drop_geometry(map_distances_needs_spending)
+#rename pct_of_needs to pct_of_needs_home
+map_distances_needs_spending <- map_distances_needs_spending %>% 
+  rename(pct_of_needs_home = pct_of_needs)
+#join to needs data using nearest ward
+#convert nearest_ward to integer
+map_distances_needs_spending$nearest_ward <- as.integer(map_distances_needs_spending$nearest_ward)
+map_distances_needs_spending <- map_distances_needs_spending %>% 
+  left_join(df, by = c("map", "nearest_ward" = "ward_locate"))
+#rename pct_of_needs to pct_of_needs_nearest
+map_distances_needs_spending <- map_distances_needs_spending %>% 
+  rename(pct_of_needs_nearest = pct_of_needs)
+
+#create a new dataframe called ward_cycle_totals which is the total weighted_cost by ward_locate and cycle
+ward_cycle_totals <- spending %>% 
+  group_by(ward_locate, cycle) %>% 
+  summarize(total_wardlocate_spending = sum(weighted_cost))
+#join to map_distances_needs_spending
+map_distances_needs_spending <- map_distances_needs_spending %>% 
+  left_join(ward_cycle_totals, by = c("ward_locate", "cycle"))
 #write to csv
 write.csv(map_distances_needs_spending, "../output/border_discontinuity_data.csv", row.names = FALSE)
