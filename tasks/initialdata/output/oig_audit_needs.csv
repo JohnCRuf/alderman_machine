@@ -1,4 +1,4 @@
-Ward,Blocks (2015 Wards),2015 Residential Street Funds Needed,2015 Residential Alley Blocks (2015 Wards),2015 Residential Alley Funds Needed,Total 2015 Ward Need,Per Ward Menu Allocation,ADA Ramp Subsidy and Soft Costs,Difference between Need and Allocation (Unmet Need),% Of Needs Funded by AMP
+ward,blocks,street_need,alley_blocks,alley_need,ward_need,menu_allocation,subsidy,need_allocation_gap,pct_of_needs
 1,400.0,3832240,321.6,1254304,5086544,1320000,360000,3406544,33.0%
 2,292.8,2805200,184.0,717637,3522836,1320000,360000,1842836,47.7%
 3,524.8,5027899,253.6,989091,6016990,1320000,360000,4336990,27.9%
