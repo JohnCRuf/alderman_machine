@@ -12,7 +12,7 @@ data <- read_csv("../input/geocoded_point_df.csv")
 data <- data %>% filter(!is.na(lat) & is.numeric(lat) & !is.na(long) & is.numeric(long))
 
 #load either 2003-2011 or 2012-2022 precinct shapefile
-map <- readRDS("../input/block_map_2000.rds")
+map <- readRDS(ARGS[1])
 
 #feed single addresses into geomatch_single_coordinate
 df_matched <-geomatch_single_coordinate(data, map, 4326)
