@@ -7,6 +7,7 @@ close_cutoff := 0.05 1.0 #cutoffs for "close" elections
 precinct_count := 5 8 10 15 #number of "most-supporting" precincts to include in the analysis
 triples = $(foreach year, $(years), $(foreach cutoff, $(close_cutoff), $(foreach precinct, $(precinct_count), year_$(year)_cutoff_$(cutoff)_count_$(precinct))))
 OUTPUTS = $(foreach triple, $(triples), ../output/close_runoffs_$(triple).rda)
+OUTPUTS_combined = ../output/close_runoffs_combined.rda
 all: $(OUTPUTS) ../output/corruption_5_precincts.rda ../output/corruption_8_precincts.rda ../output/corruption_10_precincts.rda ../output/corruption_15_precincts.rda
 
 #OUTPUT RECIPES
@@ -14,6 +15,8 @@ $(OUTPUTS): ../output/close_runoffs_%.rda: did_dataprep_close_runoffs.R $(shell 
 	$(R) $< $(call get_even_elements, $(subst _, ,$*))
 ../output/corruption_%_precincts.rda: did_dataprep_corruption.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' did_dataprep_corruption.R) | ../output run.sbatch slurmlogs
 	$(R) $< $*
+../output/close_runoffs_combined.rda: did_dataprep_close_runoffs_combined.R $(shell grep -o '../input/[A-Za-z_0-9]*\.[a-z]*' did_dataprep_close_runoffs_combined.R) | ../output run.sbatch slurmlogs
+	$(R) $< 0.05 8
 #INPUT RECIPES
 ../input/incumbent_challenger_voteshare_df_precinct_level.csv: ../input/%: ../../data_clean_elections/output/% | ../input
 	ln -s $< $@

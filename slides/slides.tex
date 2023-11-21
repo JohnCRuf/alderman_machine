@@ -15,6 +15,7 @@
 \usepackage{tikz}
 \usepackage{cancel}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{pgfplots}
 \usepackage[export]{adjustbox}
 % PACKAGES (that should already be included by your LyX document settings)
@@ -26,17 +27,31 @@
 \def\newblock{} %Get beamer to cooperate with BibTeX
 \linespread{1.2}
 
+% Define custom colors
+\definecolor{myRed}{RGB}{204, 0, 0} % Change RGB values for different shades
+\definecolor{lightRed}{RGB}{255, 204, 204} % Lighter shade for backgrounds
+
+% Apply custom colors
+\setbeamercolor{structure}{fg=myRed}
+\setbeamercolor{palette primary}{bg=myRed,fg=white}
+\setbeamercolor{palette secondary}{bg=lightRed,fg=white}
+\setbeamercolor{palette tertiary}{bg=myRed,fg=white}
+\setbeamercolor{palette quaternary}{bg=lightRed,fg=white}
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{block title}{bg=myRed,fg=white}
+\setbeamercolor{block body}{bg=lightRed,fg=black}
+
+
 % IDENTIFYING INFORMATION
-\title[The Road Less Graveled: How well do local Aldermen choose which streets to fix?]{The Road Less Graveled:\\ How well do local Aldermen choose which streets to fix?}
+\title{Politics and Local Provision of Public Goods: Evidence from Chicago}
 \author[John Ruf]{John Ruf}
 \date{\monthname[\the\month] \the\year}
 
 % THEMATIC OPTIONS
 \setbeamercovered{transparent}
-\usetheme{Frigatebird}
+\usetheme{Dresden}
 \pgfplotsset{compat=1.10}
 \usecolortheme{default}
-\usetikzlibrary{arrows,shapes}
 \usefonttheme{professionalfonts}
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{footline}[frame number]{}
@@ -60,13 +75,42 @@
 \end{frame}
 
 \input{sections/intro.tex}
+\input{sections/data.tex}
+\input{sections/case_study.tex}
 \input{sections/methods.tex}
-\input{sections/old_stuff.tex}
+\input{sections/results.tex}
 
 %---------------------------------------------------------------------
 \begin{frame}[plain]
 \begin{center}{\LARGE Thank you}\end{center}
 \end{frame}
+
+\begin{frame}[plain]
+Feel free to come up and ask questions
+\begin{center}
+	Main Takeaways
+\end{center}
+\begin{enumerate}
+	\item This collects a brand new policy-relevant dataset and brings it to the public for the first time
+	\item Using this data, we verify a long-standing rumor of selective spending in Chicago's 50th ward
+	\item A diff-in-diff design shows that selective spending is not happening in competitive elections
+	\item Another diff-in-diff design, albeit flawed, shows selective spending is happening at least with aldermen who were indicted for other reasons.
+	\item Tidbit: Chi-hack night is using my data to create an app to help citizens track menu spending in their wards.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Some other ideas}
+	\begin{enumerate}
+		\item Steal Olivia Bordeu's JMP border specification and use it to estimate the effect of ward density on the distribution of public goods.
+		\item Idea is use precincts to estimate the following equation, where distance is defined by the distance to the nearest border of the ward.
+		\item ``central'' precincts should get a disproportionate amount of spending relative to ``border'' precincts
+		\item Dense wards (IE: Wards who need less money) should be more willing to spend on border precincts
+	\end{enumerate}
+		\begin{equation}
+			J_i = \zeta \mathbb{1}(\text{Dist}_p >0) + \upsilon \text{Dist}_p + \nu \mathbb{1}(\text{Dist}_p > 0) \times \text{Dist}_p + f_p +\epsilon_{ip}
+		\end{equation}
+	\end{frame}
 %---------------------------------------------------------------------
 
 

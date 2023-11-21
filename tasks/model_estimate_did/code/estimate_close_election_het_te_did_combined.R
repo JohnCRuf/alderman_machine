@@ -22,10 +22,10 @@ did_df <- menu_df %>%
     mutate(fraction_spending = weighted_cost / total_spending*100) 
 
 #if args[2] contains "_top" then keep only top precincts
-if (grepl("_top_", ARGS[2])) {
+if (grepl("top", ARGS[2])) {
 did_df <- did_df %>%
     right_join(top_precincts, by = c("ward", "precinct"))
-} else if (grepl("_bottom_", ARGS[2])) {
+} else if (grepl("bottom", ARGS[2])) {
 did_df <- did_df %>%
     right_join(bottom_precincts, by = c("ward", "precinct"))
 }
@@ -40,6 +40,7 @@ did_df <- did_df %>%
 
 #estimate model robust to heterogenous treatment effects
 did_attgt<-att_gt(yname="fraction_spending",tname="year",idname="id", gname="treatment_group",clustervars = "ward", data=did_df)
+did_agg.es<- aggte(did_attgt, type = "dynamic")
 png(ARGS[2], width = 800, height = 600)
-ggdid(did_attgt)
+ggdid(did_agg.es, xlim =c(-4,4))
 dev.off()
