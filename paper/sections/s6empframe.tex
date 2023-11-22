@@ -16,6 +16,18 @@ Yet, this model should not be naively applied due to the recent literature on he
 The growing literature shows that the standard two-way fixed effects estimator biases the coefficient $\beta$, is a weighted average of several differences-in-differences that compare how $Y_{pt}$ progress across pairs of groups, of which some of them can be treated in both periods \cite{chaisetwfe} \cite{CALLAWAY2021200}. 
 To address this issue, I use the heterogeneous-treatment effect robust estimator proposed by \cite{CALLAWAY2021200}.
 
+One may ask why not use a continuous treatment design, using an indicator of support as a marker of treatment strength?
+The reason for this comes from \cite{callaway2021differenceindifferences_continuous}. 
+For a continuous treatment design to be valid, a much stronger form of parallel trends must be satisfied.
+\cite{callaway2021differenceindifferences_continuous} describe a set of assumptions that allow the identification of the  ``average causal response of treatment (ACRT) function'' that is a weighted average of causal responses to a unit change in treatment intensity.
+They find that identifying an ACRT function requires not only the traditional, support, common trends, and no anticipation assumptions, but also a ``homogenous ATT'' assumption. 
+This assumption in fact means that politicians only allocate spending based on support, regardless of precinct characteristics.
+That is, no precincts are more efficient at giving support than others.
+However, this assumption is directly at odds with the Dixit and Londregan model, which shows that in order for machine politics to exist, the politician must be able to distribute goods more efficiently to supporters than to non-supporters. 
+This is just the converse of of precincts being more efficient at giving support than others.
+Thus, using a continuous treatment design would be tantamount to assuming that machine politics does not exist in this context. 
+
+
 This paper estimates four variations of Equation~\ref{eq:standard_did}. 
 The first two rely on a close-election assumption to justify the parallel trends assumption. 
 By focusing only on wards where the incumbent alderman won by a small margin, we can assume that incumbent aldermen who win by a small margin have similar characteristics to those who lose by a small margin.
@@ -34,5 +46,3 @@ Despite this, all aldermen still accept campaign contributions even when there i
 In this case, we expect that the trends for the indicted and control aldermen will be the same, as they are all not in competitive elections and thus their spending preferences should both be stable over time.
 Furthermore, the unexpected nature of indictments should preclude any anticipatory behavior.
 In both cases I cluster standard errors at the ward level, as that is the level at which the treatment is assigned.
-
-\textcolor{red}{\textbf{Question for Readers} Do you have any other ideas for related questions I can explore with this data? Is there anything I'm obviously doing wrong here?}
