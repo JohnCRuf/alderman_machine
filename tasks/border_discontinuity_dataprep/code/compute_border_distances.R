@@ -11,7 +11,6 @@ compute_area_to_ward_distances <- function(small_map, wards_map) {
     # Initialize a dataframe to store the results
     small_unit_data <- data.frame(nearest_ward = character(nrow(small_map)), 
                                 distance_to_ward = numeric(nrow(small_map)), 
-                                border_precinct = numeric(nrow(small_map)),
                                 stringsAsFactors = FALSE)
 
     # Iterate over each precinct shape
