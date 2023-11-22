@@ -13,7 +13,8 @@ text_year1_to_year2 <- paste0(year_1, "-", year_2)
 
 #st_drop_geometry
 menu_data <- menu_data %>%
-  st_drop_geometry() 
+  st_drop_geometry()  %>%
+  select(-geometry)
 #drop observations of menu data where year is greater than 2011 and ward != 50
 menu_data <- menu_data %>%
   filter(year < year_2, year > year_1)
