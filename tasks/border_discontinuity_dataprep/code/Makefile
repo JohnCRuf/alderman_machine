@@ -4,28 +4,24 @@ include ../../shell_functions.make
 ## DEFINITIONS
 OUTPUT = ../output/border_discontinuity_data.csv
 TEMP = ../temp/ward_precincts_2012_2022 ../temp/ward_precincts_2003_2011
-INPUTS_maps = $(addprefix ../input/, ward_precincts_2003_2011.zip \
-ward_precincts_2012_2022.zip)
-INPUTS_menu = $(addprefix ../input/, ward_precinct_menu_panel_2003_2011.csv ward_precinct_menu_panel_2012_2022.csv)
+INPUTS_block_maps = $(addprefix ../input/, block_map_2000.rds block_map_2010.rds)
+INPUTS_ward_maps = $(addprefix ../input/, ward_map_2003_2011.rds ward_map_2012_2022.rds)
+INPUTS_menu = $(addprefix ../input/, block_menu_panel_2012_2022.csv)
+inputs: $(INPUTS_block_maps) $(INPUTS_ward_maps) $(INPUTS_menu)
 all: $(OUTPUT)
 
 #OUTPUT RECIPES
 $(OUTPUT): border_discontinuity_dataprep.R $(TEMP) ../input/ward_needs_data.csv ../input/map_data_prep_fn.R $(INPUTS_menu) | ../output
 	$(R) --no-job-name $<
 
-#TEMP RECIPES
-../temp/ward_precincts_%: ../input/ward_precincts_%.zip | ../temp
-	unzip -o -d ../temp/ward_precincts_$* $<
-	for file in ../temp/ward_precincts_$*/* ; do \
-		mv $$file ../temp/ward_precincts_$*/ward_precincts_$*.`basename $$file | sed 's/.*\.//'`; \
-	done
+
 #INPUT RECIPES
 ../input/ward_needs_data.csv: ../input/%: ../../border_discontinuity_impute_need/output/% | ../input
 	ln -s $< $@
-../input/map_data_prep_fn.R: ../input/%: ../../data_geomatch_menu/code/% | ../input
+$(INPUTS_block_maps): ../input/%.rds: ../../data_produce_census_block_maps/output/%.rds | ../input
 	ln -s $< $@
-$(INPUTS_maps): ../input/%.zip: ../../initialdata/output/%.zip | ../input
+$(INPUTS_ward_maps): ../input/%.rds: ../../data_produce_ward_maps/output/%.rds | ../input
 	ln -s $< $@
-$(INPUTS_menu): ../input/%: ../../data_combine_geomatched_menu/output/% | ../input
+$(INPUTS_menu): ../input/%: ../../data_combine_geomatched_menu_block/output/% | ../input
 	ln -s $< $@
 include ../../generic.make
