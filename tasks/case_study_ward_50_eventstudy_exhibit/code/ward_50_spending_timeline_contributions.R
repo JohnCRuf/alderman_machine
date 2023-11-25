@@ -49,7 +49,7 @@ df <- df %>%
 figure <- ggplot(df, aes(x = as.factor(year))) + 
   geom_line(aes(y = observed_spending_fraction, color = lab, linetype = lab, group = lab)) + 
   geom_vline(aes(xintercept = "2011"), linetype="dashed", color = "grey50") + 
-  labs(x = "Year", y = "Average fraction of located spending per precinct (%)") +  
+  labs(x = "Year", y = "Fraction of spending per precinct (%)") +  
   scale_y_continuous(labels = comma_format(scale = 1)) +  
   scale_x_discrete(breaks = unique(df$year)[seq(1, length(unique(df$year)), by = 2)]) +
   scale_color_discrete(name="Group") +   # Rename the color legend
