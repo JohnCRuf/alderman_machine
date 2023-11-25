@@ -1,20 +1,15 @@
 \section{Data Description}\label{sec:data_description}
-The primary data employed are located menu expenditures, which contain the yearly allotted allocations from Aldermen and their respective locations from 2005 to 2022.
-This dataset comes from Menu spending reports that are publicly available from 2011 through 2022, and records that were not previously publicly available that were obtained through a FOIA request to Chicago's office of budget and management \cite{OBM_datasource}.  
-I then scraped these PDFs and used the resulting cost total, ward, and location description data to create map of shapes of the locations of the expenditures.
-I then used the location description text to to locate the described vertices of each project using the Census' geocoding API. 
-If the census's API failed, google maps' API would be used instead.
-In total, there were 43,596 projects that needed to be located, and 83\% of them were successfully located using one of the two above methods.
-For example, spending on playground equipment would be a singular point, while spending on a street would be a line, and spending of all alleys within a given block would be a polygon.
-This dataset contain 41,381 precinct-year observations which record the total amount of spending in a given voting precinct in a given year.
-The variable of analysis is the annual fraction of observed spending on a given precinct in its ward in a given year.
-``Observed'' here means that it was successfully located using the above methods.
-Thus, if $Y_{py}$ is the fraction of spending located in precinct $p$ in year $y$, then $Y_{py} = \frac{S_{py}}{S_{wy}}$, where $S_{py}$ is the spending in precinct $p$ in year $y$, and $S_{wy}$ is the total amount of ward $w$'s spending that was successfully located in year $y$.
+The primary data this paper employs are located menu expenditures, which contain the yearly allotted allocations from Aldermen and their respective locations from 2005 to 2022.
+This dataset comes from Menu spending reports that are publicly available from 2011 through 2022, and records that were not previously publicly available that were obtained through a FOIA request to the OBM \cite{OBM_datasource}.  
+I then scraped these PDFs and used the resulting cost total, ward, and location description data to create a map of shapes of the locations of the expenditures.
+I then used the location description text to locate each project's described vertices using the Census geocoding API. 
+If the Census's API failed, Google Maps' API was used instead.
+In total, 43,596 projects needed to be located, and 83\% % of them were successfully located using one of the above methods.
+For example, spending on playground equipment would be a singular point, while spending on a street would be a line, and spending on all alleys within a given block would be a polygon.
+This dataset contains 41,381 precinct-year observations, which record the total spending in a given voting precinct in a given year.
 
-Below in table~\ref{summary_stats} 
-
-Below in Figure~\ref{fig:spending_hist} are two side-by-side histograms of the distribution of spending per precinct aggregated across the 2005-2011 period which used the 2003-2011 ward boundaries, and the 2012-2022 period with the 2012-2022 ward boundaries.
-We generally see that the decentralized nature of the menu program leads to a large variation in spending per precinct, but the distribution has a long right tail.
+Below is Figure~\ref{fig:spending_hist}, which depicts two side-by-side histograms of the distribution of spending per precinct aggregated across the 2005-2011 period, which used the 2003-2011 ward boundaries and the 2012-2022 period with the 2012-2022 ward boundaries.
+The decentralized nature of the menu program leads to a considerable variation in spending per precinct, but the distribution has a long right tail.
 Both figures are winsorized at the 99th percentile to remove outliers.
 
 \begin{figure}[H]
@@ -37,9 +32,9 @@ Both figures are winsorized at the 99th percentile to remove outliers.
     \label{fig:spending_hist}
   \end{figure}
 
-Next we can visualize how the decentralized nature of the menu program leads to large within-precinct spending variation through a map of the 2012-2022 spending per precinct in Figure~\ref{fig:spending_map}.
-This figures shows how the program's decentralization leads to numerous precincts with large concentrations of spending.
-Furthermore, the figure shows that in some wards, spending is heavily concentrated in a few precincts, while in others, spending is more evenly distributed.
+Next, we can visualize how the decentralized nature of the menu program leads to significant within-ward spending variation through a map of the 2012-2022 spending per precinct in Figure~\ref{fig:spending_map}.
+This figure shows how the program's decentralization leads to numerous precincts with large concentrations of spending.
+Furthermore, the figure shows that in some wards, spending is heavily concentrated in a few precincts, while spending is more evenly distributed in others.
 
 \begin{figure}[H]
     \centering
@@ -47,5 +42,25 @@ Furthermore, the figure shows that in some wards, spending is heavily concentrat
     \caption{Map of Spending per Precinct, 2012-2022}
     \label{fig:spending_map}
 \end{figure}
+
+However, we focus instead on the fraction of observed spending per precinct to account for shifts in the fraction of ``observable'' spending.
+``Observed'' means one of the two methods above successfully located it to a location in Chicago.
+Thus, if $Y_{py}$ is the fraction of spending located in precinct $p$ in year $y$, then $Y_{py} = \frac{S_{py}}{S_{wy}}$, where $S_{py}$ is the spending in precinct $p$ in year $y$, and $S_{wy}$ is the total amount of ward $w$'s successfully located spending in year $y$.
+
+Below in table~\ref{summary_stats} we see summary statistics for this variable.
+Due to the long right tail of the distribution, the mean is much larger than the median.
+Half of precincts get almost no spending.
+
+\begin{table}
+\caption{Summary statistics of fraction of total spending by precinct from 2012 to 2022}\label{summary_stats}
+\centering
+\begin{tabular}[t]{ccccc}
+\toprule
+mean & median & sd & upper quartile & lower quartile\\
+\midrule
+2.42 & 0.23 & 4.48 & 3.35 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \textcolor{red}{\textbf{TODO:} Add a scatterplot of spending fraction per precinct vs. net votes for the incumbent alderman}
