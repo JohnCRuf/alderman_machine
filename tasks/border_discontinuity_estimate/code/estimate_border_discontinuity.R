@@ -44,11 +44,11 @@ df$distance_bin <- cut(df$distance, breaks = seq(-0.8, 0.8, 0.2), include.lowest
 #group by distance bin and calculate mean and standard deviation of menu_spending
 df_plot <- df %>%
   group_by(distance_bin) %>%
-  summarise(mean = mean(menu_spending), sd = sd(menu_spending), n = n()) %>%
+  summarise(mean = mean(border_resid), sd = sd(border_resid), n = n()) %>%
   mutate(se = sd / sqrt(n))
 # create a plot of the mean for each bin with standard error bars
 ggplot(df_plot, aes(x = distance_bin, y = mean)) +
-  geom_errorbar(aes(ymin = mean - se, ymax = mean + se), width = 0.1) +
+  geom_errorbar(aes(ymin = mean - 1.96*se, ymax = mean + 1.96*se), width = 0.1) +
   geom_point() +
   geom_line() +
   theme_bw() +
