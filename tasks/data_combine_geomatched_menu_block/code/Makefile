@@ -12,15 +12,15 @@ INPUTS_points_2003_2011 = ../input/geomatched_point_2003_2011_points.csv
 
 INPUTS_maps = $(addprefix ../input/, block_map_2000.rds block_map_2010.rds)
 
-all: ../output/ward_precinct_menu_panel_2012_2022.rds ../output/ward_precinct_menu_panel_2012_2022.csv ../output/ward_precinct_menu_panel_2003_2011.rds ../output/ward_precinct_menu_panel_2003_2011.csv
+all: ../output/block_menu_panel_2012_2022.rds ../output/block_menu_panel_2012_2022.csv #../output/block_menu_panel_2003_2011.rds ../output/block_menu_panel_2003_2011.csv
 
 
 #OUTPUT RECIPES
-../output/ward_precinct_menu_panel_2012_2022.rds ../output/ward_precinct_menu_panel_2012_2022.csv: combine_geomatched.R $(INPUTS_shapes_lines_points_2012_2022) $(INPUTS_lines_points_2012_2022) $(INPUTS_points_2012_2022) ../input/block_map_2010.rds  | ../output
+../output/block_menu_panel_2012_2022.rds ../output/block_menu_panel_2012_2022.csv: combine_geomatched.R $(INPUTS_shapes_lines_points_2012_2022) $(INPUTS_lines_points_2012_2022) $(INPUTS_points_2012_2022) ../input/block_map_2010.rds  | ../output
 	$(R) --no-job-name $< 2012_2022 ../input/block_map_2010.rds $(INPUTS_shapes_lines_points_2012_2022) $(INPUTS_lines_points_2012_2022) $(INPUTS_points_2012_2022)
 
-../output/ward_precinct_menu_panel_2003_2011.rds ../output/ward_precinct_menu_panel_2003_2011.csv ../input/block_map_2000.rds: combine_geomatched.R $(INPUTS_shapes_lines_points_2003_2011) $(INPUTS_lines_points_2003_2011) $(INPUTS_points_2003_2011) | ../output
-	$(R) --no-job-name $< 2003_2011 ./input/block_map_2000.rds $(INPUTS_shapes_lines_points_2003_2011) $(INPUTS_lines_points_2003_2011) $(INPUTS_points_2003_2011)
+../output/block_menu_panel_2003_2011.rds ../output/block_menu_panel_2003_2011.csv ../input/block_map_2000.rds: combine_geomatched.R $(INPUTS_shapes_lines_points_2003_2011) $(INPUTS_lines_points_2003_2011) $(INPUTS_points_2003_2011) ../input/block_map_2000.rds  | ../output
+	$(R) --no-job-name $< 2003_2011 ../input/block_map_2000.rds $(INPUTS_shapes_lines_points_2003_2011) $(INPUTS_lines_points_2003_2011) $(INPUTS_points_2003_2011)
 
 #INPUT RECIPES
 ../input/geomatched_%.csv: ../../data_geomatch_menu_block/output/geomatched_%.csv | ../input

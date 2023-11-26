@@ -4,16 +4,20 @@ library(sp)
 library(assertr)
 library(assertthat)
 ARGS<- commandArgs(trailingOnly = TRUE)
+#ARGS <- c("2012_2022", "../input/block_map_2010.rds")
 map_filename <- ARGS[2]
 output_filename_rds <- paste0("../output/block_menu_panel_", ARGS[1], ".rds")
 output_filename_csv <- paste0("../output/block_menu_panel_", ARGS[1], ".csv")
 #load the map
-map <- readRDS(map_filename)
+map <- readRDS(map_filename) %>%
+  select(tract_bloc, geometry)
 #repeat the map for every cycle: 2004-2007, 2008-2011, 2012-2015, 2016-2019, 2020-2023
 cycles <- c("2004-2007", "2008-2011", "2012-2015", "2016-2019", "2020-2023") 
-map <- map %>% 
+map_repeat <- map %>% 
   crossing(cycle = cycles) %>%
   unnest(cols = c(cycle))
+#assert that all unique tract_bloc in map_repeat are in map
+assert_that(all(unique(map_repeat$tract_bloc) %in% unique(map$tract_bloc)))
 #for every argument, load the file, keep the ward, year ward_locate, precinct_locate, est_cost, and  total_length and intersect_length if it exists
 df_append <- data.frame()
 for (i in 3:length(ARGS)) {
@@ -75,9 +79,11 @@ df_append <- df_append %>%
   summarise(weighted_cost = sum(weighted_cost)) %>%
   ungroup()
 #now join left join the map to the df_append. All missing values of weighted_cost will be set to 0
-final_df <- map %>%
+final_df <- map_repeat %>%
   left_join(df_append, by = c("tract_bloc", "cycle")) %>%
   mutate(weighted_cost = ifelse(is.na(weighted_cost), 0, weighted_cost))
+#assert that all unique tract_bloc in map are in final_df
+assert_that(all(unique(map$tract_bloc) %in% unique(final_df$tract_bloc)))
 #write the final_df to a csv
 saveRDS(final_df, file =output_filename_rds)
 #remove geometry column and write to csv
