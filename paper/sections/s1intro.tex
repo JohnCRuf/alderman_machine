@@ -1,35 +1,39 @@
 \section{Introduction}\label{sec:Introduction}
 
-Do local politicians use machine-style politics to drive public goods towards their supporters? Is it uniform across municipalities, or does it depend on other factors, such as electoral competition?
-In most contexts, these are tricky questions to answer, as politicians rarely have unilateral control over public spending. 
-When they do, it is often in a dictatorial or development context that does not generalize to other contexts.
-In first-world contexts, such as voting on city councils, strategic voting makes it difficult to differentiate
-what policies politicians prefer from what they vote for. 
+Do local politicians use machine-style politics to drive public goods towards their supporters? Is spending bias exacerbated or curbed by local political competition?
+Because most municipalities allocate spending through collective decision-making bodies such as councils, it is usually difficult to attribute expenditures to individual politicians.
 However, one such program exists in the United States: Chicago's Aldermanic Menu Program.
-This program gives each of Chicago's 50 aldermen \$1.5 million each year to spend on infrastructure maintenance and public goods within their ward, which they can spend on whatever they see fit.
-Chicago Department of Transportation (CDOT) delivers to each alderman a ``menu'' of common expenditures, from which the program's name is derived, that each alderman can choose from.
-However, aldermen are not limited to these options, and can spend the money on other projects as well.
+Through this program, the Chicago Department of Transportation (CDOT) gives each of Chicago's 50 aldermen a \$1.5 million budget, an eponymous ``menu'' of common expenditures, and a map of 311 complaints in their ward.
+Using these resources, aldermen allocate funds to infrastructure maintenance, parks, and other public goods within their wards, even if they are not on the ``menu.''
 
 This paper asks whether the menu funding towards each alderman's supporters or detractors changes after the alderman leaves office.
 If so, what determines the magnitude of this change? 
 To answer this, this paper uses a differences-in-differences design to compare the time trends of each supporting or opposing precinct before and after the alderman leaves office.
 There are two cases where parallel trends are likely to hold: in close elections where the incumbent wins by a small margin and in cases where the incumbent is indicted and forced to leave office.
-In the former, both wards where the aldermen just barely won and just barely lost should have similar characteristics.
+In the former, both wards where the aldermen just barely won and just barely lost should have similar spending trends.
 Furthermore, both winning and losing aldermen in these cases should have similar expectations of winning, so they should behave similarly in the run-up to the election.
-In the latter, the incumbent alderman is forced to leave office unexpectedly, so there should be no anticipatory behavior, albeit constructing a control group is more complicated.
-The value added from this paper derives from its introduction of this unique setting to urban, spatial, and political economics literature, as well as its results, which reinforce \cite{dixit_londregan1996}'s theory of machine politics.
+In the latter, the timing of the in-office indictment is uncertain, so 
 
 
-Section~\ref{sec:background} of this paper describes the background of the program, including the program's history, the program's rules, and the program's 2017 audit.
-Section~\ref{sec:lit_review} of this paper describes the public economics literature on public goods allocation and lobbying and the spatial and urban economics literature on infrastructure allocation and how this paper relates to both literatures.
-Section~\ref{sec:data_description} of this paper describes the dataset collected for this paper. 
-It first goes through the data collection process, then describes summary statistics of the data itself, and displays a map of total spending distribution.
-Section~\ref{sec:case_study} presents a case study of Alderman Bernie Stone, rumored to favor supporters with menu program funds. 
-This paper offers the first quantitative proof, showing changes in fund allocation to the lowest and highest 20\% of precincts by campaign contributions before and after Stone's 2011 defeat by Debra Silverstein. 
-Post-defeat, the bottom 20\% precincts saw a \$20,000 yearly increase in funds, while the top 20\% precincts experienced a decrease in their budget share.
+This paper makes two contributions, firstly it publicly introduces this setting's data, and secondly it finds cases that supports \cite{dixit_londregan1996}'s theory of machine politics.
+\cite{dixit_londregan1996} argue that the key to machine politics is for politicians to be more efficient at allocating public goods to their supporters than their opponents.
+If this is the case, then the municipality arrives at a ``machine politics'' equilibrium where the incumbent targets all publics goods to their top supporters.
+If there is no particular efficiency towards supporters, the municipality goes to a ``downsian'' equilibrium where both the incumbent and the challenger promise to allocate public goods to the most marginal voters.
+This paper offers the first quantitative proof of the rumor that Bernie Stone biasedly allocating his funds.
+It shows a large swing in fund allocation to the lowest and highest 20\% of precincts by campaign contributions before and after Stone's 2011 defeat by Debra Silverstein. 
+Post-defeat, the bottom 20\% precincts saw a \$20,000 yearly increase in funds, while the top 20\% precincts experienced a decline nearly double of that.
 This constitutes a difference of 1.65\% of the budget, or \$21,383 per year.
+Finally, the paper finds that the stone case study is not always generalizable to other aldermen.
+When examining close elections, the paper finds no significant difference in spending trends between the winning and losing aldermen.
+However, when looking at aldermen who retire after being indicted, precincts that supported an indicted alderman saw their budget fraction decrease by 1.14pp after his/her removal from office, while those that did not saw a 2.59pp increase, amounting to a total difference of \$56,000 difference each year between the two groups.
+
+
+Section~\ref{sec:background} describes the program's history, its rules, and its 2017 audit.
+Section~\ref{sec:lit_review} describes the public economics literature on public goods allocation and lobbying and the spatial and urban economics literature on infrastructure allocation and how this paper relates to both literatures.
+Section~\ref{sec:data_description} describes how the menu program data was collected, its summary statistics, and depicts an aggregate map of menu spending across Chicago for the past decade.
+Section~\ref{sec:case_study} presents descriptive data for the case study of Alderman Bernie Stone, rumored to favor supporters with menu program funds. 
 Section~\ref{sec:empframe} explains this paper's empirical strategy to determine if the Stone case study can be generalized to other aldermen.
-Section~\ref{sec:results} shows the results of said empirical strategy, which finds that Aldermen removed or retired due to criminal indictments, which has similar results to the Stone case study. 
+Section~\ref{sec:results} shows the results of said empirical strategy, which finds that aldermen removed or retired due to criminal indictments, which has similar results to the Stone case study. 
 However, this does not generalize to competitive elections.
 The results from the indictment-based differences-in-differences design are statistically weak and sensitive to the number of precincts included, but are economically large and significant.
 Section~\ref{sec:conclusions} concludes.
