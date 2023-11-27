@@ -1,53 +1,43 @@
 \section{Empirical Framework}\label{sec:empframe}
 This section discusses the empirical framework used to analyze the data.
-I use a differences-in-differences approach to determine whether aldermen are allocating spending to precincts that support them.
-However, I focus on a heterogeneous treatment effect robust estimator.
-The most standard specification is as follows:
+I use the removal of an incumbent from office and the resulting breaking of the incumbent's patronage network to estimate the degree of patronage in the menu program.
+To do this, I use a differences-in-differences design to compare the spending trends of supporting or opposing precincts before and after the incumbent leaves office. 
+The most standard specification of this design would normally be:
 
 \begin{equation}\label{eq:standard_did}
-    Y_{pt} = \alpha_{p} + \gamma_{t} + \beta T_{pt} + \epsilon{pt}
+    Y_{pt} =  \beta T_{pt} + \alpha_{p} + \gamma_{t} + \epsilon_{pt}
 \end{equation}
 
 $Y_{pt}$ is the fraction of observed spending in precinct $p$ in year $t$. $T_{pt}$ is a dummy variable equal to 1 if the incumbent alderman was removed from office in year $t$. $\alpha_{p}$ and $\gamma_{t}$ are precinct and year fixed effects respectively. $\epsilon_{pt}$ is the error term.
 $\beta$ represents how much spending on an average precinct in the sample changes after an alderman is removed from office.
-Under parallel trends, this represents the causal impact of removing an alderman from office on spending in the precincts contained in the sample.
-Thus, in the case of primarily supporting precincts, a negative $\beta$ would indicate that the incumbent alderman was allocating more spending to those that supported them than the following alderman would have chosen.
-Yet, this model should not be naively applied with two-way fixed effects due to the recent literature on heterogeneous treatment effects in differences-in-differences designs.
-The growing literature shows that the standard two-way fixed effects estimator biases the coefficient $\beta$, is a weighted average of several differences-in-differences that compare how $Y_{pt}$ progress across pairs of groups, of which some of them can be treated in both periods \citep{chaisetwfe} \citep{callaway2021_continuous}. 
-I use the heterogeneous-treatment effect robust estimator proposed by \citep{CALLAWAY2021200} to address this issue.
-
-Why not use a continuous treatment design, with an indicator of support as a marker of treatment strength?
-The reason for this comes from \cite{callaway2021_continuous}. 
-A much stronger form of parallel trends must be satisfied for a continuous treatment design to be valid.
-\cite{callaway2021_continuous} describe the set of assumptions that allow the identification of the  ``average causal response of treatment (ACRT) function'' that is a weighted average of causal responses to a unit change in treatment intensity.
-They find that identifying an ACRT function requires not only the traditional, support, common trends, and no anticipation assumptions, but also a ``homogenous ATT'' assumption. 
-This assumption is necessary because of the selection bias induced when treatment groups who elect into stronger treatment do so because the stronger treatment to benefits them more than other groups.
-This assumption means politicians only allocate spending based on support, regardless of precinct characteristics.
-That is, no precincts are more efficient at giving support than others.
-However, this assumption is directly at odds with the Dixit and Londregan model, which shows that for machine politics to exist, the politician must be able to distribute goods more efficiently to supporters than non-supporters. 
-This assumption is just the converse of precincts being more efficient at organizing support to the incumbent than others.
-Thus, using a continuous treatment design would be effectively equivalent to assuming that machine politics does not exist in this context.
+Thus, in the case of estimating supporting precincts, a negative $\beta$ would indicate that the incumbent alderman was allocating more spending to those that supported them than the following alderman would have chosen.
+Under parallel trends and homogenous treatment effects, this represents the causal impact of removing an alderman from office on spending in the precincts contained in the sample.
+Yet, this model should not be naively applied with two-way fixed effects due to the recent literature on heterogeneous treatment effects on two-way fixed effects estimators with staggered treatment timing \citep{chaisetwfe} \citep{CALLAWAY2021200}. 
+There are a number of ways to address this issue, but I use the heterogeneous-treatment effect robust estimator proposed by \citep{CALLAWAY2021200}\footnote[1]{I do not use a continuous treatment design for reasons specified by \cite{callaway2021_continuous}.
+To identify a casual response using a continuous treatment requires that low-dosage groups (ie, middling supporting precincts) would have the same response had they chosen a high level of support instead.
+This is in fact directly at odds with the \cite{dixit_londregan1996} model's implication that for machine politics to exist, the politician must be able to distribute goods more efficiently to supporters than non-supporters.
+Therefore, using a continuous treatment design would be effectively assuming away the very phenomenon the design is estimating.}.
 
 
-This paper estimates four variations of Equation \ref{eq:standard_did}. 
+This paper estimates four variations of equation \ref{eq:standard_did}. 
 The first two rely on a close-election assumption to justify the parallel trends assumption. 
 This assumption means that incumbent aldermen who win by a small margin have similar spending trends to those who lose by a small margin.
 This study defines a close margin as 10\% or less; this corresponds to approximately within 1,200 votes.
-Therefore, they should behave similarly in the run-up to the election as they have similar expectations of winning.
-We then examine two sets of precincts. 
+This assumption effectively means that incumbent aldermen who barely win to allocate funds similarly to those who barely lose in the run-up to the election.
+I then examine two sets of precincts. 
 The first set of precincts is the top quintile (8) precincts by vote margin for each ward in the 2015 or 2019 election, whichever is appropriate to the treatment group. 
 The second set of precincts is the bottom quintile precincts by vote margin for each ward in the 2015 or 2019 election, whichever is appropriate to the treatment group.
-We use the 2012 through 2022 years to estimate this model, due to the 2011 redistricting complicating the use of 2005-2011 data. 
+I use the 2012 through 2022 years to estimate this model, due to the 2011 redistricting complicating the use of 2005-2011 data. 
 
-The second two variations rely on a simultaneous set of indictments of aldermen in 2019, causing three aldermen to either be ineligible for reelection or to retire. 
+The third and fourth variations rely on a simultaneous set of indictments of aldermen in 2019, causing three aldermen to either be ineligible for reelection or to retire. 
 These aldermen were Daniel Solis, Ricardo Munoz, and Willie Cochran. 
 Daniel Solis left office after being caught by the FBI and wearing a wire to record Alderman Ed Burke, who was indicted in 2019 but not removed from office until 2023.
 Ricardo Munoz retired shortly after reporters discovered that he had spent PAC money on personal expenses.
 Willie Cochran retired after pleading guilty to wire fraud and misusing campaign funds for gambling and personal expenses.
-We compare this group to a set of 10 control aldermen who were not indicted, have been in office for at least 10 years, and won reelection in 2019 in the general election, indicating they were not in a competitive election. 
+I compare this group to a set of 10 control aldermen who were not indicted, have been in office for at least 10 years, and won reelection in 2019 in the general election, indicating they were not in a competitive election. 
 To measure whether or not a precinct supported an alderman, I use the total number of campaign contributions donated to the aldermen from the precinct in the 2015 and 2019 elections.
-We do this because many of the ``entrenched'' aldermen have not faced a competitive election in decades, so net votes are not a good measure of support.
+I do this because many of the ``entrenched'' aldermen have not faced a competitive election in decades, so net votes are not a good measure of support.
 Despite this, all aldermen still accept campaign contributions even when there is no challenger, so I use this to measure support.
 In this case, I expect the trends for the indicted and control aldermen will be the same, as they are all not in competitive elections and thus their spending preferences should be stable over time.
 Furthermore, the unexpected timing of indictments within the election would hopefully preclude any anticipatory behavior.
-In both cases, I cluster standard errors at the ward level, as that is the level at which the treatment is assigned.
+In both cases, I cluster standard errors at the ward level.

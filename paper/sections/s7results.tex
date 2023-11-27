@@ -29,11 +29,10 @@ The results shown Table~\ref{tab:att_comparison_combined} are only sensitive to 
      & \multicolumn{2}{c|}{Competitive Election} & \multicolumn{2}{c}{Indictment} \\
      & Opposing ATT & Supporting ATT & Opposing ATT & Supporting ATT \\
     \hline
-    ATT & 0.50 & -1.51 & 2.59 & -1.15 \\
-    Std. Error & 0.45 & 1.12 & 0.78 & 0.32 \\
+    ATT & 0.50 (0.45) & -1.51 (1.12) & 2.59 (0.78) & -1.15 (0.32) \\
     95\% Conf. Int. & (-0.38, 1.39) & (-3.71, 0.68) & (1.06, 4.11) & (-1.77, -0.52) \\
     Pre-Trends P-value & 0.005  & 0.076 & 0.199 & 0.174 \\
-    Obs & 1680 & 1680 & 1144 & 1144 \\
+    Observations & 1680 & 1680 & 1144 & 1144 \\
     \hline
     \end{tabular}
 \end{table}
@@ -43,7 +42,9 @@ The results shown Table~\ref{tab:att_comparison_combined} are only sensitive to 
 
 I can look at how the average treatment effect changes over time in Figure~\ref{fig:att_comparison_close_election_bottom}, which depicts how the least supporting precincts estimated treatment varies over time in the close election context.
 As inferred from the standard errors in Table~\ref{tab:att_comparison_combined}, the estimated effect over time is noisy.
-This is likely because if you think about an optimal social planner, they will not allocate spending using a highly auto-correlated spending rule.
+This is likely because even a benevolent social planner will not allocate infrastructure spending using a highly auto-correlated spending rule.
+A road, once paved, does not need to be repaved for approximately 20 years according to CDOT's life cycle analysis \citep{OIGaudit}.
+There is a limit to how much spending can be preferentially allocated to a precinct before that alderman runs into diminishing returns.
 More likely, they would allocate spending based on the state of decay of the infrastructure stock of the precincts.
 If you imagine that close elections push aldermen closer to a hypothetical social planner, you would expect lots of noise in the estimated effect.
 

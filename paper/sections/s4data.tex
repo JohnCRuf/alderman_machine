@@ -6,6 +6,9 @@ I then used the location description text to locate each project's described ver
 If the Census's API failed, I automatically used Google Maps' API instead.
 In total, 43,596 projects needed to be located, and 83\% of them were successfully located using one of the above methods.
 For example, spending on playground equipment would be a singular point, while spending on a street would be a line, and spending on all alleys within a given block would be a polygon.
+The spending for each project was then allocated to the precincts that it overlapped with, by area.
+If there was a \$10,000 quadrangle of $500 m^2$ and 60\% of it was in precinct A and 40\% was in precinct B, then 60\% of the spending on that project would be allocated to precinct A and 40\% to precinct B.
+Lines, such as street resurfacing, were allocated by length.
 This dataset contains 41,381 precinct-year observations, which record the total spending in a given voting precinct in a given year.
 
 Figure~\ref{fig:spending_hist} depicts two side-by-side histograms of the distribution of spending per precinct aggregated across the 2005-2011 period, which used the 2003-2011 ward boundaries and the 2012-2022 period with the 2012-2022 ward boundaries.
@@ -42,6 +45,8 @@ Next, Figure~\ref{fig:spending_map} depicts within-ward spending variation acros
 \end{figure}
 
 To avoid issues with different levels of ``observable'' spending from year to year, I use the fraction of spending located in a precinct in a given year as the dependent variable for subsequent analyses.
+For example, if a precinct received \$50,000 in spending in 2019, but only \$900,000 of its wards \$1,5M budget was located, then the fraction of spending located in that precinct in 2019 of its ward's 2019 spending would be $\frac{50,000}{900,000}*100 =5.6\%$.
+This is important because the amount of observable spending can shift from year to year, but that doesn't mean that alderman is prioritizing the precinct any less that year, necessarily.
 ``Observed'' means one of the two methods above successfully located it to a location in Chicago.
 Thus, if $Y_{py}$ is the fraction of spending located in precinct $p$ in year $y$, then $Y_{py} = \frac{S_{py}}{S_{wy}}$, where $S_{py}$ is the spending in precinct $p$ in year $y$, and $S_{wy}$ is the total amount of ward $w$'s successfully located spending in year $y$.
 Table~\ref{summary_stats} depicts summary statistics for this variable.
