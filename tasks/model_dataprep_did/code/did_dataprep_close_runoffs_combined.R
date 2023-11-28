@@ -4,7 +4,7 @@ library(assertthat)
 ARGS<- commandArgs(trailingOnly = TRUE)
 menu_df <- read_rds("../input/ward_precinct_menu_panel_2012_2022.rds")
 election_df <- read.csv("../input/incumbent_challenger_voteshare_df_precinct_level.csv")
-
+output_filename <- paste0("../output/close_runoffs_combined_",ARGS[1],"_",ARGS[2],".rda")
 #create a list of all wards that have a close runoff in year = ARGS[1]
 #close is if voteshare is within ARGS[1] of 50%
 #drop elections that do not have an inc=1 candidate
@@ -69,4 +69,4 @@ menu_df <- menu_df %>%
 menu_df <- menu_df %>%
   rename(ward = ward_locate, precinct = precinct_locate)
 
-save(menu_df, top_precincts, bottom_precincts, treatment_df, file = "../output/close_runoffs_combined.rda")
+save(menu_df, top_precincts, bottom_precincts, treatment_df, file = output_filename)
