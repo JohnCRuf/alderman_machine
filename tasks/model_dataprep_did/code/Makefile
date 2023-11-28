@@ -4,7 +4,7 @@ include ../../shell_functions.make
 ## DEFINITIONS
 years := 2015 2019 #years to include in the analysis
 close_cutoff := 0.05 1.0 #cutoffs for "close" elections
-precinct_count := $(shell seq 5 1 12) #number of "most-supporting" precincts to include in the analysis
+precinct_count := $(shell seq 6 1 12) #number of "most-supporting" precincts to include in the analysis
 triples = $(foreach year, $(years), $(foreach cutoff, $(close_cutoff), $(foreach precinct, $(precinct_count), year_$(year)_cutoff_$(cutoff)_count_$(precinct))))
 OUTPUTS = $(foreach triple, $(triples), ../output/close_runoffs_$(triple).rda)
 OUTPUTS_combined = $(foreach cutoff, $(close_cutoff), $(foreach precinct, $(precinct_count), ../output/close_runoffs_combined_$(cutoff)_$(precinct).rda))
