@@ -22,7 +22,7 @@ plot_top <- ggplot(agg_results_top, aes(x = event_time, y = estimate, ymin = low
     geom_line() +  # Add line to connect points
     geom_errorbar() +
     geom_hline(yintercept = 0, linetype = "dashed") +
-    labs(x = "Precinct Count", y = "Average Treatment Effect on Treated (pp)") +
+    labs(x = "Time", y = "Average Treatment Effect on Treated (pp)") +
     theme_bw() +
     theme(legend.position = "bottom")
 
@@ -33,7 +33,7 @@ plot_bot <- ggplot(agg_results_bot, aes(x = event_time, y = estimate, ymin = low
     geom_line() +  # Add line to connect points
     geom_errorbar() +
     geom_hline(yintercept = 0, linetype = "dashed") +
-    labs(x = "Precinct Count", y = "Average Treatment Effect on Treated (pp)") +
+    labs(x = "Time", y = "Average Treatment Effect on Treated (pp)") +
     theme_bw() +
     theme(legend.position = "bottom")
 
