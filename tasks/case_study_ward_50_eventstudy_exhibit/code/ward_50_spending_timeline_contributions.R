@@ -45,6 +45,10 @@ df <- df %>%
             total_spending = sum(weighted_cost)) %>%
   ungroup()
 
+#sort df in order of Most Contributing Precincts, Least Contributing Precincts, Intermediate Precincts
+df <- df %>%
+  mutate(lab = factor(lab, levels = c("Most Contributing Precincts", "Intermediate Precincts", "Least Contributing Precincts")))
+
 #create a line chart of the mean spending of the top and bottom precincts
 figure <- ggplot(df, aes(x = as.factor(year))) + 
   geom_line(aes(y = observed_spending_fraction, color = lab, linetype = lab, group = lab)) + 
