@@ -1,9 +1,9 @@
 \section{Results}\label{sec:results}
 
-First, we can look at the result of the competitive election design.
-We compute the dynamic aggregation of the average treatment effect on the treated group for the least and most supporting precincts and display the results in Table~\ref{tab:att_comparison_combined}.
+
+I compute the dynamic aggregation of the average treatment effect on the treated group for the least and most supporting precincts and display the results in Table~\ref{tab:att_comparison_combined}.
 Also shown are the estimate's standard errors, confidence intervals, and Wald-test p-values for the pre-test of the parallel trends assumption.
-We see that both estimated ATTs are not statistically significant for the close election design.
+I see that both estimated ATTs are not statistically significant for the close election design.
 Furthermore, the least supporting precinct's ATT is not economically significant. 
 Half a percent of the menu program's budget is roughly \$7,500. 
 That is not even enough to afford two street-wide speed bumps.
@@ -12,28 +12,27 @@ This test indicates that the close election design likely does not guarantee tha
 This failure may be because factors influencing the trend of infrastructure spending and needs correlate with the election outcome.
 Alternatively, it could be because the margin chosen is too large to ensure that the two groups are similar.
 The results of the competitive elections design is susceptible to the number of precincts included, often changing the sign of both estimated ATTs.
-Next, we can look at the results of the indictment design in.
-We note that the treatment effect for the least supporting precincts is over five times larger than the treatment effect estimated in the competitive election design.
-We also see a much larger Wald-test p-value for the pre-trends test.
+Next, I can look at the results of the indictment design in.
+I note that the treatment effect for the least supporting precincts is over five times larger than the treatment effect estimated in the competitive election design.
+I also see a much larger Wald-test p-value for the pre-trends test.
 These values indicate that perhaps the indictment design's assumption is more believable than the close election design's assumption.
-However, we also see that the most supporting precinct's treatment effect, while statistically significant, is similar in magnitude to the treatment effect of the competitive election design.
+However, I also see that the most supporting precinct's treatment effect, while statistically significant, is similar in magnitude to the treatment effect of the competitive election design.
 The results shown Table~\ref{tab:att_comparison_combined} are only sensitive to increasing the number of precincts, not decreasing it.
 
 
 \begin{table}[ht]
     \centering
-    \caption{Comparison of Average Treatment Effects: Combined Designs}
+    \caption{Comparison of average treatment effects}
     \label{tab:att_comparison_combined}
     \begin{tabular}{lcc|cc}
     \hline
      & \multicolumn{2}{c|}{Competitive Election} & \multicolumn{2}{c}{Indictment} \\
      & Opposing ATT & Supporting ATT & Opposing ATT & Supporting ATT \\
     \hline
-    ATT & 0.50 & -1.51 & 2.59 & -1.15 \\
-    Std. Error & 0.45 & 1.12 & 0.78 & 0.32 \\
+    ATT & 0.50 (0.45) & -1.51 (1.12) & 2.59 (0.78) & -1.15 (0.32) \\
     95\% Conf. Int. & (-0.38, 1.39) & (-3.71, 0.68) & (1.06, 4.11) & (-1.77, -0.52) \\
     Pre-Trends P-value & 0.005  & 0.076 & 0.199 & 0.174 \\
-    Obs & 1680 & 1680 & 1144 & 1144 \\
+    Observations & 1680 & 1680 & 1144 & 1144 \\
     \hline
     \end{tabular}
 \end{table}
@@ -41,12 +40,14 @@ The results shown Table~\ref{tab:att_comparison_combined} are only sensitive to 
 %create red TODO box
 \textcolor{red}{\textbf{TODO:} Add a figure that shows how the ATT of each changes for each design as the number of precincts included changes from 5 to 12.}
 
-We can look at how the average treatment effect changes over time in Figure~\ref{fig:att_comparison_close_election_bottom}, which depicts how the least supporting precincts estimated treatment varies over time in the close election context.
+I can look at how the average treatment effect changes over time in Figure~\ref{fig:att_comparison_close_election_bottom}, which depicts how the least supporting precincts estimated treatment varies over time in the close election context.
 As inferred from the standard errors in Table~\ref{tab:att_comparison_combined}, the estimated effect over time is noisy.
-This is likely because if you think about an optimal social planner, they will not allocate spending using a highly auto-correlated spending rule.
+This is likely because even a benevolent social planner will not allocate infrastructure spending using a highly auto-correlated spending rule.
+A road, once paved, does not need to be repaved for approximately 20 years according to CDOT's life cycle analysis \citep{OIGaudit}.
+There is a limit to how much spending can be preferentially allocated to a precinct before that alderman runs into diminishing returns.
 More likely, they would allocate spending based on the state of decay of the infrastructure stock of the precincts.
 If you imagine that close elections push aldermen closer to a hypothetical social planner, you would expect lots of noise in the estimated effect.
-This noise is also present when we look at the top supporting precincts.
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{input/hte_figure_combined_support_bottom.png}
@@ -55,9 +56,9 @@ This noise is also present when we look at the top supporting precincts.
 \end{figure}
 
 
-Finally, we can look at how the average treatment effect changes over time in Figure~\ref{fig:att_comparison_corruption_bottom}, which depicts how the least supporting precincts estimated treatment varies over time in the indictment design.
-We see that the standard errors, while large, are much smaller, and the mean estimate is much more stable.
-However, we see some evidence of a pre-trends violation in the year before the first treatment, as the 2019 estimate is significantly smaller than the other estimates.
+Finally, I look at how the average treatment effect changes over time in Figure~\ref{fig:att_comparison_corruption_bottom}, which depicts how the least supporting precincts estimated treatment varies over time in the indictment design.
+The standard errors, while large, are much smaller, and the mean estimate is much more stable.
+Figure~\ref{fig:att_comparison_corruption_bottom} also shows evidence of anticipation in the year before the first treatment, as the 2019 estimate is significantly smaller than the other estimates.
 This holds for the most supporting precincts as well, albeit in reverse.
 Thus, as the incumbent alderman leaves office, they allocate more spending to their most supporting precincts than their least keeping precincts.
 These results must be taken with a grain of salt due to the high standard errors and the likely pre-trends violation.
@@ -65,7 +66,7 @@ These results must be taken with a grain of salt due to the high standard errors
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{input/hte_figure_corruption_bottom_8_precincts.png}
-    \caption{Average Treatment Effect over Time: Indictment Designs}
+    \caption{Average treatment effect over time for least supporting precincts: indictment design}
     \label{fig:att_comparison_corruption_bottom}
 \end{figure}
 

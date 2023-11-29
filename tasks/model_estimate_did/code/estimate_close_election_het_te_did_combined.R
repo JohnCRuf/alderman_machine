@@ -4,6 +4,17 @@ library(did)
 ARGS<- commandArgs(trailingOnly = TRUE)
 #load in ARGS[1] as an RDA file
 load(paste0(ARGS[1]))
+#grab the filename from ARGS[1]
+input_filename <- ARGS[1]
+input_filename_stub <- basename(input_filename)
+#remove the .rda from the filename
+input_filename_stub <- str_remove(input_filename_stub, ".rda")
+#determine if top or bottom using ARGS[2]
+
+#create output filenames
+output_figure_filename <- paste0("../output/", input_filename_stub, "_", ARGS[2], "_figure", ".png")
+output_estimate_agg_filename <- paste0("../output/", input_filename_stub, "_", ARGS[2], "_estimate_agg", ".txt")
+output_estimate_filename <- paste0("../output/", input_filename_stub,"_", ARGS[2], "_estimate", ".txt")
 
 
 treated_only_df <- treatment_df %>%
@@ -41,6 +52,16 @@ did_df <- did_df %>%
 #estimate model robust to heterogenous treatment effects
 did_attgt<-att_gt(yname="fraction_spending",tname="year",idname="id", gname="treatment_group",clustervars = "ward", data=did_df)
 did_agg.es<- aggte(did_attgt, type = "dynamic")
-png(ARGS[2], width = 800, height = 600)
+png(output_figure_filename, width = 800, height = 600)
 ggdid(did_agg.es, xlim =c(-4,4))
 dev.off()
+
+#export the summary of did_attgt to a text file 
+sink(output_estimate_filename)
+summary(did_attgt)
+sink()
+
+#export the summary of did_agg.es to a text file
+sink(output_estimate_agg_filename)
+summary(did_agg.es)
+sink()
