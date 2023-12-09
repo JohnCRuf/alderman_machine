@@ -33,7 +33,7 @@ r2 <- summary(lm1)$r.squared
 a_r2 <- summary(lm1)$adj.r.squared
 r2 <- round(r2, 2)
 a_r2 <- round(a_r2, 2)
-r2_text <- paste0("R^2 = ", r2, "\nAdj. R^2 = ", a_r2)
+r2_text <- paste0("R-squared = ", r2, "\nAdj. R-squared = ", a_r2)
 #generate a line of predicted values for Area from 0 to 15 square miles in units of 0.01
 pred <- data.frame(area = seq(1.5, 20, 0.01)) %>%
     mutate(log_area = log(area),
@@ -55,7 +55,8 @@ fig <- ggplot(map_ward, aes(x = area, y = pct_of_needs)) +
         axis.title = element_text(size = 14)) +
   scale_color_manual(values = c("Observed" = "black", "Predicted" = "red"),
                      labels = c("Observed", "Predicted"),
-                     name = "Data Type")
+                     name = "Data Type") + #add a note with the R^2, adjust R^2
+  annotate("text", x = 15, y = 80, label = r2_text, size = 4) 
 #write to output png
 ggsave("../output/area_vs_pct_of_needs.png", fig, width = 6, height = 4)
 

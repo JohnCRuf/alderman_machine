@@ -9,7 +9,7 @@ ward_precincts_2012_2022.zip)
 all: $(OUTPUT)
 
 #OUTPUT RECIPES
-$(OUTPUT): impute_needs.R $(TEMP) | ../output
+$(OUTPUT): impute_needs.R $(TEMP) ../input/map_data_prep_fn.R ../input/oig_audit_needs.csv | ../output
 	$(R) --no-job-name $<
 
 #TEMP RECIPES
