@@ -12,12 +12,8 @@ block_map_2010 <- readRDS("../input/block_map_2010.rds")
 spatial_data <- st_make_valid(block_map_2010)
 spatial_data <- st_set_crs(spatial_data, 4326)
 
-
 #run the flood fill algorithm 30 times to create 30 placebo maps
 #initialize a list to store the maps
-tic <- Sys.time()
-placebo_map_list<- list()
 set.seed(seed)
 placebo_map <- flood_fill_algorithm(spatial_data, num_seeds = 50, buffer_size = 1.5)
-placebo_map_list[[i]] <- placebo_map
 saveRDS(placebo_map, paste0("../output/placebo_map_", args[1], ".rds"))

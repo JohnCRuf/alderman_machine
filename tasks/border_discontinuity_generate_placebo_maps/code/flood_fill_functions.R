@@ -65,6 +65,7 @@ find_k_nearest_blocks_union <-function(spatial_data, polygon, k) {
 flood_fill_algorithm <- function(spatial_data, num_seeds = 50, buffer_size = 10) {
     # Step 1: Select 50 random seed blocks
     seed_blocks <- select_random_rows(spatial_data, num_seeds)
+    set.seed(10)
     # create a list of polygons called wards, one for each seed block
     wards <- vector("list", num_seeds)
     for (i in seq_along(wards)) {
@@ -98,9 +99,12 @@ flood_fill_algorithm <- function(spatial_data, num_seeds = 50, buffer_size = 10)
                 print("Error: selected_blocks > 10")
                 return (wards)
             }
+            #ensure that the selected blocks are valid geometries
+            selected_blocks <- st_make_valid(selected_blocks)
             selected_blocks_geom <- st_union(selected_blocks)
-            wards[[i]] <- st_union(wards[[i]], st_geometry(selected_blocks_geom))
+            selected_blocks_geom <- st_make_valid(selected_blocks_geom)
             wards[[i]] <- st_make_valid(wards[[i]])
+            wards[[i]] <- st_union(wards[[i]], st_geometry(selected_blocks_geom))
 
             if (length(wards[[i]]) > 1) {
                 wards[[i]] <- st_union(wards[[i]])
@@ -123,8 +127,8 @@ ward_df <- ward_df %>%
 ward_df <- st_as_sf(ward_df)
 return(ward_df)
 }
-nested_adjacent_blocks <-function(spatial_data, selected_blocks, buffer_size, nests) {
-    for (i in 1:nests) {
+iterated_adjacent_blocks <-function(spatial_data, selected_blocks, buffer_size, iterations) {
+    for (i in 1:iterations) {
         if (i == 1) {
             start_df <- selected_blocks
             adjacent_df <- find_adjacent_blocks(spatial_data, selected_blocks, buffer_size = buffer_size)

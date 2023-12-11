@@ -15,3 +15,5 @@
 
 ## Inputs
 - `block_map_2010.rds`: Census block map.
+
+This task takes ~ 90 computational hours to run serially. I ran it in 15 hours using 6 cores on a Framework laptop. I recommend using a server if you have access to one.
