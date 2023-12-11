@@ -2,12 +2,13 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-OUTPUT = ../output/placebo_maps.rds
+seeds = $(shell seq 1 30)
+OUTPUTS = $(foreach seed,$(seeds),../output/placebo_map_ward_seed_$(seed).R)
 INPUTS_block_maps = $(addprefix ../input/, block_map_2000.rds block_map_2010.rds)
 all: $(OUTPUT)
 
 #OUTPUT RECIPES
-$(OUTPUT): generate_ward_maps.R ../input/block_map_2010.rds| ../output
+$(OUTPUT): ../output/placebo_map_ward_seed_%.R generate_ward_maps.R ../input/block_map_2010.rds| ../output
 	$(R) --no-job-name $<
 
 #INPUT RECIPES
