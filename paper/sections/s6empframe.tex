@@ -1,7 +1,7 @@
 \section{Empirical Framework}\label{sec:empframe}
 This section discusses the empirical framework used to analyze the data.
 I use the removal of an incumbent from office and the resulting breaking of the incumbent's patronage network to estimate the degree of patronage in the menu program.
-To do this, I use a differences-in-differences design to compare the spending trends of supporting or opposing precincts before and after the incumbent leaves office. 
+To do this, I use a difference-in-differences design to compare the spending trends of supporting or opposing precincts before and after the incumbent leaves office. 
 The most standard specification of this design would normally be:
 
 \begin{equation}\label{eq:standard_did}
@@ -21,23 +21,23 @@ Therefore, using a continuous treatment design would be effectively assuming awa
 
 This paper estimates four variations of equation \ref{eq:standard_did}. 
 The first two rely on a close-election assumption to justify the parallel trends assumption. 
-This assumption means that incumbent aldermen who win by a small margin have similar spending trends to those who lose by a small margin.
-This study defines a close margin as 10\% or less; this corresponds to approximately within 1,200 votes.
-This assumption effectively means that incumbent aldermen who barely win to allocate funds similarly to those who barely lose in the run-up to the election.
+This assumption means incumbent aldermen who win by a small margin have similar spending trends to those who lose by a small margin.
+This study defines a close margin as 10\% or less; this corresponds to approximately 1,200 votes.
+This assumption effectively means that incumbent aldermen who barely win allocate funds similarly to those who barely lose in the run-up to the election.
 I then examine two sets of precincts. 
 The first set of precincts is the top quintile (8) precincts by vote margin for each ward in the 2015 or 2019 election, whichever is appropriate to the treatment group. 
 The second set of precincts is the bottom quintile precincts by vote margin for each ward in the 2015 or 2019 election, whichever is appropriate to the treatment group.
-I use the 2012 through 2022 years to estimate this model, due to the 2011 redistricting complicating the use of 2005-2011 data. 
+I use the years 2012 through 2022 to estimate this model due to the 2011 redistricting complicating the use of 2005-2011 data. 
 
 The third and fourth variations rely on a simultaneous set of indictments of aldermen in 2019, causing three aldermen to either be ineligible for reelection or to retire. 
 These aldermen were Daniel Solis, Ricardo Munoz, and Willie Cochran. 
-Daniel Solis left office after being caught by the FBI and wearing a wire to record Alderman Ed Burke, who was indicted in 2019 but not removed from office until 2023.
-Ricardo Munoz retired shortly after reporters discovered that he had spent PAC money on personal expenses.
+Daniel Solis left office after being caught for corruption by the FBI and wearing a wire to record Alderman Ed Burke, who was indicted in 2019 but not removed from office until 2023.
+Ricardo Munoz retired after reporters discovered he spent PAC money on personal expenses.
 Willie Cochran retired after pleading guilty to wire fraud and misusing campaign funds for gambling and personal expenses.
 I compare this group to a set of 10 control aldermen who were not indicted, have been in office for at least 10 years, and won reelection in 2019 in the general election, indicating they were not in a competitive election. 
 To measure whether or not a precinct supported an alderman, I use the total number of campaign contributions donated to the aldermen from the precinct in the 2015 and 2019 elections.
-I do this because many of the ``entrenched'' aldermen have not faced a competitive election in decades, so net votes are not a good measure of support.
+I do this because many ``entrenched'' aldermen have not faced a competitive election in decades, so net votes are not a good measure of support.
 Despite this, all aldermen still accept campaign contributions even when there is no challenger, so I use this to measure support.
-In this case, I expect the trends for the indicted and control aldermen will be the same, as they are all not in competitive elections and thus their spending preferences should be stable over time.
+In this case, I expect the trends for the indicted and control aldermen will be the same, as they are all not in competitive elections, and thus, their spending preferences should be stable over time.
 Furthermore, the unexpected timing of indictments within the election would hopefully preclude any anticipatory behavior.
 In both cases, I cluster standard errors at the ward level.
