@@ -22,10 +22,10 @@ assert_that(all(unique(block_map_2012$tract_bloc) %in% unique(block_map_2010$tra
 block_map_2012 <- block_map_2012 %>%
   rename(ward = ward_locate)
 
-# map_2012_distances <- compute_area_to_ward_distances(block_map_2012, ward_map_2012)
-#immediately write to RDS
+map_2012_distances <- compute_area_to_ward_distances(block_map_2012, ward_map_2012)
+immediately write to RDS
 # saveRDS(map_2012_distances, "../output/map_2012_distances.rds")
-map_2012_distances <- readRDS("../output/map_2012_distances.rds")
+# map_2012_distances <- readRDS("../output/map_2012_distances.rds")
 
 needs_df <- read.csv("../input/ward_needs_data.csv")
 needs_df <- needs_df %>% 

@@ -2,7 +2,7 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-OUTPUT = ../output/ward_needs_data.csv
+OUTPUT = ../output/ward_needs_data.csv ../output/log_cubed_model.rds
 TEMP = ../temp/ward_precincts_2012_2022 ../temp/ward_precincts_2003_2011
 INPUTS_maps = $(addprefix ../input/, ward_precincts_2003_2011.zip \
 ward_precincts_2012_2022.zip)

@@ -2,7 +2,7 @@ SHELL=bash
 include ../../shell_functions.make
 
 ## DEFINITIONS
-seeds = $(shell seq 20 60)
+seeds = $(shell seq 1 50)
 OUTPUTS = $(foreach seed,$(seeds),../output/placebo_map_ward_seed_$(seed).rds)
 INPUTS_block_maps = $(addprefix ../input/, block_map_2000.rds block_map_2010.rds)
 all: $(OUTPUTS)

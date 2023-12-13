@@ -101,3 +101,6 @@ map_ward <- map_ward %>%
 
 #write to output csv file
 write_csv(map_ward, "../output/ward_needs_data.csv")
+
+#write log-cubed model to rda
+saveRDS(lm1, "../output/log_cubed_model.rds")
