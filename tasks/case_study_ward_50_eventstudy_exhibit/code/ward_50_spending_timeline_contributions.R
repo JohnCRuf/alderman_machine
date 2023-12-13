@@ -33,9 +33,9 @@ bot_precinct_list <- stone_contribution_df %>%
   pull(precinct_locate)
 # label precinct_locate in df as "Top" if it is in top_precinct_list, "Bottom" if it is in bot_precinct_list, and "Other" otherwise
 df <- df %>%
-  mutate(lab = case_when(precinct %in% top_precinct_list ~ "Top",
-                         precinct %in% bot_precinct_list ~ "Bottom",
-                         TRUE ~ "Other"
+  mutate(lab = case_when(precinct %in% top_precinct_list ~ "Most Contributing Precincts",
+                         precinct %in% bot_precinct_list ~ "Least Contributing Precincts",
+                         TRUE ~ "Intermediate Precincts"
                          ))
 
 df <- df %>%
@@ -44,6 +44,10 @@ df <- df %>%
             observed_spending_fraction = sum(weighted_cost)/observed_spending/n()*100,
             total_spending = sum(weighted_cost)) %>%
   ungroup()
+
+#sort df in order of Most Contributing Precincts, Least Contributing Precincts, Intermediate Precincts
+df <- df %>%
+  mutate(lab = factor(lab, levels = c("Most Contributing Precincts", "Intermediate Precincts", "Least Contributing Precincts")))
 
 #create a line chart of the mean spending of the top and bottom precincts
 figure <- ggplot(df, aes(x = as.factor(year))) + 

@@ -1,23 +1,24 @@
-## DEFINITIONS
-FOLDERS = input
-PAPER_SECTIONS = $(shell grep '\\input' paper.tex  | grep -v '%.*\\input' | sed 's/^.*\\input{\(.*\.tex\)}.*/\1/')
-PAPER_INPUTS_TEX = $(shell grep '\\input{' $(PAPER_SECTIONS) | grep -v '%.*\\input' | sed 's/^.*\\input{\(.*\.tex\)}.*/\1/')
-PAPER_INPUTS_IMG = $(shell grep --no-filename '\\includegraphics' $(PAPER_SECTIONS) | grep -v '%.*\\includegraphics' | sed 's/^.*\\includegraphics\[.*\]{\(.*\)}.*/\1/')
+tex_sections := $(shell grep -v '^%' paper.tex | grep -o 'input{[A-Za-z0-9_\/\.]*}' | sed 's/input{//' | sed 's/}$$//')
+tex_inputs := $(shell grep -v '^%' $(tex_sections) | grep --no-filename -o 'input{[A-Za-z0-9_\/\.]*}' | sed 's/input{//' | sed 's/}$$//')
+img_inputs := $(shell grep --no-filename '\\includegraphics' $(tex_sections) | grep -v '%.*\\includegraphics' | sed 's/^.*\\includegraphics{\([A-Za-z0-9_\/\.]*\)}.*/\1/' | sed 's/^.*\\includegraphics\[.*\]{\([A-Za-z0-9_\/\.]*\)}.*/\1/')
 
-## RECIPES
+#RECIPES
 
-all: $(FOLDERS) $(PAPER_INPUTS_TEX) $(PAPER_INPUTS_IMG) paper.pdf
+all: paper.pdf
 
-$(FOLDERS):
-	mkdir $@
+clean: 
+	rm *.aux *.log *.out
+	rm sections/*.log
 
-paper.pdf: paper.tex $(PAPER_INPUTS_TEX) $(PAPER_INPUTS_IMG)
-	if command -v sbatch > /dev/null ; then module load texlive; fi
-	pdflatex -draftmode paper.tex
+Makefile_dropbox.make: Makefile
+	sed 's/ln -s ..\//cp -p /' Makefile | sed 's/^..\/tasks\//#/' | sed '/Makefile_dropbox.make/,/Makefile_dropbox.make/d' | sed '/^# generic/,/notdir $@)/d' > Makefile_dropbox.make
+
+paper.pdf: paper.tex $(tex_sections) $(tex_inputs) $(img_inputs)
+	pdflatex -draftmode $<
 	bibtex paper.aux
-	pdflatex -draftmode paper.tex
-	pdflatex paper.tex
-	rm paper.log paper.aux paper.out
+	pdflatex -draftmode $<
+	pdflatex $<
+	rm paper.aux paper.log paper.out
 	rm paper.bbl paper.blg
 ## INPUTS
 DiD_Results = $(foreach did_hist did_plot did_treatmenteffect_plot votershare_histogram, ../input/$(did_hist).png)
@@ -38,4 +39,9 @@ input/ward_50_menu_map_%.png: ../tasks/produce_menu_maps/output/ward_50_menu_map
 input/ward_50_contribution_%_timeline.png: ../tasks/case_study_ward_50_eventstudy_exhibit/output/ward_50_contribution_%_timeline.png | input
 	cp $< $@
 input/hte_figure_%.png: ../tasks/model_estimate_did/output/hte_figure_%.png | input
+	cp $< $@
+
+input/%_over_time.png: ../tasks/model_exhibit_did/output/%_over_time.png | input
+	cp $< $@
+input/%_variation.png: ../tasks/model_exhibit_did/output/%_variation.png | input
 	cp $< $@
