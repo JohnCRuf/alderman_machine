@@ -1,0 +1,27 @@
+{\centering
+\begin{tabular}{lcccccc}
+    \toprule
+    & (1) & (2) & (3) & (4) & (5) & (6) \\
+    & Rats & Rats & Graffiti & Graffiti & Potholes & Potholes \\\midrule
+    &$\num{⟪VAR0_MEAN:.2f⟫}$ & $\num{⟪VAR1_MEAN:.2f⟫}$ & $\num{⟪VAR2_MEAN:.2f⟫}$ & $\num{⟪VAR3_MEAN:.2f⟫}$ & $\num{⟪VAR4_MEAN:.2f⟫}$ & $\num{⟪VAR5_MEAN:.2f⟫}$ \\
+    &($\num{⟪VAR0_SE:.2f⟫}$)⟪VAR0_STARS⟫ & ($\num{⟪VAR1_SE:.2f⟫}$)⟪VAR1_STARS⟫ & ($\num{⟪VAR2_SE:.2f⟫}$)⟪VAR2_STARS⟫ & ($\num{⟪VAR3_SE:.2f⟫}$)⟪VAR3_STARS⟫ & ($\num{⟪VAR4_SE:.2f⟫}$)⟪VAR4_STARS⟫ & ($\num{⟪VAR5_SE:.2f⟫}$)⟪VAR5_STARS⟫ \\
+    \midrule
+    Ward FE & N & Y & N & Y & N & Y \\
+    Time FE & N & Y & N & Y & N & Y \\
+    \# of elections in bandwidth & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ & ⟪NO_ELECS⟫ \\
+    \# of wards in bandwidth & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ & ⟪NO_WARDS⟫ \\
+    \bottomrule
+\end{tabular}
+}
+
+\noindent\begin{tabular}{rl}
+    $^{*}:$ & $p<0.1$ \\
+    $^{**}:$ & $p<0.05$ \\
+    $^{***}:$ & $p<0.01$ \\
+\end{tabular}
+
+% \vspace{1em}
+
+\noindent {\small Notes: Results represent the discontinuous change in the response time for various service requests during the pre-election period as the incumbent's victory margin crosses zero. Each entry corresponds to a local linear regression with a triangular kernel and a bandwidth of 0.18. Standard errors are clustered at the ward level. The dependent variable is mean response time (measured in days).}
+
+% \vspace{1em}

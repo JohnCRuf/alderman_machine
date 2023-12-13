@@ -1,8 +1,13 @@
-all: base turnout
+all: ../../outputs/figures/base/base.txt ../../outputs/figures/turnout/turnout.txt ../../outputs/figures/procurement/procurement.txt ../../outputs/figures/services/services.txt
 
-base:
+../../outputs/figures/base/base.txt:
 	python election_density_discont.py
 
-turnout:
+../../outputs/figures/turnout/turnout.txt:
 	python turnout_discont.py
 
+../../outputs/figures/procurement/procurement.txt:
+	python procurement.py
+
+../../outputs/figures/services/services.txt:
+	python services.py

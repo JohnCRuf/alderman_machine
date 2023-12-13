@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from utils import *
 from LLR import *
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 
@@ -11,11 +12,13 @@ with open('params.json', 'r') as infile:
     params = json.load(infile)
 
 def main():
+    # Load data on Chicago elections (year, ward, victor, margin, and whether it went to a runoff)
     election_data = load_election_data()
 
     elecs = election_data['elecs']
     decisive_incumbent_elecs = election_data['decisive_elecs']
 
+    # Create a finely binned histogram, a la Vogl (2014)
     hist_points = np.arange(-1, 1.0001, 0.01)
     binsize = (hist_points.max() - hist_points.min()) / (len(hist_points) - 1)
 
@@ -41,6 +44,7 @@ def main():
     num_elecs_in_bw = len(decisive_incumbent_elecs.query(f'margin.abs() < {bw/2}'))
     num_wards_in_bw = len(decisive_incumbent_elecs.query(f'margin.abs() < {bw/2}').ward.unique())
 
+    # Perform a local linear fit on the discontinuity at c=0 (where the incumbent wins exactly 50%)
     margin_df['ll_est'] = local_linear_reg(
         margin_df.margin_mp.to_numpy(),
         margin_df.freq.to_numpy(),
@@ -49,6 +53,7 @@ def main():
         bw=bw
     )
 
+    # Create pretty plots of the discontinuity in density
     plt.plot((m:=margin_df.query('margin<0')).margin_mp, m.ll_est, color='k')
     plt.plot((m:=margin_df.query('margin>=0')).margin_mp, m.ll_est, color='k')
     plt.axvline(0, color='k', linestyle=':')
@@ -59,7 +64,9 @@ def main():
     plt.xlabel('Margin')
     plt.ylabel('Density')
 
-    plt.savefig('../../results/figures/electoral_density.pdf')
+    plt.savefig('../../outputs/figures/base/electoral_density.pdf')
+
+    # Calculate the significance of the discontinuity in logs
 
     m_plus = margin_df.query('winner == 1').head(1).margin_mp.item()
     f_plus = margin_df.query('winner == 1').head(1).ll_est.item()
@@ -69,6 +76,8 @@ def main():
     theta = (
         np.log(f_plus) - np.log(f_minus)
     )
+
+    # ...and in levels
 
     p1 = local_linear_reg_backend(
         m_plus,
@@ -101,7 +110,9 @@ def main():
 
     sigma_theta = sigma(n, bw, f_plus, f_minus)
 
-    res_table = load_template('../../results/templates/hist_template.tex').format(**{
+    # Write those estimates to a table.
+
+    res_table = load_template('../../outputs/templates/hist_template.tex').format(**{
         'LEVEL_MEAN_EST': mean_diff,
         'LEVEL_SE': se_diff,
         'LEVEL_STARS': make_stars(t_test(mean_diff / se_diff, num_wards_in_bw - 2)),
@@ -112,9 +123,11 @@ def main():
         'NO_WARDS': num_wards_in_bw
     })
 
-    with open('../../results/tables/base_discont_table.tex', 'w') as outfile:
+    with open('../../outputs/tables/base_discont_table.tex', 'w') as outfile:
         outfile.write(res_table)
 
     
 if __name__ == '__main__':
     main()
+
+    Path('../../outputs/figures/base/base.txt').touch()
